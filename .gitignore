@@ -1,0 +1,7 @@
+/application/config/config.local.php
+/application/config/config.test.php
+/application/logs/*
+/application/plugins/*
+/application/tmp/*
+/uploads/*
+/.idea/
