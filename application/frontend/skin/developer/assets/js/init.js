@@ -6,19 +6,19 @@
  * @author    Denis Shakhov <denis.shakhov@gmail.com>
  */
 
-jQuery(document).ready(function($){
-	// Хук начала инициализации javascript-составляющих шаблона
-	ls.hook.run('ls_template_init_start',[],window);
+jQuery(document).ready(function ($) {
+    // Хук начала инициализации javascript-составляющих шаблона
+    ls.hook.run('ls_template_init_start', [], window);
 
-	/**
-	 * Иниц-ия модулей ядра
-	 */
-	ls.init({
-		production: false
-	});
+    /**
+     * Иниц-ия модулей ядра
+     */
+    ls.init({
+        production: false
+    });
 
-	ls.dev.init();
+    ls.dev.init();
 
-	// Хук конца инициализации javascript-составляющих шаблона
-	ls.hook.run('ls_template_init_end',[],window);
+    // Хук конца инициализации javascript-составляющих шаблона
+    ls.hook.run('ls_template_init_end', [], window);
 });

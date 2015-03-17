@@ -21,7 +21,7 @@
  * Ничего не изменяйте в этом файле!
  * Все изменения нужно вносить в файл config/config.local.php
  */
-define('LS_VERSION','1.1.0.dev');
+define('LS_VERSION','2.0.0.alfa');
 
 /**
  * Основные настройки путей
@@ -69,6 +69,15 @@ $config['module']['notify']['prefix']        = 'email';  // Префикс ша�
 
 // Модуль Security
 $config['module']['security']['hash']  = "livestreet_security_key"; // "примесь" к строке, хешируемой в качестве security-кода
+/**
+ * Модуль Validate
+ */
+// Настройки Google рекаптчи - https://www.google.com/recaptcha/admin#createsite
+$config['module']['validate']['recaptcha']= array(
+	'site_key' => '', // Ключ
+	'secret_key' => '', // Секретный ключ
+	'use_ip' => false, // Использовать при валидации IP адрес клиента
+);
 
 // Какие модули должны быть загружены на старте
 $config['module']['autoLoad'] = array('Hook','Cache','Logger','Security','Session','Lang','Message');
@@ -106,6 +115,30 @@ $config['router']['config']['default']['event']		= null;
 $config['router']['config']['default']['params']	= null;
 $config['router']['config']['default']['request']	= null;
 $config['router']['config']['action_not_found']		= 'error';
+// Принудительное использование https для экшенов. Например, 'login' и 'registration'
+$config['router']['force_secure'] = array();
+
+
+/**
+ * Подключение компонентов
+ */
+$config['components'] = array(
+	// Базовые компоненты
+	'css-reset', 'css-helpers', 'typography', 'forms', 'grid', 'ls-vendor', 'ls-core', 'ls-component', 'lightbox', 'slider', 'details', 'alert', 'dropdown', 'button', 'block',
+	'nav', 'tooltip', 'tabs', 'modal', 'table', 'text', 'uploader', 'email', 'field', 'comment', 'pagination', 'editor', 'more', 'crop',
+	'performance', 'toolbar', 'actionbar', 'badge', 'autocomplete', 'icon', 'item', 'highlighter', 'jumbotron','notification',
+);
+
+$config['head']['default']['js'] = array(
+	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+);
+$config['head']['default']['css'] = array();
+
+// Подключение темы
+if ( $config['view']['theme'] ) {
+	$config['head']['default']['css'][] = "___path.skin.web___/themes/___view.theme___/style.css";
+}
+
 
 /**
  * Установка локали
