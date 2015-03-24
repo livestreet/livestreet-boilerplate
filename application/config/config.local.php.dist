@@ -16,6 +16,15 @@ $config['db']['params']['type']   = 'mysqli';
 $config['db']['params']['dbname'] = 'social';
 $config['db']['table']['prefix'] = 'prefix_';
 
+/**
+ * Если необходимо установить движек в директорию(не корень сайта) то следует сделать так:
+ * $config['path']['root']['web']    = 'http://'.$_SERVER['HTTP_HOST'].'/subdir';
+ * и увеличить значение $config['path']['offset_request_url'] на число вложенных директорий,
+ * например, для директории первой вложенности www.site.ru/livestreet/ поставить значение равное 1
+ */
+$config['path']['root']['web'] = 'http://boilerplate.app';
+$config['path']['offset_request_url'] = 0;
+
 $config['module']['asset']['css']['merge'] = false;
 $config['module']['asset']['js']['merge'] = false;
 
