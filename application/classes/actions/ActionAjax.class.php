@@ -44,6 +44,9 @@ class ActionAjax extends Action
      */
     protected function RegisterEvent()
     {
+        $this->AddEventPreg('/^captcha$/i', '/^$/', 'EventCaptcha');
+        $this->AddEventPreg('/^captcha$/i', '/^validate$/', '/^$/', 'EventCaptchaValidate');
+
         $this->AddEventPreg('/^vote$/i', '/^user$/', 'EventVoteUser');
     }
 
@@ -52,6 +55,47 @@ class ActionAjax extends Action
      ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
      **********************************************************************************
      */
+
+    /**
+     * Отображение каптчи
+     */
+    protected function EventCaptcha()
+    {
+        $this->Viewer_SetResponseAjax(null);
+        /**
+         * Подключаем каптчу
+         */
+        require_once(Config::Get('path.framework.libs_vendor.server') . '/kcaptcha/kcaptcha.php');
+        /**
+         * Определяем уникальное название (возможность нескольких каптч на одной странице)
+         */
+        $sName = '';
+        if (isset($_GET['name']) and is_string($_GET['name']) and $_GET['name']) {
+            $sName = $_GET['name'];
+        }
+        /**
+         * Генерируем каптчу и сохраняем код в сессию
+         */
+        $oCaptcha = new KCAPTCHA();
+        $this->Session_Set('captcha_keystring' . ($sName ? '_' . $sName : ''), $oCaptcha->getKeyString());
+        $this->SetTemplate(false);
+    }
+
+    /**
+     * Ajax валидация каптчи
+     */
+    protected function EventCaptchaValidate()
+    {
+        $sName = isset($_REQUEST['params']['name']) ? $_REQUEST['params']['name'] : '';
+        $sValue = isset($_REQUEST['fields'][0]['value']) ? $_REQUEST['fields'][0]['value'] : '';
+        $sField = isset($_REQUEST['fields'][0]['field']) ? $_REQUEST['fields'][0]['field'] : '';
+
+        $sCaptchaValidateType = func_camelize('captcha_' . Config::Get('general.captcha.type'));
+        if (!$this->Validate_Validate($sCaptchaValidateType, $sValue, array('name' => $sName))) {
+            $aErrors = $this->Validate_GetErrors();
+            $this->Viewer_AssignAjax('aErrors', array(htmlspecialchars($sField) => array(reset($aErrors))));
+        }
+    }
 
     /**
      * Голосование

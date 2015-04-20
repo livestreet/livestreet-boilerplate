@@ -55,9 +55,16 @@ $config['view']['img_max_size_url'] = 500;    // максимальный раз
  * Общие настройки
  */
 $config['general']['admin_mail']  = 'admin@admin.adm'; // email администратора
+$config['general']['captcha']['type'] = 'kcaptcha'; // тип используемой каптчи: kcaptcha, recaptcha
+
 /**
  * Настройки модулей
  */
+// User
+$config['module']['user']['time_login_remember'] = 60 * 60 * 24 * 7;   // время жизни куки когда пользователь остается залогиненым на сайте, 7 дней
+$config['module']['user']['count_auth_session'] = 4; // Количество разрешенных сессий пользователя (авторизаций в разных браузерах)
+$config['module']['user']['count_auth_session_history'] = 10; // Общее количество сессий для хранения (значение должно быть больше чем count_auth_session)
+
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
 // Модуль Notify
@@ -90,12 +97,19 @@ $config['db']['params']['user']   = 'root';
 $config['db']['params']['pass']   = '';
 $config['db']['params']['type']   = 'mysqli';
 $config['db']['params']['dbname'] = 'social';
+$config['db']['tables']['engine'] = 'InnoDB';  // InnoDB или MyISAM
 /**
  * Настройка таблиц базы данных
  */
 $config['db']['table']['prefix'] = 'prefix_';
-$config['db']['table']['notify_task']         = '___db.table.prefix___notify_task';
-$config['db']['tables']['engine'] = 'InnoDB';  // InnoDB или MyISAM
+$config['db']['table']['notify_task'] = '___db.table.prefix___notify_task';
+$config['db']['table']['plugin_manager_migration'] = '___db.table.prefix___plugin_migration';
+$config['db']['table']['plugin_manager_version'] = '___db.table.prefix___plugin_version';
+$config['db']['table']['storage'] = '___db.table.prefix___storage';
+
+$config['db']['table']['user'] = '___db.table.prefix___user';
+$config['db']['table']['user_session'] = '___db.table.prefix___session';
+$config['db']['table']['user_reminder'] = '___db.table.prefix___reminder';
 
 /**
  * Настройки роутинга
@@ -109,6 +123,7 @@ $config['router']['uri'] = array(
 $config['router']['page']['error']         = 'ActionError';
 $config['router']['page']['index']         = 'ActionIndex';
 $config['router']['page']['ajax']          = 'ActionAjax';
+$config['router']['page']['auth']		   = 'ActionAuth';
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action']	= 'index';
 $config['router']['config']['default']['event']		= null;
@@ -127,10 +142,13 @@ $config['components'] = array(
 	'css-reset', 'css-helpers', 'typography', 'forms', 'grid', 'ls-vendor', 'ls-core', 'ls-component', 'lightbox', 'slider', 'details', 'alert', 'dropdown', 'button', 'block',
 	'nav', 'tooltip', 'tabs', 'modal', 'table', 'text', 'uploader', 'email', 'field', 'comment', 'pagination', 'editor', 'more', 'crop',
 	'performance', 'toolbar', 'actionbar', 'badge', 'autocomplete', 'icon', 'item', 'highlighter', 'jumbotron','notification',
+
+	// Компоненты приложения
+	'auth', 'userbar'
 );
 
 $config['head']['default']['js'] = array(
-	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+	"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
 );
 $config['head']['default']['css'] = array();
 

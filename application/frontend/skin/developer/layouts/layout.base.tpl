@@ -26,7 +26,6 @@
         ls.lang.load({json var = $aLangJs});
         ls.registry.set({json var = $aVarsJs});
     </script>
-
     {**
      * Тип сетки сайта
      *}
@@ -45,22 +44,28 @@
             .grid-role-userbar,
             .grid-role-nav .nav--main,
             .grid-role-header .jumbotron-inner,
-            .grid-role-container { width: {Config::Get('view.grid.fixed_width')}; }
+            .grid-role-container {
+                width: {Config::Get('view.grid.fixed_width')};
+            }
         </style>
     {/if}
 {/block}
 
 {block 'layout_body'}
+    {**
+     * Юзербар
+     *}
+    {component 'userbar'}
 
     {**
      * Шапка
      *}
     {if Config::Get( 'view.layout_show_banner' )}
         {component 'jumbotron'
-            title    = Config::Get('view.name')
-            subtitle = Config::Get('view.description')
-            titleUrl = {router page='/'}
-            classes  = 'grid-role-header'}
+        title    = Config::Get('view.name')
+        subtitle = Config::Get('view.description')
+        titleUrl = {router page='/'}
+    classes  = 'grid-role-header'}
     {/if}
 
 
@@ -70,8 +75,6 @@
     <nav class="grid-row grid-role-nav">
         {include 'navs/nav.main.tpl'}
     </nav>
-
-
     {**
      * Основной контэйнер
      *}
@@ -130,7 +133,13 @@
                 {hook run='footer_end'}
             {/block}
         </footer>
-    </div> {* /container *}
+    </div>
+    {* /container *}
+
+    {* Подключение модальных окон *}
+    {if !$oUserCurrent}
+        {component 'auth' template='modal'}
+    {/if}
 
     {* Подключение тулбара *}
     {component 'toolbar' classes='js-toolbar-default' items={include 'blocks.tpl' group='toolbar'}}
