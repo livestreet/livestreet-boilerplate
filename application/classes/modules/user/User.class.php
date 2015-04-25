@@ -232,7 +232,7 @@ class ModuleUser extends ModuleORM
         $oSession->setIpLast(func_getIp());
         $oSession->setDateLast(date("Y-m-d H:i:s"));
 
-        if ($oSession->add()) {
+        if ($oSession->save()) {
             $this->oSession = $oSession;
             return true;
         }
