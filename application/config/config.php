@@ -144,7 +144,7 @@ $config['components'] = array(
 	'performance', 'toolbar', 'actionbar', 'badge', 'autocomplete', 'icon', 'item', 'highlighter', 'jumbotron', 'notification', 'blankslate',
 
 	// Компоненты приложения
-	'auth', 'userbar'
+	'auth', 'userbar', 'toolbar-scrollup',
 );
 
 $config['head']['default']['js'] = array(
