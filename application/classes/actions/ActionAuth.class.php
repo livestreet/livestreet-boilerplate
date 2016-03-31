@@ -60,6 +60,7 @@ class ActionAuth extends Action
         $this->AddEvent('ajax-password-reset', 'EventAjaxPasswordReset');
         $this->AddEvent('ajax-reactivation', 'EventAjaxReactivation');
         $this->AddEvent('ajax-validate-fields', 'EventAjaxValidateFields');
+        $this->AddEvent('ajax-validate-email', 'EventAjaxValidateEmail');
         $this->AddEvent('ajax-register', 'EventAjaxRegister');
     }
 
@@ -125,7 +126,7 @@ class ActionAuth extends Action
                 /**
                  * Получаем ошибки
                  */
-                $this->Viewer_AssignAjax('aErrors', $oUser->_getValidateErrors());
+                $this->Viewer_AssignAjax('errors', $oUser->_getValidateErrors());
                 $this->Message_AddErrorSingle(null);
                 return;
             }
@@ -152,7 +153,7 @@ class ActionAuth extends Action
     {
         $this->Viewer_SetResponseAjax('json');
 
-        if ($oUser = $this->User_GetUserByMail(getRequestStr('mail'))) {
+        if (getRequestStr('mail') and $oUser = $this->User_GetUserByMail(getRequestStr('mail'))) {
             if ($oUser->getActivate()) {
                 $this->Message_AddErrorSingle($this->Lang_Get('auth.registration.notices.error_reactivate'));
                 return;
@@ -210,7 +211,7 @@ class ActionAuth extends Action
         /**
          * Пользователь с таким емайлом существует?
          */
-        if ($oUser = $this->User_GetUserByMail(getRequestStr('mail'))) {
+        if (getRequestStr('mail') and $oUser = $this->User_GetUserByMail(getRequestStr('mail'))) {
             /**
              * Удаляем старые записи
              */
@@ -272,16 +273,31 @@ class ActionAuth extends Action
                 }
             }
             $this->Message_AddErrorSingle($this->Lang_Get('auth.reset.alerts.error_bad_code'),
-                $this->Lang_Get('error'));
+                $this->Lang_Get('common.error.error'));
             return Router::Action('error');
         }
     }
-
 
     /**
      * Ajax валидация форму регистрации
      */
     protected function EventAjaxValidateFields()
+    {
+        $this->ValidateFields(getRequest('fields'));
+    }
+
+    /**
+     * Ajax валидация емэйла
+     */
+    protected function EventAjaxValidateEmail()
+    {
+        $this->ValidateFields(array(array('field' => 'mail', 'value' => getRequest('mail'))));
+    }
+
+    /**
+     * Ajax валидация форму регистрации
+     */
+    protected function ValidateFields($aFields)
     {
         /**
          * Устанавливаем формат Ajax ответа
@@ -295,7 +311,6 @@ class ActionAuth extends Action
         /**
          * Пробегаем по переданным полям/значениям и валидируем их каждое в отдельности
          */
-        $aFields = getRequest('fields');
         if (is_array($aFields)) {
             foreach ($aFields as $aField) {
                 if (isset($aField['field']) and isset($aField['value'])) {
@@ -338,7 +353,7 @@ class ActionAuth extends Action
             /**
              * Получаем ошибки
              */
-            $this->Viewer_AssignAjax('aErrors', $oUser->_getValidateErrors());
+            $this->Viewer_AssignAjax('errors', $oUser->_getValidateErrors());
         }
     }
 
@@ -393,7 +408,7 @@ class ActionAuth extends Action
             /**
              * Получаем ошибки
              */
-            $this->Viewer_AssignAjax('aErrors', $oUser->_getValidateErrors());
+            $this->Viewer_AssignAjax('errors', $oUser->_getValidateErrors());
         }
     }
 

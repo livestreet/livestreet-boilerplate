@@ -6,13 +6,15 @@
 
 {$redirectUrl = $smarty.local.redirectUrl|default:$PATH_WEB_CURRENT}
 
+{component_define_params params=[ 'modal' ]}
+
 {hook run='registration_begin'}
 
 <form action="{router page='auth/register'}" method="post" class="js-form-validate js-auth-registration-form">
     {hook run='form_registration_begin'}
 
     {* E-mail *}
-    {component 'field' template='email' rules=[ 'remote' => "{router page='auth'}ajax-validate-fields" ]}
+    {component 'field' template='email' rules=[ 'remote' => "{router page='auth'}ajax-validate-email" ]}
 
     {* Пароль *}
     {component 'field' template='text'

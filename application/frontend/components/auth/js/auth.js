@@ -7,19 +7,30 @@ ls.auth = (function ($) {
      */
     this.init = function() {
         /* Авторизация */
-        ls.ajax.form(aRouter.auth + 'ajax-login', '.js-auth-login-form', function (result) {
-            result.sUrlRedirect && (window.location = result.sUrlRedirect);
+        $('.js-auth-login-form, .js-auth-login-form-modal').on('submit', function (e) {
+            ls.ajax.submit(aRouter.auth + 'ajax-login', $(this), function ( response ) {
+                response.sUrlRedirect && (window.location = response.sUrlRedirect);
+            });
+
+            e.preventDefault();
         });
 
         /* Регистрация */
-        ls.ajax.form(aRouter.auth + 'ajax-register', '.js-auth-registration-form', function (result) {
-            result.sUrlRedirect && (window.location = result.sUrlRedirect);
+        $('.js-auth-registration-form, .js-auth-registration-form-modal').on('submit', function (e) {
+            ls.ajax.submit(aRouter.auth + 'ajax-register', $(this), function ( response ) {
+                response.sUrlRedirect && (window.location = response.sUrlRedirect);
+            });
+
+            e.preventDefault();
         });
 
         /* Восстановление пароля */
-        ls.ajax.form(aRouter.auth + 'ajax-password-reset', '.js-auth-reset-form', function (result, status, xhr, form) {
-            form.find('input').val('');
-            result.sUrlRedirect && (window.location = result.sUrlRedirect);
+        $('.js-auth-reset-form, .js-auth-reset-form-modal').on('submit', function (e) {
+            ls.ajax.submit(aRouter.auth + 'ajax-password-reset', $(this), function ( response ) {
+                response.sUrlRedirect && (window.location = response.sUrlRedirect);
+            });
+
+            e.preventDefault();
         });
 
         /* Повторный запрос на ссылку активации */

@@ -93,7 +93,7 @@
                 {hook run='footer_begin'}
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Copyright &copy; Your Website 2014</p>
+                        <p>Copyright &copy; Your Website {date('Y')}</p>
                     </div>
                 </div>
                 {hook run='footer_end'}

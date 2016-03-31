@@ -2,7 +2,9 @@
  * Форма восстановления пароля
  *}
 
-<form action="{router page='auth'}password-reset/" method="post" class="js-form-validate js-auth-reset-form">
+{component_define_params params=[ 'modal' ]}
+
+<form action="{router page='auth'}password-reset/" method="post" class="js-form-validate js-auth-reset-form{if $modal}-modal{/if}">
     {* E-mail *}
     {component 'field' template='email' label=$aLang.auth.reset.form.fields.mail.label}
 

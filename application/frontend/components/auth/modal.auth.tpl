@@ -2,11 +2,7 @@
  * Модальное окно с формами входа, регистрации и напоминанием пароля
  *}
 
-{if ! Config::Get('general.reg.invite')}
-    {component 'auth' template='registration' assign=auth_tab_reg}
-{else}
-    {component 'auth' template='invite' assign=auth_tab_reg}
-{/if}
+{component 'auth' template='registration' assign=auth_tab_reg modal=true}
 
 {component 'modal'
     title      = {lang 'auth.authorization'}
@@ -16,7 +12,7 @@
     mods       = 'auth'
     id         = 'modal-login'
     tabs       = [ 'tabs' => [
-        [ 'text' => {lang 'auth.login.title'},        'content' => {component 'auth' template='login'}, 'classes' => 'js-auth-tab-login' ],
+        [ 'text' => {lang 'auth.login.title'},        'content' => {component 'auth' template='login' modal=true}, 'classes' => 'js-auth-tab-login' ],
         [ 'text' => {lang 'auth.registration.title'}, 'content' => $auth_tab_reg,   'classes' => 'js-auth-tab-reg' ],
-        [ 'text' => {lang 'auth.reset.title'},        'content' => {component 'auth' template='reset'} ]
+        [ 'text' => {lang 'auth.reset.title'},        'content' => {component 'auth' template='reset' modal=true} ]
     ]]}

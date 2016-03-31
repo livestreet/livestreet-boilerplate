@@ -6,9 +6,11 @@
 
 {$redirectUrl = $smarty.local.redirectUrl|default:$PATH_WEB_CURRENT}
 
+{component_define_params params=[ 'modal' ]}
+
 {hook run='login_begin'}
 
-<form action="{router page='auth/login'}" method="post" class="js-form-validate js-auth-login-form">
+<form action="{router page='auth/login'}" method="post" class="js-form-validate js-auth-login-form{if $modal}-modal{/if}">
     {hook run='form_login_begin'}
 
     {* Логин *}

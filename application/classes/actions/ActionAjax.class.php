@@ -86,14 +86,13 @@ class ActionAjax extends Action
      */
     protected function EventCaptchaValidate()
     {
-        $sName = isset($_REQUEST['params']['name']) ? $_REQUEST['params']['name'] : '';
-        $sValue = isset($_REQUEST['fields'][0]['value']) ? $_REQUEST['fields'][0]['value'] : '';
-        $sField = isset($_REQUEST['fields'][0]['field']) ? $_REQUEST['fields'][0]['field'] : '';
+        $sName = isset($_REQUEST['name']) ? $_REQUEST['name'] : '';
+        $sValue = isset($_REQUEST['captcha']) ? $_REQUEST['captcha'] : '';
 
-        $sCaptchaValidateType = func_camelize('captcha_' . Config::Get('general.captcha.type'));
+        $sCaptchaValidateType = func_camelize('captcha_' . Config::Get('sys.captcha.type'));
         if (!$this->Validate_Validate($sCaptchaValidateType, $sValue, array('name' => $sName))) {
             $aErrors = $this->Validate_GetErrors();
-            $this->Viewer_AssignAjax('aErrors', array(htmlspecialchars($sField) => array(reset($aErrors))));
+            $this->Viewer_AssignAjax('errors', array('captcha' => array(reset($aErrors))));
         }
     }
 
