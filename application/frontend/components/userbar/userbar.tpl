@@ -18,9 +18,11 @@
                         'url'        => "{$oUserCurrent->getUrl()}",
                         'classes'    => 'nav-item--userbar-username',
                         'menu'       => [
-                            [ 'name' => 'profile',      'text' => 'Профиль',         'url' => "{$oUserCurrent->getUrl()}" ],
-                            [ 'name' => 'profile.other',       'text' => 'Другое',         'url' => "{$oUserCurrent->getUrl()}", 'count' => 33 ],
-                            [ 'name' => 'admin',      'text' => {lang name='admin.title'},                   'url' => "{router page='admin'}", 'is_enabled' => $oUserCurrent->isAdmin() ]
+                            'items' => [
+                                [ 'name' => 'profile',      'text' => 'Профиль',         'url' => $oUserCurrent->getUrl() ],
+                                [ 'name' => 'profile.other',       'text' => 'Другое',         'url' => $oUserCurrent->getUrl(), 'count' => 33 ],
+                                [ 'name' => 'admin',      'text' => {lang name='admin.title'},                   'url' => "{router page='admin'}", 'is_enabled' => $oUserCurrent->isAdmin() ]
+                            ]
                         ]
                     ],
                     [ 'text' => $aLang.auth.logout,  'url' => "{router page='auth/logout'}?security_ls_key={$LIVESTREET_SECURITY_KEY}" ]

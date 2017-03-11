@@ -22,7 +22,13 @@ class ModuleUser_EntityUser extends EntityORM
     public function __construct($aParam = false)
     {
         $sCaptchaValidateType = func_camelize('captcha_' . Config::Get('general.captcha.type'));
-        $this->aValidateRules[] = array('captcha', $sCaptchaValidateType, 'name' => 'user_signup', 'on' => array('registration'));
+        $this->aValidateRules[] = array(
+            'captcha',
+            $sCaptchaValidateType,
+            'name' => 'user_signup',
+            'on' => array('registration'),
+            'label' => $this->Lang_Get('auth.labels.captcha_field')
+        );
 
         parent::__construct($aParam);
     }

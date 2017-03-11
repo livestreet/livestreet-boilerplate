@@ -150,6 +150,7 @@ return array(
             'login'    => 'Логин',
             'password' => 'Пароль',
             'captcha'  => 'Введите цифры и буквы',
+            'captcha_field' => 'Каптча',
         ),
         // Общие всплывающие сообщения
         'notices'       => array(

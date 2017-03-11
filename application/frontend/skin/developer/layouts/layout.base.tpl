@@ -19,15 +19,13 @@
 
 {block 'layout_head' append}
     {* Получаем блоки для вывода в сайдбаре *}
-    {show_blocks group='right' assign=layoutSidebarBlocks}
+    {if $layoutShowSidebar}
+        {show_blocks group='right' assign=layoutSidebarBlocks}
 
-    {$layoutSidebarBlocks = trim( $layoutSidebarBlocks )}
-    {$layoutShowSidebar = !!$layoutSidebarBlocks && $layoutShowSidebar}
+        {$layoutSidebarBlocks = trim( $layoutSidebarBlocks )}
+        {$layoutShowSidebar = !!$layoutSidebarBlocks && $layoutShowSidebar}
+    {/if}
 
-    <script>
-        ls.lang.load({json var = $aLangJs});
-        ls.registry.set({json var = $aVarsJs});
-    </script>
     {**
      * Тип сетки сайта
      *}

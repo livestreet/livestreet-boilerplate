@@ -33,7 +33,7 @@
 
     {* Каптча *}
     {component 'field' template='captcha'
-        type        = Config::Get('general.captcha.type')
+        captchaType        = Config::Get('general.captcha.type')
         name        = 'captcha'
         captchaName = 'user_signup'
         label       = $aLang.auth.labels.captcha}
