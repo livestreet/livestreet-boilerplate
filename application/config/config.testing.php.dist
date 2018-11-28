@@ -1,0 +1,27 @@
+<?php
+/**
+ * Настройки для тестового сервера.
+ * Для использования - переименовать файл в config.testing.php
+ * Более детальная информация о запуске тестов в tests/README.RU.md
+ */
+
+/**
+ * Настройка базы данных
+ */
+$config['db']['params']['host'] = 'localhost';
+$config['db']['params']['port'] = '3306';
+$config['db']['params']['user'] = 'root';
+$config['db']['params']['pass'] = '';
+$config['db']['params']['type']   = 'mysqli';
+$config['db']['params']['dbname'] = 'social_test';
+$config['db']['table']['prefix'] = 'prefix_';
+
+$config['sys']['cache']['use']    = false; // использовать кеширование или нет
+$config['sys']['cache']['solid']  = false;
+
+$config['module']['user']['captcha_use_registration'] = false;  // проверять поле капчи при регистрации пользователя
+
+$config['lang']['current'] = 'english';
+$config['lang']['default'] = 'english';
+
+return $config;

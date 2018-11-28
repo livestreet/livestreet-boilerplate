@@ -1,0 +1,14 @@
+{
+    "name": "bootstrap",
+    "version": "1.0.0",
+    "dependencies": {
+
+    },
+    "scripts": [
+        "js/bootstrap.min.js"
+    ],
+    "styles":[
+        "css/bootstrap.min.css",
+        "css/bootstrap-theme.min.css"
+    ]
+}

@@ -1,1 +1,9 @@
+/application/config/config.local.php
+/application/config/config.test.php
+/application/config/config.production.php
+/application/logs/*
+/application/plugins/*
+/application/tmp/*
+/uploads/*
+/.idea/
 /nbproject

@@ -1,0 +1,20 @@
+{
+    "name": "auth",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*",
+        "form": "*",
+        "modal": "*",
+        "field": "*"
+    },
+    "templates": {
+        "login": "auth.login.tpl",
+        "reactivation": "auth.reactivation.tpl",
+        "registration": "auth.registration.tpl",
+        "reset": "auth.reset.tpl",
+        "modal": "modal.auth.tpl"
+    },
+    "scripts": {
+        "subscribe": "js/auth.js"
+    }
+}
