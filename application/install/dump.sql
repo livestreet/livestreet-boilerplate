@@ -139,6 +139,8 @@ CREATE TABLE IF NOT EXISTS `prefix_user` (
   `activate_key` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
+ALTER TABLE `prefix_user` ADD `rating` FLOAT NOT NULL DEFAULT '0' AFTER `active`, ADD INDEX (`rating`);
 --
 -- Indexes for dumped tables
 --

@@ -69,6 +69,19 @@ class ModuleUser extends ModuleORM
             $this->_UpdateSession();
         }
     }
+    
+    public function GetStatUsers()
+    {
+        if (false === ($aStat = $this->Cache_Get("user_stats"))) {
+            $aStat['count_all'] = $this->GetCountFromUserByFilter([]);
+            $sDate = date("Y-m-d H:i:s", time() - Config::Get('module.user.time_active'));
+            $aStat['count_active'] = $this->GetCountFromUserByFilter(['activate' => 1]);
+            $aStat['count_inactive'] = $aStat['count_all'] - $aStat['count_active'];            
+
+            $this->Cache_Set($aStat, "user_stats", array("user_update", "user_new"), 60 * 60 * 24 * 4);
+        }
+        return $aStat;
+    }
 
     /**
      * Получить текущего юзера
