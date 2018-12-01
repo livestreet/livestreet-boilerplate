@@ -211,4 +211,42 @@ return array(
                 'Вам присвоен новый пароль: <b>%%password%%</b>'
         ),
     ),
+    /**
+     * Админка
+     */
+    'admin'         => array(
+        'title'                => 'Админка',
+        'items'                => array(
+            'plugins' => '___admin.plugins.title___',
+        ),
+        'install_plugin_admin' => 'Установить расширенную админ-панель',
+        // Страница администрирования плагинов
+        'plugins'              => array(
+            'title'   => 'Управление плагинами',
+            'plugin'  => array(
+                'author'       => 'Автор',
+                'version'      => 'Версия',
+                'url'          => 'Сайт',
+                'activate'     => 'Активировать',
+                'deactivate'   => 'Деактивировать',
+                'settings'     => 'Настройки',
+                'remove'       => '___common.remove___',
+                'apply_update' => 'Применить обновление',
+            ),
+            // Сообщения
+            'notices' => array(
+                'unknown_action'              => 'Указано неизвестное действие',
+                'action_ok'                   => 'Успешно выполнено',
+                'activation_overlap'          => 'Конфликт с активированным плагином. Ресурс %%resource%% переопределен на %%delegate%% плагином %%plugin%%.',
+                'activation_overlap_inherit'  => 'Конфликт с активированным плагином. Ресурс %%resource%% используется как наследник в плагине %%plugin%%.',
+                'activation_file_not_found'   => 'Файл плагина не найден',
+                'activation_file_write_error' => 'Файл плагина не доступен для записи',
+                'activation_version_error'    => 'Для работы плагина необходимо ядро LiveStreet версии не ниже %%version%%',
+                'activation_requires_error'   => 'Для работы плагина необходим активированный плагин <b>%%plugin%%</b>',
+                'activation_already_error'    => 'Плагин уже активирован',
+                'deactivation_already_error'  => 'Плагин не активирован',
+                'deactivation_requires_error' => 'От плагина зависит другой плагин, сначала отключите его -  <b>%%plugin%%</b>',
+            )
+        ),
+    ),
 );

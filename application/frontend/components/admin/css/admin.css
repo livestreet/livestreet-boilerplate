@@ -1,0 +1,32 @@
+/**
+ * Админка
+ *
+ * @license   GNU General Public License, version 2
+ * @copyright 2013 OOO "ЛС-СОФТ" {@link http://livestreetcms.com}
+ * @author    Denis Shakhov <denis.shakhov@gmail.com>
+ */
+
+/**
+ * Управление плагинами
+ *
+ * @template plugins.tpl
+ */
+.admin-plugins h3 {
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 7px;
+}
+.admin-plugins p {
+    margin-bottom: 15px;
+}
+.admin-plugins td {
+    vertical-align: top;
+}
+.admin-plugins-actions li {
+    margin-bottom: 5px;
+    text-align: right;
+}
+.admin-plugins-actions li:last-child {
+    margin-bottom: 0;
+}

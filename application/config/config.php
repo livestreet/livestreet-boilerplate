@@ -124,6 +124,7 @@ $config['router']['page']['error']         = 'ActionError';
 $config['router']['page']['index']         = 'ActionIndex';
 $config['router']['page']['ajax']          = 'ActionAjax';
 $config['router']['page']['auth']		   = 'ActionAuth';
+$config['router']['page']['admin']         = 'ActionAdmin';
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action']	= 'index';
 $config['router']['config']['default']['event']		= null;
