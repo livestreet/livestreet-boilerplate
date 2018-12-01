@@ -1,0 +1,32 @@
+{
+    "name": "Fend",
+    "description": "Описание проекта Fend.",
+    "authors": [
+        {
+            "name": "oleg",
+            "email": "boxmilo@gmail.com"
+        }
+    ],
+    "require": {
+        "dellirom/exel.tpl": "dev-master"
+        
+    },
+    "autoload": {
+        
+        "classmap": ["vendor/dellirom/exel.tpl/Classes/PHPExcel/IOFactory.php"]
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "dellirom/exel.tpl",
+                "version": "dev-master",
+                "source": {
+                    "url": "https://github.com/dellirom/exel.tpl",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        }
+    ]
+}
