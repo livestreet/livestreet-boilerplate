@@ -1,0 +1,10 @@
+{
+    "name": "bs-dropdown",
+    "version": "1.0.0",
+    "templates": {
+        "bs-dropdown": "dropdown.tpl"
+    },
+    "styles":{
+        "dropdown.submenu":"css/dropdown.submenu.css"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "name": "bs-modal",
+    "version": "1.0.0",
+    "templates": {
+        "bs-modal": "modal.tpl"
+    }
+}

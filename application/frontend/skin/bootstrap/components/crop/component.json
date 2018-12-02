@@ -1,0 +1,23 @@
+{
+    "name": "crop",
+    "version": "1.0.0",
+    "dependencies": {
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "ls-component": "*",
+        "css-reset": "*",
+        "modal": "*"
+    },
+    "templates": {
+        "crop": "crop.tpl"
+    },
+    "scripts": {
+        "vendor-cropper": "vendor/cropper/dist/cropper.js",
+        "modal": "js/crop-modal.js",
+        "crop": "js/crop.js"
+    },
+    "styles": {
+        "vendor-cropper": "vendor/cropper/dist/cropper.css",
+        "crop": "css/crop.css"
+    }
+}

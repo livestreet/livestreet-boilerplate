@@ -1,0 +1,22 @@
+{
+    "name": "modal",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*",
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "ls-component": "*",
+        "icon": "*",
+        "button": "*"
+    },
+    "templates": {
+        "modal": "modal.tpl"
+    },
+    "scripts": {
+        "modal": "js/modal.js",
+        "toggle": "js/modal-toggle.js"
+    },
+    "styles": {
+        "modal": "css/modal.css"
+    }
+}

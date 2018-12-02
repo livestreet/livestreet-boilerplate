@@ -1,0 +1,7 @@
+{
+    "name": "bs-carousel",
+    "version": "1.0.0",
+    "templates": {
+        "bs-carousel": "carousel.tpl"
+    }
+}

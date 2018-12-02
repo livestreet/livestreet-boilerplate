@@ -1,0 +1,9 @@
+{
+    "name": "bs-collapse",
+    "version": "1.0.0",
+    "templates": {
+        "bs-collapse": "collapse.tpl",
+        "item" : "collapse.item.tpl",
+        "accordion" : "accordion.tpl"
+    }
+}

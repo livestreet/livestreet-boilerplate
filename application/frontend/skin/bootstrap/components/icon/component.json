@@ -1,0 +1,15 @@
+{
+    "name": "icons",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*"
+    },
+    "templates": {
+        "stack": "stack.tpl",
+        "icon": "icon.tpl"
+    },
+    "styles": {
+        "vendor-font": "vendor/font-awesome/css/font-awesome.css",
+        "icons": "css/icons.css"
+    }
+}

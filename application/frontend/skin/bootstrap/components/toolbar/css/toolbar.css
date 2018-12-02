@@ -1,0 +1,24 @@
+/**
+ * Toolbar
+ *
+ * @license   GNU General Public License, version 2
+ * @copyright 2013 OOO "ЛС-СОФТ" {@link http://livestreetcms.com}
+ * @author    Denis Shakhov <denis.shakhov@gmail.com>
+ */
+
+.ls-toolbar {
+    position: fixed;
+    z-index: 100;
+    display: inline-block;
+}
+.ls-toolbar-item {
+    display: block;
+    background: #fff;
+    color: #222;
+    padding: 10px;
+    width: 19px;
+    font-size: 19px;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

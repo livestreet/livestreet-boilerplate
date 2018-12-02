@@ -1,0 +1,36 @@
+{
+    "name": "uploader",
+    "version": "1.0.0",
+    "dependencies": {
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "ls-component": "*",
+        "css-reset": "*",
+        "field": "*",
+        "alert": "*",
+        "button": "*",
+        "modal": "*"
+    },
+    "templates": {
+        "uploader": "uploader.tpl",
+        "block.info-group": "uploader-block.info-group.tpl",
+        "block.info": "uploader-block.info.tpl",
+        "block": "uploader-block.tpl",
+        "modal": "modal.uploader.tpl",
+        "file": "uploader-file.tpl",
+        "attach": "uploader-attach.tpl"
+    },
+    "scripts": {
+        "uploader-file-list": "js/uploader-file-list.js",
+        "uploader-file": "js/uploader-file.js",
+        "uploader": "js/uploader.js",
+        "uploader-info": "js/uploader-info.js",
+        "attach": "js/uploader-attach.js"
+    },
+    "styles": {
+        "file": "css/uploader-file.css",
+        "list": "css/uploader-list.css",
+        "info": "css/uploader-info.css",
+        "uploader": "css/uploader.css"
+    }
+}

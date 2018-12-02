@@ -1,0 +1,20 @@
+{
+    "name": "ls-vendor",
+    "version": "1.0.0",
+    "scripts": {
+        "jquery": "jquery.js",
+        "browser": "jquery.browser.js",
+        "widget": "widget.js",
+        "cookie": "jquery.cookie.js",
+        "fileupload": "jquery.fileupload.js",
+        "form": "jquery.form.js",
+        "hotkeys": "jquery.hotkeys.js",
+        "jqplugin": "jquery.jqplugin.js",
+        "livequery": "jquery.livequery.js",
+        "scrollto": "jquery.scrollto.js",
+        "serializejson": "jquery.serializejson.js",
+        "timers": "jquery.timers.js",
+        "position": "jquery-ui-position.js",
+        "moment": "moment.js"
+    }
+}

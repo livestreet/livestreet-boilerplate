@@ -1,0 +1,13 @@
+/**
+ * Кроп изображений
+ */
+
+/**
+ * Модальное окно
+ */
+.ls-modal--crop {
+    max-width: 550px;
+}
+.ls-modal--crop .ls-crop-desc {
+    margin-bottom: 20px;
+}

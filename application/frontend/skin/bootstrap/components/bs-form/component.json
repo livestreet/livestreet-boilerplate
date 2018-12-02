@@ -1,0 +1,15 @@
+{
+    "name": "bs-form",
+    "version": "1.0.0",
+    "templates": {
+        "bs-form": "form.tpl",
+        "group":"form.group.tpl",
+        "text":"field.text.tpl",
+        "email":"field.email.tpl",
+        "field":"field.tpl",
+        "range":"field.range.tpl",
+        "checkbox":"field.checkbox.tpl",
+        "select":"field.select.tpl",
+        "file":"field.file.tpl"
+    }
+}

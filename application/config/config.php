@@ -38,9 +38,9 @@ $config['path']['offset_request_url']	= 0;
 /**
  * Настройки HTML вида
  */
-$config['view']['skin']        = 'developer';		// Название текущего шаблона
+$config['view']['skin']        = 'bootstrap';		// Название текущего шаблона
 $config['view']['theme'] = 'default';			// тема оформления шаблона (шаблон должен поддерживать темы)
-$config['view']['name']        = 'Your Site';                   // название сайта
+$config['view']['name']        = 'Fend';                   // название сайта
 $config['view']['description'] = 'Description your site'; // seo description
 $config['view']['keywords']    = 'site, google, internet';      // seo keywords
 $config['view']['wysiwyg']         = false;  // использовать или нет визуальный редактор TinyMCE
@@ -120,6 +120,7 @@ $config['router']['uri'] = array(
 	'~^page\-num\-(\d+)~i' => "index/page-num-\\1",
 );
 // Распределение action
+$config['router']['page']['admin']         = 'ActionAdmin';
 $config['router']['page']['error']         = 'ActionError';
 $config['router']['page']['index']         = 'ActionIndex';
 $config['router']['page']['ajax']          = 'ActionAjax';
@@ -148,7 +149,7 @@ $config['components'] = array(
 );
 
 $config['head']['default']['js'] = array(
-	"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
 );
 $config['head']['default']['css'] = array();
 

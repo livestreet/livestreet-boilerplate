@@ -1,45 +1,60 @@
 {**
  * Юзербар
  *}
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{router page='/'}">{Config::Get('view.name')}</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {if $oUserCurrent}
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                            {$oUserCurrent->getDisplayName()|escape}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{$oUserCurrent->getUrl()}">Профиль</a></li>
-                            <li><a href="{$oUserCurrent->getUrl()}">Другое</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{router page='auth/logout'}?security_ls_key={$LIVESTREET_SECURITY_KEY}">{$aLang.auth.logout}</a>
-                    </li>
-                </ul>
-            {else}
-                <ul class="nav navbar-nav">
-                    <li><a class="js-modal-toggle-login" href="{router page='auth/login'}">{$aLang.auth.login.title}</a></li>
-                    <li><a class="js-modal-toggle-registration" href="{router page='auth/register'}">{$aLang.auth.registration.title}</a></li>
-                </ul>
-            {/if}
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+
+    {if $oUserCurrent}
+        {$createMenu = []}
+
+        {foreach $LS->Topic_GetTopicTypes() as $type}
+            {$createMenu[] = [ 'name' => $type->getCode(), 'text' => $type->getName(), 'url' => $type->getUrlForAdd() ]}
+        {/foreach}
+
+        {$createMenu[] = [ 'name' => 'blog', 'text' => {lang 'modal_create.items.blog'}, 'url' => {router page='blog/add'} ]}
+        {$createMenu[] = [ 'name' => 'talk', 'text' => {lang 'modal_create.items.talk'}, 'url' => {router page='talk/add'} ]}
+        {$createMenu[] = [ 'name' => 'drafts', 'text' => {lang 'topic.drafts'}, 'url' => "{router page='content/drafts'}", count => $iUserCurrentCountTopicDraft ]}
+
+        
+        {component 'bs-nav' 
+            bmods="fill"
+            classes=""
+            items = [
+                [ name => 'items',  classes => "",
+                    menu => [
+                        name => 'user',  
+                        text => "<img alt='avatar' class='rounded' src='{$oUserCurrent->getProfileAvatarPath(24)}'/> {$oUserCurrent->getDisplayName()}", 
+                        url => $oUserCurrent->getUserWebPath(),
+                        offset => "0,10",
+                        items => [
+                            [ 'name' => 'whois',      'text' => {lang name='user.profile.nav.info'},         'url' => "{$oUserCurrent->getUserWebPath()}" ],
+                            [ 'name' => 'wall',       'text' => {lang name='user.profile.nav.wall'},         'url' => "{$oUserCurrent->getUserWebPath()}wall/", 'badge' => $iUserCurrentCountWall ],
+                            [ 'name' => 'created',    'text' => {lang name='user.profile.nav.publications'}, 'url' => "{$oUserCurrent->getUserWebPath()}created/topics/", 'badge' => $iUserCurrentCountCreated ],
+                            [ 'name' => 'favourites', 'text' => {lang name='user.profile.nav.favourite'},    'url' => "{$oUserCurrent->getUserWebPath()}favourites/topics/", 'badge' => $iUserCurrentCountFavourite ],
+                            [ 'name' => 'friends',    'text' => {lang name='user.profile.nav.friends'},      'url' => "{$oUserCurrent->getUserWebPath()}friends/", 'badge' => $iUserCurrentCountFriends ],
+                            [ 'name' => 'activity',   'text' => {lang name='user.profile.nav.activity'},     'url' => "{$oUserCurrent->getUserWebPath()}stream/" ],
+                            [ 'name' => 'talk',       'text' => {lang name='user.profile.nav.messages'},     'url' => "{router page='talk'}", 'badge' => $iUserCurrentCountTalkNew ],
+                            [ 'name' => 'settings',   'text' => {lang name='user.profile.nav.settings'},     'url' => "{router page='settings'}" ],
+                            [ 'name' => 'admin',      'text' => {lang name='admin.title'},                   'url' => "{router page='admin'}", 'is_enabled' => $oUserCurrent && $oUserCurrent->isAdministrator() ]
+                        ]
+                    ] 
+                ],
+                [ name => 'create', 
+                    menu => [
+                        offset => "-40,10",
+                        text => "<div class='d-none d-sm-inline'>{$aLang.common.create}</div><span class='glyphicon glyphicon-plus d-inline d-sm-none'>+</span>",
+                        items=>$createMenu
+                    ]
+                ],
+                [ 'text' => $aLang.auth.logout,  'url' => "{router page='auth'}logout/?security_ls_key={$LIVESTREET_SECURITY_KEY}" ]
+            ]
+        }
+        
+    {else}
+        {$items = [
+            [ 'text' => $aLang.auth.login.title,        attributes => ["data-toggle"=>"modal", "data-target"=>"#modalLogin"],       'url' => {router page='auth/login'} ],
+            [ 'text' => $aLang.auth.registration.title, 'classes' => 'js-modal-toggle-registration', 'url' => {router page='auth/register'} ]
+        ]}
+        {component "bs-nav" bmods="fill" classes="navbar-nav mr-auto" hook="userbar" activeItem=$sMenuHeadItemSelect items = $items}
+    {/if}
+        
+    
+   
