@@ -2,6 +2,7 @@
     "name": "bs-tabs",
     "version": "1.0.0",
     "templates": {
-        "bs-tabs": "tabs.tpl"
+        "bs-tabs": "tabs.tpl",
+        "panes":"panes.tpl"
     }
 }

@@ -30,6 +30,19 @@ jQuery(document).ready(function($){
     $('[data-toggle="popover"]').popover();
     $('[data-toggle="tooltip"]').tooltip();
     
+    /*
+     * Дополнительная обработка табов в модальных окнах
+     */
+    $('[data-toggle="modal-tab"]').on('click', function(event){
+        $($(this).data('target')).tab('show');
+    });
+    
+    $('[data-toggle="modal"]').on('click', function(event){
+        $($(this).data('target')).modal('toggle');
+        return false;
+    });
+
+    
     $('html').removeClass('no-js');
 
     /**

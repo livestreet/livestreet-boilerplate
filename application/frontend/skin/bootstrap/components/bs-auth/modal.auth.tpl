@@ -9,10 +9,10 @@
 {/if}
 
 {capture name="modal_content"}
-    {component "bs-tabs" bmods="tabs" items = [
-        [ 'text' => {lang 'auth.login.title'},        'content' => {component 'auth' template='login'}, 'classes' => 'js-auth-tab-login' ],
-        [ 'text' => {lang 'auth.registration.title'}, 'content' => $auth_tab_reg,   'classes' => 'js-auth-tab-reg' ],
-        [ 'text' => {lang 'auth.reset.title'},        'content' => {component 'auth' template='reset'} ]
+    {component "bs-tabs" bmods="tabs" id="auth" items = [
+        [ 'text' => {lang 'auth.login.title'},        'content' => {component 'auth' template='login'}, 'name' => 'login' ],
+        [ 'text' => {lang 'auth.registration.title'}, 'content' => $auth_tab_reg,   'name' => 'register' ],
+        [ 'text' => {lang 'auth.reset.title'},        'content' => {component 'auth' template='reset'},   'name' => 'reset' ]
     ]}
 
 {/capture}
@@ -23,5 +23,5 @@
     showFooter  = false
     classes     = 'js-modal-default'
     mods        = 'auth'
-    id          = 'modalLogin'
+    id          = 'modalAuth'
     content     = $smarty.capture.modal_content}
