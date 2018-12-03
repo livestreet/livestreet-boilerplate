@@ -6,9 +6,31 @@
  * @author    Denis Shakhov <denis.shakhov@gmail.com>
  */
 
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($){
     // Хук начала инициализации javascript-составляющих шаблона
-    ls.hook.run('ls_template_init_start', [], window);
+    ls.hook.run('ls_template_init_start',[],window);
+    
+    /*
+     *  Код для реализации dropdown-submenu
+     */
+    $('.dropdown-menu a.dropdown-toggle').on('mouseover click', function(e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        var $subMenu = $(this).next(".dropdown-menu");
+        $subMenu.toggleClass('show');
+
+
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-submenu .show').removeClass("show");
+        });
+        return false;
+    });
+    
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    $('html').removeClass('no-js');
 
     /**
      * Иниц-ия модулей ядра
@@ -17,50 +39,57 @@ jQuery(document).ready(function ($) {
         production: false
     });
 
-    ls.dev.init({});
+    ls.dev.init();
+
+
+    
+
+    /**
+     * Подтверждение удаления
+     */
+    $('.js-confirm-remove-default').livequery(function () {
+        $(this).lsConfirm({
+            message: ls.lang.get('common.remove_confirm')
+        });
+    });
+
 
     /**
      * Notification
      */
     ls.notification.init();
 
+    
     /**
-     * Form validate
-     */
-    $('.js-form-validate').parsley();
-
-    /**
-     * Modals
-     */
-    $('.js-modal-default').lsModal();
-
-    /**
-     * Каптча
-     */
-    $('[data-type=captcha]').livequery(function () {
-        $(this).lsCaptcha();
-    });
-
-    $('[data-type=recaptcha]').livequery(function () {
-        $(this).lsReCaptcha({
-            key: ls.registry.get('recaptcha.site_key')
-        });
-    });
-
-    /**
-     * Toolbar
-     */
-    $('.js-toolbar-default').lsToolbar({
-        target: '.js-root-container',
-        offsetX: 10
-    });
-    $('.js-toolbar-scrollup').lsToolbarScrollUp();
-
-    /**
-     * Авторизация/регистрация
+     * Auth
      */
     ls.auth.init();
 
+    
+
+    // Фото пользователя
+//    $( '.js-user-photo' ).lsPhoto({
+//        urls: {
+//            upload: aRouter.settings + 'ajax-upload-photo',
+//            remove: aRouter.settings + 'ajax-remove-photo',
+//            crop_photo: aRouter.settings + 'ajax-modal-crop-photo',
+//            crop_avatar: aRouter.settings + 'ajax-modal-crop-avatar',
+//            save_photo: aRouter.settings + 'ajax-crop-photo',
+//            save_avatar: aRouter.settings + 'ajax-change-avatar',
+//            cancel_photo: aRouter.settings + 'ajax-crop-cancel-photo'
+//        },
+//        changeavatar: function ( event, _this, avatars ) {
+//            $( '.js-user-profile-avatar, .js-wall-entry[data-user-id=' + _this.option( 'params.target_id' ) + '] .ls-comment-avatar img' ).attr( 'src', avatars[ '64crop' ] + '?' + Math.random() );
+//            $( '.ls-nav-item--userbar-username img' ).attr( 'src', avatars[ '24crop' ] + '?' + Math.random() );
+//        }
+//    });
+    
+
+    /**
+     * Editor
+     */
+    $( '.js-editor-default' ).lsEditor();
+
     // Хук конца инициализации javascript-составляющих шаблона
-    ls.hook.run('ls_template_init_end', [], window);
+    ls.hook.run('ls_template_init_end',[],window);
 });

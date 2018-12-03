@@ -1,3 +1,7 @@
 [submodule "framework"]
 	path = framework
 	url = git@github.com:livestreet/livestreet-framework.git
+
+[submodule "application/plugins/admin"]
+	path = application/plugins/admin
+	url = git@github.com:olezhikz/lsadmin-boilerplate.git

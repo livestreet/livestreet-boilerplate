@@ -1,0 +1,15 @@
+{
+    "name": "item",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*"
+    },
+    "templates": {
+        "item": "item.tpl",
+        "group": "item-group.tpl"
+    },
+    "styles": {
+        "item": "css/item.css",
+        "group": "css/item-group.css"
+    }
+}

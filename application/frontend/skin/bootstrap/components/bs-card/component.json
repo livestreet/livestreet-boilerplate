@@ -1,0 +1,7 @@
+{
+    "name": "bs-card",
+    "version": "1.0.0",
+    "templates": {
+        "bs-card": "card.tpl"
+    }
+}

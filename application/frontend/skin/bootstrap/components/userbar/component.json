@@ -2,13 +2,8 @@
     "name": "userbar",
     "version": "1.0.0",
     "dependencies": {
-        "nav": "*",
-        "search-form": "*"
     },
     "templates": {
         "userbar": "userbar.tpl"
-    },
-    "styles": {
-
     }
 }

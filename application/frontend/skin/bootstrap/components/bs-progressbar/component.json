@@ -1,0 +1,7 @@
+{
+    "name": "bs-progress",
+    "version": "1.0.0",
+    "templates": {
+        "bs-progressbar": "progressbar.tpl"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "notification",
+    "version": "1.0.0",
+    "dependencies": {
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "css-reset": "*"
+    },
+    "styles": {
+        "notification": "css/notification.css"
+    },
+    "scripts": {
+        "vendor-notifier": "vendor/notifier/jquery.notifier.js",
+        "notification": "js/notification.js"
+    }
+}

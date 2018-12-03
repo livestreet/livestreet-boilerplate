@@ -1,0 +1,7 @@
+{
+    "name": "bootstrap",
+    "version": "1.0.0",
+    "templates": {
+        "bootstrap": "bootstrap.tpl"
+    }
+}

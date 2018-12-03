@@ -1,0 +1,7 @@
+{
+    "name": "bs-tabs",
+    "version": "1.0.0",
+    "templates": {
+        "bs-tabs": "tabs.tpl"
+    }
+}

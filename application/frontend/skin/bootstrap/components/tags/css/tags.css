@@ -1,0 +1,61 @@
+/**
+ * Заголовок
+ */
+.ls-tags-item.ls-tags-title {
+    float: none;
+}
+
+/**
+ * Список тегов
+ */
+.ls-tags {
+    margin: 0 0 25px;
+    color: #888;
+}
+.ls-tags-item {
+    float: left;
+    margin: 0 5px 5px 0;
+}
+.ls-tags-item a {
+    display: block;
+    line-height: 1em;
+    padding: 5px 7px;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #777;
+}
+.ls-tags-item a:hover {
+    border-color: #ccc;
+    background: #fafafa;
+    color: #333;
+}
+
+/**
+ * Облако тегов
+ */
+.ls-tag-cloud {
+    width: 100%;
+}
+.ls-tag-cloud-item {
+    display: inline;
+    margin-right: 5px;
+    line-height: 22px;
+}
+.ls-tag-cloud-item a {
+    text-decoration: none;
+}
+.ls-tag-cloud-item.active a {
+    color: #3CA023;
+}
+
+.ls-tag-size-1  { font-size: 12px; }
+.ls-tag-size-2  { font-size: 12px; }
+.ls-tag-size-3  { font-size: 14px; }
+.ls-tag-size-4  { font-size: 14px; }
+.ls-tag-size-5  { font-size: 18px; }
+.ls-tag-size-6  { font-size: 18px; }
+.ls-tag-size-7  { font-size: 20px; }
+.ls-tag-size-8  { font-size: 20px; }
+.ls-tag-size-9  { font-size: 22px; }
+.ls-tag-size-10 { font-size: 22px; }

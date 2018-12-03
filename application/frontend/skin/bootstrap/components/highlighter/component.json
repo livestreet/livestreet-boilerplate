@@ -1,0 +1,24 @@
+{
+    "name": "highlighter",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*",
+        "typography": "*",
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "ls-component": "*"
+    },
+    "scripts": {
+        "vendor-highlight": {
+            "file": "vendor/highlight/highlight.pack.js",
+            "compress": false
+        },
+        "highlighter": "js/highlighter.js"
+    },
+    "styles": {
+        "vendor-highlight": {
+            "file": "vendor/highlight/styles/github.css",
+            "compress": false
+        }
+    }
+}

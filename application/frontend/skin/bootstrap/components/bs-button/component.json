@@ -1,0 +1,10 @@
+{
+    "name": "bs-button",
+    "version": "1.0.0",
+    "templates": {
+        "bs-button": "button.tpl",
+        "group":"group.tpl",
+        "toolbar":"toolbar.tpl",
+        "toggle":"toggle.tpl"
+    }
+}

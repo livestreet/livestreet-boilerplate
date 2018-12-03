@@ -1,0 +1,42 @@
+/**
+ * Grid
+ *
+ * @license   GNU General Public License, version 2
+ * @copyright 2013 OOO "ЛС-СОФТ" {@link http://livestreetcms.com}
+ * @author    Denis Shakhov <denis.shakhov@gmail.com>
+ */
+
+.ls-grid-row:before,
+.ls-grid-row:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.ls-grid-row:after {
+    clear: both;
+}
+
+.ls-grid-col {
+    float: left;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.ls-grid-col:first-child {
+    padding-left: 0;
+}
+
+.ls-grid-col-1 { width: 8.333333333333334%; }
+.ls-grid-col-2 { width: 16.666666666666668%; }
+.ls-grid-col-3 { width: 25%; }
+.ls-grid-col-third,
+.ls-grid-col-4 { width: 33.333333333333336%; }
+.ls-grid-col-5 { width: 41.66666666666667%; }
+.ls-grid-col-half,
+.ls-grid-col-6 { width: 50%; }
+.ls-grid-col-7 { width: 58.333333333333336%; }
+.ls-grid-col-8 { width: 66.66666666666667%; }
+.ls-grid-col-9 { width: 75%; }
+.ls-grid-col-10 { width: 83.33333333333334%; }
+.ls-grid-col-11 { width: 91.66666666666667%; }
+.ls-grid-col-12 { width: 100%; }
