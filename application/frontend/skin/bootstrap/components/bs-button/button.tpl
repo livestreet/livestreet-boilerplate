@@ -21,11 +21,13 @@
 
 {block 'button_content'}{strip}
     {if $url}
-        <a class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {bs_popover popover=$popover} {$classes}" 
+        <a class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+           {if $popover}{component "bs-popover" params=$popover} {/if} 
            {cattr list=$attributes} {if $disabled}aria-disabled="true"{/if} href="{$url}" role="button">{$text}</a>
     {else}
         {if $tag != "input"}
-            <{$tag} type="{$type|default:"button"}" class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {bs_popover popover=$popover}
+            <{$tag} type="{$type|default:"button"}" class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+                {if $popover}{component "bs-popover" params=$popover}{/if} 
                 {cattr list=$attributes}>
                 {$text}
                 {if $badge}
@@ -37,7 +39,8 @@
                 {/if}
             </{$tag}>
         {else}
-            <input class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {bs_popover popover=$popover} 
+            <input class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+                   {if $popover}{component "bs-popover" params=$popover}{/if}
                 {cattr list=$attributes} type="{$type|default:"button"}" value="{$value}">
         {/if}
     {/if}    

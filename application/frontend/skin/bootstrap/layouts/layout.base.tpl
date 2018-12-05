@@ -49,12 +49,7 @@
             <div class="col-xl-1" ></div>
 
             <div class="col-12 col-xl-10">
-                {component 'bs-navbar' 
-                classes = "bg-light " 
-                bmods = "expand-lg light" 
-                brand = Config::Get('view.name')
-                items = [
-                {component "bs-nav" 
+                {*component "bs-nav" 
                         itemsClasses="d-flex justify-content-start"
                         bmods="fill" 
                         classes="navbar-nav mr-auto" 
@@ -64,9 +59,15 @@
                             [ 'text' => $aLang.menu.humans.text,   'url' => {router page='humans'},      'name' => 'humans' ],
                             [ 'text' => $aLang.menu.companies.text,     'url' => {router page='companies'},  'name' => 'companies' ]                            
                         ]
-                }
-                ]
-                after={component 'userbar'}
+                *}
+                {component 'bs-navbar' 
+                    classes = "bg-light " 
+                    bmods = "expand-lg light" 
+                    brand = Config::Get('view.name')
+                    items = [
+                        {insert name='block' block='menu' params=[ 'name' => "main", "activeItem" => $sMenuHeadItemSelect, "mods" => "main" ]}
+                    ]
+                    after={component 'userbar'}
                 }
             </div>
             <div class="col-xl-1"></div>

@@ -109,6 +109,7 @@ $config['db']['table']['storage'] = '___db.table.prefix___storage';
 
 $config['db']['table']['user'] = '___db.table.prefix___user';
 $config['db']['table']['user_session'] = '___db.table.prefix___session';
+$config['db']['table']['session'] = $config['db']['table']['user_session'];
 $config['db']['table']['user_reminder'] = '___db.table.prefix___reminder';
 
 /**

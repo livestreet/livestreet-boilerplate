@@ -30,11 +30,12 @@
             {$isActive = ($activeItem and $item.name == $activeItem) or $item.active}
             {if $item.menu}
                 {component "bs-dropdown" params=$item.menu tag="li"
+                    text = $item.text
                     toggler=[
                         com => "nav-link",
                         url=>"#",
-                        classes=>"dropdown-toggle {$item.menu.classes} {$itemsClasses}",
-                        text=>$item.menu.text
+                        classes=>"dropdown-toggle {$item.menu.classes} ",
+                        text=>$item.text
                     ]
                 }
             {else}

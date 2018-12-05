@@ -20,7 +20,7 @@
 {block 'button_content'}{strip}
     <div class="progress">
         <div class="{$component} {cmods name=$component mods=$bmods delimiter="-"}" 
-             {bs_popover popover=$popover} {cattr list=$attributes}
+             {component "bs-popover" params=$popover} {cattr list=$attributes}
              role="progressbar" style="width: {$value}%" aria-valuenow="{$value}" 
              aria-valuemin="{$min|default:"0"}" aria-valuemax="{$max|default:"100"}">{$text}</div>
     </div>    

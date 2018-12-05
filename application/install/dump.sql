@@ -128,6 +128,7 @@ CREATE TABLE IF NOT EXISTS `prefix_storage` (
 
 CREATE TABLE IF NOT EXISTS `prefix_user` (
 `id` int(11) NOT NULL,
+`login` VARCHAR(100) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `password` varchar(32) NOT NULL,
   `date_create` datetime NOT NULL,
@@ -191,7 +192,7 @@ ALTER TABLE `prefix_storage`
 -- Indexes for table `prefix_user`
 --
 ALTER TABLE `prefix_user`
- ADD PRIMARY KEY (`id`), ADD KEY `mail` (`mail`), ADD KEY `password` (`password`), ADD KEY `activate_key` (`activate_key`), ADD KEY `active` (`active`), ADD KEY `activate` (`activate`);
+ ADD PRIMARY KEY (`id`),  ADD UNIQUE (`login`), ADD KEY `mail` (`mail`), ADD KEY `password` (`password`), ADD KEY `activate_key` (`activate_key`), ADD KEY `active` (`active`), ADD KEY `activate` (`activate`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -246,6 +247,15 @@ CREATE TABLE `prefix_menu` (
 INSERT INTO `prefix_menu` (`id`, `name`, `title`, `state`) VALUES
 (1, 'main', 'Главное', 1),
 (2, 'user', 'Пользователь', 1);
+
+--
+-- Дамп данных таблицы `prefix_menu_item`
+--
+
+INSERT INTO `prefix_menu_item` (`id`, `name`, `url`, `menu_id`, `pid`, `title`, `state`, `priority`) VALUES
+(1, 'humans', 'humans', 1, 0, 'menu.humans.text', 1, 100),
+(5, 'companies', 'companies', 1, 0, 'menu.companies.text', 1, 99),
+(11, 'settings', 'settings', 2, 0, 'user.profile.nav.settings', 1, 20);
 
 -- --------------------------------------------------------
 

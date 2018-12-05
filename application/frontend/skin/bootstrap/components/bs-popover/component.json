@@ -1,0 +1,7 @@
+{
+    "name": "bs-popover",
+    "version": "1.0.0",
+    "templates": {
+        "bs-popover": "popover.tpl"
+    }
+}

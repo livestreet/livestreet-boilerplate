@@ -83,4 +83,19 @@ class ModuleUser_EntityUser extends EntityORM
         return htmlspecialchars($this->getMail());
     }
 
+    /**
+     * Возвращает статус онлайн пользователь или нет
+     *
+     * @return bool
+     */
+    public function isOnline()
+    {
+        if ($oSession = $this->getSession()) {
+            if (time() - strtotime($oSession->getDateLast()) < Config::Get('module.user.time_onlive')) { // 10 минут
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
