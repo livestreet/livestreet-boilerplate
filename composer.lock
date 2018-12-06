@@ -1,0 +1,32 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "eb85ca7b016b2536a612d034ce50003f",
+    "content-hash": "46bacc859d8aabdc136d727b1069a0b5",
+    "packages": [
+        {
+            "name": "dellirom/exel.tpl",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dellirom/exel.tpl",
+                "reference": "origin/master"
+            },
+            "type": "library",
+            "time": "2015-10-08 06:16:12"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dellirom/exel.tpl": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

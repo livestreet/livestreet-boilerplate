@@ -9,6 +9,11 @@
 {$params.url = $oUserCurrent->getUserWebPath()}
 {$params.offset = "0,10"}
 
+{if $oUserCurrent->getIsAdmin()}
+    {$params.items[] = [ text => $aLang.admin.title, url => {router page="admin"}]}  
+{/if}
+
+
 {component 'bs-nav' 
     bmods="fill"
     classes=""

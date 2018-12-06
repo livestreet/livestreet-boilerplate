@@ -2,7 +2,7 @@
  * Юзербар
  *}
 
-    {if $oUserCurrent}
+{if $oUserCurrent}
     {insert name='block' block='menu' params=[ 'name' => "user", "activeItem" => $sMenuUserItemSelect ]}
 
 {else}
