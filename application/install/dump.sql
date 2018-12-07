@@ -194,6 +194,7 @@ ALTER TABLE `prefix_storage`
 ALTER TABLE `prefix_user`
  ADD PRIMARY KEY (`id`),  ADD UNIQUE (`login`), ADD KEY `mail` (`mail`), ADD KEY `password` (`password`), ADD KEY `activate_key` (`activate_key`), ADD KEY `active` (`active`), ADD KEY `activate` (`activate`);
 
+ALTER TABLE `prefix_user` ADD `login` VARCHAR(50) NULL DEFAULT NULL AFTER `id`, ADD UNIQUE (`login`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -248,15 +249,6 @@ INSERT INTO `prefix_menu` (`id`, `name`, `title`, `state`) VALUES
 (1, 'main', 'Главное', 1),
 (2, 'user', 'Пользователь', 1);
 
---
--- Дамп данных таблицы `prefix_menu_item`
---
-
-INSERT INTO `prefix_menu_item` (`id`, `name`, `url`, `menu_id`, `pid`, `title`, `state`, `priority`) VALUES
-(1, 'humans', 'humans', 1, 0, 'menu.humans.text', 1, 100),
-(5, 'companies', 'companies', 1, 0, 'menu.companies.text', 1, 99),
-(11, 'settings', 'settings', 2, 0, 'user.profile.nav.settings', 1, 20);
-
 -- --------------------------------------------------------
 
 --
@@ -279,7 +271,8 @@ CREATE TABLE `prefix_menu_item` (
 --
 
 INSERT INTO `prefix_menu_item` (`id`, `name`, `url`, `menu_id`, `pid`, `title`, `state`, `priority`) VALUES
-
+(1, 'humans', 'humans', 1, 0, 'menu.humans.text', 1, 100),
+(5, 'companies', 'companies', 1, 0, 'menu.companies.text', 1, 99),
 (11, 'settings', 'settings', 2, 0, 'user.profile.nav.settings', 1, 20);
 
 --
