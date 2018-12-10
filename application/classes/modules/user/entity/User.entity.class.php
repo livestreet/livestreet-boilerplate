@@ -98,4 +98,8 @@ class ModuleUser_EntityUser extends EntityORM
         return false;
     }
 
+    public function getProfileUrl() {
+        return Router::GetPathRootWeb(). $this->getLogin()?$this->getLogin():$this->getId();
+    }
+    
 }

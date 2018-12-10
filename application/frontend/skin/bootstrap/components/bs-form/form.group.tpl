@@ -8,7 +8,7 @@
  * 
  *}
 
-{component_define_params params=[ 'bmods', 'bg', 'classes', 'attributes', 'content', 'component', 'componentGroup']}
+{component_define_params params=[ 'bmods', 'bg', 'classes', 'attributes', 'content', 'component', 'popover',  'componentGroup']}
 
 {if $custom}
     {$classes = "{$classes} custom-{$type}"}
@@ -20,7 +20,8 @@
 {block 'form_group_options'}{/block}
 
 {block 'form_group_content'}
-    <div class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {cattr list=$attributes}>
+    <div class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+         {if $popover}{component "bs-popover" params=$popover} {/if} {cattr list=$attributes}>
         {if is_array($content)}
             {foreach $content as $item}
                 {$item}

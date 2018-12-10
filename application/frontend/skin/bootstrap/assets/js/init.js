@@ -96,7 +96,8 @@ jQuery(document).ready(function($){
 //            $( '.ls-nav-item--userbar-username img' ).attr( 'src', avatars[ '24crop' ] + '?' + Math.random() );
 //        }
 //    });
-    
+
+    $('.js-form-validate').bsFormValidate();    
 
     /**
      * Editor

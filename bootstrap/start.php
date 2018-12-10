@@ -64,7 +64,7 @@ require_once($sPathToFramework . '/config/loader.php');
 $aRouterParams = array(
     'callback_after_parse_url' => array(
         function () {
-            // ваша логика
+           
         }
     )
 );

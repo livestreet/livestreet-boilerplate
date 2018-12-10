@@ -29,6 +29,14 @@ return array(
             'text'=>'Комппании'
         ]
     ],
+    'user' => [
+        'profile' => [
+            'nav' => [
+                'settings' => 'Настройки',
+                'profile'   => 'Профиль'
+            ]
+        ]
+    ],
     /**
      * Поля
      */
@@ -129,6 +137,12 @@ return array(
             'form'    => array(
                 // Поля
                 'fields' => array(
+                    'email' => [
+                        'error' => 'Введите корректный email',
+                    ],
+                    'login' =>[
+                        'desc' => 'Будет использоваться как ссылка на профиль (fend.ru/login)'
+                    ],
                     'password_confirm' => array(
                         'label' => 'Повторите пароль'
                     ),

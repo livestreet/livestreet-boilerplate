@@ -12,7 +12,7 @@
 {block name="content_popover"}{strip}
     data-toggle="{$type|default:"popover"}"{" "}
     data-content="{$content}"{" "}
-    data-placement="{$placement}"{" "}
+    data-placement="{$placement|default:"top"}"{" "}
     {if $title}
         title="{$title}"{" "}
     {/if}

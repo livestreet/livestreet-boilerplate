@@ -11,7 +11,9 @@
         "reactivation": "auth.reactivation.tpl",
         "registration": "auth.registration.tpl",
         "reset": "auth.reset.tpl",
-        "modal": "modal.auth.tpl"
+        "modal": "modal.auth.tpl",
+        "fields-company":"auth.registration.company.tpl",
+        "fields-user":"auth.registration.user.tpl"
     },
     "scripts": {
         "subscribe": "js/auth.js"

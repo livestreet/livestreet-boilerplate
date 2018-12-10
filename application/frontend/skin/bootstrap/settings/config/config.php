@@ -42,7 +42,7 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'auth',
 
     //Компоненты шаблона
-    'bs-dropdown'
+    'bs-dropdown', 'bs-form'
 ];
 
 $config['head']['default']['js'] = array(

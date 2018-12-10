@@ -11,5 +11,10 @@
         "checkbox":"field.checkbox.tpl",
         "select":"field.select.tpl",
         "file":"field.file.tpl"
+    },
+    "scripts":{
+        "field-validate":"js/field-validate.js",
+        "form-validate":"js/form-validate.js"
+        
     }
 }

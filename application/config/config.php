@@ -119,14 +119,16 @@ $config['router']['rewrite'] = array();
 // Правила реврайта для REQUEST_URI
 $config['router']['uri'] = array(
 	'~^page\-num\-(\d+)~i' => "index/page-num-\\1",
+    // Эту логику можно перенести в bootstrap/start.php
+    '/^((?!admin(\/.+?)?$|auth(\/.+?)?$|error(\/.+?)?$|index(\/.+?)?$|ajax(\/.+?)?$|framework(\/.+?)).+)*$/i' => 'profile/\\1'
 );
 // Распределение action
-$config['router']['page']['admin']         = 'ActionAdmin';
-$config['router']['page']['error']         = 'ActionError';
-$config['router']['page']['index']         = 'ActionIndex';
-$config['router']['page']['ajax']          = 'ActionAjax';
-$config['router']['page']['auth']		   = 'ActionAuth';
-$config['router']['page']['admin']         = 'ActionAdmin';
+$config['router']['page']['admin']          = 'ActionAdmin';
+$config['router']['page']['error']          = 'ActionError';
+$config['router']['page']['index']          = 'ActionIndex';
+$config['router']['page']['ajax']           = 'ActionAjax';
+$config['router']['page']['auth']           = 'ActionAuth';
+$config['router']['page']['profile']           = 'ActionProfile';
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action']	= 'index';
 $config['router']['config']['default']['event']		= null;
@@ -151,7 +153,7 @@ $config['components'] = array(
 );
 
 $config['head']['default']['js'] = array(
-	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+	"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
 );
 $config['head']['default']['css'] = array();
 

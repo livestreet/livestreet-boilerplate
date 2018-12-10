@@ -142,6 +142,8 @@ CREATE TABLE IF NOT EXISTS `prefix_user` (
 
 
 ALTER TABLE `prefix_user` ADD `rating` FLOAT NOT NULL DEFAULT '0' AFTER `active`, ADD INDEX (`rating`);
+
+ALTER TABLE `prefix_user` ADD `name` VARCHAR(200) NULL DEFAULT NULL AFTER `mail`, ADD `about` TEXT NULL DEFAULT NULL AFTER `name`;
 --
 -- Indexes for dumped tables
 --

@@ -15,8 +15,8 @@
  *}
 
 {$component = "form-control"}
-{component_define_params params=[ 'bmods', 'bg', 'classes', 'attributes', 'name', 'id', 'label', 'placeholder', 'desc', 'value', 'type',
-    'classesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
+{component_define_params params=[ 'bmods', 'bg', 'classes', 'popover', 'attributes', 'name', 'id', 'label', 'placeholder', 'desc', 'value', 'type',
+    'validate', 'classesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
 
 {if $custom}
     {$component = "custom-control"}
@@ -26,7 +26,16 @@
     {$classes ="{$classes} form-control-{$size}"}
     {$classesLabel="{$classesLabel} form-control-{$size}"}
 {/if}
-    
+
+{function name = "attr_rules" id=''}
+    {foreach $validate as $rule}
+        {if is_bool( $rule@value ) && ! $rule@value}
+            {continue}
+        {/if}
+
+        {$rule@key}="{$rule@value}"
+    {/foreach}
+{/function}   
 
 {if $placeholder}
     {$attributes.placeholder = $placeholder}
@@ -59,20 +68,17 @@
             <small id="{$attributes.id}Help" class="form-text text-muted {$classesDesc}">{$desc}</small>
         {/if}
     {/block}
-    {if $validateError}
-        <div class="invalid-feedback">
-            {$validateError}
-        </div>
-    {/if}
-    {if $validateSuccess}
-        <div class="valid-feedback">
-            {$validateSuccess}
-        </div>
-    {/if}
+    <div class="invalid-feedback">
+        {$validate.messageError}
+    </div>
+    <div class="valid-feedback">
+        {$validate.messageSuccess}
+    </div>
 {/capture}
 
 {block name="out_content"}
     {component "bs-form.group" 
+        popover=$popover
         custom=$custom 
         classes=$classesGroup 
         bmods=$bmodsGroup 
