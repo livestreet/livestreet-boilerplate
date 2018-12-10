@@ -18,7 +18,7 @@ class ActionProfile extends Action
      */
     public function Init()
     {
-        //$this->SetDefaultEvent('index');
+        $this->SetDefaultEvent('index');
     }
 
     /**
@@ -43,6 +43,7 @@ class ActionProfile extends Action
      */
     protected function EventIndex()
     {
+        $login =  $this->sCurrentEvent;
         /**
          * Устанавливаем шаблон вывода
          */

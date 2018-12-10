@@ -119,8 +119,6 @@ $config['router']['rewrite'] = array();
 // Правила реврайта для REQUEST_URI
 $config['router']['uri'] = array(
 	'~^page\-num\-(\d+)~i' => "index/page-num-\\1",
-    // Эту логику можно перенести в bootstrap/start.php
-    '/^((?!admin(\/.+?)?$|auth(\/.+?)?$|error(\/.+?)?$|index(\/.+?)?$|ajax(\/.+?)?$|framework(\/.+?)).+)*$/i' => 'profile/\\1'
 );
 // Распределение action
 $config['router']['page']['admin']          = 'ActionAdmin';
@@ -159,7 +157,7 @@ $config['head']['default']['css'] = array();
 
 // Подключение темы
 if ( $config['view']['theme'] ) {
-	$config['head']['default']['css'][] = "___path.skin.web___/themes/___view.theme___/style.css";
+	//$config['head']['default']['css'][] = "___path.skin.web___/themes/___view.theme___/style.css";
 }
 
 

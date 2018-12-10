@@ -64,7 +64,19 @@ require_once($sPathToFramework . '/config/loader.php');
 $aRouterParams = array(
     'callback_after_parse_url' => array(
         function () {
-           
+    
+            /*
+             * Обработка url типа fend.ru/login
+             */
+            $aPages = array_keys( Config::Get('router.page') ); 
+            $aPages[] = '';
+                    
+            if(!in_array(Router::GetAction(), $aPages)){
+                Router::SetActionEvent(Router::GetAction());
+                Router::SetAction(Router::getInstance()->Rewrite('profile'));
+                Router::SetParams(array_merge([Router::GetActionEvent()],Router::GetParams()));
+            }
+            
         }
     )
 );
