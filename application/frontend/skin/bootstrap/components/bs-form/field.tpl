@@ -27,9 +27,23 @@
     {$classesLabel="{$classesLabel} form-control-{$size}"}
 {/if}
 
-{function name = "attr_rules" id=''}
+{function name = "attr_rules" }
+    {if $entity and $name}
+        {field_make_rules entity=$entity field=$name assign="entityRules"}
+        {if !is_array($validate)}
+            {$validate = []}
+        {/if}
+
+        {assign 'validate' $validate|array_merge:$entityRules}
+    {/if}
+    
     {foreach $validate as $rule}
         {if is_bool( $rule@value ) && ! $rule@value}
+            {continue}
+        {/if}
+        
+        {if $rule@key == 'require' and $rule@value}
+            require
             {continue}
         {/if}
 

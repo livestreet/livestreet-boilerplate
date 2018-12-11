@@ -61,6 +61,7 @@ class ActionAuth extends Action
         $this->AddEvent('ajax-reactivation', 'EventAjaxReactivation');
         $this->AddEvent('ajax-validate-fields', 'EventAjaxValidateFields');
         $this->AddEvent('ajax-validate-email', 'EventAjaxValidateEmail');
+        $this->AddEvent('ajax-validate-login', 'EventAjaxValidateLogin');
         $this->AddEvent('ajax-register', 'EventAjaxRegister');
     }
 
@@ -292,6 +293,14 @@ class ActionAuth extends Action
     protected function EventAjaxValidateEmail()
     {
         $this->ValidateFields(array(array('field' => 'mail', 'value' => getRequest('mail'))));
+    }
+    
+    /**
+     * Ajax валидация емэйла
+     */
+    protected function EventAjaxValidateLogin()
+    {
+        $this->ValidateFields(array(array('field' => 'login', 'value' => getRequest('login'))));
     }
 
     /**

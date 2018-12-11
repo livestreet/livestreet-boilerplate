@@ -139,6 +139,15 @@ return array(
                 'fields' => array(
                     'email' => [
                         'error' => 'Введите корректный email',
+                        'placeholder' => 'Email'
+                    ],
+                    'name' => [
+                        'placeholder' => 'Имя Фамилия',
+                        'error' => 'Введите от %%min%% до %%max%% символов'
+                    ],
+                    'name_company' => [
+                        'placeholder' => 'Название',
+                        'error' => 'Введите от %%min%% до %%max%% символов'
                     ],
                     'login' =>[
                         'desc' => 'Будет использоваться как ссылка на профиль (fend.ru/login)'

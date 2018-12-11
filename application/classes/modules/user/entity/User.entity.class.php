@@ -7,6 +7,8 @@ class ModuleUser_EntityUser extends EntityORM
         array('mail', 'mail_exists', 'on' => array('registration')),
         array('password', 'string', 'allowEmpty' => false, 'min' => 5, 'on' => array('registration')),
         array('password_confirm', 'compare', 'compareField' => 'password', 'on' => array('registration')),
+        ['name', 'string', 'min' => 3, 'max' => 100,'on' => array('registration')],
+        ['login', 'string', 'min' => 3, 'max' => 100,'on' => array('registration')]
     );
 
     protected $aRelations = array(
