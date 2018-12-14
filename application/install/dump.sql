@@ -196,7 +196,6 @@ ALTER TABLE `prefix_storage`
 ALTER TABLE `prefix_user`
  ADD PRIMARY KEY (`id`),  ADD UNIQUE (`login`), ADD KEY `mail` (`mail`), ADD KEY `password` (`password`), ADD KEY `activate_key` (`activate_key`), ADD KEY `active` (`active`), ADD KEY `activate` (`activate`);
 
-ALTER TABLE `prefix_user` ADD `login` VARCHAR(50) NULL DEFAULT NULL AFTER `id`, ADD UNIQUE (`login`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
