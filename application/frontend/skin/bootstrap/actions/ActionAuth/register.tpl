@@ -9,5 +9,10 @@
 {/block}
 
 {block 'layout_content'}
-    {component 'auth' template='registration'}
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            {component 'auth' template='registration'}
+        </div>
+    </div>
+    
 {/block}

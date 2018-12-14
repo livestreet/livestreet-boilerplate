@@ -4,11 +4,47 @@ class ModuleUser_EntityUser extends EntityORM
 {
     protected $aValidateRules = array(
         array('mail', 'email', 'allowEmpty' => false, 'on' => array('registration')),
-        array('mail', 'mail_exists', 'on' => array('registration')),
-        array('password', 'string', 'allowEmpty' => false, 'min' => 5, 'on' => array('registration')),
-        array('password_confirm', 'compare', 'compareField' => 'password', 'on' => array('registration')),
-        ['name', 'string', 'min' => 3, 'max' => 100,'on' => array('registration')],
-        ['login', 'string', 'min' => 3, 'max' => 100,'on' => array('registration')]
+        array('mail', 'mail_exists',  'on' => array('registration')),
+        array(
+            'password', 
+            'string', 
+            'allowEmpty' => false, 
+            'min' => 5, 
+            'max' => 100,
+            'on' => array('registration'), 
+            'msg' => 'auth.registration.notices.password_no_valid'
+        ),
+        [   
+            'login', 
+            'login', 
+            'on' => array('registration'),
+            'allowEmpty' => false
+        ],
+        [
+            'login', 
+            'login_exists', 
+            'on' => array('registration')
+        ],
+        [   'name', 
+            'string', 
+            'min' => 5, 
+            'max' => 200, 
+            'allowEmpty' => false,
+            'on' => array('registration'), 
+            'msg' => 'auth.registration.notices.name_no_valid'
+        ],
+        [   
+            'role', 
+            'string', 
+            'allowEmpty' => false,
+            'on' => array('registration'), 
+            'msg' => 'auth.registration.notices.role_no_valid'
+        ],
+        [   
+            'role', 
+            'role_exists', 
+            'on' => array('registration')
+        ],
     );
 
     protected $aRelations = array(
@@ -23,16 +59,16 @@ class ModuleUser_EntityUser extends EntityORM
      */
     public function __construct($aParam = false)
     {
-        $sCaptchaValidateType = func_camelize('captcha_' . Config::Get('general.captcha.type'));
-        $this->aValidateRules[] = array(
-            'captcha',
-            $sCaptchaValidateType,
-            'name' => 'user_signup',
-            'on' => array('registration'),
-            'label' => $this->Lang_Get('auth.labels.captcha_field')
-        );
-
+       
         parent::__construct($aParam);
+    }
+    
+    public function ValidateLogin($sValue, $aParams)
+    {
+        if ($this->User_CheckLogin($sValue)) {
+            return true;
+        }
+        return $this->Lang_Get('auth.registration.notices.error_login');
     }
 
     /**
@@ -48,6 +84,22 @@ class ModuleUser_EntityUser extends EntityORM
             return true;
         }
         return $this->Lang_Get('auth.registration.notices.error_mail_used');
+    }
+    
+    public function ValidateRoleExists($sValue, $aParams)
+    {
+        if ($this->Rbac_GetRoleByFilter(['code' => $sValue])) {
+            return true;
+        }
+        return $this->Lang_Get('auth.registration.notices.role_no_exists', ['role' => $sValue]);
+    }
+    
+    public function ValidateLoginExists($sValue, $aParams)
+    {
+        if (!$this->User_GetUserByLogin($sValue)) {
+            return true;
+        }
+        return $this->Lang_Get('auth.registration.notices.error_login_used');
     }
 
 
@@ -102,6 +154,11 @@ class ModuleUser_EntityUser extends EntityORM
 
     public function getProfileUrl() {
         return Router::GetPathRootWeb(). $this->getLogin()?$this->getLogin():$this->getId();
+    }
+    
+    public function afterSave() {
+        parent::afterSave();
+        $this->Rbac_AddRoleToUser($this->getRole(), $this->getId());
     }
     
 }

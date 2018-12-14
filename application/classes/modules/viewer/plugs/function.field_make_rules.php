@@ -39,6 +39,9 @@ function smarty_function_field_make_rules($params, &$smarty)
     $sScenario = isset($params['scenario']) ? $params['scenario'] : '';
     $sField = $params['field'];
     $oEntity = $params['entity'];
+    if(!$oEntity){
+        return;
+    }
     if (!($oEntity instanceof Entity)) {
         $oEntity = Engine::GetEntity($oEntity);
     }
@@ -64,11 +67,8 @@ function smarty_function_field_make_rules($params, &$smarty)
              * Конвертация числового валидатора
              */
             if ($sType == 'number') {
-                if ($oValidator->integerOnly) {
-                    $aResult['type'] = 'digits';
-                } else {
-                    $aResult['type'] = 'number';
-                }
+                $aResult['type'] = 'number';
+                
                 if (!is_null($oValidator->max)) {
                     $aResult['max'] = $oValidator->max;
                 }
@@ -77,16 +77,35 @@ function smarty_function_field_make_rules($params, &$smarty)
                 }
             }
             
-
-            if ($sType != 'inline' and !$oValidator->allowEmpty) {
-                $aResult['required'] = 1;
+            if($oValidator->msg){
+                $msg = $oEntity->Lang_Get($oValidator->msg, ['min' => $oValidator->min, 'max' => $oValidator->max]);
+                $smarty->assign('msg', $msg);
             }
+            
+            if ($sType != 'inline' ) {
+                if(in_array($sType, ['email', 'password', 'number', 'url'])){
+                    $smarty->assign('typeRule', $sType);
+                }
+                if ( !$oValidator->allowEmpty) {
+                    $aResult['required'] = true;
+                }
+            }            
+            
         }
     }
 
     if (!empty($params['assign'])) {
         $smarty->assign($params['assign'], $aResult);
     } else {
-        return $aResult;
+        $sResult = '';
+        foreach ($aResult as $key => $value) {
+            $sResult .= $key;
+            if(is_bool($value)){
+                $sResult .= ' ';
+                continue;
+            }
+            $sResult .= '="'.$value.'" ';
+        }
+        return $sResult;
     }
 }

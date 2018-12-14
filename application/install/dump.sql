@@ -609,4 +609,12 @@ RENAME TABLE `prefix_rbac_user_role` TO `prefix_rbac_role_user`;
 --
 
 INSERT INTO `prefix_rbac_group` (`id`, `code`, `title`, `date_create`) VALUES
-(1, 'user', 'Пользователи', '2014-12-07 07:52:18');
+(1, 'user', 'Пользователи', CURRENT_TIMESTAMP);
+
+--
+-- Дамп данных таблицы `prefix_rbac_role`
+--
+
+INSERT INTO `prefix_rbac_role` ( `pid`, `code`, `title`, `date_create`, `state`) VALUES
+( NULL, 'user', 'Личность', CURRENT_TIMESTAMP, 1),
+( NULL, 'company', 'Компания', CURRENT_TIMESTAMP, 1);

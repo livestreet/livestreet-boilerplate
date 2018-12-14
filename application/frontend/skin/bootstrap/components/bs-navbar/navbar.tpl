@@ -8,13 +8,13 @@
  
 {$component = "navbar"}
 
-{component_define_params params=[ 'brand', 'items', 'bmods', 'attributes', 'classes', 'before', 'after' ]}
+{component_define_params params=[ 'brand', 'url', 'items', 'bmods', 'attributes', 'classes', 'before', 'after' ]}
 
 {$id = "navbar{math equation='rand()'}"}
 
 <nav class="navbar {$classes} {cmods name=$component mods=$bmods delimiter="-"}" {cattr list=$attributes}>
     {if $brand}
-        <a class="navbar-brand" href="#">{$brand}</a>
+        <a class="navbar-brand" href="{$url}">{$brand}</a>
     {/if}
     
     {$before}

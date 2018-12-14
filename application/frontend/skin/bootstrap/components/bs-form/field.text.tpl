@@ -10,9 +10,10 @@
 {component_define_params params=[ 'readonly']}
 
 {block name="field_input"}
-    <input type="{$type|default:'text'}" 
+    <input {field_make_rules entity=$entity field=$name } type="{$typeRule|default:$type}" 
            class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
-           {attr_rules id=$attributes.id} {cattr list=$attributes} {if $readonly}readonly{/if}>
+            {cattr list=$attributes} {if $readonly}readonly{/if}>
+        
 {/block}
     
 

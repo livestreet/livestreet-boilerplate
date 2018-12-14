@@ -55,7 +55,7 @@ $config['view']['img_max_size_url'] = 500;    // максимальный раз
  * Общие настройки
  */
 $config['general']['admin_mail']  = 'admin@admin.adm'; // email администратора
-$config['general']['captcha']['type'] = 'kcaptcha'; // тип используемой каптчи: kcaptcha, recaptcha
+$config['general']['captcha']['type'] = 'recaptcha'; // тип используемой каптчи: kcaptcha, recaptcha
 
 /**
  * Настройки модулей
@@ -64,7 +64,10 @@ $config['general']['captcha']['type'] = 'kcaptcha'; // тип используе
 $config['module']['user']['time_login_remember'] = 60 * 60 * 24 * 7;   // время жизни куки когда пользователь остается залогиненым на сайте, 7 дней
 $config['module']['user']['count_auth_session'] = 4; // Количество разрешенных сессий пользователя (авторизаций в разных браузерах)
 $config['module']['user']['count_auth_session_history'] = 10; // Общее количество сессий для хранения (значение должно быть больше чем count_auth_session)
-
+$config['module']['user']['login']['charset'] = '0-9a-z_\-'; // Допустимые в имени пользователя символы
+$config['module']['user']['login']['min_size'] = 3; // Минимальное количество символов в логине
+$config['module']['user']['login']['max_size'] = 30; // Максимальное количество символов в логине
+//
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
 // Модуль Notify
@@ -151,7 +154,7 @@ $config['components'] = array(
 );
 
 $config['head']['default']['js'] = array(
-	"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
 );
 $config['head']['default']['css'] = array();
 

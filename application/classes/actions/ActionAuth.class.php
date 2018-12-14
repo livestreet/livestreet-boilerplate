@@ -83,14 +83,17 @@ class ActionAuth extends Action
         /**
          * Логин и пароль являются строками?
          */
-        if (!is_string(getRequest('login')) or !is_string(getRequest('password'))) {
+        if (!is_string(getRequest('mail_login')) or !is_string(getRequest('password'))) {
             $this->Message_AddErrorSingle($this->Lang_Get('common.error.system.base'));
             return;
         }
         /**
          * Проверяем есть ли такой юзер
          */
-        if ($oUser = $this->User_GetUserByMail(getRequest('login'))) {
+        $aFilter = [
+            '#where' => ['t.login = ? or t.mail = ?' => [getRequest('mail_login'), getRequest('mail_login')]]
+        ];
+        if ($oUser = $this->User_GetUserByFilter($aFilter)) {
             /**
              *  Выбираем сценарий валидации
              */
@@ -302,7 +305,8 @@ class ActionAuth extends Action
     {
         $this->ValidateFields(array(array('field' => 'login', 'value' => getRequest('login'))));
     }
-
+    
+    
     /**
      * Ajax валидация форму регистрации
      */
@@ -333,6 +337,12 @@ class ActionAuth extends Action
                     switch ($sField) {
                         case 'mail':
                             $oUser->setMail($sValue);
+                            break;
+                        case 'name':
+                            $oUser->setName($sValue);
+                            break;
+                        case 'login':
+                            $oUser->setLogin($sValue);
                             break;
                         case 'captcha':
                             $oUser->setCaptcha($sValue);
@@ -383,10 +393,11 @@ class ActionAuth extends Action
         /**
          * Заполняем поля (данные)
          */
+        $oUser->setRole(getRequestStr('role'));
         $oUser->setMail(getRequestStr('mail'));
         $oUser->setPassword(getRequestStr('password'));
-        $oUser->setPasswordConfirm(getRequestStr('password_confirm'));
-        $oUser->setCaptcha(getRequestStr('captcha'));
+        $oUser->setLogin(getRequestStr('login'));
+        $oUser->setName(getRequestStr('name'));
         $oUser->setDateRegister(date("Y-m-d H:i:s"));
         $oUser->setIpRegister(func_getIp());
         $oUser->setActivate(0);

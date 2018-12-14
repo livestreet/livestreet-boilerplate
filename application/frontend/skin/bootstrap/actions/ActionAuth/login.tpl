@@ -9,5 +9,9 @@
 {/block}
 
 {block 'layout_content'}
-    {component 'auth' template='login' showExtra=true}
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            {component 'auth' template='login' showExtra=true}
+        </div>
+    </div>
 {/block}

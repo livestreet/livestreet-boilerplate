@@ -46,6 +46,8 @@ class ActionAjax extends Action
     {
         $this->AddEventPreg('/^captcha$/i', '/^$/', 'EventCaptcha');
         $this->AddEventPreg('/^captcha$/i', '/^validate$/', '/^$/', 'EventCaptchaValidate');
+        
+        $this->AddEventPreg('/^verify-recaptcha/i', '/^$/', 'EventVerifyRecaptcha');
 
         $this->AddEventPreg('/^vote$/i', '/^user$/', 'EventVoteUser');
     }
@@ -126,5 +128,18 @@ class ActionAjax extends Action
          * Возвращаем в ответе новый рейтинг
          */
         $this->Viewer_AssignAjax('iRating', $iRating);
+    }
+    
+    public function EventVerifyRecaptcha() {
+        $this->Viewer_SetResponseAjax('json');
+        
+        $oValidate = Engine::GetEntity('ModuleValidate_EntityValidatorCaptchaRecaptcha');
+        $oValidate->msg = "Не верный код Recaptcha";
+        
+        if(($sResult = $oValidate->validate(getRequest('token'))) === true){
+            $this->Viewer_AssignAjax('success', true);
+        }else{
+            $this->Message_AddError($sResult);
+        }
     }
 }

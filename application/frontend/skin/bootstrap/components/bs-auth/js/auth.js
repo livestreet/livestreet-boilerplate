@@ -27,13 +27,13 @@ ls.auth = (function ($) {
         });
 
         /* Регистрация */
-        $('.js-auth-registration-form').on('submit', function (e) {
-            ls.ajax.submit(aRouter.auth + 'ajax-register', $(this), function ( response ) {
-                response.sUrlRedirect && (window.location = response.sUrlRedirect);
-            });
-
-            e.preventDefault();
-        });
+//        $('.js-auth-registration-form').on('submit', function (e) {
+//            ls.ajax.submit(aRouter.auth + 'ajax-register', $(this), function ( response ) {
+//                response.sUrlRedirect && (window.location = response.sUrlRedirect);
+//            });
+//
+//            e.preventDefault();
+//        });
 
         /* Восстановление пароля */
         $('.js-auth-reset-form').on('submit', function (e) {

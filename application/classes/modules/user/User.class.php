@@ -437,4 +437,21 @@ class ModuleUser extends ModuleORM
             ), null, true
         );
     }
+    
+    /**
+     * Проверяет логин на корректность
+     *
+     * @param string $sLogin Логин пользователя
+     * @return bool
+     */
+    public function CheckLogin($sLogin)
+    {
+        $charset = Config::Get('module.user.login.charset');
+        $min = Config::Get('module.user.login.min_size');
+        $max = Config::Get('module.user.login.max_size');
+        if (preg_match('/^[' . $charset . ']{' . $min . ',' . $max . '}$/ui', $sLogin)) {
+            return true;
+        }
+        return false;
+    }
 }

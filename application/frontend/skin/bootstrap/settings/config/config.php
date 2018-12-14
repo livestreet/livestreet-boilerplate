@@ -4,7 +4,7 @@ $config = array();
 
 $config['view']['container']['fluid'] = true;
 
-$config['view']['grid']['breakpoint'] = 'md';
+$config['view']['grid']['breakpoint'] = 'sm';
 
 // Подключение скриптов шаблона
 $config['head']['template']['js'] = array(
@@ -39,14 +39,14 @@ $config['view']['bs_theme'] = $config['view']['bs_themes'][$theme];
 
 $config['components'] = [
     // Базовые компоненты
-    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'auth',
+    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form'
+    'bs-dropdown', 'bs-form', 'css-helpers'
 ];
 
 $config['head']['default']['js'] = array(
-	//"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+    //"https://www.google.com/recaptcha/api.js?render=___module.validate.recaptcha.site_key___" => array('merge' => false)    
 );
 
 /**

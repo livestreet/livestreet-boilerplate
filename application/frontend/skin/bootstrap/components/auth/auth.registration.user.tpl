@@ -1,40 +1,66 @@
-{* E-mail *}
-{component 'bs-form' 
-    template    = 'text' 
-    name        = "mail"
-    placeholder = $aLang.auth.registration.form.fields.email.placeholder
-    type        = "email"
-    validate       = [ 
-        require => true,
-        triggers => 'change keyup',
-        remote => "{router page='auth'}ajax-validate-email" 
-    ]}
 
-{* Имя Фамилия *}
-{component 'bs-form' 
-    template    = 'text' 
-    name        = "name"
-    placeholder = $aLang.auth.registration.form.fields.name.placeholder
-    type        = "text"
-    entity      = Engine::GetEntity('User_User')
-    validate    = [ 
-        triggers => 'change keyup'
-    ]
-    }
-    
-{* Логин *}
-{component 'bs-form' 
-    template    = 'text' 
-    name        = "login"
-    placeholder = $aLang.auth.registration.form.fields.login.placeholder
-    type        = "text"
-    desc        = $aLang.auth.registration.form.fields.login.desc  
-    entity      = Engine::GetEntity('User_User')  
-    validate       = [ 
-        remote => "{router page='auth'}ajax-validate-login",
-        triggers => 'change keyup'
-    ]}
-{component 'bs-form' template='text' placeholder = "Логин" }
 
-{* Пароль *}
-{component 'bs-form' template='text' placeholder = "Пароль"}
+<form action="{router page='auth/register'}" method="post" name="register_user" 
+      class="js-form-validate js-auth-registration-form js-recaptcha-form">
+
+    {hook run='form_registration_begin'}
+    {* E-mail *}
+    {component 'bs-form' 
+        template    = 'text' 
+        name        = "mail"
+        placeholder = $aLang.auth.registration.form.fields.email.placeholder
+        type        = "email"
+        attributes  = [
+            required => true,
+            remote => "{router page='auth'}ajax-validate-email"
+        ]}
+
+    {* Имя Фамилия *}
+    {component 'bs-form' 
+        template    = 'text' 
+        name        = "name"
+        placeholder = $aLang.auth.registration.form.fields.name.placeholder
+        type        = "text"
+        entity      = 'User_User'
+        }
+
+    {* Логин *}
+    {component 'bs-form' 
+        template    = 'text' 
+        name        = "login"
+        placeholder = $aLang.auth.registration.form.fields.login.placeholder
+        type        = "text"
+        desc        = $aLang.auth.registration.form.fields.login.desc  
+        attributes       = [ 
+            required => true,
+            remote => "{router page='auth'}ajax-validate-login"
+        ]}
+
+    {* Пароль *}
+    {component 'bs-form' template='text' 
+        type        = "password"
+        name        = "password"
+        placeholder = $aLang.auth.registration.form.fields.password.placeholder
+        entity      = 'User_User'
+        validate       = [ 
+            triggers => 'change keyup'
+        ]}
+
+
+    {hook run='form_registration_end'}
+
+    {if $redirectUrl}
+        <input type="hidden"  class="ls-field-input is-valid" value="{$redirectUrl}" name="return-path" >        
+    {/if}
+
+    <input type="hidden"  class="ls-field-input is-valid" value="user" name="role" >
+
+    <div class="d-flex justify-content-center">
+        {component 'bs-button' 
+            classes = ""
+            name='submit_register' 
+            type="submit" 
+            bmods='primary' 
+            text=$aLang.auth.registration.form.fields.submit.text}
+    </div>
+</form>

@@ -45,25 +45,16 @@
     * Основная навигация
     *}
     {block 'nav_main'}
-        <div class="row bg-light shadow-sm">
+        <div class="row bg-light shadow-sm pl-1">
             <div class="col-xl-1" ></div>
 
-            <div class="col-12 col-xl-10">
-                {*component "bs-nav" 
-                        itemsClasses="d-flex justify-content-start"
-                        bmods="fill" 
-                        classes="navbar-nav mr-auto" 
-                        hook="main" 
-                        activeItem=$sMenuHeadItemSelect 
-                        items = [
-                            [ 'text' => $aLang.menu.humans.text,   'url' => {router page='humans'},      'name' => 'humans' ],
-                            [ 'text' => $aLang.menu.companies.text,     'url' => {router page='companies'},  'name' => 'companies' ]                            
-                        ]
-                *}
+            <div class="col-12 col-xl-10 pr-1">
+                
                 {component 'bs-navbar' 
                     classes = "bg-light " 
-                    bmods = "expand-lg light" 
+                    bmods = "expand-{Config::Get('view.grid.breakpoint')} light" 
                     brand = Config::Get('view.name')
+                    url     = {router page="/"}
                     items = [
                         {insert name='block' block='menu' params=[ 'name' => "main", "activeItem" => $sMenuHeadItemSelect, "mods" => "main" ]}
                     ]
@@ -92,8 +83,7 @@
         </div>*}
     {/block}
     
-    <div class="mt-3 {hook run='layout_container_class' action=$sAction}">
-        <div class="row">
+        <div class="row mt-3 {hook run='layout_container_class' action=$sAction}">
             <div class="col-xl-1 "></div>
             <div class="{if $layoutShowSidebar}col-12 col-lg-8 col-xl-7 {else}col-12 col-xl-10{/if}">
                 <div class="ml-2">
@@ -134,7 +124,7 @@
                                 </div>
                             {/if}
                         {/if}
-                        <hr>
+                        
 
                         {* Системные сообщения *}
                         {if $layoutShowSystemMessages}
@@ -177,11 +167,9 @@
                 {hook run='layout_footer_end'}
             {/block}
         </footer>
-    </div>
         
     {* Подключение модальных окон *}
     {if $oUserCurrent}
-        {component 'tags-personal' template='modal'}
     {else}
         {component 'bs-auth' template='modal'}
     {/if}

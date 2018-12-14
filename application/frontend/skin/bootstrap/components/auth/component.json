@@ -16,6 +16,5 @@
         "fields-user":"auth.registration.user.tpl"
     },
     "scripts": {
-        "subscribe": "js/auth.js"
     }
 }

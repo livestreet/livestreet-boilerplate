@@ -76,8 +76,18 @@ jQuery(document).ready(function($){
     /**
      * Auth
      */
-    ls.auth.init();
-
+    $('.js-auth-registration-form').bsFormAjax({
+        urls:{
+            submit: aRouter.auth + 'ajax-register'
+        },
+        needValidate:true
+    });
+    
+    $('.js-auth-login-form').bsFormAjax({
+        urls:{
+            submit: aRouter.auth + 'ajax-login'
+        }
+    });
     
 
     // Фото пользователя
@@ -97,8 +107,22 @@ jQuery(document).ready(function($){
 //        }
 //    });
 
-    $('.js-form-validate').bsFormValidate();    
+    $('.js-form-validate').bsFormValidate();
+    
+    if(window.grecaptcha !== undefined ){
+        grecaptcha.ready(function() {
+            $('.js-recaptcha-form').bsReCaptcha({
+                site_key: ls.registry.get('recaptcha.site_key')
+            });
 
+        });
+    }
+    
+    $('.js-auth-reset-form').bsFormAjax({
+        urls:{
+            submit: aRouter.auth + 'ajax-password-reset'
+        }
+    });
     /**
      * Editor
      */
@@ -107,3 +131,4 @@ jQuery(document).ready(function($){
     // Хук конца инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_end',[],window);
 });
+

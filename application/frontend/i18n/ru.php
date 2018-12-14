@@ -71,8 +71,11 @@ return array(
             'form'    => array(
                 // Поля
                 'fields' => array(
-                    'login'    => array(
-                        'label' => 'Логин'
+                    'login_or_email'    => array(
+                        'placeholder' => 'Логин или Email'
+                    ),
+                    'password'    => array(
+                        'placeholder' => 'Пароль'
                     ),
                     'remember' => array(
                         'label' => 'Запомнить меня'
@@ -143,13 +146,12 @@ return array(
                     ],
                     'name' => [
                         'placeholder' => 'Имя Фамилия',
-                        'error' => 'Введите от %%min%% до %%max%% символов'
                     ],
                     'name_company' => [
-                        'placeholder' => 'Название',
-                        'error' => 'Введите от %%min%% до %%max%% символов'
+                        'placeholder' => 'Название компании',
                     ],
                     'login' =>[
+                        'placeholder' => 'Логин',
                         'desc' => 'Будет использоваться как ссылка на профиль (fend.ru/login)'
                     ],
                     'password_confirm' => array(
@@ -157,7 +159,10 @@ return array(
                     ),
                     'submit'           => array(
                         'text' => 'Зарегистрироваться'
-                    )
+                    ),
+                    'password' => [
+                        'placeholder' => 'Пароль',
+                    ]
                 )
             ),
             'confirm' => array(
@@ -166,6 +171,8 @@ return array(
             ),
             // Сообщения
             'notices' => array(
+                'password_no_valid'  => 'Введите от %%min%% до %%max%% символов',
+                'name_no_valid'      => 'Введите от %%min%% до %%max%% символов',
                 'already_registered' => 'Вы уже зарегистрированы у нас и даже авторизованы!',
                 'success'            => 'Поздравляем! Регистрация прошла успешно',
                 'success_activate'   => 'Поздравляем! Ваш аккаунт успешно активирован.',
@@ -173,7 +180,8 @@ return array(
                 'error_login_used'   => 'Этот логин уже занят',
                 'error_mail_used'    => 'Этот e-mail уже используется',
                 'error_reactivate'   => 'Ваш аккаунт уже активирован',
-                'error_code'         => 'Неверный код активации!'
+                'error_code'         => 'Неверный код активации!',
+                'role_no_exists'     => 'Роль %%role%% не найдена'
             ),
         ),
         // Общие лэйблы

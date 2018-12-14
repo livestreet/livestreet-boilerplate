@@ -16,7 +16,7 @@
 
 {$component = "form-control"}
 {component_define_params params=[ 'bmods', 'bg', 'classes', 'popover', 'attributes', 'name', 'id', 'label', 'placeholder', 'desc', 'value', 'type',
-    'validate', 'classesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
+    'classesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
 
 {if $custom}
     {$component = "custom-control"}
@@ -27,29 +27,11 @@
     {$classesLabel="{$classesLabel} form-control-{$size}"}
 {/if}
 
-{function name = "attr_rules" }
-    {if $entity and $name}
-        {field_make_rules entity=$entity field=$name assign="entityRules"}
-        {if !is_array($validate)}
-            {$validate = []}
-        {/if}
+{if ! $attributes.triggers}
+    {$attributes.triggers = "change keyup"}
+{/if}
 
-        {assign 'validate' $validate|array_merge:$entityRules}
-    {/if}
-    
-    {foreach $validate as $rule}
-        {if is_bool( $rule@value ) && ! $rule@value}
-            {continue}
-        {/if}
-        
-        {if $rule@key == 'require' and $rule@value}
-            require
-            {continue}
-        {/if}
 
-        {$rule@key}="{$rule@value}"
-    {/foreach}
-{/function}   
 
 {if $placeholder}
     {$attributes.placeholder = $placeholder}
@@ -83,10 +65,10 @@
         {/if}
     {/block}
     <div class="invalid-feedback">
-        {$validate.messageError}
+        {$msg|default:$messageError}       
     </div>
     <div class="valid-feedback">
-        {$validate.messageSuccess}
+        {$messageSuccess}
     </div>
 {/capture}
 

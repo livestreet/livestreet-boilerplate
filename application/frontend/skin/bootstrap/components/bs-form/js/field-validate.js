@@ -23,9 +23,8 @@
             },
             
             // Параметры запроса
-            params: {},
+            params: {}
             
-            isValid:false
             
         },
 
@@ -73,32 +72,42 @@
         },
         
         setValid:function(){
-            this.option('isValid', true);
             this.element.removeClass('is-invalid').addClass('is-valid');
         },
         
         setInvalid:function(){
-            this.option('isValid', false);
             this.element.removeClass('is-valid').addClass('is-invalid');
         },
         
         remoteValidate:function(url){
-            ls.ajax.load(url, {mail:this.element.val()}, function(response){
+            let data = {};
+            data[this.element.attr('name')] = this.element.val();
+            ls.ajax.load(url, data, function(response){
                 if(response.errors !== undefined){
                     this.setErrorMessage(Object.values(response.errors).shift()[0])
                     this.setInvalid();
                 }else{
-                    this.setValid();
+                    this.validate();
                 }
             }.bind(this));
         },        
         
         isValid:function(){
-            return this.option('isValid');
+            return this.element.hasClass('is-valid');
         },
         
         setErrorMessage:function(mess){
             this.elements.invalidFeedback.html(mess);
+        },
+        
+        setErrorMessageNotice:function(error){
+            this.element.attr('msg', error)
+        },
+        
+        showErrorMessageNotice:function(){
+            if ( this.element.attr('type') == 'hidden' && this.element.hasClass('is-invalid')) {
+                ls.msg.notice( this.element.attr('name'), this.element.attr('msg') );
+            }
         }
     });
 })(jQuery);
