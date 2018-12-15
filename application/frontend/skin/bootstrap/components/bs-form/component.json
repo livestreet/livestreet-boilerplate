@@ -10,7 +10,8 @@
         "range":"field.range.tpl",
         "checkbox":"field.checkbox.tpl",
         "select":"field.select.tpl",
-        "file":"field.file.tpl"
+        "file":"field.file.tpl",
+        "textarea":"field.textarea.tpl"
     },
     "scripts":{
         "field-validate":"js/field-validate.js",

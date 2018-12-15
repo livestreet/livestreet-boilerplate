@@ -118,6 +118,24 @@ jQuery(document).ready(function($){
         });
     }
     
+    $('.js-uploader-modal').lsUploader();
+//    $('.js-uploader-attach').lsUploaderAttach({
+//    urls: {
+//        // Загрузка файла
+//        upload: aRouter['ajax'] + 'media/upload/',
+//        // Подгрузка файлов
+//        load: aRouter['ajax'] + 'media/load-gallery/',
+//        // Удаление файла
+//        remove: aRouter['ajax'] + 'media/remove-file/',
+//        // Обновление св-ва
+//        update_property: aRouter['ajax'] + 'media/save-data-file/',
+//        // Кол-во загруженных файлов
+//        count: aRouter['ajax'] + 'media/count/',
+//        // Генерация временного хэша
+//        generate_target_tmp: aRouter['ajax'] + 'media/generate-target-tmp/'
+//    }
+//});
+    
     $('.js-auth-reset-form').bsFormAjax({
         urls:{
             submit: aRouter.auth + 'ajax-password-reset'

@@ -248,7 +248,8 @@ CREATE TABLE `prefix_menu` (
 
 INSERT INTO `prefix_menu` (`id`, `name`, `title`, `state`) VALUES
 (1, 'main', 'Главное', 1),
-(2, 'user', 'Пользователь', 1);
+(2, 'user', 'Пользователь', 1),
+(3, 'settings', 'Настройка профиля', 1);
 
 -- --------------------------------------------------------
 

@@ -22,7 +22,7 @@
 {block 'layout_head' append}
     {* Получаем блоки для вывода в сайдбаре *}
     {if $layoutShowSidebar}
-        {show_blocks group='right' assign=layoutSidebarBlocks}
+        {show_blocks group='left' assign=layoutSidebarBlocks}
 
         {$layoutSidebarBlocks = trim( $layoutSidebarBlocks )}
         {$layoutShowSidebar = !!$layoutSidebarBlocks}
@@ -52,7 +52,7 @@
                 
                 {component 'bs-navbar' 
                     classes = "bg-light " 
-                    bmods = "expand-{Config::Get('view.grid.breakpoint')} light" 
+                    bmods = "expand-{Config::Get('view.grid.collapse')} light" 
                     brand = Config::Get('view.name')
                     url     = {router page="/"}
                     items = [
@@ -85,7 +85,20 @@
     
         <div class="row mt-3 {hook run='layout_container_class' action=$sAction}">
             <div class="col-xl-1 "></div>
-            <div class="{if $layoutShowSidebar}col-12 col-lg-8 col-xl-7 {else}col-12 col-xl-10{/if}">
+            
+            {**
+            * Сайдбар
+            * Показываем сайдбар
+            *}
+            {if $layoutShowSidebar}
+                <aside class="col-12 col-{Config::Get('view.grid.breakpoint')}-3 col-xl-2 layout-sidebar">
+                    <div class="mx-2">
+                        {$layoutSidebarBlocks}
+                    </div>
+                </aside>
+            {/if}
+            
+            <div class="{if $layoutShowSidebar}col-12 col-{Config::Get('view.grid.breakpoint')}-7 col-xl-8 {else}col-12 col-xl-10{/if}">
                 <div class="ml-2">
                     {hook run='layout_content_header_begin' action=$sAction}
 
@@ -145,17 +158,7 @@
                     {hook run='layout_content_end' action=$sAction}
                 </div>
             </div>
-            {**
-            * Сайдбар
-            * Показываем сайдбар
-            *}
-            {if $layoutShowSidebar}
-                <aside class="col-12 col-lg-4 col-xl-3 layout-sidebar">
-                    <div class="mx-2">
-                        {$layoutSidebarBlocks}
-                    </div>
-                </aside>
-            {/if}
+            
 
             <div class="col-xl-1"></div>
         </div>
@@ -174,6 +177,7 @@
         {component 'bs-auth' template='modal'}
     {/if}
 
+    {component "uploader.modal"}
 
     {**
     * Тулбар

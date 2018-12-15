@@ -35,6 +35,33 @@ return array(
                 'settings' => 'Настройки',
                 'profile'   => 'Профиль'
             ]
+        ],
+        'settings' => [
+            "profile" => [
+                'title' => 'Настройки профиля',
+                'form' => [
+                    'name' => [
+                        'label' => 'Фамилия Имя'
+                    ],
+                    'name_company' => [
+                        'label' => 'Название компании'
+                    ],
+                    'about' => [
+                        'label' => 'О себе'
+                    ],
+                    'about_company' => [
+                        'label' => 'О комании'
+                    ]
+                ]
+            ],
+            'nav' => [
+                'profile' => 'Настройки профиля'
+            ]
+        ]
+    ],
+    'profile' => [
+        'notices' => [
+            'error_user_not_found' => 'Пользователь не найден'
         ]
     ],
     /**
@@ -248,6 +275,71 @@ return array(
             'subject' => 'Новый пароль',
             'text'    =>
                 'Вам присвоен новый пароль: <b>%%password%%</b>'
+        ),
+    ),
+    /**
+     * Загрузка изображений
+     */
+    'media'         => array(
+        'title'       => 'Загрузка медиа-файлов',
+        'error'       => array(
+            'upload'            => 'Не удалось загрузить файл',
+            'not_image'         => 'Файл не является изображением',
+            'too_large'         => 'Превышен максимальный размер файла: %%size%%Кб',
+            'incorrect_type'    => 'Неверный тип файла',
+            'max_count_files'   => 'Превышено максимальное число файлов',
+            'need_choose_items' => 'Необходимо выбрать элементы',
+        ),
+        'nav'         => array(
+            'insert'   => 'Вставить',
+            'photoset' => 'Создать фотосет',
+            'url'      => 'Вставить по ссылке',
+            'preview'  => 'Превью',
+        ),
+        'image_align' => array(
+            'title'  => 'Выравнивание',
+            'no'     => 'Нет',
+            'left'   => 'Слева',
+            'right'  => 'Справа',
+            'center' => 'По центру',
+        ),
+        'insert'      => array(
+            'submit'   => 'Вставить',
+            'settings' => array(
+                'title'  => 'Опции вставки',
+                'fields' => array(
+                    'size' => array(
+                        'label'    => 'Размер',
+                        'original' => 'Оригинал'
+                    ),
+                )
+            ),
+        ),
+        'photoset'    => array(
+            'submit'   => 'Создать фотосет',
+            'settings' => array(
+                'title'  => 'Опции фотосета',
+                'fields' => array(
+                    'use_thumbs'   => array(
+                        'label' => 'Показывать ленту с превьюшками'
+                    ),
+                    'show_caption' => array(
+                        'label' => 'Показывать описания фотографий'
+                    )
+                )
+            ),
+        ),
+        'url'         => array(
+            'fields'        => array(
+                'url'   => array(
+                    'label' => 'Ссылка',
+                ),
+                'title' => array(
+                    'label' => 'Описание',
+                ),
+            ),
+            'submit_insert' => 'Вставить как ссылку',
+            'submit_upload' => 'Загрузить и вставить'
         ),
     ),
     /**

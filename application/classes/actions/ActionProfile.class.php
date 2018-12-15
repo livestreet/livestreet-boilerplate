@@ -11,6 +11,8 @@ class ActionProfile extends Action
 {
 
     protected $sMenuHeadItemSelect = 'index';
+    
+    protected $oUserCurrent;
 
     /**
      * Инициализация
@@ -18,6 +20,7 @@ class ActionProfile extends Action
      */
     public function Init()
     {
+        
         $this->SetDefaultEvent('index');
     }
 
@@ -28,7 +31,10 @@ class ActionProfile extends Action
     protected function RegisterEvent()
     {
         //$this->AddEvent('index', 'EventIndex');
-        $this->AddEventPreg('/^.+$/i', 'EventIndex');
+        $this->AddEventPreg('/^.+$/i', '/^$/i',['EventIndex' , 'profile']);
+        
+        $this->RegisterEventExternal('Settigns', 'ActionProfile_EventSettings');
+        $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^(profile)?$/i', ['Settigns::EventProfile' , 'settings']);
     }
 
 
@@ -36,6 +42,20 @@ class ActionProfile extends Action
      ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
      **********************************************************************************
      */
+    
+    /**
+     * Проверка корректности профиля
+     */
+    protected function CheckUserProfile()
+    {
+        /**
+         * Проверяем есть ли такой юзер
+         */
+        if (!($this->oUserProfile = $this->User_GetUserByLogin($this->sCurrentEvent))) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Главная страница
@@ -43,7 +63,10 @@ class ActionProfile extends Action
      */
     protected function EventIndex()
     {
-        $login =  $this->sCurrentEvent;
+        if(!$this->CheckUserProfile()){
+            return Router::ActionError($this->Lang_Get('common.error.system.code.404'), '404');
+        }
+        print_r(Router::GetParams());
         /**
          * Устанавливаем шаблон вывода
          */
@@ -58,6 +81,7 @@ class ActionProfile extends Action
     public function EventShutdown()
     {
         $this->Viewer_Assign('sMenuHeadItemSelect', $this->sMenuHeadItemSelect);
+        $this->Viewer_Assign('oUserCurrent', $this->oUserCurrent);
     }
 
 

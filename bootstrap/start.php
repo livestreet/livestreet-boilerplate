@@ -72,9 +72,10 @@ $aRouterParams = array(
             $aPages[] = '';
                     
             if(!in_array(Router::GetAction(), $aPages)){
+                Router::SetParams(array_merge([Router::GetActionEvent()],Router::GetParams()));
                 Router::SetActionEvent(Router::GetAction());
                 Router::SetAction(Router::getInstance()->Rewrite('profile'));
-                Router::SetParams(array_merge([Router::GetActionEvent()],Router::GetParams()));
+                
             }
             
         }

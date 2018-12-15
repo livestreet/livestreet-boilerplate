@@ -1,8 +1,14 @@
 {**
  * Загрузка медиа-файлов
  *}
-
-{extends 'Component@modal.modal'}
+{component "bs-modal" 
+    classes     = "js-modal-media"
+    header      = $aLang.media.title 
+    bmods       = "lg" 
+    centered    = true 
+    content     = {component 'uploader' classes='js-uploader-modal' params=$uploader}
+    id          = "mediaModal"}
+{*extends 'Component@modal.modal'}
 
 {block 'modal_options' append}
     {component_define_params params=[ 'uploader', 'choosable' ]}
@@ -17,4 +23,4 @@
             'classes' => 'js-uploader-modal-choose'
         ]}
     {/if}
-{/block}
+{/block*}

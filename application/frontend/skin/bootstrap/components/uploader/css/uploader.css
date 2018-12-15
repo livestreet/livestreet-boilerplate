@@ -18,6 +18,26 @@
     margin-right: 320px;
 }
 
+/**
+ * Upload area
+ */
+.ls-field-upload-area {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+    border: 3px dashed #eee;
+    color: #555;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.ls-field-upload-area input[type=file] {
+    position: absolute;
+    top: -999px;
+    left: -999px;
+}
+
 
 /**
  * Фильтр

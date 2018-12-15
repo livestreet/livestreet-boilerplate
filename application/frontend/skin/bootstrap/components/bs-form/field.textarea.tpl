@@ -1,0 +1,20 @@
+{**
+ * Текст
+ *
+ * @param string  $readonly          Список классов основного блока (через пробел)
+ * 
+ *}
+ 
+{extends "component@bs-form.field"}
+
+{component_define_params params=[ 'readonly', 'rows']}
+
+{block name="field_input"}
+    <textarea {field_make_rules entity=$entity field=$name } 
+        class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+        {cattr list=$attributes} rows="{$rows|default:3}"></textarea>
+        
+{/block}
+    
+
+

@@ -2,9 +2,8 @@
 
 $config = array();
 
-$config['view']['container']['fluid'] = true;
-
-$config['view']['grid']['breakpoint'] = 'sm';
+$config['view']['grid']['breakpoint'] = 'md';  //граница сворачивания панели блоков  вниз
+$config['view']['grid']['collapse'] = 'sm'; // Граница сворачивания меню
 
 // Подключение скриптов шаблона
 $config['head']['template']['js'] = array(
@@ -42,7 +41,7 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'css-helpers'
+    'bs-dropdown', 'bs-form', 'css-helpers', 'media'
 ];
 
 $config['head']['default']['js'] = array(
@@ -56,5 +55,34 @@ $config['head']['default']['js'] = array(
 // Тег используемый для заголовков топиков
 $config['view']['seo']['topic_heading'] = 'h1';
 $config['view']['seo']['topic_heading_list'] = 'h2';
+
+$config['block']['userProfile'] = array(
+    'action' => array(
+        'profile' => [
+            '{profile}'
+        ]
+    ),
+    'blocks' => array(
+        'left' => array(
+            'component@user.block-avatar'     => array('priority' => 100),
+            'component@user.block-nav' => array('priority' => 99),
+            
+        )
+    )
+);
+
+$config['block']['settingsProfile'] = array(
+    'action' => array(
+        'profile' => [
+            '{settings}'
+        ]
+    ),
+    'blocks' => array(
+        'left' => array(
+            'component@user.block-settings-nav'     => array('priority' => 100)
+            
+        )
+    )
+);
 
 return $config;
