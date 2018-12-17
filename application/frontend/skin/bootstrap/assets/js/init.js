@@ -90,23 +90,6 @@ jQuery(document).ready(function($){
     });
     
 
-    // Фото пользователя
-//    $( '.js-user-photo' ).lsPhoto({
-//        urls: {
-//            upload: aRouter.settings + 'ajax-upload-photo',
-//            remove: aRouter.settings + 'ajax-remove-photo',
-//            crop_photo: aRouter.settings + 'ajax-modal-crop-photo',
-//            crop_avatar: aRouter.settings + 'ajax-modal-crop-avatar',
-//            save_photo: aRouter.settings + 'ajax-crop-photo',
-//            save_avatar: aRouter.settings + 'ajax-change-avatar',
-//            cancel_photo: aRouter.settings + 'ajax-crop-cancel-photo'
-//        },
-//        changeavatar: function ( event, _this, avatars ) {
-//            $( '.js-user-profile-avatar, .js-wall-entry[data-user-id=' + _this.option( 'params.target_id' ) + '] .ls-comment-avatar img' ).attr( 'src', avatars[ '64crop' ] + '?' + Math.random() );
-//            $( '.ls-nav-item--userbar-username img' ).attr( 'src', avatars[ '24crop' ] + '?' + Math.random() );
-//        }
-//    });
-
     $('.js-form-validate').bsFormValidate();
     
     if(window.grecaptcha !== undefined ){
@@ -118,23 +101,7 @@ jQuery(document).ready(function($){
         });
     }
     
-    $('.js-uploader-modal').lsUploader();
-//    $('.js-uploader-attach').lsUploaderAttach({
-//    urls: {
-//        // Загрузка файла
-//        upload: aRouter['ajax'] + 'media/upload/',
-//        // Подгрузка файлов
-//        load: aRouter['ajax'] + 'media/load-gallery/',
-//        // Удаление файла
-//        remove: aRouter['ajax'] + 'media/remove-file/',
-//        // Обновление св-ва
-//        update_property: aRouter['ajax'] + 'media/save-data-file/',
-//        // Кол-во загруженных файлов
-//        count: aRouter['ajax'] + 'media/count/',
-//        // Генерация временного хэша
-//        generate_target_tmp: aRouter['ajax'] + 'media/generate-target-tmp/'
-//    }
-//});
+    $('.js-media').bsMedia();
     
     $('.js-auth-reset-form').bsFormAjax({
         urls:{
@@ -145,6 +112,8 @@ jQuery(document).ready(function($){
      * Editor
      */
     $( '.js-editor-default' ).lsEditor();
+    
+    $('[data-type="pagination"]').bsPagination();
 
     // Хук конца инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_end',[],window);

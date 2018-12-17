@@ -7,6 +7,19 @@
  */
 class ActionAjax_EventMedia extends Event {
     
+    public $oUserCurrent;
+
+
+    public function Init() {
+        /**
+         * Пользователь авторизован?
+         */
+        if (!$this->oUserCurrent = $this->User_GetUserCurrent()) {
+            $this->Message_AddErrorSingle($this->Lang_Get('common.error.need_authorization'), $this->Lang_Get('common.error.error'));
+            return;
+        }
+    }
+    
     public function EventMediaUploadLink()
     {
         /**
@@ -288,13 +301,7 @@ class ActionAjax_EventMedia extends Event {
 
     public function EventMediaLoadGallery()
     {
-        /**
-         * Пользователь авторизован?
-         */
-        if (!$this->oUserCurrent) {
-            $this->Message_AddErrorSingle($this->Lang_Get('common.error.need_authorization'), $this->Lang_Get('common.error.error'));
-            return;
-        }
+        
 
         $sType = getRequestStr('target_type');
         $sId = getRequestStr('target_id');
@@ -302,48 +309,28 @@ class ActionAjax_EventMedia extends Event {
         $iPage = (int)getRequestStr('page');
         $iPage = $iPage < 1 ? 1 : $iPage;
 
-        $aMediaItems = array();
-        if ($sType) {
-            /**
-             * Получаем медиа для конкретного объекта
-             */
-            if ($sId) {
-                if (!$this->Media_CheckTarget($sType, $sId, ModuleMedia::TYPE_CHECK_ALLOW_VIEW_LIST)) {
-                    $this->Message_AddErrorSingle($this->Lang_Get('common.error.not_access'), $this->Lang_Get('common.error.error'));
-                    return;
-                }
-                $aMediaItems = $this->Media_GetMediaByTarget($sType, $sId);
-            } elseif ($sTmp) {
-                $aMediaItems = $this->Media_GetMediaByTargetTmp($sTmp, $this->oUserCurrent->getId());
-            }
-        } else {
-            /**
-             * Получаем все медиа, созданные пользователем без учета временных
-             */
-            $aResult = $this->Media_GetMediaItemsByFilter(array(
-                'user_id'       => $this->oUserCurrent->getId(),
-                'mt.target_tmp' => null,
-                '#page'         => array($iPage, 20),
-                '#join'         => array(
-                    'LEFT JOIN ' . Config::Get('db.table.media_target') . ' mt ON ( t.id = mt.media_id and mt.target_tmp IS NOT NULL ) ' => array(),
-                ),
-                '#group'        => 'id',
-                '#order'        => array('id' => 'desc')
-            ));
-            $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, 20, Config::Get('pagination.pages.count'), null);
-            $aMediaItems = $aResult['collection'];
-            $this->Viewer_AssignAjax('pagination', $aPaging);
-        }
+        /**
+        * Получаем все медиа, созданные пользователем без учета временных
+        */
+        $aResult = $this->Media_GetMediaItemsByFilter(array(
+            'user_id'       => $this->oUserCurrent->getId(),
+            '#page'         => array($iPage, 12),
+            '#join'         => array(
+                'LEFT JOIN ' . Config::Get('db.table.media_target') . ' mt ON ( t.id = mt.media_id ) ' => array(),
+            ),
+            '#group'        => 'id',
+            '#order'        => array('id' => 'desc')
+        ));
+        $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, 12, Config::Get('pagination.pages.count'), null);
+        $aMediaItems = $aResult['collection'];
 
         $oViewer = $this->Viewer_GetLocalViewer();
         $sTemplate = '';
-        foreach ($aMediaItems as $oMediaItem) {
-            $oViewer->Assign('oMediaItem', $oMediaItem);
-            $sTemplate .= $oViewer->Fetch('component@uploader.file');
-        }
+        $oViewer->Assign('items', $aMediaItems, true);
+        $oViewer->Assign('paging', $aPaging, true);
+        $sTemplate .= $oViewer->Fetch('component@bs-media.files');
+        
         $this->Viewer_AssignAjax('html', $sTemplate);
-        $this->Viewer_AssignAjax('count_loaded', count($aMediaItems));
-        $this->Viewer_AssignAjax('page', count($aMediaItems) > 0 ? $iPage + 1 : $iPage);
     }
 
     public function EventMediaLoadPreviewItems()
@@ -443,19 +430,7 @@ class ActionAjax_EventMedia extends Event {
 
     public function EventMediaUpload()
     {
-        $this->Logger_Notice('EventMediaUpload');
-        if (getRequest('is_iframe')) {
-            $this->Viewer_SetResponseAjax('jsonIframe', false);
-        } else {
-            $this->Viewer_SetResponseAjax('json');
-        }
-        /**
-         * Пользователь авторизован?
-         */
-        if (!$this->oUserCurrent) {
-            $this->Message_AddErrorSingle($this->Lang_Get('common.error.need_authorization'), $this->Lang_Get('common.error.error'));
-            return;
-        }
+        
         /**
          * Файл был загружен?
          */
@@ -468,30 +443,6 @@ class ActionAjax_EventMedia extends Event {
         $sTargetType = getRequestStr('target_type');
         $sTargetId = getRequestStr('target_id');
 
-        $sTargetTmp = $this->Session_GetCookie('media_target_tmp_' . $sTargetType) ? $this->Session_GetCookie('media_target_tmp_' . $sTargetType) : getRequestStr('target_tmp');
-        if ($sTargetId) {
-            $sTargetTmp = null;
-            if (true !== $res = $this->Media_CheckTarget($sTargetType, $sTargetId, ModuleMedia::TYPE_CHECK_ALLOW_ADD,
-                    array('user' => $this->oUserCurrent))
-            ) {
-                $this->Message_AddError(is_string($res) ? $res : $this->Lang_Get('common.error.system.base'),
-                    $this->Lang_Get('common.error.error'));
-                return false;
-            }
-        } else {
-            $sTargetId = null;
-            if (!$sTargetTmp) {
-                return $this->EventErrorDebug();
-            }
-            if (true !== $res = $this->Media_CheckTarget($sTargetType, null, ModuleMedia::TYPE_CHECK_ALLOW_ADD,
-                    array('user' => $this->oUserCurrent), $sTargetTmp)
-            ) {
-                $this->Message_AddError(is_string($res) ? $res : $this->Lang_Get('common.error.system.base'),
-                    $this->Lang_Get('common.error.error'));
-                return false;
-            }
-        }
-
         /**
          * TODO: необходима проверка на максимальное общее количество файлов, на максимальный размер файла
          * Эти настройки можно хранить в конфиге: module.media.type.topic.max_file_count=30 и т.п.
@@ -500,15 +451,8 @@ class ActionAjax_EventMedia extends Event {
         /**
          * Выполняем загрузку файла
          */
-        if ($mResult = $this->Media_Upload($_FILES['filedata'], $sTargetType, $sTargetId,
-                $sTargetTmp) and is_object($mResult)
-        ) {
-            $oViewer = $this->Viewer_GetLocalViewer();
-            $oViewer->Assign('oMediaItem', $mResult);
-
-            $sTemplateFile = $oViewer->Fetch('component@uploader.file');
-
-            $this->Viewer_AssignAjax('sTemplateFile', $sTemplateFile);
+        if ($mResult = $this->Media_Upload($_FILES['filedata'], "user{$this->oUserCurrent->getId()}", null) and is_object($mResult)) {
+            $this->Viewer_AssignAjax('iMediaId', $mResult->getId());
         } else {
             $this->Message_AddError(is_string($mResult) ? $mResult : $this->Lang_Get('common.error.system.base'),
                 $this->Lang_Get('common.error.error'));

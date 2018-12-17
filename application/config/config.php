@@ -70,6 +70,9 @@ $config['module']['user']['login']['max_size'] = 30; // Максимальное
 //
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
+$config['lang']['load_to_js'] = [
+    'media.uploader.notices.errorDublicate'
+];
 // Модуль Notify
 $config['module']['notify']['delayed']       = false;    // Указывает на необходимость использовать режим отложенной рассылки сообщений на email
 $config['module']['notify']['insert_single'] = false;    // Если опция установлена в true, систему будет собирать записи заданий удаленной публикации, для вставки их в базу единым INSERT
@@ -114,6 +117,8 @@ $config['db']['table']['user'] = '___db.table.prefix___user';
 $config['db']['table']['user_session'] = '___db.table.prefix___session';
 $config['db']['table']['session'] = $config['db']['table']['user_session'];
 $config['db']['table']['user_reminder'] = '___db.table.prefix___reminder';
+$config['db']['table']['media'] = '___db.table.prefix___media';
+$config['db']['table']['media_target'] = '___db.table.prefix___media_target';
 
 /**
  * Настройки роутинга
@@ -139,6 +144,53 @@ $config['router']['config']['action_not_found']		= 'error';
 // Принудительное использование https для экшенов. Например, 'login' и 'registration'
 $config['router']['force_secure'] = array();
 
+/**
+ * Модуль Media
+ */
+$config['module']['media']['max_size'] = 3*1024; // Максимальный размер файла в kB
+$config['module']['media']['max_count_files'] = 30; // Максимальное количество файлов медиа у одного объекта
+$config['module']['media']['image']['max_size'] = 5*1024; // Максимальный размер файла изображения в kB
+$config['module']['media']['image']['autoresize'] = true; // Разрешает автоматическое создание изображений нужного размера при их запросе
+$config['module']['media']['image']['original'] = '1500x'; // Размер для хранения оригинала. Если true, то будет сохраняться исходный оригинал без ресайза. Если false, то оригинал сохраняться не будет
+$config['module']['media']['image']['sizes'] = array(  // список размеров, которые необходимо делать при загрузке изображения
+    array(
+        'w'    => 1000,
+        'h'    => null,
+        'crop' => false,
+    ),
+    array(
+        'w'    => 200,
+        'h'    => null,
+        'crop' => false,
+    ),
+    array(
+        'w'    => 500,
+        'h'    => null,
+        'crop' => false,
+    ),
+    array(
+        'w'    => 100,
+        'h'    => 100,
+        'crop' => true,
+    ),
+    array(
+        'w'    => 50,
+        'h'    => 50,
+        'crop' => true,
+    )
+);
+$config['module']['media']['image']['preview']['sizes'] = array(  // список размеров, которые необходимо делать при создании превью
+    array(
+        'w'    => 900,
+        'h'    => 300,
+        'crop' => true,
+    ),
+    array(
+        'w'    => 250,
+        'h'    => 150,
+        'crop' => true,
+    ),
+);
 
 /**
  * Подключение компонентов

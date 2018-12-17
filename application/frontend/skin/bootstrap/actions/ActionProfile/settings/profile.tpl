@@ -6,7 +6,11 @@
 {block 'layout_content'}
     {capture name="form"}
         <form class="">
-            {component "bs-button" text="Modal" bmods="success" attributes=["data-toggle"=>"modal", "data-target"=>"#mediaModal"]}
+            {* Фото*}
+            {component "bs-media.field" 
+                label   = $aLang.user.settings.profile.form.photo.label 
+                text    = $aLang.user.settings.profile.form.photo.text         }
+                
             {* Имя Фамилия *}
             {component 'bs-form' 
                 template    = 'text' 

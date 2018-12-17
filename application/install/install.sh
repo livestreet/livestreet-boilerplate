@@ -9,6 +9,12 @@ fi
 mkdir --mode=777 $DIRECTORY/../tmp
 mkdir --mode=777 $DIRECTORY/../logs
 mkdir --mode=777 $DIRECTORY/../../uploads
-mkdir --mode=777 $DIRECTORY/../plugins 
+ 
+
+if [ ! -e "$DIRECTORY/../plugins" ]; then
+    mkdir --mode=777 $DIRECTORY/../plugins
+fi
+
+chmod 777 $DIRECTORY/../plugins
 
 chmod 777 $DIRECTORY/../config/config.local.php

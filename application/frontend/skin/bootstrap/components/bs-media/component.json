@@ -1,0 +1,28 @@
+{
+    "name": "bs-media",
+    "version": "1.0.0",
+    "dependencies": {
+        "modal": "*",
+        "tabs": "*",
+        "uploader": "*",
+        "pagination":"*"
+    },
+    "templates": {
+        "bs-media": "media.tpl",
+        "modal": "media.modal.tpl",
+        "upload-area": "uploader/upload-area.tpl",
+        "library": "library/library.tpl",
+        "file": "library/file.tpl",
+        "files": "library/files.tpl",
+        "uploader": "uploader/uploader.tpl",
+        "field":"field.tpl"
+    },
+    "scripts": {
+        "media": "js/media.js",
+        "uploader": "js/uploader.js",
+        "library": "js/library.js"
+    },
+    "styles": {
+        "media": "css/media.css"
+    }
+}

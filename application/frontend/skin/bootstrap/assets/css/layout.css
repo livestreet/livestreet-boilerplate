@@ -7,3 +7,7 @@
 @media (min-width: 992px) and (max-width: 1199.98px) {  }
 
 @media (min-width: 1200px) {  }
+
+.border-1{
+    border: .25rem solid #dee2e6!important;
+}

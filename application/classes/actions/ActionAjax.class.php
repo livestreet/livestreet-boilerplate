@@ -35,7 +35,7 @@ class ActionAjax extends Action
     {
         /**
          * Устанавливаем формат ответа
-         */$this->Logger_Notice(print_r($_REQUEST, true));
+         */
         if (getRequest('is_iframe')) {
             $this->Viewer_SetResponseAjax('jsonIframe', false);
         } else {

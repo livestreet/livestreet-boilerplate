@@ -41,7 +41,7 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'css-helpers', 'media'
+    'bs-dropdown', 'bs-form', 'css-helpers', 'bs-media', 'bs-pagination'
 ];
 
 $config['head']['default']['js'] = array(

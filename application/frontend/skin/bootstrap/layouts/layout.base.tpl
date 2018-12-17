@@ -173,11 +173,12 @@
         
     {* Подключение модальных окон *}
     {if $oUserCurrent}
+        {component "bs-media.modal"}
     {else}
         {component 'bs-auth' template='modal'}
     {/if}
 
-    {component "uploader.modal"}
+    
 
     {**
     * Тулбар

@@ -26,8 +26,8 @@
  * @param string $page             Страница
  * @param string $linkClasses      Дополнительные классы для ссылки
  *}
-{function pagination_item page=0 text='' isActive=false}
-    <li class="page-item {if $isActive}active{/if}">
+{function pagination_item page=0 text='' isActive=false attr=[]}
+    <li class="page-item {if $isActive}active{/if}" data-page="{$page}" {cattr list=$attr}>
         <a class="page-link  {$linkClasses}" href="{str_replace('__page__', $page, $url)}">{$text|default:$page}</a>
     </li>
 {/function}
@@ -67,7 +67,8 @@
         <ul class="{$component}  {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {cattr list=$attributes}>
             {if $showPager}
             {* Предыдущая страница *}
-            {pagination_item page=$prev text='<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>'}
+            {pagination_item page=$prev attr=['data-type' => 'page-prev'] 
+                text='<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>'}
             {/if}
             
             {if $start > 2}
@@ -76,17 +77,18 @@
             {/if}
 
             {section 'pagination' start=$start loop=$end + 1}
-                {pagination_item page=$smarty.section.pagination.index isActive=( $smarty.section.pagination.index === $current )}
+                {pagination_item page=$smarty.section.pagination.index attr=['data-type' => 'page-item']
+                    isActive=( $smarty.section.pagination.index === $current )}
             {/section}
 
             {if $end < $total - 1}
                 {pagination_item text='...'}
-                {pagination_item page=$total}
+                {pagination_item page=$total attr=['data-type' => 'page-item']}
             {/if}
         
             {if $showPager}
                 {* Следущая страница *}
-                {pagination_item page=$next text='<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>'}
+                {pagination_item page=$next attr=['data-type' => 'page-next']  text='<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>'}
             {/if}   
             </ul>
     </nav>

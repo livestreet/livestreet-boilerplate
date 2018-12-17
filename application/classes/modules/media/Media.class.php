@@ -528,13 +528,8 @@ class ModuleMedia extends ModuleORM
          * Добавляем в БД
          */
         if ($oMedia->Add()) {
-            /**
-             * Создаем связь с владельцем
-             */
-            if ($oTarget = $this->AttachMediaToTarget($oMedia, $sTargetType, $sTargetId, $sTargetTmp)) {
-                $oMedia->_setData(array('_relation_entity' => $oTarget));
-                return $oMedia;
-            }
+            
+            return $oMedia;
         }
         return false;
     }

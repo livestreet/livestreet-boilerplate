@@ -40,6 +40,10 @@ return array(
             "profile" => [
                 'title' => 'Настройки профиля',
                 'form' => [
+                    'photo' => [
+                        'label' => 'Фото',
+                        'text'  => 'Выберете фото'
+                    ],
                     'name' => [
                         'label' => 'Фамилия Имя'
                     ],
@@ -281,6 +285,23 @@ return array(
      * Загрузка изображений
      */
     'media'         => array(
+        'library' => [
+            'files' => [
+                'empty' => 'Файлов нет'
+            ],
+            'info' => [
+                'empty' => 'Выберете файл',
+                'list'  => [
+                    'id'    => 'ID',
+                    'name'  => 'Имя',
+                    'date'  => 'Добавлено',
+                    'dimensions' => 'Разрешение',
+                    'size'  => 'Размер',
+                    'sizes' => 'Размеры'
+                ]
+            ],
+            'primaryButton' => 'Вставить'
+        ],
         'title'       => 'Загрузка медиа-файлов',
         'error'       => array(
             'upload'            => 'Не удалось загрузить файл',
@@ -341,6 +362,11 @@ return array(
             'submit_insert' => 'Вставить как ссылку',
             'submit_upload' => 'Загрузить и вставить'
         ),
+        'uploader' => [
+            'notices' => [
+                'errorDublicate' => 'Файл с таким именем уже добавлен'
+            ]
+        ]
     ),
     /**
      * Админка

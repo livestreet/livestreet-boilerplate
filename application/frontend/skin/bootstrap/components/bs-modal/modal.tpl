@@ -13,7 +13,7 @@
  *}
 {$component="modal"}
 
-{component_define_params params=[ 'showFooter', 'header', 'content', 'footer', 'closeText', 'primaryButton', 'html', 'id', 'labelledby', 'effect', 'centered']}
+{component_define_params params=[ 'showFooter', 'header', 'classesBody', 'content', 'footer', 'closeText', 'primaryButton', 'html', 'id', 'labelledby', 'effect', 'centered']}
 
 {$attributes.id=$id}
 {$attributes.tabindex="-1"}
@@ -40,7 +40,7 @@
                 {/if}
 
                 {if $content}
-                    <div class="modal-body">
+                    <div class="modal-body {$classesBody}">
                         {$content}
                     </div>
                 {/if}
@@ -53,8 +53,8 @@
                         </div>
                     {else}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
                             <button type="button" class="{$primaryButton.classes} btn btn-primary">{$primaryButton.text|default:"Ok"}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
                         </div>
                     {/if}  
                 {/if}      

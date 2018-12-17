@@ -3,5 +3,8 @@
     "version": "1.0.0",
     "templates": {
         "bs-pagination": "pagination.tpl"
+    },
+    "scripts":{
+        "pagination":"js/pagination.js"
     }
 }
