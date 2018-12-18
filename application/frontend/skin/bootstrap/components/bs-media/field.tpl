@@ -9,6 +9,11 @@
 
 {component_define_params params=[ 'readonly']}
 
+{block name="field_options"}
+    {$attributesGroup = ['data-type' => 'media-field']}
+{/block}
+
+
 {block name="field_input"}
     {component "bs-card" content=[
         [   

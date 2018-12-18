@@ -16,7 +16,7 @@
 
 {$component = "form-control"}
 {component_define_params params=[ 'bmods', 'bg', 'classes', 'popover', 'attributes', 'name', 'id', 'label', 'placeholder', 'desc', 'value', 'type',
-    'classesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
+    'classesGroup', 'attributesGroup', 'readonly', 'classesLabel', 'classesDesc', 'required', 'validateError', 'validateSuccess', 'custom', 'size']}
 
 {if $custom}
     {$component = "custom-control"}
@@ -79,6 +79,7 @@
         classes=$classesGroup 
         bmods=$bmodsGroup 
         type=$type 
+        attributes = $attributesGroup
         componentGroup=$componentGroup 
         content=$smarty.capture.content}
 {/block}

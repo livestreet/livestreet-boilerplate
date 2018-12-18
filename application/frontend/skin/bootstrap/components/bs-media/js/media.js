@@ -27,13 +27,19 @@
             // Селекторы
             selectors: {
                 uploader: '[data-type="uploader"]',
-                library: '[data-type="library"]'
+                library: '[data-type="library"]',
+                fields: '@[data-type="media-field"]',
+                btn: '[data-type="btn-modal"]'
             },
 
             uploader_options: {},
 
-            params: {}
+            params: {},
+            
+            onSelectFile:null
         },
+        
+        
 
         /**
          * Конструктор
@@ -43,6 +49,8 @@
          */
         _create: function () {
             this._super();
+            
+            this.elements.fields.bsMediaField();
 
             this.elements.library.bsLibrary();
             
@@ -54,10 +62,20 @@
                 onFileUpload:function(){
                     this.elements.library.bsLibrary('loadFiles')
                 }.bind(this)
-            });          
-
+            });   
             
+            this.elements.btn.attr('disable',true);
+            this._on(this.elements.btn, {click: "select"});
             
+        },
+        
+        select: function(e){
+            let file = this.elements.library.bsLibrary('getSelectItem');
+            if(file === null){
+                return;
+            }
+            this._trigger('onSelectFile', file);
+            this.elements.fields.bsMediaField('add', file);
         }
     });
 })(jQuery);

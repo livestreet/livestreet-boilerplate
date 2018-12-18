@@ -20,7 +20,8 @@
     "scripts": {
         "media": "js/media.js",
         "uploader": "js/uploader.js",
-        "library": "js/library.js"
+        "library": "js/library.js",
+        "field":"js/field.js"
     },
     "styles": {
         "media": "css/media.css"

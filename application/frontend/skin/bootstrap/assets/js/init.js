@@ -101,7 +101,7 @@ jQuery(document).ready(function($){
         });
     }
     
-    $('.js-media').bsMedia();
+    $('.js-modal-media').bsMedia();
     
     $('.js-auth-reset-form').bsFormAjax({
         urls:{

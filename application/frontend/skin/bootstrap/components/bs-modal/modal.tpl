@@ -53,7 +53,7 @@
                         </div>
                     {else}
                         <div class="modal-footer">
-                            <button type="button" class="{$primaryButton.classes} btn btn-primary">{$primaryButton.text|default:"Ok"}</button>
+                            <button type="button" data-type="btn-modal" data-dismiss="modal" class="{$primaryButton.classes} btn btn-primary">{$primaryButton.text|default:"Ok"}</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
                         </div>
                     {/if}  

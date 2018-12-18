@@ -95,6 +95,8 @@
             this.elements.fileInfoEmpty.addClass('d-none');
             this.elements.info.removeClass('d-none');
             
+            this.option('selectedItem', file);
+            
             this.elements.items.removeClass('border-1  p-1').addClass('p-2');
             file.addClass('border-1 p-1').removeClass('p-2');
             
@@ -102,6 +104,13 @@
                 this.elements.info.find(selector).html(file.data(name))
             }.bind(this))
             
+        },
+        
+        getSelectItem: function(){
+            if(!this.option('selectedItem')){
+                return null;
+            }
+            return this.option('selectedItem').clone();
         },
         
         reset: function(){
