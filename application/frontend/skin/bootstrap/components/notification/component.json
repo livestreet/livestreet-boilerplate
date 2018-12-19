@@ -3,8 +3,7 @@
     "version": "1.0.0",
     "dependencies": {
         "ls-vendor": "*",
-        "ls-core": "*",
-        "css-reset": "*"
+        "ls-core": "*"
     },
     "styles": {
         "notification": "css/notification.css"

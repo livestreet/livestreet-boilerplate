@@ -18,7 +18,7 @@
                 label       = $aLang.user.settings.profile.form.name.label
                 placeholder = $aLang.user.settings.profile.form.name.placeholder
                 type        = "text"
-                value       = $oUserCurrent->getName()
+                value       = $oUserProfile->getName()
                 }
                 
             {* О себе *}
@@ -27,7 +27,7 @@
                 name        = "about"
                 label       = $aLang.user.settings.profile.form.about.label
                 placeholder = $aLang.user.settings.profile.form.about.placeholder
-                value       = $oUserCurrent->getAbout()
+                value       = $oUserProfile->getAbout()
                 }
 
             <div class="d-flex justify-content-center">

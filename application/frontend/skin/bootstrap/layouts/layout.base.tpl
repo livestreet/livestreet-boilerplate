@@ -16,6 +16,8 @@
     {$layoutShowSystemMessages = $layoutShowSystemMessages|default:true}
     {$themeColor = {Config::Get('view.bs_theme.color')}}
     {$themeBg = {Config::Get('view.bs_theme.bg')}}
+    {$breakpoint = Config::Get('view.grid.breakpoint')}
+    {$collapse = Config::Get('view.grid.collapse')}
 {/block}
 
 
@@ -45,13 +47,13 @@
     * Основная навигация
     *}
     {block 'nav_main'}
-        <div class="row bg-light shadow-sm pl-1">
+        <div class="row  no-gutters bg-light shadow-sm">
             <div class="col-xl-1" ></div>
 
-            <div class="col-12 col-xl-10 pr-1">
+            <div class="col-12 col-xl-10">
                 
                 {component 'bs-navbar' 
-                    classes = "bg-light " 
+                    classes = "bg-light pr-2" 
                     bmods = "expand-{Config::Get('view.grid.collapse')} light" 
                     brand = Config::Get('view.name')
                     url     = {router page="/"}
@@ -83,7 +85,7 @@
         </div>*}
     {/block}
     
-        <div class="row mt-3 {hook run='layout_container_class' action=$sAction}">
+        <div class="row pt-2 no-gutters {hook run='layout_container_class' action=$sAction}">
             <div class="col-xl-1 "></div>
             
             {**
@@ -91,15 +93,16 @@
             * Показываем сайдбар
             *}
             {if $layoutShowSidebar}
-                <aside class="col-12 col-{Config::Get('view.grid.breakpoint')}-3 col-xl-2 layout-sidebar">
+                <div class="col-12 col-{$breakpoint}-3 col-xl-2 layout-sidebar pr-{$breakpoint}-0">
                     <div class="mx-2">
                         {$layoutSidebarBlocks}
                     </div>
-                </aside>
+                </div>
             {/if}
             
-            <div class="{if $layoutShowSidebar}col-12 col-{Config::Get('view.grid.breakpoint')}-7 col-xl-8 {else}col-12 col-xl-10{/if}">
-                <div class="ml-2">
+            <div class="{if $layoutShowSidebar}col-12 col-{$breakpoint}-9 col-xl-8 mt-2 mt-{$breakpoint}-0
+                 {else}col-12 col-xl-10{/if} ">
+                <div class="mx-2">
                     {hook run='layout_content_header_begin' action=$sAction}
 
                     {block 'layout_page_title' hide}
@@ -142,11 +145,15 @@
                         {* Системные сообщения *}
                         {if $layoutShowSystemMessages}
                             {if $aMsgError}
-                                {component 'bs-alert' text=$aMsgError bmods='danger' dismissible=true}
+                                {foreach $aMsgError as $sMsgError}
+                                    {component 'bs-alert' text=$sMsgError.msg title=$sMsgError.title bmods='danger' dismissible=true}
+                                {/foreach}
                             {/if}
 
                             {if $aMsgNotice}
-                                {component 'bs-alert' text=$aMsgNotice dismissible=true}
+                                {foreach $aMsgNotice as $sMsgNotice}
+                                    {component 'bs-alert' text=$sMsgNotice.msg title=$sMsgNotice.title bmods='primary' dismissible=true}
+                                {/foreach}
                             {/if}
                         {/if}
                     {/block}
@@ -163,12 +170,14 @@
             <div class="col-xl-1"></div>
         </div>
         {* Подвал *}
-        <footer class="col-12 footer">
-            {block 'layout_footer'}
-                {hook run='layout_footer_begin'}
-                {hook run='copyright'}
-                {hook run='layout_footer_end'}
-            {/block}
+        <footer class="row no-gutters">
+            <div class="col-12">
+                {block 'layout_footer'}
+                    {hook run='layout_footer_begin'}
+                    {hook run='copyright'}
+                    {hook run='layout_footer_end'}
+                {/block}
+            </div>            
         </footer>
         
     {* Подключение модальных окон *}

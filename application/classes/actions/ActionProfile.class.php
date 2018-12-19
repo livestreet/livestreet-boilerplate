@@ -12,7 +12,7 @@ class ActionProfile extends Action
 
     protected $sMenuHeadItemSelect = 'index';
     
-    protected $oUserCurrent;
+    protected $oUserProfile;
 
     /**
      * Инициализация
@@ -20,7 +20,10 @@ class ActionProfile extends Action
      */
     public function Init()
     {
-        
+        if(!$this->CheckUserProfile()){
+            $this->Message_AddError($this->Lang_Get('common.error.system.code.404'), '404');
+            Router::LocationAction('error/404');
+        }
         $this->SetDefaultEvent('index');
     }
 
@@ -35,6 +38,10 @@ class ActionProfile extends Action
         
         $this->RegisterEventExternal('Settigns', 'ActionProfile_EventSettings');
         $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^(profile)?$/i', ['Settigns::EventProfile' , 'settings']);
+        $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^notices$/i', ['Settigns::EventNotices' , 'notices']);
+        $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^security$/i', ['Settigns::EventSecurity' , 'security']);
+        $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^security-ajax$/i', 'Settigns::EventSecurityAjax' );
+        
     }
 
 
@@ -51,8 +58,28 @@ class ActionProfile extends Action
         /**
          * Проверяем есть ли такой юзер
          */
-        if (!($this->oUserProfile = $this->User_GetUserByLogin($this->sCurrentEvent))) {
+        if (!($this->oUserProfile = $this->User_GetUserByLogin(Router::GetActionEvent()))) {
             return false;
+        }        
+        
+        return true;
+    }
+    
+     /**
+     * Проверка корректности профиля
+     */
+    protected function CheckUserProfileAccess()
+    {
+        if (!($oUserCurrent = $this->User_GetUserCurrent())) {
+            return false;
+        }
+
+        if($oUserCurrent->getId() != $this->oUserProfile->getId() and !$oUserCurrent->isAdministrator()){
+            return false;
+        }
+        
+        if($oUserCurrent->getId() != $this->oUserProfile->getId()){
+            $this->Message_AddNotice($this->Lang_Get('profile.notices.notice_alien_profile'),$this->Lang_Get('common.attention'));
         }
         return true;
     }
@@ -81,7 +108,7 @@ class ActionProfile extends Action
     public function EventShutdown()
     {
         $this->Viewer_Assign('sMenuHeadItemSelect', $this->sMenuHeadItemSelect);
-        $this->Viewer_Assign('oUserCurrent', $this->oUserCurrent);
+        $this->Viewer_Assign('oUserProfile', $this->oUserProfile);
     }
 
 

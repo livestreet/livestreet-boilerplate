@@ -27,7 +27,8 @@
             // Селекторы
             selectors: {
                 uploader: '[data-type="uploader"]',
-                library: '[data-type="library"]'
+                library: '[data-type="library"]',
+                modal:'@#mediaModal'
             },
 
             uploader_options: {},
@@ -45,6 +46,10 @@
             this._super();
 
             this.elements.library.bsLibrary();
+            
+            this.elements.modal.on('show.bs.modal', function(){
+                this.elements.library.bsLibrary('loadFiles');
+            }.bind(this));
             
             // Иниц-ия загрузчика 
             this.elements.uploader.bsUploader({

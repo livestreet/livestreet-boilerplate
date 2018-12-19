@@ -58,14 +58,28 @@ return array(
                     ]
                 ]
             ],
-            'nav' => [
-                'profile' => 'Настройки профиля'
+            "notices" => [
+                'title' => 'Оповещения',
+                'form' => [
+                    'password' => [
+                        'label' => 'Текущий пароль'
+                    ]
+                ]
+            ],
+            "security" => [
+                'title' => 'Сменить пароль',
+                'form' => [
+                    'password' => [
+                        'label' => 'Текущий пароль'
+                    ]
+                ]
             ]
         ]
     ],
     'profile' => [
         'notices' => [
-            'error_user_not_found' => 'Пользователь не найден'
+            'error_user_not_found' => 'Пользователь не найден',
+            'notice_alien_profile' => 'Вы находитесь в настройках чужого профиля'
         ]
     ],
     /**
