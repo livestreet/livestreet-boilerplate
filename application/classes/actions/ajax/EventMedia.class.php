@@ -314,13 +314,17 @@ class ActionAjax_EventMedia extends Event {
         */
         $aResult = $this->Media_GetMediaItemsByFilter(array(
             'user_id'       => $this->oUserCurrent->getId(),
+            '#with'         => ['targets'],
+//            '#select'       => ['t.*', 'count(mt.id) as count_targets'],
             '#page'         => array($iPage, 12),
-            '#join'         => array(
-                'LEFT JOIN ' . Config::Get('db.table.media_target') . ' mt ON ( t.id = mt.media_id ) ' => array(),
-            ),
+//            '#join'         => array(
+//                'LEFT JOIN ' . Config::Get('db.table.media_target') . ' mt ON ( t.id = mt.media_id ) ' => array(),
+//            ),
             '#group'        => 'id',
             '#order'        => array('id' => 'desc')
         ));
+        
+        $this->Logger_Notice(print_r($aResult,true));
         $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, 12, Config::Get('pagination.pages.count'), null);
         $aMediaItems = $aResult['collection'];
 

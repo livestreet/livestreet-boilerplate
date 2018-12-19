@@ -31,7 +31,7 @@ class ModuleMedia_EntityMedia extends EntityORM
     protected $aValidateRules = array();
 
     protected $aRelations = array(
-        'targets' => array(self::RELATION_TYPE_HAS_MANY, 'ModuleMedia_EntityTarget', 'media_id'),
+        'targets' => array(self::RELATION_TYPE_HAS_MANY, 'ModuleMedia_EntityTarget', 'media_id')
     );
 
     protected function beforeSave()
@@ -111,5 +111,9 @@ class ModuleMedia_EntityMedia extends EntityORM
     public function getRelationTarget()
     {
         return $this->_getDataOne('_relation_entity');
+    }
+    
+    public function getCountTargets() {
+        return sizeof($this->getTargets());
     }
 }

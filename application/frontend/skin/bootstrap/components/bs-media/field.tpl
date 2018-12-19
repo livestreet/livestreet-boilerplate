@@ -10,7 +10,10 @@
 {component_define_params params=[ 'readonly']}
 
 {block name="field_options"}
-    {$attributesGroup = ['data-type' => 'media-field']}
+    {$attributesGroup = [
+        'data-type' => 'media-field',
+        'data-name' => {$name|default:"media[]"}
+    ]}
 {/block}
 
 
@@ -22,9 +25,7 @@
             content => {component 'bs-button' text=$text attributes=["data-toggle"=>"modal", "data-target"=>"#mediaModal"]}
         ]
     ]}
-    <input {field_make_rules entity=$entity field=$name } type="hidden" 
-           class="{$component} d-none {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
-            {cattr list=$attributes}>
+    
         
 {/block}
 

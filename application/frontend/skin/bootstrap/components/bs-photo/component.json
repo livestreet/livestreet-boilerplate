@@ -1,0 +1,18 @@
+{
+    "name": "bs-photo",
+    "version": "1.0.0",
+    "dependencies": {
+        "crop": "*"
+    },
+    "templates": {
+        "bs-photo": "photo.tpl",
+        "modal-photo": "modal-photo.tpl",
+        "modal-avatar": "modal-avatar.tpl"
+    },
+    "scripts": {
+        "photo": "js/photo.js"
+    },
+    "styles": {
+        "photo": "css/photo.css"
+    }
+}

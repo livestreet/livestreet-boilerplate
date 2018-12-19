@@ -41,7 +41,7 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'css-helpers', 'bs-media', 'bs-pagination'
+    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination'
 ];
 
 $config['head']['default']['js'] = array(
@@ -74,7 +74,7 @@ $config['block']['userProfile'] = array(
 $config['block']['settingsProfile'] = array(
     'action' => array(
         'profile' => [
-            '{settings}'
+            '{settings}','{notices}','{security}'
         ]
     ),
     'blocks' => array(

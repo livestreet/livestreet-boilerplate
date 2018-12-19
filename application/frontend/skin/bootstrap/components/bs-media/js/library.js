@@ -36,7 +36,7 @@
                 name:'[data-type="name"]',
                 date:'[data-type="date"]',
                 dimensions:'[data-type="dimensions"]',
-                sizes:'[data-type="sizes"]',
+                countTargets:'[data-type="count-targets"]',
                 size:'[data-type="size"]'
                 
             },
@@ -63,7 +63,6 @@
         _create: function () {
             this._super();
 
-            this.loadFiles();
             
            
         },

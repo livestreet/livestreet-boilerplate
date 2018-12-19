@@ -31,10 +31,14 @@
          */
         _create: function() {
             this._super();
+
+            if(this.element.data('url')){
+                this.option('urls.submit', this.element.data('url'));
+            }
             
             this.element.submit(function(e){
                 this.loading();
-                if(this.element.bsFormValidate !== "undefined" ){
+                if(this.element.bsFormValidate( "instance" ) !== undefined ){
                     this.element.bsFormValidate('validate', this.afterValidate.bind(this));
                     return false;
                 }

@@ -7,7 +7,7 @@
     'data-type'     => "library"
 ])}
 
-<div class="{$component} {cmods name=$component mods=$mods} {$classes} row" {cattr list=$attributes}>
+<div class="{$component} {cmods name=$component mods=$mods} {$classes} row navbar-expand-lg" {cattr list=$attributes}>
     <div class="col-lg-8 col-12 d-flex align-self-start" data-type="files">
         <div data-type="lib-files">
             {component "blankslate" 
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col-lg-4 col-12 mt-lg-0 mt-2 pl-0">
-        <div data-type="lib-info" class="p-0">
+        <div data-type="lib-info" class="p-0 collapse navbar-collapse">
             {component "blankslate" 
                 attributes  = ["data-type" => "info-empty"]
                 classes     = "mb-0" 
@@ -47,8 +47,8 @@
                     <div class="col-sm-6 col-12" data-type="size"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 col-12">{$aLang.media.library.info.list.sizes}</div>
-                    <div class="col-sm-6 col-12" data-type="sizes"></div>
+                    <div class="col-sm-6 col-12">{$aLang.media.library.info.list.count_targets}</div>
+                    <div class="col-sm-6 col-12" data-type="count-targets"></div>
                 </div>
             {/capture}
 

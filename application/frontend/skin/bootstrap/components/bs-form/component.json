@@ -18,5 +18,8 @@
         "form-validate":"js/form-validate.js",
         "form-ajax":"js/form-ajax.js",
         "recaptcha":"js/field.recaptcha.js"
+    },
+    "styles":{
+        "loader": "css/loader.css"
     }
 }

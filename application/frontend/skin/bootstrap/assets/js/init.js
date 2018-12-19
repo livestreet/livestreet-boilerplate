@@ -89,6 +89,8 @@ jQuery(document).ready(function($){
         }
     });
     
+    $('[data-type="form-ajax"]').bsFormAjax();
+    
 
     $('.js-form-validate').bsFormValidate();
     

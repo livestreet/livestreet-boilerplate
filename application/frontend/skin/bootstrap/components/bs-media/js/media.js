@@ -29,7 +29,8 @@
                 uploader: '[data-type="uploader"]',
                 library: '[data-type="library"]',
                 fields: '@[data-type="media-field"]',
-                btn: '[data-type="btn-modal"]'
+                btn: '[data-type="btn-modal"]',
+                modal:'@#mediaModal'
             },
 
             uploader_options: {},
@@ -53,6 +54,10 @@
             this.elements.fields.bsMediaField();
 
             this.elements.library.bsLibrary();
+            
+            this.elements.modal.on('show.bs.modal', function(){
+                this.elements.library.bsLibrary('loadFiles');
+            }.bind(this));
             
             // Иниц-ия загрузчика 
             this.elements.uploader.bsUploader({
