@@ -49,7 +49,8 @@
                 
                 this.elements.crop.attr('src', data.src);
                 this.elements.crop.bsCrop($.extend(this.option('cropOptions'), {
-                    minContainerWidth:this.elements.body.width()
+                    minContainerWidth:this.elements.body.width(),
+                    data:data
                 }));
                 
             }.bind(this));
@@ -68,7 +69,8 @@
             var params = {
                 size: this.elements.crop.bsCrop( 'getSelection' ),
                 canvas_width: this.elements.crop.bsCrop( 'getImageData' ).naturalWidth,
-                canvas: this.elements.crop.bsCrop('getCanvas')
+                canvas: this.elements.crop.bsCrop('getCanvas'),
+                data: this.elements.crop.bsCrop('getDataOriginal')
             };
             
             this._trigger('onCropped',null, params);

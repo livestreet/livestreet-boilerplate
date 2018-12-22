@@ -36,7 +36,7 @@
             this._super();
             console.log(this.options)
             this.element.cropper(this.options);
-            
+           // let cropper = new Cropper(this.element.get(0),this.options);
         },
 
         /**
@@ -72,6 +72,10 @@
                 x2: data.x + data.width,
                 y2: data.y + data.height
             };
+        },
+        
+        getDataOriginal: function() {
+            return this.element.cropper('getData');
         },
 
         /**

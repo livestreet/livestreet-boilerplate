@@ -74,12 +74,13 @@
                 this.elements.cropModal.bsCropModal("option", 'cropOptions' , data);
                 
                 this.elements.cropModal.bsCropModal("option", "onCropped", function(e,params){
+                    console.log(params)
                     if(params.canvas !== undefined){ 
                         let img = this.elements.body.find(this.option('classes.img'));
                         img.attr('src', params.canvas.toDataURL())
                     }
-                    file.append('<input type="hidden" data-file-id="'+file.data('id')
-                    +'" name="'+this.option('name')+'" value="'+file.data('id')+'">');
+//                    file.append('<input type="hidden" data-file-id="'+file.data('id')
+//                    +'" name="'+this.option('name')+'" value="'+file.data('id')+'">');
                 }.bind(this));
                 
                 this.option('onAdd' , function(e,file){ 
