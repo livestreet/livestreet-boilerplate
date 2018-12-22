@@ -34,7 +34,7 @@
          */
         _create: function () {
             this._super();
-            console.log(this.options)
+
             this.element.cropper(this.options);
            // let cropper = new Cropper(this.element.get(0),this.options);
         },

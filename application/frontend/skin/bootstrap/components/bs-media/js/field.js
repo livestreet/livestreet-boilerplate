@@ -69,26 +69,44 @@
             }
 
             if(this.element.data('cropped') !== undefined){
-                let data = {};
-                data.aspectRatio = this.element.data('cropAspectRatio');
-                this.elements.cropModal.bsCropModal("option", 'cropOptions' , data);
-                
-                this.elements.cropModal.bsCropModal("option", "onCropped", function(e,params){
-                    console.log(params)
-                    if(params.canvas !== undefined){ 
-                        let img = this.elements.body.find(this.option('classes.img'));
-                        img.attr('src', params.canvas.toDataURL())
-                    }
-//                    file.append('<input type="hidden" data-file-id="'+file.data('id')
-//                    +'" name="'+this.option('name')+'" value="'+file.data('id')+'">');
-                }.bind(this));
-                
-                this.option('onAdd' , function(e,file){ 
-                    this.elements.cropModal.bsCropModal('show', file.data());
-                    
-                }.bind(this))
+                this.initCropper();
             }
+            
+            this.elements.body.find(this.option('classes.file'))
+                .popover('disable')
+                .find('.close')
+                .removeClass(this.option('classes.displayNone'))
+                .on('click', function(e){
+                    this.remove($(e.currentTarget).closest(this.option('classes.file')));
+                }.bind(this));
            
+        },
+        
+        initCropper:function(){
+            let data = {};
+            data.aspectRatio = this.element.data('cropAspectRatio');
+            this.elements.cropModal.bsCropModal("option", 'cropOptions' , data);
+
+            this.elements.cropModal.bsCropModal("option", "onCropped", function(e,params){
+                let file = this.elements.body.find('[data-id="'+params.data.id+'"]');
+                
+                if(params.canvas !== undefined){ 
+                    let img = file.find(this.option('classes.img'));
+                    img.attr('src', params.canvas.toDataURL())
+                }
+
+                $.each(params.size, function(key, val){
+                    file.append('<input type="hidden" name="sizes['+params.data.id+']['+key+']" value="'+val+'">');
+                })
+                file.append('<input type="hidden" name="canvasWidth['+params.data.id+']" value="'+params.canvas_width+'">');
+
+
+            }.bind(this));
+
+            this.option('onAdd' , function(e,file){ 
+                this.elements.cropModal.bsCropModal('show', file.data());
+
+            }.bind(this))
         },
         
         add: function(file){
@@ -120,7 +138,6 @@
         
         remove:function(file){
             file.remove();
-            this.elements.body.find('[data-file-id="'+file.data('id')+'"]').remove();
             this.elements.btn.removeClass(this.option('classes.displayNone'));
         }
     });

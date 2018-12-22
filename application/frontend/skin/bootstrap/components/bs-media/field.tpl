@@ -25,12 +25,28 @@
 {/block}
 
 
+
+
+
 {block name="field_input"}
+    
+    {capture name="content"}
+        {if is_array($medias)}
+            {foreach $medias as $media}
+                {component "bs-media.file" oMediaItem=$media.obj size=$media.size name=$name}
+            {/foreach}
+        {/if}
+        
+        {component 'bs-button' text=$text 
+            classes="{if count($medias) and !$multiple}d-none{/if}" 
+            attributes=["data-toggle"=>"modal", "data-target"=>"#mediaModal"]}    
+
+    {/capture}
     {component "bs-card" content=[
         [   
             type => 'body',
             attributes => ['data-type' => 'field-body'],
-            content => {component 'bs-button' text=$text attributes=["data-toggle"=>"modal", "data-target"=>"#mediaModal"]}
+            content => $smarty.capture.content
         ]
     ]}
     

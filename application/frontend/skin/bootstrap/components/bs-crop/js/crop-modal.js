@@ -25,6 +25,8 @@
             },
 
             cropOptions: {},
+            
+            data:null,
 
             submitted: null
         },
@@ -48,9 +50,10 @@
             this.element.on('shown.bs.modal', function(){
                 
                 this.elements.crop.attr('src', data.src);
+                this.option('data', data);
+                
                 this.elements.crop.bsCrop($.extend(this.option('cropOptions'), {
-                    minContainerWidth:this.elements.body.width(),
-                    data:data
+                    minContainerWidth:this.elements.body.width()
                 }));
                 
             }.bind(this));
@@ -70,7 +73,7 @@
                 size: this.elements.crop.bsCrop( 'getSelection' ),
                 canvas_width: this.elements.crop.bsCrop( 'getImageData' ).naturalWidth,
                 canvas: this.elements.crop.bsCrop('getCanvas'),
-                data: this.elements.crop.bsCrop('getDataOriginal')
+                data: this.option('data')
             };
             
             this._trigger('onCropped',null, params);

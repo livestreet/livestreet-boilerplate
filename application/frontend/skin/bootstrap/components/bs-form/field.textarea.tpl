@@ -12,7 +12,7 @@
 {block name="field_input"}
     <textarea {field_make_rules entity=$entity field=$name } 
         class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
-        {cattr list=$attributes} rows="{$rows|default:3}"></textarea>
+        {cattr list=$attributes} rows="{$rows|default:3}">{$value}</textarea>
         
 {/block}
     

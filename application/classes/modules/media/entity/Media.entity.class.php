@@ -77,6 +77,19 @@ class ModuleMedia_EntityMedia extends EntityORM
             return null;
         }
     }
+    
+    public function getFileServerPath($sSize = null)
+    {
+        if ($this->getFilePath()) {
+            return $this->Media_GetImagePathBySize($this->getPathServer(), $sSize);
+        } else {
+            return null;
+        }
+    }
+    
+    public function getPathServer() {
+        return $this->Fs_GetPathServer($this->getFilePath());
+    }
 
     public function getData()
     {

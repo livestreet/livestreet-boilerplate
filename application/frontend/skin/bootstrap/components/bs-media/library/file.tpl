@@ -1,11 +1,16 @@
 
 {$component = 'bs-media-file'}
-{component_define_params params=[  'oMediaItem' , 'attributes', 'classes', 'mods' ]}
+{component_define_params params=[  'oMediaItem' , 'attributes', 'classes', 'mods', 'size', 'name' ]}
 
 {$attributes = array_merge( $attributes|default:[], [
     'data-param-user-id' => $iUserId,
     'data-type'     => "library"
 ])}
+
+{if !$size}
+    {$size = '100crop'}
+{/if}
+
 
 
 <div class="{$component} d-inline-flex bg-light rounded m-2 p-2 position-relative"  
@@ -28,14 +33,17 @@
         data-media-sizes='{json var=$oMediaItem->getDataOne('image_sizes')}' >
     
     <div>
-        <img src="{$oMediaItem->getFileWebPath('100crop')}" 
+        <img src="{$oMediaItem->getFileWebPath($size)}" 
              alt="{$oMediaItem->getFileName()|escape}" 
              class=" w-100" data-img>
         <div class="{$component}-body mt-2">
           <h5 class="mt-0">{$oMediaItem->getFileName()|escape}</h5>
         </div>
     </div>
-    
+    {if $name}
+          <input type="hidden" data-file-id="{$oMediaItem->getId()}" name="{$name}" value="{$oMediaItem->getId()}">
+    {/if}
+   
     <button type="button" class="close position-absolute text-danger d-none" style="right:.5rem;" aria-label="Close">
         <span aria-hidden="true">×</span>
     </button>

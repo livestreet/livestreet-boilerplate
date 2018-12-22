@@ -5,9 +5,17 @@
 
 {block 'layout_content'}
     {capture name="form"}
-        <form class="">
+        <form class="" data-type="form-ajax" data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax">
             {* Фото*}
+            
+            {$medias = []}
+            {$aMedias = $oUserProfile->getMedia('user_photo')}
+            {foreach $aMedias as $oMedia}
+                {$medias[] = [obj => $oMedia, size => 'photo']}
+            {/foreach}
+
             {component "bs-media.field" 
+                medias  = $medias
                 crop    = true
                 dataCrop  = [
                     'aspect-ratio' => '1'

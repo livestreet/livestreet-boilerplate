@@ -543,7 +543,7 @@ class ModuleMedia extends ModuleORM
      * @param $sTargetTmp
      * @return bool|Entity
      */
-    public function AttachMediaToTarget($oMedia, $sTargetType, $sTargetId, $sTargetTmp)
+    public function AttachMediaToTarget($oMedia, $sTargetType, $sTargetId, $sTargetTmp, $aData = [])
     {
         /**
          * Создаем связь с владельцем
@@ -553,6 +553,7 @@ class ModuleMedia extends ModuleORM
         $oTarget->setTargetType($sTargetType);
         $oTarget->setTargetId($sTargetId ?: null);
         $oTarget->setTargetTmp($sTargetTmp ?: null);
+        $oTarget->setData($aData);
         if ($oTarget->Add()) {
             return $oTarget;
         }
@@ -635,6 +636,29 @@ class ModuleMedia extends ModuleORM
         if ($bRemoveOriginal) {
             $this->Image_RemoveFile($sPath);
         }
+    }
+    
+    public function NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, $sNameCrop = 'cropped') {
+
+        if(!$oImage = $this->Image_Open($oMedia->getPathServer() )){
+            return $this->Image_GetLastError();
+        }
+        
+        $oImage->cropFromSelected($aSize, $iCanvasWidth);
+        
+        /**
+         * Сохраняем
+         */
+        if (false === ($sFileResult = $oImage->save($this->GetImagePathBySize($oMedia->getPathServer(), $sNameCrop)))) {
+            return $this->Image_GetLastError();
+        }
+        
+        $aSizes = $oMedia->getDataOne('image_sizes');
+        $aSizes[] = ['w' => $iCanvasWidth, 'h' => null, 'crop' => true];
+        $oMedia->setDataOne('image_sizes', $aSizes);
+        $oMedia->Save();
+        
+        return true;
     }
 
     /**

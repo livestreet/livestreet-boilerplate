@@ -37,11 +37,17 @@
             }
             
             this.element.submit(function(e){
-                this.loading();
+                
                 if(this.element.bsFormValidate( "instance" ) !== undefined ){
                     this.element.bsFormValidate('validate', this.afterValidate.bind(this));
                     return false;
                 }
+                if(this.option('urls.submit') === null){
+                    return false;
+                }
+                
+                this.loading();
+                
                 this._submit('submit', this.element, 'afterSubmit', {showProgress:false});
                 return false;
             }.bind(this));

@@ -161,4 +161,8 @@ class ModuleUser_EntityUser extends EntityORM
         $this->Rbac_AddRoleToUser($this->getRole(), $this->getId());
     }
     
+    public function getMedia($sTargetType = '') {
+        return $this->Media_GetMediaByTarget($sTargetType, $this->getId());
+    }
+    
 }
