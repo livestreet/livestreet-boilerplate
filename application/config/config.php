@@ -71,7 +71,8 @@ $config['module']['user']['login']['max_size'] = 30; // Максимальное
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
 $config['lang']['load_to_js'] = [
-    'media.uploader.notices.errorDublicate'
+    'media.uploader.notices.errorDublicate',
+    'media.notices.confirm_remove_file'
 ];
 // Модуль Notify
 $config['module']['notify']['delayed']       = false;    // Указывает на необходимость использовать режим отложенной рассылки сообщений на email

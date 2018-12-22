@@ -8,7 +8,7 @@
 ])}
 
 
-<div class="{$component} d-inline-flex bg-light rounded m-2 p-2"  
+<div class="{$component} d-inline-flex bg-light rounded m-2 p-2 position-relative"  
         {if {$oMediaItem->getFileName()|count_characters} > 8}
             {component "bs-popover" content={$oMediaItem->getFileName()|escape} placement="bottom"}
         {/if}
@@ -19,17 +19,24 @@
         data-media-title="{$oMediaItem->getDataOne('title')|escape}"
         data-name="{$oMediaItem->getFileName()|escape}"
         data-size="{$oMediaItem->getFileSize()}"
-        data-media-width="{$oMediaItem->getWidth()}"
-        data-media-height="{$oMediaItem->getHeight()}"
+        data-width="{$oMediaItem->getWidth()}"
+        data-height="{$oMediaItem->getHeight()}"
         data-dimensions="{$oMediaItem->getWidth()}x{$oMediaItem->getHeight()}"
         data-img="<img class='w-100' src='{$oMediaItem->getFileWebPath('200x')}'>"
-        data-count-targets="{$oMediaItem->getCountTargets()}">
+        data-src="{$oMediaItem->getFileWebPath()}"
+        data-count-targets="{$oMediaItem->getCountTargets()}"
+        data-media-sizes='{json var=$oMediaItem->getDataOne('image_sizes')}' >
+    
     <div>
         <img src="{$oMediaItem->getFileWebPath('100crop')}" 
              alt="{$oMediaItem->getFileName()|escape}" 
-             class=" w-100">
+             class=" w-100" data-img>
         <div class="{$component}-body mt-2">
           <h5 class="mt-0">{$oMediaItem->getFileName()|escape}</h5>
         </div>
     </div>
+    
+    <button type="button" class="close position-absolute text-danger d-none" style="right:.5rem;" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
 </div>

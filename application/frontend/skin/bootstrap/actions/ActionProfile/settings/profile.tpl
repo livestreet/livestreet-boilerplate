@@ -8,6 +8,12 @@
         <form class="">
             {* Фото*}
             {component "bs-media.field" 
+                crop    = true
+                dataCrop  = [
+                    'aspect-ratio' => '1'
+                ]
+                multiple = false
+                name    = 'photo'
                 label   = $aLang.user.settings.profile.form.photo.label 
                 text    = $aLang.user.settings.profile.form.photo.text         }
                 
@@ -48,5 +54,10 @@
             content => $smarty.capture.form
         ]
     ]}
+    
+{/block}
+
+{block "layout_modals" append}
+    {component "bs-crop.modal"}
     
 {/block}

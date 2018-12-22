@@ -38,10 +38,10 @@ $config['view']['bs_theme'] = $config['view']['bs_themes'][$theme];
 
 $config['components'] = [
     // Базовые компоненты
-    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance',
+    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance', 'confirm',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination'
+    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop'
 ];
 
 $config['head']['default']['js'] = array(

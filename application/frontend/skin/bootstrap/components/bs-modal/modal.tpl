@@ -13,8 +13,9 @@
  *}
 {$component="modal"}
 
-{component_define_params params=[ 'showFooter', 'header', 'classesBody', 'content', 'footer', 'closeText', 'primaryButton', 'html', 'id', 'labelledby', 'effect', 'centered']}
+{component_define_params params=[ 'showFooter', 'header', 'classesBody', 'closed', 'content', 'footer', 'closeText', 'primaryButton', 'html', 'id', 'labelledby', 'effect', 'centered']}
 
+{$closed =  $closed|default:true}
 {$attributes.id=$id}
 {$attributes.tabindex="-1"}
 {$attributes.role="dialog"}
@@ -33,9 +34,11 @@
                 {if $header}
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{$header}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        {if $closed}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        {/if}                        
                     </div>
                 {/if}
 
@@ -54,7 +57,9 @@
                     {else}
                         <div class="modal-footer">
                             <button type="button" data-type="btn-modal" data-dismiss="modal" class="{$primaryButton.classes} btn btn-primary">{$primaryButton.text|default:"Ok"}</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
+                            {if $closed}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
+                            {/if} 
                         </div>
                     {/if}  
                 {/if}      

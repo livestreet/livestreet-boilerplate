@@ -1,0 +1,21 @@
+{
+    "name": "bs-crop",
+    "version": "1.0.0",
+    "dependencies": {
+        "ls-vendor": "*",
+        "ls-core": "*",
+        "ls-component": "*"
+    },
+    "templates": {
+        "bs-crop": "crop.tpl",
+        "modal":"crop-modal.tpl"
+    },
+    "scripts": {
+        "vendor-cropper": "vendor/cropper/dist/cropper.js",
+        "crop": "js/crop.js",
+        "crop-modal": "js/crop-modal.js"
+    },
+    "styles": {
+        "vendor-cropper": "vendor/cropper/dist/cropper.css"
+    }
+}

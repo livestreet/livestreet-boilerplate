@@ -139,12 +139,17 @@ class ActionAjax_EventMedia extends Event {
         if (!$oMedia = $this->Media_GetMediaById($sId)) {
             return $this->EventErrorDebug();
         }
-        if (true === $res = $this->Media_CheckTarget($oMedia->getTargetType(), null,
-                ModuleMedia::TYPE_CHECK_ALLOW_REMOVE, array('media' => $oMedia, 'user' => $this->oUserCurrent))
-        ) {
-            $oMedia->Delete();
-        } else {
+        
+        if ($aMediaTargets = $this->Media_GetTargetItemsByFilter(['media_id' => $oMedia->getId()])) {
+            foreach ($aMediaTargets as $oMediaTarget) {
+                $oMediaTarget->Delete();
+            }
+        }
+        
+        if (!$oMedia->Delete()) {
             $this->Message_AddErrorSingle(is_string($res) ? $res : $this->Lang_Get('common.error.system.base'));
+        }else{
+            $this->Message_AddNotice($this->Lang_Get('common.success.remove'));
         }
     }
 
@@ -324,7 +329,6 @@ class ActionAjax_EventMedia extends Event {
             '#order'        => array('id' => 'desc')
         ));
         
-        $this->Logger_Notice(print_r($aResult,true));
         $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, 12, Config::Get('pagination.pages.count'), null);
         $aMediaItems = $aResult['collection'];
 

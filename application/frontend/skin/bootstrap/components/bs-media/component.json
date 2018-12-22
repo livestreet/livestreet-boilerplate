@@ -13,6 +13,7 @@
         "upload-area": "uploader/upload-area.tpl",
         "library": "library/library.tpl",
         "file": "library/file.tpl",
+        "file-info": "library/file-info.tpl",
         "files": "library/files.tpl",
         "uploader": "uploader/uploader.tpl",
         "field":"field.tpl"

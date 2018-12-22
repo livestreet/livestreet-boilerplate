@@ -19,7 +19,8 @@
             // Ссылки
             urls: {
                 // Подгрузка файлов
-                load: aRouter['ajax'] + 'media/load-gallery/',               
+                load: aRouter['ajax'] + 'media/load-gallery/', 
+                remove: aRouter['ajax'] + 'media/remove-file/',               
             },
 
             // Селекторы
@@ -27,7 +28,8 @@
                 files:  '[data-type="lib-files"]',
                 libInfo: '[data-type="lib-info"]',
                 fileInfoEmpty: '[data-type="info-empty"]',
-                info: '[data-type="file-info"]'
+                info: '[data-type="file-info"]',
+                btnRemove:'[data-type="file-remove"]'
             },
             // Классы
             infoList: {
@@ -37,8 +39,8 @@
                 date:'[data-type="date"]',
                 dimensions:'[data-type="dimensions"]',
                 countTargets:'[data-type="count-targets"]',
-                size:'[data-type="size"]'
-                
+                size:'[data-type="size"]',
+                sizes: '[data-type="sizes"]'
             },
 
             // Классы
@@ -63,8 +65,11 @@
         _create: function () {
             this._super();
 
+            this.elements.btnRemove.lsConfirm({
+                message: ls.lang.get('media.notices.confirm_remove_file'),
+                onconfirm: this.onClickRemove.bind(this)
+            });
             
-           
         },
         
         loadFiles:function(){
@@ -94,15 +99,40 @@
             this.elements.fileInfoEmpty.addClass('d-none');
             this.elements.info.removeClass('d-none');
             
-            this.option('selectedItem', file);
-            
             this.elements.items.removeClass('border-1  p-1').addClass('p-2');
             file.addClass('border-1 p-1').removeClass('p-2');
             
             $.each(this.option('infoList'), function(name, selector){
                 this.elements.info.find(selector).html(file.data(name))
-            }.bind(this))
+            }.bind(this));
             
+            //let sel = this.addSizesSelect(file.data('mediaSizes'));
+            
+            this.option('selectedItem', file);
+            
+        },
+        
+        getSelectSize: function(){
+            if(this.option('select') !== null){
+                return this.option('select').val();
+            }
+        },
+        
+        addSizesSelect: function(sizes){
+            let sel = $(document.createElement('select')).attr('name', 'sizes');
+            
+            $.each(sizes, function(i, size){
+                let opt = $(document.createElement('option'));
+                let sSize = size.w + "x" + (size.h !== null?size.h:"") + (size.crop?"crop":"");
+                opt.val(sSize).text(sSize);
+                sel.append(opt);
+            })
+            
+            this.elements.info.find(this.option('infoList.sizes')).html(sel);
+            
+            this.option('select', sel);
+            
+            return sel;
         },
         
         getSelectItem: function(){
@@ -115,6 +145,10 @@
         reset: function(){
             this.elements.fileInfoEmpty.removeClass('d-none');
             this.elements.info.addClass('d-none');
+        },
+        
+        onClickRemove: function(){
+            this._load('remove', {id:$(this.option('infoList.id')).text()}, "loadFiles");
         }
 
         

@@ -7,13 +7,21 @@
  
 {extends "component@bs-form.field"}
 
-{component_define_params params=[ 'readonly']}
+{component_define_params params=[ 'multiple', 'dataCrop', 'crop']}
 
 {block name="field_options"}
-    {$attributesGroup = [
-        'data-type' => 'media-field',
-        'data-name' => {$name|default:"media[]"}
-    ]}
+    {if $crop}
+        {$attributesGroup['data-cropped'] = null}
+    {/if}
+    
+    {foreach $dataCrop as $key => $val}
+        {$attributesGroup["data-crop-{$key}"] = $val}
+    {/foreach}
+
+
+    {$attributesGroup['data-type'] = 'media-field'}
+    {$attributesGroup['data-name'] = {$name|default:"media[]"}}
+    {$attributesGroup['data-multiple'] = {$multiple|default:"true"}}
 {/block}
 
 

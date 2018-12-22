@@ -76,11 +76,12 @@
         
         select: function(e){
             let file = this.elements.library.bsLibrary('getSelectItem');
+            let size = this.elements.library.bsLibrary('getSelectSize');
             if(file === null){
                 return;
             }
             this._trigger('onSelectFile', file);
-            this.elements.fields.bsMediaField('add', file);
+            this.elements.fields.bsMediaField('add', file, size);
         }
     });
 })(jQuery);

@@ -10,6 +10,14 @@ jQuery(document).ready(function($){
     // Хук начала инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_start',[],window);
     
+    $.fn.dataStartsWith = function(p) {
+        var pCamel = p.replace(/-([a-z])/ig, function(m,$1) { return $1.toUpperCase(); });
+        return this.filter(function(i, el){
+          return Object.keys(el.dataset).some(function(v){
+            return v.indexOf(pCamel) > -1;
+          });
+        });
+    };
     /*
      *  Код для реализации dropdown-submenu
      */
@@ -103,6 +111,8 @@ jQuery(document).ready(function($){
         });
     }
     
+    $('[data-type="crop-modal"]').bsCropModal();
+    
     $('.js-modal-media').bsMedia();
     
     $('.js-auth-reset-form').bsFormAjax({
@@ -116,6 +126,8 @@ jQuery(document).ready(function($){
     $( '.js-editor-default' ).lsEditor();
     
     $('[data-type="pagination"]').bsPagination();
+    
+    
 
     // Хук конца инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_end',[],window);

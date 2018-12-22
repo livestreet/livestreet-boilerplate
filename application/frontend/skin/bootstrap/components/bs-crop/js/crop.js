@@ -11,7 +11,7 @@
 (function($) {
     "use strict";
 
-    $.widget( "livestreet.lsCrop", $.livestreet.lsComponent, {
+    $.widget( "livestreet.bsCrop", $.livestreet.lsComponent, {
         /**
          * Дефолтные опции
          */
@@ -34,8 +34,9 @@
          */
         _create: function () {
             this._super();
-
+            console.log(this.options)
             this.element.cropper(this.options);
+            
         },
 
         /**
@@ -71,6 +72,14 @@
                 x2: data.x + data.width,
                 y2: data.y + data.height
             };
+        },
+
+        /**
+         * 
+         */
+        getCanvas: function() {
+            return this.element.cropper('getCroppedCanvas');
+
         }
     });
 })(jQuery);

@@ -180,13 +180,14 @@
             </div>            
         </footer>
         
-    {* Подключение модальных окон *}
-    {if $oUserCurrent}
-        {component "bs-media.modal"}
-    {else}
-        {component 'bs-auth' template='modal'}
-    {/if}
-
+    {block "layout_modals"}
+        {* Подключение модальных окон *}
+        {if $oUserCurrent}
+            {component "bs-media.modal"}
+        {else}
+            {component 'bs-auth' template='modal'}
+        {/if}
+    {/block}
     
 
     {**

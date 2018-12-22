@@ -10,7 +10,7 @@ class ActionProfile_EventSettings extends Event {
     public function Init() {
         if(!$this->CheckUserProfileAccess()){
             $this->Message_AddError($this->Lang_Get('common.error.system.code.404'), '404');
-            Router::LocationAction('error/404');
+            Router::Rewrite('error');
         }
         
     }
