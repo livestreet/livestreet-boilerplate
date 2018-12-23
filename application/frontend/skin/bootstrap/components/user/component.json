@@ -6,8 +6,10 @@
     "templates": {
         "user": "user.tpl",
         "nav":"nav.tpl",
+        "photo":"photo.tpl",
+        
         "block-nav":"blocks/block-nav.tpl",
-        "block-avatar":"blocks/block-avatar.tpl",
+        "block-photo":"blocks/block-photo.tpl",
         "block-settings-nav":"blocks/block-settings-nav.tpl"
     },
     "styles": {

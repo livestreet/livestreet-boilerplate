@@ -8,10 +8,5 @@
         text => $aLang.user.settings.notices.title, 
         name => 'notices', 
         url => "{$oUserProfile->getProfileUrl()}/settings/notices"
-    ],
-    [
-        text => $aLang.user.settings.security.title, 
-        name => 'security', 
-        url => "{$oUserProfile->getProfileUrl()}/settings/security"
     ]
 ]}

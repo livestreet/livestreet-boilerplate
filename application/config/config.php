@@ -67,6 +67,9 @@ $config['module']['user']['count_auth_session_history'] = 10; // Общее ко
 $config['module']['user']['login']['charset'] = '0-9a-z_\-'; // Допустимые в имени пользователя символы
 $config['module']['user']['login']['min_size'] = 3; // Минимальное количество символов в логине
 $config['module']['user']['login']['max_size'] = 30; // Максимальное количество символов в логине
+
+$config['module']['user']['photo']['max_width'] = 1000; // 
+$config['module']['user']['avatar']['width'] = 50; // 
 //
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена

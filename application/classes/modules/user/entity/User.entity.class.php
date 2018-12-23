@@ -165,4 +165,19 @@ class ModuleUser_EntityUser extends EntityORM
         return $this->Media_GetMediaByTarget($sTargetType, $this->getId());
     }
     
+    public function getProfilePhoto() {
+        $aMedia = $this->getMedia('user_photo');
+        if(sizeof($aMedia)){
+            return array_shift($aMedia)->getFileWebPath('photo');
+        }
+        return $this->User_GetDefaultPhoto();
+    }
+    
+    public function getProfileAvatar() {
+        $aMedia = $this->getMedia('user_photo');
+        if(sizeof($aMedia)){
+            return array_shift($aMedia)->getFileWebPath('avatar');
+        }
+        return $this->User_GetDefaultAvatar();
+    }
 }

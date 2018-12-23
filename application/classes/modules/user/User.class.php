@@ -454,4 +454,12 @@ class ModuleUser extends ModuleORM
         }
         return false;
     }
+    
+    public function GetDefaultPhoto() {
+        return Config::Get('path.skin.assets.web'). '/images/avatars/user_photo_male.png';
+    }
+    
+    public function GetDefaultAvatar() {
+        return Config::Get('path.skin.assets.web'). '/images/avatars/avatar_male_64x64crop.png';
+    }
 }

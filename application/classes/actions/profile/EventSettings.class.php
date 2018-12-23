@@ -65,6 +65,10 @@ class ActionProfile_EventSettings extends Event {
                 if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 'photo') ) !== true){
                     $this->Message_AddError($sResult);
                 }
+                
+                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, Config::Get('module.user.avatar.width'), 'avatar') ) !== true){
+                    $this->Message_AddError($sResult);
+                }
             }
             
             $mTarget = $this->Media_GetTargetByFilter([
