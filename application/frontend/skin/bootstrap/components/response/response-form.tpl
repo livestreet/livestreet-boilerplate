@@ -7,7 +7,7 @@
  
 {component_define_params params=[ 'oResponse']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-message'}" class="js-form-validate">
+<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-response'}" class="js-form-validate">
     {component "rating.field-stars" 
         entity  = $oResponse
         name    = "rating"
@@ -28,8 +28,11 @@
     {component "bs-media.field" 
         entity  = $oResponse
         multiple = true
-        name    = 'photo'
+        name    = 'photos[]'
         label   = $aLang.talk.response.form.photo.label 
         text    = $aLang.talk.response.form.photo.text }
+        
+    {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}
+    {component "field.hidden" name="target_id" value="{$oUserProfile->getId()}"}
 </form>
 

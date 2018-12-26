@@ -543,7 +543,7 @@ class ModuleMedia extends ModuleORM
      * @param $sTargetTmp
      * @return bool|Entity
      */
-    public function AttachMediaToTarget($oMedia, $sTargetType, $sTargetId, $sTargetTmp, $aData = [])
+    public function AttachMediaToTarget($oMedia, $sTargetType, $sTargetId, $sTargetTmp = null, $aData = [])
     {
         /**
          * Создаем связь с владельцем

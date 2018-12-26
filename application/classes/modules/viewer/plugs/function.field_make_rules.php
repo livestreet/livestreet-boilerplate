@@ -78,8 +78,7 @@ function smarty_function_field_make_rules($params, &$smarty)
             }
             
             if($oValidator->msg){
-                $msg = $oEntity->Lang_Get($oValidator->msg, ['min' => $oValidator->min, 'max' => $oValidator->max]);
-                $smarty->assign('msg', $msg);
+                $smarty->assign('msg', $oValidator->msg);
             }
             
             if ($sType != 'inline' ) {
