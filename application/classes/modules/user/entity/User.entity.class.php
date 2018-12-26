@@ -180,4 +180,32 @@ class ModuleUser_EntityUser extends EntityORM
         }
         return $this->User_GetDefaultAvatar();
     }
+    
+    public function isRole($sRole) {
+        $aRoles = $this->Rbac_GetRolesByUser($this);
+        foreach ($aRoles as $oRole) {
+            if($oRole->getCode() == $sRole){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function getRating() {
+        return 4.5;
+    }
+    
+    public function getCountRated() {
+        return 5505;
+    }
+    
+    public function getRatingStat() {
+        return [
+            5 => 50,
+            4 => 40,
+            3 => 60,
+            2 => 30,
+            1 => 20
+        ];
+    }
 }

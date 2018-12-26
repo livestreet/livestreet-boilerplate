@@ -46,7 +46,7 @@
                     triggers = this.option('triggersDefault');
                 }
             }
-            
+
             if((url = this.element.attr('remote')) === undefined){
                 this.element.on(triggers, this.validate.bind(this));
             }else{
@@ -63,8 +63,8 @@
         },
         
         validate:function(){
-            let element = this.element.get( 0 ); 
-            if(element.checkValidity()){
+            let element = this.element.get( 0 );
+            if(element !== undefined && element.checkValidity()){
                 this.setValid();
             }else{
                 this.setInvalid();

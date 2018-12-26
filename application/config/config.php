@@ -70,7 +70,10 @@ $config['module']['user']['login']['max_size'] = 30; // Максимальное
 
 $config['module']['user']['photo']['max_width'] = 1000; // 
 $config['module']['user']['avatar']['width'] = 50; // 
-//
+
+//Модуль рейтинг
+$config['module']['rating']['max_rating'] = 5; // 
+
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;   // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
 $config['lang']['load_to_js'] = [
@@ -123,6 +126,8 @@ $config['db']['table']['session'] = $config['db']['table']['user_session'];
 $config['db']['table']['user_reminder'] = '___db.table.prefix___reminder';
 $config['db']['table']['media'] = '___db.table.prefix___media';
 $config['db']['table']['media_target'] = '___db.table.prefix___media_target';
+$config['db']['table']['vote'] = '___db.table.prefix___vote';
+$config['db']['table']['stat'] = '___db.table.prefix___stat';
 
 /**
  * Настройки роутинга

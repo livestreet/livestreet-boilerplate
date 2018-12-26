@@ -34,13 +34,15 @@ class BlockMenu extends Block {
             return false;
         }
         
-        $this->Hook_Run('menu_before_prepare', ['menu' => &$oMenu]);
+        $activeItem = '';
+        
+        $this->Hook_Run('menu_before_prepare', ['menu' => &$oMenu, 'activeItem' => &$activeItem]);
                 
         $ItemsTree = $this->prepareItems($oMenu->getItems());
                         
-        $this->Hook_Run('menu_after_prepare', ['items' => &$ItemsTree['items']]);
+        $this->Hook_Run('menu_after_prepare', ['items' => &$ItemsTree['items'] , 'activeItem' => &$activeItem]);
         
-        $this->Viewer_Assign('activeItem', $this->GetParam('activeItem', null), true);  
+        $this->Viewer_Assign('activeItem', $this->GetParam('activeItem', $activeItem), true);  
         $this->Viewer_Assign('mods', $this->GetParam('mods', null), true);  
         $this->Viewer_Assign('classes', $this->GetParam('classes', null), true); 
         $this->Viewer_Assign('template', $this->GetParam('template', $sNameMenu), true); 

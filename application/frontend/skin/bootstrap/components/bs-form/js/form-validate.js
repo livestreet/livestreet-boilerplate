@@ -9,7 +9,7 @@
         options: {
             // Классы
             selectors: {
-                fields: 'input',
+                fields: 'input, .form-control',
                 submit: '[type="submit"]'
             },
 
@@ -76,6 +76,7 @@
         isValidFields:function(){
             let valid = true;
             $.each(this.elements.fields, function(i,field){
+                $(field).bsFieldValidate('validate');
                 if($(field).bsFieldValidate('isValid') === false){
                     valid = false;
                 }

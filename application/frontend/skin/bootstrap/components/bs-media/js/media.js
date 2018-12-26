@@ -75,6 +75,7 @@
         },
         
         select: function(e){
+            this.elements.modal.modal('hide')
             let file = this.elements.library.bsLibrary('getSelectItem');
             let size = this.elements.library.bsLibrary('getSelectSize');
             if(file === null){

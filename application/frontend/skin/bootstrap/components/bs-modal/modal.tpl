@@ -56,7 +56,10 @@
                         </div>
                     {else}
                         <div class="modal-footer">
-                            <button type="button" data-type="btn-modal" data-dismiss="modal" class="{$primaryButton.classes} btn btn-primary">{$primaryButton.text|default:"Ok"}</button>
+                            {$primaryButton.attributes['data-type'] = "btn-modal" }
+                            {component "bs-button" 
+                                params=$primaryButton 
+                                text={$primaryButton.text|default:"Ok"}}
                             {if $closed}
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{$closeText|default:$aLang.common.close}</button>
                             {/if} 

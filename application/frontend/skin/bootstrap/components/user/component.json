@@ -9,6 +9,7 @@
         "photo":"photo.tpl",
         
         "block-nav":"blocks/block-nav.tpl",
+        "block-actions":"blocks/block-actions.tpl",
         "block-photo":"blocks/block-photo.tpl",
         "block-settings-nav":"blocks/block-settings-nav.tpl"
     },

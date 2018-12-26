@@ -41,7 +41,7 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance', 'confirm',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop'
+    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav'
 ];
 
 $config['head']['default']['js'] = array(
@@ -64,9 +64,9 @@ $config['block']['userProfile'] = array(
     ),
     'blocks' => array(
         'left' => array(
-            'component@user.block-photo'     => array('priority' => 100),
-            'component@user.block-nav' => array('priority' => 99),
-            
+            'component@user.block-photo'    => array('priority' => 100),
+            'component@user.block-nav'      => array('priority' => 99),
+            'component@user.block-actions'  => array('priority' => 98),
         )
     )
 );

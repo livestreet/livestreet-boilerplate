@@ -3,5 +3,8 @@
     "version": "1.0.0",
     "templates": {
         "bs-nav": "nav.tpl"
+    },
+    "styles":{
+        "nav":"css/nav.css"
     }
 }

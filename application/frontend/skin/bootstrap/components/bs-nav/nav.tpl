@@ -27,32 +27,37 @@
 {block 'nav_content'}{strip}
     <ul class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {cattr list=$attributes}>
         {foreach $items as $item}
-            {$isActive = ($activeItem and $item.name == $activeItem) or $item.active}
-            {if $item.menu}
-                {component "bs-dropdown" params=$item.menu tag="li"
-                    text = $item.text
-                    toggler=[
-                        com => "nav-link",
-                        url=>"#",
-                        classes=>"dropdown-toggle {$item.menu.classes} ",
-                        text=>$item.text
-                    ]
-                }
+            {if !is_array($item)}
+                {$item}
             {else}
-                <li class="nav-item">
-                    <a class="nav-link  {$itemsClasses} {$item.classes} 
-                        {if $isActive}active{/if} {if $item.disabled}disabled{/if}" href="{$item.url}"
-                        {cattr list=$item.attributes}>
-                        {if $item.badge}
-                            {if is_array($item.badge)}
-                                {component "bs-badge" prrams=$item.badge}
-                            {else}
-                                {component "bs-badge" text=$item.badge bmods="primary"}
-                            {/if}                    
-                        {/if}
-                        {$item.text}
-                    </a>
-                </li>
+                {$isActive = ($activeItem and $item.name == $activeItem) or $item.active}
+                {if $item.menu}
+                    {component "bs-dropdown" params=$item.menu tag="li"
+                        text = $item.text
+                        toggler=[
+                            com => "nav-link",
+                            url=>"#",
+                            classes=>"dropdown-toggle {$item.menu.classes} ",
+                            text=>$item.text
+                        ]
+                    }
+                {else}
+
+                    <li class="nav-item  {$item.liClasses}">
+                        <a class="nav-link  {$itemsClasses} {$item.classes}  {if $isActive}active{/if}
+                             {if $item.disabled}disabled{/if}" href="{$item.url}"
+                            {cattr list=$item.attributes}>
+                            {if $item.badge}
+                                {if is_array($item.badge)}
+                                    {component "bs-badge" prrams=$item.badge}
+                                {else}
+                                    {component "bs-badge" text=$item.badge bmods="primary"}
+                                {/if}                    
+                            {/if}
+                            {$item.text}
+                        </a>
+                    </li>
+                {/if}
             {/if}            
         {/foreach}
     </ul>

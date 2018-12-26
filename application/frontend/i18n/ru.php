@@ -30,11 +30,40 @@ return array(
         ]
     ],
     'user' => [
-        'profile' => [
+        'userbar' => [
             'nav' => [
-                'settings' => 'Настройки',
-                'profile'   => 'Профиль'
+                'profile'       => 'Моя страница',
+                'settings'      => 'Настройки',
+                'responses'     => 'Отзывы',
+                'proposals'     => 'Предложения',
+                'proposed'      => 'Я написал',
+                'responsed'     => 'Я предложил'
+                
             ]
+        ],
+        'profile' => [
+            'counts' => [
+                'responses'     => '%%count%% отзыв; %%count%% отзыва; %%count%% отзывов',
+                'answers'     => '%%count%% ответ; %%count%% ответа; %%count%% ответов',
+                'proposals'     => '%%count%% предложение; %%count%% предложения; %%count%% предложений',
+            ],
+            'nav' => [
+                'all'           => 'Все',
+                'responses_votes'     => 'Оценки и отзывы',
+                'proposals'     => 'Предложения'
+                
+            ],
+            'actions' => [
+                'confirm' => [
+                    'text' => 'Вы владелец этой компании?'
+                ],  
+                'response' => [
+                    'text' => 'Написать отзыв'
+                ],
+                'proposal' => [
+                    'text' => 'Предложение'
+                ]
+            ],
         ],
         'settings' => [
             "profile" => [
@@ -76,10 +105,48 @@ return array(
             ]
         ]
     ],
+    'rating' => [
+        'of' => 'из',
+        'count' => 'Оценок',
+        'stars' => [
+            'title' => '%%val%% из %%of%% звезд',
+            'clear' => 'Очистить'
+        ]
+    ],
     'profile' => [
         'notices' => [
             'error_user_not_found' => 'Пользователь не найден',
             'notice_alien_profile' => 'Вы находитесь в настройках чужого профиля'
+        ]
+    ],
+    'talk' => [
+        'response' => [
+            'modal' => [
+                'title' => 'Написать отзыв'
+            ],
+            'form' => [
+                'text' => [
+                    'label' => 'Текст отзыва',
+                    'placeholder' => 'Оставте свой отзыв',
+                    'error_validate' => 'Введите текст от %%min%% до %%max%% символов'
+                ],
+                'photo' => [
+                    'label' => 'Добавить фото',
+                    'text' => 'Выбрать'
+                ],
+                'stars' => [
+                    'label' => 'Ваша оценка',
+                    'error_validate' => 'Поставте оценку'
+                ],
+                'submit' => [
+                    'text' => 'Отправить'
+                ]
+            ]
+        ],
+        'propose' => [
+            'modal' => [
+                'title' => 'Написать предложение'
+            ]
         ]
     ],
     /**

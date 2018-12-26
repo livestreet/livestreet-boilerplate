@@ -15,7 +15,7 @@
  *
  * @link http://www.livestreetcms.com
  * @copyright 2013 OOO "ЛС-СОФТ"
- * @author Maxim Mzhelskiy <rus.engine@gmail.com>
+ * @author Oleg Demidov 
  *
  */
 
@@ -58,17 +58,10 @@ class ActionAjax extends Action
         
         $this->RegisterEventExternal('Media', 'ActionAjax_EventMedia');
         $this->AddEventPreg('/^media$/i', '/^upload$/', '/^$/', 'Media::EventMediaUpload');
-        $this->AddEventPreg('/^media$/i', '/^upload-link$/', '/^$/', 'Media::EventMediaUploadLink');
-        $this->AddEventPreg('/^media$/i', '/^generate-target-tmp$/', '/^$/', 'Media::EventMediaGenerateTargetTmp');
-        $this->AddEventPreg('/^media$/i', '/^submit-insert$/', '/^$/', 'Media::EventMediaSubmitInsert');
-        $this->AddEventPreg('/^media$/i', '/^submit-create-photoset$/', '/^$/', 'Media::EventMediaSubmitCreatePhotoset');
         $this->AddEventPreg('/^media$/i', '/^load-gallery$/', '/^$/', 'Media::EventMediaLoadGallery');
         $this->AddEventPreg('/^media$/i', '/^remove-file$/', '/^$/', 'Media::EventMediaRemoveFile');
-        $this->AddEventPreg('/^media$/i', '/^create-preview-file$/', '/^$/', 'Media::EventMediaCreatePreviewFile');
-        $this->AddEventPreg('/^media$/i', '/^remove-preview-file$/', '/^$/', 'Media::EventMediaRemovePreviewFile');
-        $this->AddEventPreg('/^media$/i', '/^remove-target$/', '/^$/', 'Media::EventMediaRemoveTarget');
-        $this->AddEventPreg('/^media$/i', '/^load-preview-items$/', '/^$/', 'Media::EventMediaLoadPreviewItems');
-        $this->AddEventPreg('/^media$/i', '/^save-data-file$/', '/^$/', 'Media::EventMediaSaveDataFile');
+        
+        $this->RegisterEventExternal('Talk', 'ActionAjax_EventTalk');
     }
 
 

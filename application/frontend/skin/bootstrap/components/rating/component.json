@@ -1,0 +1,13 @@
+{
+    "name": "rating",
+    "version": "1.0.0",
+    "templates": {
+        "rating": "rating.tpl",
+        "number":"number.tpl",
+        "field-stars":"field-stars.tpl",
+        "stars":"stars.tpl"
+    },
+    "styles":{
+        "rating":"css/rating.css"
+    }
+}

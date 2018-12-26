@@ -27,11 +27,11 @@ class HookMenuUser extends Hook {
         
         $oMenu->prependChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'profile',
-            'title' => 'user.profile.nav.profile',
+            'title' => 'user.userbar.nav.profile',
             'url' => $oUser->getLogin()
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'settings',
-            'title' => 'user.profile.nav.settings',
+            'title' => 'user.userbar.nav.settings',
             'url' => $oUser->getLogin().'/settings'
         ]));
     }

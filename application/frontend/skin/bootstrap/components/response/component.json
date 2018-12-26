@@ -1,0 +1,12 @@
+{
+    "name": "response",
+    "version": "1.0.0",
+    "dependencies": {
+        
+    },
+    "templates": {
+        "response": "response.tpl",
+        "modal": "response-modal.tpl",
+        "form": "response-form.tpl"
+    }
+}

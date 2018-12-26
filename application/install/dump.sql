@@ -144,6 +144,8 @@ CREATE TABLE IF NOT EXISTS `prefix_user` (
 ALTER TABLE `prefix_user` ADD `rating` FLOAT NOT NULL DEFAULT '0' AFTER `active`, ADD INDEX (`rating`);
 
 ALTER TABLE `prefix_user` ADD `name` VARCHAR(200) NULL DEFAULT NULL AFTER `mail`, ADD `about` TEXT NULL DEFAULT NULL AFTER `name`;
+
+ALTER TABLE `prefix_user` ADD `photo` VARCHAR(200) NULL DEFAULT NULL AFTER `about`;
 --
 -- Indexes for dumped tables
 --
@@ -688,3 +690,90 @@ ALTER TABLE `prefix_media`
 --
 ALTER TABLE `prefix_media_target`
   MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+
+
+--
+-- Структура таблицы `prefix_stat`
+--
+
+CREATE TABLE `prefix_stat` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `target_type` varchar(20) NOT NULL,
+  `target_id` int(10) UNSIGNED NOT NULL,
+  `rating` float DEFAULT '0',
+  `count_vote` bigint(20) UNSIGNED DEFAULT '0',
+  `data` text,
+  `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `prefix_stat`
+--
+ALTER TABLE `prefix_stat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `target_type` (`target_type`),
+  ADD KEY `rating` (`rating`),
+  ADD KEY `count_vote` (`count_vote`),
+  ADD KEY `date_update` (`date_update`),
+  ADD KEY `date_create` (`date_create`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `prefix_stat`
+--
+ALTER TABLE `prefix_stat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Структура таблицы `prefix_vote`
+--
+
+CREATE TABLE `prefix_vote` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `vote` smallint(6) NOT NULL,
+  `target_type` varchar(20) NOT NULL,
+  `target_id` int(10) UNSIGNED NOT NULL,
+  `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `prefix_vote`
+--
+ALTER TABLE `prefix_vote`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `target_type` (`target_type`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `vote` (`vote`),
+  ADD KEY `date_update` (`date_update`),
+  ADD KEY `date_create` (`date_create`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `prefix_vote`
+--
+ALTER TABLE `prefix_vote`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

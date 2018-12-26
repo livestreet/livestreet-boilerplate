@@ -10,14 +10,14 @@ jQuery(document).ready(function($){
     // Хук начала инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_start',[],window);
     
-    $.fn.dataStartsWith = function(p) {
-        var pCamel = p.replace(/-([a-z])/ig, function(m,$1) { return $1.toUpperCase(); });
-        return this.filter(function(i, el){
-          return Object.keys(el.dataset).some(function(v){
-            return v.indexOf(pCamel) > -1;
-          });
-        });
-    };
+//    $.fn.dataStartsWith = function(p) {
+//        var pCamel = p.replace(/-([a-z])/ig, function(m,$1) { return $1.toUpperCase(); });
+//        return this.filter(function(i, el){
+//          return Object.keys(el.dataset).some(function(v){
+//            return v.indexOf(pCamel) > -1;
+//          });
+//        });
+//    };
     /*
      *  Код для реализации dropdown-submenu
      */
@@ -35,8 +35,24 @@ jQuery(document).ready(function($){
         return false;
     });
     
+    /*
+     * Бутстрап
+     */
     $('[data-toggle="popover"]').popover();
     $('[data-toggle="tooltip"]').tooltip();
+    
+     
+    /*
+     * Modals
+     */
+    $('[data-type="crop-modal"]').bsCropModal();
+    
+    $('.js-modal-media').bsMedia();
+    
+     // Отправка формы в модальном окне
+    $('[data-modal-submit]').on('click', function(e){
+        $(this).closest('.modal-content').find('form').submit();
+    })
     
     /*
      * Дополнительная обработка табов в модальных окнах
@@ -82,7 +98,7 @@ jQuery(document).ready(function($){
 
     
     /**
-     * Auth
+     * Auth and AJAX
      */
     $('.js-auth-registration-form').bsFormAjax({
         urls:{
@@ -99,7 +115,15 @@ jQuery(document).ready(function($){
     
     $('[data-type="form-ajax"]').bsFormAjax();
     
-
+    $('.js-auth-reset-form').bsFormAjax({
+        urls:{
+            submit: aRouter.auth + 'ajax-password-reset'
+        }
+    });
+    
+    /*
+     * Validate and grecaptcha
+     */
     $('.js-form-validate').bsFormValidate();
     
     if(window.grecaptcha !== undefined ){
@@ -111,22 +135,17 @@ jQuery(document).ready(function($){
         });
     }
     
-    $('[data-type="crop-modal"]').bsCropModal();
-    
-    $('.js-modal-media').bsMedia();
-    
-    $('.js-auth-reset-form').bsFormAjax({
-        urls:{
-            submit: aRouter.auth + 'ajax-password-reset'
-        }
-    });
+   
     /**
      * Editor
      */
     $( '.js-editor-default' ).lsEditor();
     
+    /*
+     * Пагинация
+     */
     $('[data-type="pagination"]').bsPagination();
-    
+   
     
 
     // Хук конца инициализации javascript-составляющих шаблона

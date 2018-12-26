@@ -85,7 +85,7 @@
         </div>*}
     {/block}
     
-        <div class="row pt-2 no-gutters {hook run='layout_container_class' action=$sAction}">
+        <div class="row pt-4 no-gutters {hook run='layout_container_class' action=$sAction}">
             <div class="col-xl-1 "></div>
             
             {**
@@ -100,9 +100,9 @@
                 </div>
             {/if}
             
-            <div class="{if $layoutShowSidebar}col-12 col-{$breakpoint}-9 col-xl-8 mt-2 mt-{$breakpoint}-0
+            <div class="{if $layoutShowSidebar}col-12 col-{$breakpoint}-9 col-xl-8 mt-2 px-2 mt-{$breakpoint}-0
                  {else}col-12 col-xl-10{/if} ">
-                <div class="mx-2">
+                <div class="px-md-4 px-sm-2">
                     {hook run='layout_content_header_begin' action=$sAction}
 
                     {block 'layout_page_title' hide}
