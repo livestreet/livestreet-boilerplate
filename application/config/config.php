@@ -127,7 +127,9 @@ $config['db']['table']['user_reminder'] = '___db.table.prefix___reminder';
 $config['db']['table']['media'] = '___db.table.prefix___media';
 $config['db']['table']['media_target'] = '___db.table.prefix___media_target';
 $config['db']['table']['vote'] = '___db.table.prefix___vote';
-$config['db']['table']['stat'] = '___db.table.prefix___stat';
+$config['db']['table']['talk_message'] = '___db.table.prefix___talk_message';
+$config['db']['table']['talk_respose'] = '___db.table.prefix___talk_response';
+$config['db']['table']['talk_proposal'] = '___db.table.prefix___talk_proposal';
 
 /**
  * Настройки роутинга

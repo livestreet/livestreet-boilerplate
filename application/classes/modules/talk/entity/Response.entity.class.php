@@ -63,4 +63,9 @@ class ModuleTalk_EntityResponse extends EntityORM{
         }
         return true;
     }
+    
+    
+    public function getType() {
+        return 'response';
+    }
 }

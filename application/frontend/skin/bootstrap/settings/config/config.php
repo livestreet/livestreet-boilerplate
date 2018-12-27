@@ -67,6 +67,7 @@ $config['block']['userProfile'] = array(
             'component@user.block-photo'    => array('priority' => 100),
             'component@user.block-nav'      => array('priority' => 99),
             'component@user.block-actions'  => array('priority' => 98),
+            //'menu' => ['priority' => 99, 'params' => ['name' => 'profile', "template" => "profile"]]
         )
     )
 );

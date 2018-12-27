@@ -11,7 +11,7 @@
         </div>
     {/if}
 
-
+{*    Кнопки добавления отзыва и ппредложения*}
     <div class="mx-4 mt-2">
         <div class="row">
             <div class="col-12">
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-12 mt-2">
                 {component "bs-button"
-                    attributes = ["data-toggle" => "modal", "data-target" => "#proposeModal"]
+                    attributes = ["data-toggle" => "modal", "data-target" => "#proposalModal"]
                     classes = "w-100"
                     bmods   = "success"
                     text    = $aLang.user.profile.actions.proposal.text}

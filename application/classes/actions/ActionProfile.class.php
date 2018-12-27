@@ -45,6 +45,8 @@ class ActionProfile extends Action
         
         $this->RegisterEventExternal('Profile', 'ActionProfile_EventProfile');
         $this->AddEventPreg('/^.+$/i', '/^$/i',['Profile::EventIndex' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^responses$/i',['Profile::EventResponses' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^proposals$/i',['Profile::EventProposals' , 'profile']);
         
     }
 

@@ -18,28 +18,35 @@
         </div>
     </div>
     
-    {component "bs-nav" classes = "border-top mt-2" items = [
+    {component "bs-nav" activeItem=$sMenuHeadItemSelect classes = "border-top mt-2" items = [
         [
-            active      => true,
-            url         => '', 
+            name        => "index",
+            url         => {router page="{$oUserProfile->getLogin()}"}, 
             text        => $aLang.user.profile.nav.all, 
             classes     => "border-top"
         ],
         [
-            url         => '', 
+            name        => "responses",
+            url         => {router page="{$oUserProfile->getLogin()}/responses"}, 
             text        => $aLang.user.profile.nav.responses_votes, 
             classes     => "border-top"
         ],
         [
-            url         => '', 
+            name        => "proposals",
+            url         => {router page="{$oUserProfile->getLogin()}/proposals"}, 
             text        => $aLang.user.profile.nav.proposals, 
             classes     => "border-top"
         ]
     ]}
+    
+    {block name="profile_content"}
+
+    {/block}
+
 {/block}
 
 {block "layout_modals" prepend}
     {component "response.modal"}
-    {component "propose.modal"}
+    {component "proposal.modal"}
     
 {/block}

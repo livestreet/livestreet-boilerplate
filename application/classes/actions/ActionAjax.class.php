@@ -63,6 +63,7 @@ class ActionAjax extends Action
         
         $this->RegisterEventExternal('Talk', 'ActionAjax_EventTalk');
         $this->AddEventPreg('/^talk$/i', '/^create-response$/', '/^$/', 'Talk::EventAjaxResponseCreate');
+        $this->AddEventPreg('/^talk$/i', '/^create-proposal$/', '/^$/', 'Talk::EventAjaxProposalCreate');
     }
 
 

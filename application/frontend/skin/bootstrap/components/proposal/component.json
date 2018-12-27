@@ -1,0 +1,12 @@
+{
+    "name": "proposal",
+    "version": "1.0.0",
+    "dependencies": {
+        
+    },
+    "templates": {
+        "proposal": "proposal.tpl",
+        "modal": "proposal-modal.tpl",
+        "form": "proposal-form.tpl"
+    }
+}
