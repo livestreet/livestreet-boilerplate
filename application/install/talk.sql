@@ -34,42 +34,8 @@ CREATE TABLE `prefix_talk_message` (
   `text` text NOT NULL,
   `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
 
--- --------------------------------------------------------
-
---
--- Структура таблицы `prefix_talk_proposal`
---
-
-CREATE TABLE `prefix_talk_proposal` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(50) NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `target_id` bigint(20) UNSIGNED NOT NULL,
-  `text` text NOT NULL,
-  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `prefix_talk_response`
---
-
-CREATE TABLE `prefix_talk_response` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `target_id` bigint(20) UNSIGNED NOT NULL,
-  `text` text NOT NULL,
-  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Индексы сохранённых таблиц
---
 
 --
 -- Индексы таблицы `prefix_talk_message`
@@ -82,27 +48,3 @@ ALTER TABLE `prefix_talk_message`
   ADD KEY `date_create` (`date_create`),
   ADD KEY `date_update` (`date_update`);
 
---
--- Индексы таблицы `prefix_talk_proposal`
---
-ALTER TABLE `prefix_talk_proposal`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `type` (`type`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `target_id` (`target_id`),
-  ADD KEY `date_create` (`date_create`),
-  ADD KEY `date_update` (`date_update`);
-
---
--- Индексы таблицы `prefix_talk_response`
---
-ALTER TABLE `prefix_talk_response`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `target_id` (`target_id`),
-  ADD KEY `date_create` (`date_create`),
-  ADD KEY `date_update` (`date_update`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

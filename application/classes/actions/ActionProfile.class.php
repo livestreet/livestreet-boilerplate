@@ -13,6 +13,12 @@ class ActionProfile extends Action
     protected $sMenuHeadItemSelect = 'index';
     
     protected $oUserProfile;
+    
+    protected $iCountResponses = 0;
+    
+    protected $iCountProposals = 0;
+    
+    protected $iCountAnswers = 0;
 
     /**
      * Инициализация
@@ -25,6 +31,26 @@ class ActionProfile extends Action
             Router::LocationAction('error/404');
         }
         $this->SetDefaultEvent('index');
+        
+        $this->iCountResponses = $this->Talk_GetCountFromMessageByFilter([
+            'type'  => 'response',
+            'state' => 'publish',
+            'target_type' => 'user',
+            'target_id'     => $this->oUserProfile->getId()
+        ]);
+        
+        $this->iCountProposals = $this->Talk_GetCountFromMessageByFilter([
+            'type'  => 'proposal',
+            'state' => 'publish',
+            'target_type' => 'user',
+            'target_id'     => $this->oUserProfile->getId()
+        ]);
+        
+        $this->iCountAnswers = $this->Talk_GetCountFromMessageByFilter([
+            'type'  => 'answer',
+            'state' => 'publish',
+            'user_id'     => $this->oUserProfile->getId()
+        ]);
     }
 
     /**
@@ -44,9 +70,11 @@ class ActionProfile extends Action
         $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^profile-ajax$/i', 'Settigns::EventProfileAjax' );
         
         $this->RegisterEventExternal('Profile', 'ActionProfile_EventProfile');
-        $this->AddEventPreg('/^.+$/i', '/^$/i',['Profile::EventIndex' , 'profile']);
-        $this->AddEventPreg('/^.+$/i', '/^responses$/i',['Profile::EventResponses' , 'profile']);
-        $this->AddEventPreg('/^.+$/i', '/^proposals$/i',['Profile::EventProposals' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^(all)?$/i', '/^(page(\d))?$/i', ['Profile::EventIndex' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^responses$/i', '/^(page(\d))?$/i', ['Profile::EventResponses' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^proposals$/i', '/^(page(\d))?$/i', ['Profile::EventProposals' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^my-responses$/i', '/^(page(\d))?$/i', ['Profile::EventMyResponses' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^my-proposals$/i', '/^(page(\d))?$/i', ['Profile::EventMyProposals' , 'profile']);
         
     }
 
@@ -99,6 +127,9 @@ class ActionProfile extends Action
     public function EventShutdown()
     {
         $this->Viewer_Assign('sMenuHeadItemSelect', $this->sMenuHeadItemSelect);
+        $this->Viewer_Assign('iCountProposals', $this->iCountProposals);
+        $this->Viewer_Assign('iCountResponses', $this->iCountResponses);
+        $this->Viewer_Assign('iCountAnswers', $this->iCountAnswers);
         $this->Viewer_Assign('oUserProfile', $this->oUserProfile);
     }
 

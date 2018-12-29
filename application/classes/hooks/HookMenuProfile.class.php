@@ -37,19 +37,35 @@ class HookMenuProfile extends Hook {
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'responses',
             'title' => 'user.userbar.nav.responses',
-            'url' => $oUser->getLogin().'/responses'
+            'url' => $oUser->getLogin().'/responses',
+            'count' => $this->Talk_GetCountFromMessageByFilter([
+                'type' => 'response', 
+                'target_id' => $oUser->getId()])
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'proposals',
             'title' => 'user.userbar.nav.proposals',
-            'url' => $oUser->getLogin().'/proposals'
+            'url' => $oUser->getLogin().'/proposals',
+            'count' => $this->Talk_GetCountFromMessageByFilter([
+                'type' => 'proposal', 
+                'target_id' => $oUser->getId()])
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
-            'name' => 'proposed',
-            'title' => 'user.userbar.nav.proposed',
-            'url' => $oUser->getLogin().'/proposed'
-        ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
-            'name' => 'responsed',
+            'name' => 'my-responses',
             'title' => 'user.userbar.nav.responsed',
-            'url' => $oUser->getLogin().'/responsed'
+            'url' => $oUser->getLogin().'/my-responses',
+            'count' => $this->Talk_GetCountFromMessageByFilter([
+                'type' => 'response', 
+                'user_id' => $oUserCurrent->getId()])
+        ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
+            'name' => 'my-proposals',
+            'title' => 'user.userbar.nav.proposed',
+            'url' => $oUser->getLogin().'/my-proposals',
+            'count' => $this->Talk_GetCountFromMessageByFilter([
+                'type' => 'proposal', 
+                'user_id' => $oUserCurrent->getId()])
+        ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
+            'name' => 'arbitrage',
+            'title' => 'user.userbar.nav.arbitrage',
+            'url' => $oUser->getLogin().'/arbitrage'
         ]));
         
         

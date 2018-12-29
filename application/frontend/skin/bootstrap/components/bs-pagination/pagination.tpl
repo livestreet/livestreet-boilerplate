@@ -65,7 +65,7 @@
         
 
         <ul class="{$component}  {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {cattr list=$attributes}>
-            {if $showPager}
+            {if $showPager and $prev}
             {* Предыдущая страница *}
             {pagination_item page=$prev attr=['data-type' => 'page-prev'] 
                 text='<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>'}
@@ -86,7 +86,7 @@
                 {pagination_item page=$total attr=['data-type' => 'page-item']}
             {/if}
         
-            {if $showPager}
+            {if $showPager and $total>$current}
                 {* Следущая страница *}
                 {pagination_item page=$next attr=['data-type' => 'page-next']  text='<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>'}
             {/if}   

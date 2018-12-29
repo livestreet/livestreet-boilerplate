@@ -48,7 +48,9 @@
             
             name:'files[]',
             
-            multiple: true
+            multiple: true,
+            
+            
 
         },
 
@@ -59,7 +61,8 @@
          * @private
          */
         _create: function () {
-            this._super();      
+            this._super(); 
+            
             if(this.element.data('name') !== null){
                 this.option('name', this.element.data('name'));
             }
@@ -99,7 +102,8 @@
                     file.append('<input type="hidden" name="sizes['+params.data.id+']['+key+']" value="'+val+'">');
                 })
                 file.append('<input type="hidden" name="canvasWidth['+params.data.id+']" value="'+params.canvas_width+'">');
-
+                
+                this.elements.cropModal.modal('hide');
 
             }.bind(this));
 

@@ -51,10 +51,17 @@
                                 {if is_array($item.badge)}
                                     {component "bs-badge" prrams=$item.badge}
                                 {else}
-                                    {component "bs-badge" text=$item.badge bmods="primary"}
+                                    {component "bs-badge" text=$item.badge bmods="light"}
                                 {/if}                    
                             {/if}
                             {$item.text}
+                            {if $item.count}
+                                {if is_array($item.count)}
+                                    {component "bs-badge" prrams=$item.count}
+                                {else}
+                                    {component "bs-badge" text=$item.count bmods="light"}
+                                {/if}                    
+                            {/if}
                         </a>
                     </li>
                 {/if}

@@ -638,7 +638,7 @@ class ModuleMedia extends ModuleORM
         }
     }
     
-    public function NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, $sNameCrop = 'cropped') {
+    public function NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, $sNameCrop = 'cropped', $aSizes = null) {
 
         if(!$oImage = $this->Image_Open($oMedia->getPathServer() )){
             return $this->Image_GetLastError();
@@ -646,6 +646,9 @@ class ModuleMedia extends ModuleORM
         
         $oImage->cropFromSelected($aSize, $iCanvasWidth);
         
+        if(is_array($aSizes)){
+            call_user_func_array ( [$oImage, 'resize'] , $aSizes );
+        }
         /**
          * Сохраняем
          */
@@ -653,9 +656,16 @@ class ModuleMedia extends ModuleORM
             return $this->Image_GetLastError();
         }
         
-        $aSizes = $oMedia->getDataOne('image_sizes');
-        $aSizes[] = ['w' => $iCanvasWidth, 'h' => null, 'crop' => true];
-        $oMedia->setDataOne('image_sizes', $aSizes);
+        $aSizesData = $oMedia->getDataOne('image_sizes');
+        
+        
+        if(is_array($aSizes)){
+            $aSizesData[] = ['w' => $aSizes[0], 'h' => isset($aSizes[1])?$aSizes[1]:null, 'crop' => true];
+        }else{
+            $aSizesData[] = ['w' => $iCanvasWidth, 'h' => null, 'crop' => true];
+        }
+        
+        $oMedia->setDataOne('image_sizes', $aSizesData);
         $oMedia->Save();
         
         return true;
@@ -1534,4 +1544,65 @@ class ModuleMedia extends ModuleORM
         }
         return false;
     }
+    
+    /**
+     * Цепляет для списка объектов Media
+     *
+     * @param array $aEntityItems
+     * @param string $sTargetType
+     */
+    public function AttachMediasForTargetItems($aEntityItems, $sTargetType)
+    {
+        if (!is_array($aEntityItems)) {
+            $aEntityItems = array($aEntityItems);
+        }
+        
+        if(!count($aEntityItems)){
+            return;
+        }
+        
+        $aEntitiesId = array();
+        foreach ($aEntityItems as $oEntity) {
+            $aEntitiesId[] = $oEntity->getId();
+        }
+        /**
+         * Получаем категории для всех объектов
+         */
+        $sEntityMedia = $this->_NormalizeEntityRootName('Media');
+        $sEntityTarget = $this->_NormalizeEntityRootName('Target');
+        $aMedias = $this->GetMediaItemsByFilter(array(
+            '#join'        => array(
+                "JOIN " . Config::Get('db.table.media_target') . " media_target ON
+                t.id = media_target.media_id and
+                media_target.target_type = '{$sTargetType}' and
+                media_target.target_id IN ( ?a )
+                " => array($aEntitiesId)
+            ),
+            '#select'      => array(
+                't.*',
+                'media_target.target_id'
+            ),
+            '#index-group' => 'target_id',
+            '#cache'       => array(
+                null,
+                array(
+                    $sEntityMedia . '_save',
+                    $sEntityMedia . '_delete',
+                    $sEntityTarget . '_save',
+                    $sEntityTarget . '_delete'
+                )
+            )
+        ));
+        /**
+         * Собираем данные
+         */
+        foreach ($aEntityItems as $oEntity) {
+            if (isset($aMedias[$oEntity->_getPrimaryKeyValue()])) {
+                $oEntity->_setData(array('media' => $aMedias[$oEntity->_getPrimaryKeyValue()]));
+            } else {
+                $oEntity->_setData(array('media' => array()));
+            }
+        }
+    }
+
 }

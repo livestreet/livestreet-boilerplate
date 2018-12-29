@@ -78,15 +78,26 @@ jQuery(document).ready(function($){
 
     ls.dev.init();
 
-
-    
+    /*
+     * Lightbox
+     */
+    $('[data-lightbox]').lsLightbox({ width:"100%", height:"100%" });
 
     /**
      * Подтверждение удаления
      */
     $('.js-confirm-remove-default').livequery(function () {
         $(this).lsConfirm({
-            message: ls.lang.get('common.remove_confirm')
+            message: ls.lang.get('common.remove_confirm'),
+        });
+    });
+    
+    $('[data-confirm-remove]').livequery(function () {
+        $(this).lsConfirm({
+            message: ls.lang.get('common.remove_confirm'),
+            onconfirm: function(e){
+                $(e.target).submit();
+            }
         });
     });
 

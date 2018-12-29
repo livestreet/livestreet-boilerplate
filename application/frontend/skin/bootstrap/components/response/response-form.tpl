@@ -5,7 +5,7 @@
  * 
  *}
  
-{component_define_params params=[ 'oResponse']}
+{component_define_params params=[ 'oResponse', 'redirect']}
 
 <form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-response'}" class="js-form-validate">
     {component "rating.field-stars" 
@@ -34,5 +34,7 @@
         
     {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}
     {component "field.hidden" name="target_id" value="{$oUserProfile->getId()}"}
+    {component "field.hidden" name="target_type" value="user"}
+     <input type="hidden" name="redirect" value="{$redirect}">
 </form>
 

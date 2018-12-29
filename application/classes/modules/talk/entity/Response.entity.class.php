@@ -42,6 +42,9 @@ class ModuleTalk_EntityResponse extends EntityORM{
         );
     }
     
+    protected $aRelations = array(
+    );
+    
     public function ValidateDoubleText($sValue) {
         $sParseText = $this->Text_Parser($sValue);
         
@@ -67,5 +70,11 @@ class ModuleTalk_EntityResponse extends EntityORM{
     
     public function getType() {
         return 'response';
+    }
+    
+    public function getDateCreateFormat() {
+        setlocale(LC_TIME, 'ru_RU');
+        $date = new DateTime($this->getDateCreate());
+        return $date->format('d F');
     }
 }

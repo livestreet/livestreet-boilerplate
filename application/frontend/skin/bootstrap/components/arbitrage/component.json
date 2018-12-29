@@ -1,0 +1,12 @@
+{
+    "name": "arbitrage",
+    "version": "1.0.0",
+    "dependencies": {
+        
+    },
+    "templates": {
+        "arbitrage": "arbitrage.tpl",
+        "modal": "arbitrage-modal.tpl",
+        "form": "arbitrage-form.tpl"
+    }
+}

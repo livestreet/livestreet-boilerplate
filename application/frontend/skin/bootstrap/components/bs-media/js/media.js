@@ -37,7 +37,9 @@
 
             params: {},
             
-            onSelectFile:null
+            onSelectFile:null,
+            
+            field:null
         },
         
         
@@ -52,10 +54,14 @@
             this._super();
             
             this.elements.fields.bsMediaField();
+            
+            this.elements.fields.mousedown( function(e){
+                this.option('field', e.currentTarget);
+            }.bind(this));
 
             this.elements.library.bsLibrary();
             
-            this.elements.modal.on('show.bs.modal', function(){
+            this.elements.modal.on('show.bs.modal', function(e){
                 this.elements.library.bsLibrary('loadFiles');
             }.bind(this));
             
@@ -82,7 +88,7 @@
                 return;
             }
             this._trigger('onSelectFile', file);
-            this.elements.fields.bsMediaField('add', file, size);
+            $(this.option('field')).bsMediaField('add', file, size);
         }
     });
 })(jQuery);

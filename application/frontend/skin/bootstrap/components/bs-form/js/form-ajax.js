@@ -48,7 +48,8 @@
                 
                 this.loading();
                 
-                this._submit('submit', this.element, 'afterSubmit', {showProgress:false});
+                this._submit('submit', this.element, 'afterSubmit', 
+                    {showProgress:false, onError:this.afterError.bind(this)});
                 return false;
             }.bind(this));
             
@@ -56,7 +57,8 @@
         
         afterValidate:function(response){
             if(response.success){
-                this._submit('submit', this.element, 'afterSubmit', {showProgress:false});
+                this._submit('submit', this.element, 'afterSubmit', 
+                    {showProgress:false, onError:this.afterError.bind(this)});
                 return;
             }
             this.loaded();
@@ -71,6 +73,10 @@
                 }
                 return;
             }
+        },
+        
+        afterError: function(){
+            this.loaded();
         },
         
         loading:function(){

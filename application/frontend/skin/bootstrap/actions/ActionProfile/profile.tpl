@@ -12,9 +12,9 @@
     
     <div class="row mt-3">
         <div class="col-12">
-            <b class="ml-3">23</b> {pluralize {lang "user.profile.counts.responses"} count=23}
-            <b class="ml-3">1</b> {pluralize {lang "user.profile.counts.answers"} count=1}
-            <b class="ml-3">3</b> {pluralize {lang "user.profile.counts.proposals"} count=3}
+            <b class="ml-3">{$iCountResponses}</b> {pluralize {lang "user.profile.counts.responses"} count=$iCountResponses}
+            <b class="ml-3">{$iCountAnswers}</b> {pluralize {lang "user.profile.counts.answers"} count={$iCountAnswers}}
+            <b class="ml-3">{$iCountProposals}</b> {pluralize {lang "user.profile.counts.proposals"} count=$iCountProposals}
         </div>
     </div>
     
@@ -38,11 +38,11 @@
             classes     => "border-top"
         ]
     ]}
-    
-    {block name="profile_content"}
+    <div class="mt-5">
+        {block name="profile_content"}
 
-    {/block}
-
+        {/block}
+    </div>
 {/block}
 
 {block "layout_modals" prepend}

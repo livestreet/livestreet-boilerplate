@@ -1,9 +1,9 @@
 {**
  * Отзывы
  *}
-{extends './profile.tpl'}
+{extends 'layouts/layout.base.tpl'}
 
-{block name="profile_content"}
+{block 'layout_content'}
     {capture name="paging"}
         {component 'bs-pagination' 
             total   = $aPaging['iCountPage'] 
@@ -18,16 +18,12 @@
         {component 'blankslate' text=$aLang.user.profile.notices.response_blankslate}
     {/if}
 
-    {if $oUserCurrent and $oUserCurrent->getId() == $oUserProfile->getId()}
-        {$answered = true}
-    {/if}
-
     {foreach $results as $response}
         {component "response" 
-            redirect    = {Router::GetPathWebCurrent()}  
             entity      = $response 
-            answered    = $answered 
-            arbitrage   = $answered}
+            targetUser  = true 
+            deleted     = true 
+            redirect    = {Router::GetPathWebCurrent()} }
     {/foreach}
     
     {$smarty.capture.paging}

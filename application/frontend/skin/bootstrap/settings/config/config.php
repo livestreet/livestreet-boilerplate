@@ -38,7 +38,7 @@ $config['view']['bs_theme'] = $config['view']['bs_themes'][$theme];
 
 $config['components'] = [
     // Базовые компоненты
-    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance', 'confirm',
+    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance', 'confirm', 'lightbox',
 
     //Компоненты шаблона
     'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav'

@@ -62,11 +62,18 @@ class ActionProfile_EventSettings extends Event {
         if($oMedia = $this->Media_GetMediaById(getRequest('photo'))){
             
             if(isset($aSize) and isset($iCanvasWidth)){
-                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 'photo') ) !== true){
+                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 
+                        'photo', [Config::Get('module.user.photo.width')]) ) !== true){
                     $this->Message_AddError($sResult);
                 }
                 
-                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, Config::Get('module.user.avatar.width'), 'avatar') ) !== true){
+                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 
+                        'avatar', [Config::Get('module.user.avatar.width')]) ) !== true){
+                    $this->Message_AddError($sResult);
+                }
+                
+                if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 
+                        'avatar_small', [Config::Get('module.user.avatar_small.width')]) ) !== true){
                     $this->Message_AddError($sResult);
                 }
             }

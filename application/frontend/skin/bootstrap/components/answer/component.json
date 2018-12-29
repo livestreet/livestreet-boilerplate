@@ -1,0 +1,12 @@
+{
+    "name": "answer",
+    "version": "1.0.0",
+    "dependencies": {
+        
+    },
+    "templates": {
+        "answer": "answer.tpl",
+        "modal": "answer-modal.tpl",
+        "form": "answer-form.tpl"
+    }
+}

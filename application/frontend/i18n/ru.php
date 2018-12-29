@@ -36,9 +36,9 @@ return array(
                 'settings'      => 'Настройки',
                 'responses'     => 'Отзывы',
                 'proposals'     => 'Предложения',
-                'proposed'      => 'Я написал',
-                'responsed'     => 'Я предложил'
-                
+                'proposed'      => 'Я предложил',
+                'responsed'     => 'Я написал',
+                'arbitrage'     => 'Арбитраж'
             ]
         ],
         'profile' => [
@@ -52,6 +52,11 @@ return array(
                 'responses_votes'     => 'Оценки и отзывы',
                 'proposals'     => 'Предложения'
                 
+            ],
+            'notices' => [
+                'response_blankslate'    => 'Отзывов пока нет',
+                'proposal_blankslate'    => 'Предложений пока нет',
+                'all_blankslate'    => 'Отзывов и предложений пока нет',
             ],
             'actions' => [
                 'confirm' => [
@@ -155,6 +160,53 @@ return array(
                 'text' => [
                     'label' => 'Оставте свое предложение',
                     'placeholder' => 'Текст предложения',
+                    'error_validate' => 'Введите текст от %%min%% до %%max%% символов'
+                ],
+                'photo' => [
+                    'label' => 'Добавить фото',
+                    'text' => 'Выбрать'
+                ],
+                'submit' => [
+                    'text' => 'Отправить'
+                ]
+            ],
+            'notice' => [
+                'error_double_text' => 'Предложение с таким текстом уже добавлено',
+                'success_add' => 'Успешно добавлено. Спасибо за ваше ппредложение.'
+            ]
+        ],
+        'answer' => [
+            'btn' => [
+                'text' => 'Ответить'
+            ],
+            'form' => [
+                'text' => [
+                    'label' => 'Ответ',
+                    'placeholder' => 'Текст ответа',
+                    'error_validate' => 'Введите текст от %%min%% до %%max%% символов'
+                ],
+                'photo' => [
+                    'label' => 'Добавить изображение',
+                    'text' => 'Выбрать'
+                ],
+                'submit' => [
+                    'text' => 'Отправить'
+                ]
+            ],
+            'notice' => [
+                'error_double_text' => 'Ответ с таким текстом уже добавлен',
+                'success_add' => 'Успешно добавлено.',
+                'success_remove' => 'Успешно удалено'
+            ]
+        ],
+        'arbitrage' => [
+            'btn' => [
+                'text' => 'В арбитраж'
+            ],
+            'form' => [
+                'text' => [
+                    'label' => 'Напишите чем Вам не нравится этот отыв',
+                    'placeholder' => 'Текст жалобы',
                     'error_validate' => 'Введите текст от %%min%% до %%max%% символов'
                 ],
                 'photo' => [

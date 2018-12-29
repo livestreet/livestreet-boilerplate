@@ -16,7 +16,7 @@
         {component "rating.number" value=$oUser->getRating() of={Config::Get('module.rating.max_rating')}}
     </div>
     <div class="col-12 col-sm-6 col-lg-3  text-center  align-self-end pb-3">
-{*        {component "rating.stars"  value = $oUser->getRating()}*}
+        {component "rating.stars"  value = $oUser->getRating() large=true}
             
         <span class="text-muted">
             {$aLang.rating.count}: 
