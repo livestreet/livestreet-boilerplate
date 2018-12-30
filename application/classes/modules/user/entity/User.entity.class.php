@@ -192,20 +192,15 @@ class ModuleUser_EntityUser extends EntityORM
     }
     
     public function getRating() {
-        return 4.5;
+        return $this->Rating_GetRatingUser($this->getId());
     }
     
     public function getCountRated() {
-        return 5505;
+        return $this->Rating_GetCountVoteTarget('user', $this->getId());
     }
     
     public function getRatingStat() {
-        return [
-            5 => 50,
-            4 => 40,
-            3 => 60,
-            2 => 30,
-            1 => 20
-        ];
+        $aStat = $this->Rating_GetRatingStatTarget('user', $this->getId());
+        return $aStat;
     }
 }

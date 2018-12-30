@@ -34,7 +34,7 @@ CREATE TABLE `prefix_talk_message` (
   `text` text NOT NULL,
   `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
 --

@@ -2,6 +2,8 @@
 
 class ModuleRating extends ModuleORM
 {
+    
+    protected $oMapper = null;
     /**
      * Инициализация
      *
@@ -9,6 +11,7 @@ class ModuleRating extends ModuleORM
     public function Init()
     {
         parent::Init();
+        $this->oMapper = Engine::GetMapper(__CLASS__);
     }
 
     public function Vote($iUserId, $sTargetType, $iTargetId, $iVote){
@@ -24,5 +27,32 @@ class ModuleRating extends ModuleORM
         }
         
         return $oVote->Save();
+    }
+    
+    public function GetRatingUser($iUserId) {
+        return $this->GetRatingTarget('user', $iUserId);
+    }
+    
+    public function GetRatingTarget($sTargetType, $iTargetId) {
+        $iSum = $this->GetSumVoteFromVoteByFilter([
+            'target_type'   => $sTargetType,
+            'target_id'     => $iTargetId
+        ]);
+        
+        $iCount = $this->GetCountVoteTarget($sTargetType, $iTargetId);
+        
+        return $iCount?($iSum/$iCount):0;
+    }
+    
+    public function GetCountVoteTarget($sTargetType, $iTargetId) {
+        return $this->GetCountFromVoteByFilter([
+            'target_type'   => $sTargetType,
+            'target_id'     => $iTargetId
+        ]);
+    }
+    
+    public function GetRatingStatTarget($sTargetType, $iTargetId) {
+        return $this->oMapper->getRatingStatTarget($sTargetType, $iTargetId);
+        //SELECT vote, COUNT(id) FROM `prefix_rating_vote` WHERE target_type='user' and target_id=1 GROUP BY vote
     }
 }
