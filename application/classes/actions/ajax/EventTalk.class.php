@@ -94,7 +94,7 @@ class ActionAjax_EventTalk extends Event {
         $oArbitrage = Engine::GetEntity('Talk_Message', ['type' => 'arbitrage']);
         $oArbitrage->_setDataSafe($_REQUEST);
         
-        $oArbitrage->setState('publish');
+        $oArbitrage->setState('moderate');
         
         
         

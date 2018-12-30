@@ -12,8 +12,8 @@
             {$oUser = $entity->getUser()}
         {/if}
 
-        <div class="col-sm-3">{component "user" oUser=$oUser}</div>
-        <div class="col-sm-9 ml-2 ml-sm-0">
+        <div class="col-sm-5">{component "user" oUser=$oUser}</div>
+        <div class="col-sm-7 ml-2 ml-sm-0">
             <div>{component "rating.stars" value=$entity->getRating()}</div>
             <div class="mt-2 text-muted">{$entity->getDateCreateFormat()}</div>
         </div>
@@ -70,16 +70,24 @@
             {if $answered}
                 {component "bs-collapse.item" 
                     id      = $idAnswer 
-                    content = {component "answer.form" redirect=$redirect target_id = $entity->getId() target_type=$entity->getType()}}
+                    content = {component "answer.form" 
+                                oAnswer     = Engine::GetEntity('Talk_Message', ['type' => 'answer'])
+                                redirect    = $redirect 
+                                target_id   = $entity->getId() 
+                                target_type = $entity->getType()}}
             {/if}
             
             {if $arbitrage}
                 {component "bs-collapse.item" 
                     id      = $idArbitrage
-                    content = {component "arbitrage.form" redirect=$redirect target_id = $entity->getId() target_type=$entity->getType()}}
+                    content = {component "arbitrage.form" 
+                                oArbitrage     = Engine::GetEntity('Talk_Message', ['type' => 'arbitrage'])
+                                redirect    = $redirect 
+                                target_id   = $entity->getId() 
+                                target_type = $entity->getType()}}
             {/if}
             
-            {foreach $entity->getAnswers(['target_type' => 'response']) as $oAnswer}
+            {foreach $entity->getAnswers(['target_type' => 'response', 'type' => 'answer']) as $oAnswer}
                 {component "answer" entity=$oAnswer}
             {/foreach}
 

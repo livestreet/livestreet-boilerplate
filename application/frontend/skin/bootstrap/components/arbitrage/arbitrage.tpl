@@ -4,10 +4,10 @@
  
 {component_define_params params=[ 'entity']}
 
-<div class="response mt-5">
+<div class="arbitrage mt-5">
     <div class="row">
-        <div class="col-3">{component "user" oUser=$entity->getUser()}</div>
-        <div class="col-9 align-self-end text-muted">{$entity->getDateCreateFormat()}</div>
+        <div class="col-5">{component "user" oUser=$entity->getUser()}</div>
+        <div class="col-7 align-self-end text-muted">{$entity->getDateCreateFormat()}</div>
     </div>
     <div class="row m-3">
         <div class="col-12 pl-5">
@@ -24,6 +24,15 @@
 
                 {component 'bs-carousel' classes="slide w-50" indicators=true controls=true  items=$items}
             {/if}
+            
+            <div class="row mt-3">
+                <div class="col text-right">
+                    {if $entity->getState() == "moderate"}
+                        <span class="text-danger">Ожидает ответа модератора</span>
+                    {/if}
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>

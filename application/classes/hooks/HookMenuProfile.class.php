@@ -65,7 +65,11 @@ class HookMenuProfile extends Hook {
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'arbitrage',
             'title' => 'user.userbar.nav.arbitrage',
-            'url' => $oUser->getLogin().'/arbitrage'
+            'url' => $oUser->getLogin().'/arbitrage',
+            'count' => $this->Talk_GetCountFromMessageByFilter([
+                'state' => 'arbitrage',
+                'type' => 'response', 
+                'target_id' => $oUser->getId()])
         ]));
         
         

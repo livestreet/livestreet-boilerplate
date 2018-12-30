@@ -56,6 +56,7 @@ return array(
             'notices' => [
                 'response_blankslate'    => 'Отзывов пока нет',
                 'proposal_blankslate'    => 'Предложений пока нет',
+                'arbitrage_blankslate'    => 'Арбитраж пуст',
                 'all_blankslate'    => 'Отзывов и предложений пока нет',
             ],
             'actions' => [

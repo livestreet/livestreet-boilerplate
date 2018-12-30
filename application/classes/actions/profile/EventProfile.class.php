@@ -56,7 +56,7 @@ class ActionProfile_EventProfile extends Event {
         $this->GetItemsByFilter([
             'user_id'       => $oUserCurrent->getId(),
             'type in'       => ['response']
-        ], 'responses');
+        ], 'my-responses');
         
         $this->sMenuHeadItemSelect = 'my-responses';
         $this->SetTemplateAction('my-responses');
@@ -71,10 +71,27 @@ class ActionProfile_EventProfile extends Event {
         $this->GetItemsByFilter([
             'user_id'       => $oUserCurrent->getId(),
             'type in'       => ['proposal']
-        ], 'proposals');
+        ], 'my-proposals');
         
         $this->sMenuHeadItemSelect = 'my-proposals';
         $this->SetTemplateAction('my-proposals');
+    }
+    
+    
+    public function EventArbitrage() {
+        $oUserCurrent = $this->User_GetUserCurrent();
+        if($oUserCurrent and $oUserCurrent->getId() != $this->oUserProfile->getId()){
+            return $this->EventNotFound();
+        }
+        
+        $this->GetItemsByFilter([
+            'target_id'     => $this->oUserProfile->getId(),
+            'state in'      => ['arbitrage'],
+            'type'          => 'response'
+        ], 'arbitrage');
+        
+        $this->sMenuHeadItemSelect = 'arbitrage';
+        $this->SetTemplateAction('arbitrage');
     }
     
     protected function GetItemsByFilter($aFilter, $sPageName) {
@@ -83,13 +100,13 @@ class ActionProfile_EventProfile extends Event {
         $iPage = $this->GetParamEventMatch(1,2);
         $iPage = $iPage?$iPage:1;
         
-        $aFilter = array_merge($aFilter, [
+        $aFilter = array_merge( [
             '#with'         => ['user'],
             '#index-from'   => 'id',
             '#order'        => ['date_create' => 'desc'],
             '#page'         => [$iPage, $iLimit],
-            'state'         => 'publish'
-        ]);
+            'state in'      => ['publish', 'arbitrage']
+        ], $aFilter);
         
         $aMessages = $this->Talk_GetMessageItemsByFilter($aFilter);
 

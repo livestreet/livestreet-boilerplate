@@ -7,7 +7,7 @@
  
 {component_define_params params=[ 'oAnswer', 'target_id', 'target_type', 'redirect']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-answer'}" class="js-form-validate">
+<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-answer'}" class="js-form-validate  mb-3">
      
     {* Текст *}
     {component 'bs-form' 

@@ -4,21 +4,21 @@
  * @param string  $readonly          Список классов основного блока (через пробел)
  * 
  *}
-{component_define_params params=[ 'oAnswer', 'target_id', 'target_type', 'redirect']}
+{component_define_params params=[ 'oArbitrage', 'target_id', 'target_type', 'redirect']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-arbitrage'}" class="js-form-validate">
+<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-arbitrage'}" class="js-form-validate mb-3">
      
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oAnswer
+        entity      = $oArbitrage
         template    = 'textarea' 
         name        = "text"
         placeholder = $aLang.talk.arbitrage.form.text.placeholder
         label       = $aLang.talk.arbitrage.form.text.label 
         }
-        
+
     {component "bs-media.field" 
-        entity  = $oAnswer
+        entity  = $oArbitrage
         multiple = true
         name    = 'photos[]'
         label   = $aLang.talk.arbitrage.form.photo.label 

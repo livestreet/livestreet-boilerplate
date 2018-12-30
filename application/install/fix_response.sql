@@ -1,1 +1,0 @@
-ALTER TABLE `prefix_talk_response` ADD `rating` FLOAT NOT NULL AFTER `text`, ADD INDEX (`rating`);

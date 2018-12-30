@@ -11,8 +11,8 @@
         {else}
             {$oUser = $entity->getUser()}
         {/if}
-        <div class="col-3">{component "user" oUser=$oUser}</div>
-        <div class="col-9 align-self-end text-muted">{$entity->getDateCreateFormat()}</div>
+        <div class="col-5">{component "user" oUser=$oUser}</div>
+        <div class="col-7 align-self-end text-muted">{$entity->getDateCreateFormat()}</div>
     </div>
     <div class="row m-3">
         <div class="col-12 pl-5">
