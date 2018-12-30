@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 24 2018 г., 15:55
+-- Время создания: Дек 24 2018 г., 16:04
 -- Версия сервера: 5.7.24-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.32-4+ubuntu16.04.1+deb.sury.org+1
 
@@ -23,10 +23,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `prefix_stat`
+--
+
+CREATE TABLE `prefix_rating_stat` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `target_type` varchar(20) NOT NULL,
+  `target_id` int(10) UNSIGNED NOT NULL,
+  `rating` float DEFAULT '0',
+  `count_vote` bigint(20) UNSIGNED DEFAULT '0',
+  `data` text,
+  `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `prefix_stat`
+--
+ALTER TABLE `prefix_rating_stat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `target_type` (`target_type`),
+  ADD KEY `rating` (`rating`),
+  ADD KEY `count_vote` (`count_vote`),
+  ADD KEY `date_update` (`date_update`),
+  ADD KEY `date_create` (`date_create`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `prefix_stat`
+--
+ALTER TABLE `prefix_rating_stat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
 -- Структура таблицы `prefix_vote`
 --
 
-CREATE TABLE `prefix_vote` (
+CREATE TABLE `prefix_rating_vote` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `vote` smallint(6) NOT NULL,
@@ -34,7 +77,7 @@ CREATE TABLE `prefix_vote` (
   `target_id` int(10) UNSIGNED NOT NULL,
   `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Индексы сохранённых таблиц
@@ -43,7 +86,7 @@ CREATE TABLE `prefix_vote` (
 --
 -- Индексы таблицы `prefix_vote`
 --
-ALTER TABLE `prefix_vote`
+ALTER TABLE `prefix_rating_vote`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `target_type` (`target_type`),
   ADD KEY `user_id` (`user_id`),
@@ -58,8 +101,9 @@ ALTER TABLE `prefix_vote`
 --
 -- AUTO_INCREMENT для таблицы `prefix_vote`
 --
-ALTER TABLE `prefix_vote`
+ALTER TABLE `prefix_rating_vote`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

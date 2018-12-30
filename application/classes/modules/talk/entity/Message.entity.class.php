@@ -152,5 +152,9 @@ class ModuleTalk_EntityMessage extends EntityORM{
             $oResponse->setState('arbitrage');
             $oResponse->Save();
         }
+        
+        if($this->getType() == 'response' and $this->getState() == 'publish'){
+            $this->Rating_Vote($this->getUserId(), $this->getTargetType(), $this->getTargetId(), $this->getRating());
+        }
     }
 }

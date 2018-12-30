@@ -6,7 +6,7 @@
  *
  * @author oleg
  */
-class EntityVote extends EntityORM{
+class ModuleRating_EntityVote extends EntityORM{
     
     
 }

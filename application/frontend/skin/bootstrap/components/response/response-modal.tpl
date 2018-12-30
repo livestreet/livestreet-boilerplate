@@ -14,5 +14,5 @@
         text => $aLang.talk.response.form.submit.text,
         attributes => ['data-modal-submit' => true]
     ]
-    content     = {component 'response.form' oResponse=Engine::GetEntity('Talk_Response')}
+    content     = {component 'response.form' oResponse=Engine::GetEntity('Talk_Message', ['type' => 'response'])}
     id          = "responseModal"}
