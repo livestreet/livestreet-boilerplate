@@ -8,7 +8,7 @@
 {component_define_params params=[ 'oResponse', 'redirect']}
 
 <form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-response'}" class="js-form-validate">
-    {component "rating.field-stars" 
+    {component "rating.field-star" 
         entity  = $oResponse
         name    = "rating"
         count   = 5

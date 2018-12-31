@@ -12,13 +12,13 @@
 
 {function name="progress" stars=1 value=0}
     <div class="row">
-        <div class="col-4  text-right" style="line-height: 1em;">
+        <div class="col-4  text-right" style="line-height: 0.8em;">
             {for $foo=1 to $stars}
                 <small>{component "icon" icon="star"  classes="text-muted small"}</small>
             {/for}
         </div>
-        <div class="col-8 align-items-end" style="line-height: 1em;">
-            {component "bs-progressbar" popover=[content=>"{$value}%"] value=$value height=5 bg="warning" classes="mt-2"}
+        <div class="col-8 align-items-end" style="line-height: 0.8em;">
+            {component "bs-progressbar" popover=[content=>"{$value}%"] value=$value height=5 bg="warning" classes="mt-1"}
         </div>
     </div>
 {/function}

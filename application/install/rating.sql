@@ -88,7 +88,7 @@ CREATE TABLE `prefix_rating_vote` (
 --
 ALTER TABLE `prefix_rating_vote`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `target_type` (`target_type`),
+  ADD KEY `target_type` (`target_type`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `vote` (`vote`),
   ADD KEY `date_update` (`date_update`),
