@@ -181,6 +181,10 @@ $config['db']['table']['media_target'] = '___db.table.prefix___media_target';
 $config['db']['table']['rating_vote'] = '___db.table.prefix___rating_vote';
 $config['db']['table']['rating_stat'] = '___db.table.prefix___rating_stat';
 $config['db']['table']['talk_message'] = '___db.table.prefix___talk_message';
+$config['db']['table']['rbac_role'] = '___db.table.prefix___rbac_role';
+$config['db']['table']['rbac_permission'] = '___db.table.prefix___rbac_permission';
+$config['db']['table']['rbac_role_permission'] = '___db.table.prefix___rbac_role_permission';
+$config['db']['table']['rbac_role_user'] = '___db.table.prefix___rbac_role_user';
 
 /**
  * Настройки роутинга
@@ -196,7 +200,8 @@ $config['router']['page']['error']          = 'ActionError';
 $config['router']['page']['index']          = 'ActionIndex';
 $config['router']['page']['ajax']           = 'ActionAjax';
 $config['router']['page']['auth']           = 'ActionAuth';
-$config['router']['page']['profile']           = 'ActionProfile';
+$config['router']['page']['profile']        = 'ActionProfile';
+$config['router']['page']['moderation']     = 'ActionModeartion';
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action']	= 'index';
 $config['router']['config']['default']['event']		= null;

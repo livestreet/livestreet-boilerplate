@@ -38,7 +38,8 @@ return array(
                 'proposals'     => 'Предложения',
                 'proposed'      => 'Я предложил',
                 'responsed'     => 'Я написал',
-                'arbitrage'     => 'Арбитраж'
+                'arbitrage'     => 'Арбитраж',
+                'moderation'    => 'Модерация'
             ]
         ],
         'profile' => [

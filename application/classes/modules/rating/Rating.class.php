@@ -52,7 +52,16 @@ class ModuleRating extends ModuleORM
     }
     
     public function GetRatingStatTarget($sTargetType, $iTargetId) {
-        return $this->oMapper->getRatingStatTarget($sTargetType, $iTargetId);
-        //SELECT vote, COUNT(id) FROM `prefix_rating_vote` WHERE target_type='user' and target_id=1 GROUP BY vote
+        $aResult =  $this->oMapper->getRatingStatTarget($sTargetType, $iTargetId);
+        
+        $iCount = array_sum($aResult);
+        
+        $aStat = [];
+        $iMaxStars = Config::Get('module.rating.max_rating');
+        for($i=1 ; $i<=$iMaxStars; $i++){
+            $aStat[$i] = isset($aResult[$i])?round($aResult[$i]/($iCount/100)):0;
+        }
+        
+        return $aStat;
     }
 }

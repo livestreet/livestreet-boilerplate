@@ -18,7 +18,7 @@
             {/for}
         </div>
         <div class="col-8 align-items-end" style="line-height: 1em;">
-            {component "bs-progressbar" value=$value height=5 bg="secondary" classes="mt-1"}
+            {component "bs-progressbar" popover=[content=>"{$value}%"] value=$value height=5 bg="warning" classes="mt-2"}
         </div>
     </div>
 {/function}
