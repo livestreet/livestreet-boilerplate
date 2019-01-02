@@ -60,7 +60,7 @@ class ModuleMenu extends ModuleORM {
     
     public function GetMenuByName($sName) {
         if(!$oMenu = $this->GetMenuByFilter(['name' => $sName])){
-            return null;
+            $oMenu = Engine::GetEntity('Menu_Menu', ['name' => $sName]);
         }
         $aItemsTree = $this->LoadTreeOfItem([
             'menu_id' => $oMenu->getId(),
@@ -76,4 +76,5 @@ class ModuleMenu extends ModuleORM {
         $oMenu->setChildren($aItemsTree);
         return $oMenu;
     }
+    
 }

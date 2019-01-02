@@ -1,0 +1,13 @@
+{
+    "name": "bs-icons",
+    "version": "1.0.0",
+    "dependencies": {
+    },
+    "templates": {
+        "stack": "stack.tpl",
+        "bs-icon": "icon.tpl"
+    },
+    "styles": {
+        "fontawesome": "https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    }
+}

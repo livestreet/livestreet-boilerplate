@@ -34,7 +34,7 @@ class BlockMenu extends Block {
             return false;
         }
         
-        $activeItem = '';
+        $activeItem = $oMenu->getActiveItem();
         
         $this->Hook_Run('menu_before_prepare', ['menu' => &$oMenu, 'activeItem' => &$activeItem]);
                 

@@ -31,6 +31,11 @@
 {block name="field_input"}
     
     {capture name="content"}
+        {$medias = []}
+        {$aMedias = $entity->getMedia()}
+        {foreach $aMedias as $oMedia}
+            {$medias[] = [obj => $oMedia]}
+        {/foreach}
         {if is_array($medias)}
             {foreach $medias as $media}
                 {component "bs-media.file" oMediaItem=$media.obj size=$media.size name=$name}

@@ -17,10 +17,12 @@ class ModuleTalk_EntityMessage extends EntityORM{
     {
         parent::__construct($aParam);
         
+        
         $this->aValidateRules =  array(
             array(
                 'user_id', 
-                'exist_user'
+                'exist_user',
+                'on' => ['create', '']
             ),
             array(
                 'text', 
@@ -28,55 +30,43 @@ class ModuleTalk_EntityMessage extends EntityORM{
                 'max' => 200, 
                 'min' => 10, 
                 'allowEmpty' => false,
-                'msg' => $this->Lang_Get('talk.'.$this->getType().'.form.text.error_validate', ['min' => 10, 'max' => 200])
+                'msg' => $this->Lang_Get('talk.'.$this->getType().'.form.text.error_validate', ['min' => 10, 'max' => 200]),
+                'on' => ['']
             ),
             array(
                 'text', 
-                'double_text'
+                'double_text',
+                'on' => ['create']
             )
         );
         
         if($this->getType() == 'proposal'){
             $this->aValidateRules[] = array(
                 'target_type', 
-                'string'
+                'string',
+                'on' => ['']
+                
             );
             $this->aValidateRules[] = array(
                 'target_id', 
-                'exist_user'
+                'exist_user',
+                'on' => ['']
             );
         }
         
-        if($this->getType() == 'answer' or $this->getType() == 'arbitrage'){
+        if(in_array($this->getType(), ['answer', 'arbitrage']) ){
             $this->aValidateRules[] = array(
                 'target_id,target_type', 
-                'exist_message'
+                'exist_message',
+                'on' => ['']
             );
         }
         
-        if($this->getType() == 'response'){
-            $this->aValidateRules[] = array(
-                'target_type', 
-                'string'
-            );
-            $this->aValidateRules[] = array(
-                'target_id', 
-                'exist_user'
-            );
-            $this->aValidateRules[] = array(
-                'rating', 
-                'number', 
-                'allowEmpty' => false,
-                'msg' => $this->Lang_Get('talk.response.form.stars.error_validate')
-            );
-        }
     }
     
     protected $aRelations = array(
         'user' => array(self::RELATION_TYPE_BELONGS_TO, 'ModuleUser_EntityUser', 'user_id'),
-        'answers' => array(self::RELATION_TYPE_HAS_MANY, 'ModuleTalk_EntityMessage', 'target_id'),
         'target_user' => array(self::RELATION_TYPE_BELONGS_TO, 'ModuleUser_EntityUser', 'target_id'),
-        'response'  => array(self::RELATION_TYPE_BELONGS_TO, 'ModuleTalk_EntityMessage', 'target_id', ['type' => 'response']),
     );
     
     public function ValidateDoubleText($sValue) {
@@ -97,7 +87,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
     
     public function ValidateExistUser($sValue) {
         if(!$this->User_GetUserById($sValue)){
-            return $this->Lang_Get('common.error.error');
+            return $this->Lang_Get('common.error.error').' user not found';
         }
         return true;
     }
@@ -108,7 +98,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'id'  => $this->getTargetId(),
             'type'  => $this->getTargetType()
         ])){
-            return $this->Lang_Get('common.error.error');
+            return $this->Lang_Get('common.error.error').' '.$this->getTargetType().' not found';
         }
         return true;
     }
@@ -147,14 +137,10 @@ class ModuleTalk_EntityMessage extends EntityORM{
     
     public function afterSave() {
         parent::afterSave();
-        
+       
         if($this->getType() == 'arbitrage' and ($oResponse = $this->getResponse())){
             $oResponse->setState('arbitrage');
             $oResponse->Save();
-        }
-        
-        if($this->getType() == 'response' and $this->getState() == 'publish'){
-            $this->Rating_Vote($this->getUserId(), $this->getTargetType(), $this->getTargetId(), $this->getRating());
         }
     }
 }

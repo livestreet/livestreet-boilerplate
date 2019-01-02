@@ -8,11 +8,10 @@
 {component_define_params params=[ 'oResponse', 'redirect', 'url']}
 
 <form action="" data-type="form-ajax" data-url="{$url}" class="js-form-validate">
-    {component "rating.field-star" 
+    {component "bs-form.text" 
         entity  = $oResponse
         name    = "rating"
         value   = $oResponse->getRating()
-        count   = 5
         label   = $aLang.talk.response.form.stars.label
     }
     

@@ -49,7 +49,7 @@
                             {cattr list=$item.attributes}>
                             {if $item.badge}
                                 {if is_array($item.badge)}
-                                    {component "bs-badge" prrams=$item.badge}
+                                    {component "bs-badge" params=$item.badge}
                                 {else}
                                     {component "bs-badge" text=$item.badge bmods="light"}
                                 {/if}                    
@@ -57,9 +57,12 @@
                             {$item.text}
                             {if $item.count}
                                 {if is_array($item.count)}
-                                    {component "bs-badge" prrams=$item.count}
+                                    {component "bs-badge" params=$item.count}
                                 {else}
-                                    {component "bs-badge" text=$item.count bmods="light"}
+                                    {component "bs-badge" 
+                                        text        = $item.count 
+                                        attributes  = ["data-count-{$item.name}" => true] 
+                                        bmods       = "light"}
                                 {/if}                    
                             {/if}
                         </a>

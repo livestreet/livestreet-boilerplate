@@ -80,6 +80,12 @@
             
         },
         
+        attachFields: function(fields){
+            fields.mousedown( function(e){
+                this.option('field', e.currentTarget);
+            }.bind(this));
+        },
+        
         select: function(e){
             this.elements.modal.modal('hide')
             let file = this.elements.library.bsLibrary('getSelectItem');

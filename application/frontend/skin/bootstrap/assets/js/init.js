@@ -132,6 +132,9 @@ jQuery(document).ready(function($){
         }
     });
     
+    // Подгрузка ajax
+    $('[data-ajax-list]').bsAjaxList();
+    
     /*
      * Validate and grecaptcha
      */

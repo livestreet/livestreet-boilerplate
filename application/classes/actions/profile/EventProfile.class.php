@@ -55,7 +55,8 @@ class ActionProfile_EventProfile extends Event {
         
         $this->GetItemsByFilter([
             'user_id'       => $oUserCurrent->getId(),
-            'type in'       => ['response']
+            'type in'       => ['response'],
+            'state in'      => ['publish', 'arbitrage', 'moderate']
         ], 'my-responses');
         
         $this->sMenuHeadItemSelect = 'my-responses';

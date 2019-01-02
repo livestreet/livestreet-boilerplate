@@ -46,7 +46,7 @@
 {/block}
 
 {block "layout_modals" prepend}
-    {component "response.modal"}
+    {component "response.modal" url={router page='ajax/talk/edit-response'}}
     {component "proposal.modal"}
     
 {/block}

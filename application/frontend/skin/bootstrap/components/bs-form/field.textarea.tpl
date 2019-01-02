@@ -7,7 +7,7 @@
  
 {extends "component@bs-form.field"}
 
-{component_define_params params=[ 'readonly', 'rows']}
+{component_define_params params=[ 'readonly', 'rows', 'entity']}
 
 {block name="field_input"}
     <textarea {field_make_rules entity=$entity field=$name } 

@@ -38,10 +38,10 @@ $config['view']['bs_theme'] = $config['view']['bs_themes'][$theme];
 
 $config['components'] = [
     // Базовые компоненты
-    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'icon', 'performance', 'confirm', 'lightbox',
+    'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'performance', 'confirm', 'lightbox',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav'
+    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav', 'ajax-list', 'bs-icon'
 ];
 
 $config['head']['default']['js'] = array(
@@ -67,7 +67,19 @@ $config['block']['userProfile'] = array(
             'component@user.block-photo'    => array('priority' => 100),
             'component@user.block-nav'      => array('priority' => 99),
             'component@user.block-actions'  => array('priority' => 98),
-            //'menu' => ['priority' => 99, 'params' => ['name' => 'profile', "template" => "profile"]]
+        )
+    )
+);
+
+$config['block']['moderation'] = array(
+    'action' => array(
+        'moderation' => [
+            '{moderation}'
+        ]
+    ),
+    'blocks' => array(
+        'left' => array(
+            'menu' => ['priority' => 99, 'params' => ['name' => 'moderation', "template" => "profile"]]
         )
     )
 );

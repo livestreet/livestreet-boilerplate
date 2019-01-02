@@ -12,10 +12,10 @@
 {component_define_params params=[  'mods', 'classes', 'attributes', 'oUser' ]}
 
 <div class="row {$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" {cattr list=$attributes}>
-    <div class="col-12 col-sm-6 col-lg-3 text-center">
+    <div class="col-12 col-sm-6 col-lg-4 text-center">
         {component "rating.number" value=$oUser->getRating() of={Config::Get('module.rating.max_rating')}}
     </div>
-    <div class="col-12 col-sm-6 col-lg-3  text-center  align-self-end pb-3">
+    <div class="col-12 col-sm-6 col-lg-2  align-self-end pb-3 text-center">
         {component "rating.stars"  value = $oUser->getRating() large=true}
             
         <span class="text-muted">
@@ -25,7 +25,6 @@
     </div>
     <div class="col-12 col-sm-12 col-lg-6   align-self-end pb-3">
         {component "rating.stat" stat=$oUser->getRatingStat() 
-            classes="mr-4"
             attributes=['style' => 'line-height:1.2em;']}
     </div>
 </div>

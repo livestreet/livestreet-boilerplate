@@ -129,7 +129,8 @@ return array(
     'talk' => [
         'response' => [
             'modal' => [
-                'title' => 'Написать отзыв'
+                'title' => 'Написать отзыв',
+                'title_edit' => 'Редактировать отзыв'
             ],
             'form' => [
                 'text' => [
@@ -151,7 +152,8 @@ return array(
             ],
             'notice' => [
                 'error_double_text' => 'Отзыв с таким текстом уже добавлен',
-                'success_add' => 'Успешно добавлено. Спасибо за ваш отзыв.'
+                'success_add' => 'Успешно добавлено. Спасибо за ваш отзыв.',
+                'error_not_found' => 'Отзыв не найден'
             ]
         ],
         'proposal' => [
@@ -222,6 +224,32 @@ return array(
             'notice' => [
                 'error_double_text' => 'Предложение с таким текстом уже добавлено',
                 'success_add' => 'Успешно добавлено. Спасибо за ваше ппредложение.'
+            ]
+        ]
+    ],
+    'moderation' => [
+        'btn_view' => [
+            'text' => 'Полный / Свернутый'
+        ],
+        'responses' => [
+            'title' => 'Модерация отзывов',
+            'table_row' => [
+                'number'    => '№',
+                'from'      => 'От кого',
+                'to'        => 'Кому',
+                'rating'    => 'Оценка'
+            ],
+            'actions' => [
+                'edit'      => 'Редактировать',
+                'delete'    => 'Удалить',
+                'publish'   => 'Опубликовать'
+            ],
+            'blankslate' => [
+                'text' => 'Отзывов для модерации нет'
+            ],
+            'notice' => [
+                'success_publish' => 'Опубликовано',
+                'success_delete' => 'Перемещено в удаленные'
             ]
         ]
     ],

@@ -8,6 +8,8 @@
         "response": "response.tpl",
         "modal": "response-modal.tpl",
         "form": "response-form.tpl",
-        "arbitrage":"response-arbitrage.tpl"
+        "arbitrage":"response-arbitrage.tpl",
+        
+        "list":"response-list.tpl"
     }
 }

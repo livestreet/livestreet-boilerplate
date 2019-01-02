@@ -17,5 +17,5 @@
         text => $aLang.talk.response.form.submit.text,
         attributes => ['data-modal-submit' => true]
     ]
-    content     = {component 'response.form' oResponse=$entity url=$url}
+    content     = {component 'moderation.response-form' oResponse=$entity url=$url}
     id          = $id|default:"responseModal" }

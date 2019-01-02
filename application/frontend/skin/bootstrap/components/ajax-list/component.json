@@ -1,0 +1,12 @@
+{
+    "name": "ajax-list",
+    "version": "1.0.0",
+    "dependencies": {
+    },
+    "scripts": {
+        "ajax-list": "js/ajax-list.js"
+    },
+    "templates":{
+        "ajax-list":"ajax-list.tpl"
+    }
+}

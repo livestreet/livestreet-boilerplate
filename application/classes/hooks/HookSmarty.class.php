@@ -18,10 +18,10 @@ class HookSmarty extends Hook {
 	 * Обработка хука старте экшенов. Выполняется один раз в отличии от хука "init_action"
 	 */
 	public function SmartyConfig() {
-		/**
-		 * Добавляем директорию плаинов для Smarty
-		 */
-		$this->Viewer_GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');;
+            /**
+             * Добавляем директорию плаинов для Smarty
+             */
+            $this->Viewer_GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');
 	
 	}
 
