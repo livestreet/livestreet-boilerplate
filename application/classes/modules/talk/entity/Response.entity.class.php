@@ -56,19 +56,12 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         );
     }
     
-//    public function getArbitrages($aFilter = false) {
-//        if(is_array($aFilter)){
-//            return $this->Talk_GetArbitragesByFilter(array_merge([
-//                'target_id' => $this->getId()
-//            ], $aFilter));
-//        }
-//        
-//        return $this->getArbitrages();
-//    }
     
     public function afterSave() {
         parent::afterSave();
         
-        $this->Rating_Vote($this->getUserId(), $this->getTargetType(), $this->getTargetId(), $this->getRating());
+        if($this->_getDataOriginalOne('state') == 'moderate' and $this->_getDataOne('state') == 'publish'){
+            $this->Rating_Vote($this->getUserId(), $this->getTargetType(), $this->getTargetId(), $this->getRating());
+        }
     }
 }

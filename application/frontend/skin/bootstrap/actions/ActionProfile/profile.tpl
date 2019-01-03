@@ -46,7 +46,11 @@
 {/block}
 
 {block "layout_modals" prepend}
-    {component "response.modal" url={router page='ajax/talk/edit-response'}}
-    {component "proposal.modal"}
+    {if $oUserCurrent}
+        {component "response.modal" url={router page='ajax/talk/edit-response'}}
+        {component "proposal.modal"}
+    {/if}
+
+    
     
 {/block}
