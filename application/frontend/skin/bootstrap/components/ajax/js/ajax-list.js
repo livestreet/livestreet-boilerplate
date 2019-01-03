@@ -69,7 +69,7 @@ $.widget( "livestreet.bsAjaxList", $.livestreet.lsComponent, {
         fields.bsMediaField();
         $('.js-modal-media').bsMedia('attachFields',fields );
         
-        this.elements.container.find('[data-type="response-item"]').bsModeration();
+        this.elements.container.find('[data-ajax-btn]').bsAjaxButton();
         
         this.elements.container.find('[data-modal-submit]').on('click', function(e){
             $(this).closest('.modal-content').find('form').submit();

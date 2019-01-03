@@ -4,10 +4,10 @@
  
 {component_define_params params=[ 'entity', 'answered', 'targetUser', 'deleted', 'redirect']}
 
-<div data-type="response-item" data-param-id="{$entity->getId()}" data-counter-selector="[data-count-moderation]">
+<div class="response-item" data-type="response-item" data-param-id="{$entity->getId()}" data-counter-selector="[data-count-moderation]">
     <hr>
     <div class="row mt-3">
-        <div class="col-1">{$entity->getId()}</div>
+        <div class="col-1"><a href="{router page="moderation/arbitrage/{$entity->getId()}"}">{$entity->getId()}</a></div>
         <div class="col">{component "user" oUser=$entity->getUser()}</div>
         <div class="col d-none d-sm-block">{component "user" oUser=$entity->getTargetUser()}</div>
         <div class="col  d-none d-xl-block">{component "rating.stars" value=$entity->getRating()} {$entity->getDateCreateFormat()}</div>
@@ -16,39 +16,35 @@
             {$idModal = "responseModal{$entity->getId()}"}
 
             {component "bs-nav" items = [
+                
                 [ 
-                    text    => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.edit}</span>",  
-                    badge   => {component 'bs-icon' icon="edit"},
-                    url     => {router page='wiki/wikipdd'},  
-                    attributes => ["data-toggle"=>"modal", "data-target"=>"#{$idModal}"],
-                    classes => 'pt-0'
-                ],
-                [ 
-                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.publish}</span>", 
+                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.arbitrage.actions.publish}</span>", 
                     badge => {component 'bs-icon'  classes="text-success"  display="s" icon="check"},     
-                    'url' => {router page='blogs'},  
+                    'url' => '#',  
                     'classes' => 'text-success py-0',
                     attributes => [
                         'data-param-id' => $entity->getId(),
-                        'data-ajax-btn' => "true",
+                        'data-ajax-btn' => true,
                         'data-confirm'  => "true",
-                        'data-confirm-message'  => $aLang.moderation.responses.notice.confirm_publish,
-                        'data-url'  => {router page="moderation/ajax-publish"},
-                        'data-item-selector'  => '.response-item'
+                        'data-confirm-message'  => $aLang.moderation.arbitrage.notice.confirm_publish,
+                        'data-url'  => {router page="moderation/arbitrage/ajax-publish"},
+                        'data-item-selector'  => '.response-item',
+                        'data-counter-selector'  => '[data-count-arbitrage]'
                     ]
                 ],
                 [ 
-                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.delete}</span>", 
+                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.arbitrage.actions.delete}</span>", 
                     badge => {component 'bs-icon' classes="text-danger" icon="trash-alt"},  
                     'url' => {router page='/'},  
                     'classes' => 'text-danger pb-0' ,
                     attributes => [
                         'data-param-id' => $entity->getId(),
-                        'data-ajax-btn' => "true",
+                        'data-ajax-btn' => true,
                         'data-confirm'  => "true",
-                        'data-confirm-message'  => $aLang.moderation.responses.notice.confirm_delete,
-                        'data-url'  => {router page="moderation/ajax-delete"},
-                        'data-item-selector'  => '.response-item'
+                        'data-confirm-message'  => $aLang.moderation.arbitrage.notice.confirm_delete,
+                        'data-url'  => {router page="moderation/arbitrage/ajax-delete"},
+                        'data-item-selector'  => '.response-item',
+                        'data-counter-selector'  => '[data-count-arbitrage]'
                     ]
                 ]
             ]}
@@ -77,10 +73,6 @@
         
         {component "text" classes=" border-left p-3" text=$smarty.capture.text}
         
+        {component "arbitrage" entity=$entity->getArbitrage()}
     </div>
-    {component "moderation.response-modal" 
-        entity  = $entity 
-        url     = {router page='ajax/talk/edit-response'} 
-        title   = $aLang.talk.response.modal.title_edit 
-        id      = $idModal}
 </div>

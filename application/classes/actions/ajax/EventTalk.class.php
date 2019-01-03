@@ -125,7 +125,7 @@ class ActionAjax_EventTalk extends Event {
     
     public function EventAjaxArbitrageCreate() {
         
-        $oArbitrage = Engine::GetEntity('Talk_Message', ['type' => 'arbitrage']);
+        $oArbitrage = Engine::GetEntity('Talk_Arbitrage');
         $oArbitrage->_setDataSafe($_REQUEST);
         
         $oArbitrage->setState('moderate');
@@ -136,7 +136,7 @@ class ActionAjax_EventTalk extends Event {
             if($oArbitrage->Save()){
                 $this->AttachMedia(getRequest('photos'), 'arbitrage', $oArbitrage->getId());
                 
-                $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
+                //$this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
                 
                 $this->Message_AddNotice($this->Lang_Get('talk.arbitrage.notice.success_add'));
             }else{

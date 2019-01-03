@@ -41,12 +41,16 @@ class ActionModeration extends Action
     {
                
         $this->RegisterEventExternal('Moderation', 'ActionModeration_EventModeration');
-        $this->AddEventPreg('/^responses$/i',  ['Moderation::EventResponses' , 'moderation']);
-        $this->AddEventPreg('/^arbitrage$/i',  ['Moderation::EventArbitrage' , 'moderation']);
+        $this->AddEventPreg('/^responses$/i',  '/^$/i', ['Moderation::EventResponses' , 'moderation']);
         $this->AddEventPreg('/^ajax-responses$/i',  'Moderation::EventAjaxResponses');
         $this->AddEventPreg('/^ajax-publish$/i',  'Moderation::EventAjaxPublish');
         $this->AddEventPreg('/^ajax-delete$/i',  'Moderation::EventAjaxDelete');
         
+        $this->RegisterEventExternal('Arbitrage', 'ActionModeration_EventArbitrage');
+        $this->AddEventPreg('/^arbitrage$/i', '/^$/i',['Arbitrage::EventArbitrage' , 'moderation'] );
+        $this->AddEventPreg('/^arbitrage$/i','/^ajax-responses$/i',  'Arbitrage::EventAjaxResponses');
+        $this->AddEventPreg('/^arbitrage$/i','/^ajax-publish$/i',  'Arbitrage::EventAjaxPublish');
+        $this->AddEventPreg('/^arbitrage$/i','/^ajax-delete$/i',  'Arbitrage::EventAjaxDelete');
     }
 
 

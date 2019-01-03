@@ -31,7 +31,8 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
             'on' => ['create', '']
         );
         
-        $this->aRelations['answers'] = array(self::RELATION_TYPE_HAS_MANY, 'ModuleTalk_EntityAnswer', 'target_id');
+        $this->aRelations['answers'] = array(self::RELATION_TYPE_HAS_MANY, 'ModuleTalk_EntityAnswer', 'target_id', ['target_type' => 'response']);
+        $this->aRelations['arbitrage'] = array(self::RELATION_TYPE_HAS_ONE, 'ModuleTalk_EntityArbitrage', 'target_id');
         
         $this->setType('response');
     }

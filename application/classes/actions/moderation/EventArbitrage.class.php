@@ -5,38 +5,57 @@
  *
  * @author oleg
  */
-class ActionModeration_EventModeration extends Event {
+class ActionModeration_EventArbitrage extends Event {
     
     
-    public function EventResponses()
+    public function EventArbitrage()
     {
-        $this->sMenuItemSelect = 'moderation';
-        $this->SetTemplateAction('moderation');
+        $this->sMenuItemSelect = 'arbitrage';
+        $this->SetTemplateAction('arbitrage');
+    }
+    
+    public function EventArbitrageChat() {
+        $this->sMenuItemSelect = 'arbitrage';
+        $this->SetTemplateAction('arbitrage-chat');
+        
+        
     }
     
     public function EventAjaxResponses()
     {
         $this->Viewer_SetResponseAjax('json');
+        $this->SetTemplate(false);
         
         $iStart = getRequest('start', 0);
         $iLimit = getRequest('limit', Config::Get('moderation.talk.page_count'));
         
         $aFilter =  [
             '#with'         => ['user'],
-            '#index-from'   => 'id',
+            '#index-from'   => 'target_id',
             '#order'        => ['date_create' => 'desc'],
             '#limit'         => [ $iStart, $iLimit],
             'state in'      => ['moderate']
         ];
         
-        $aMessages = $this->Talk_GetResponseItemsByFilter($aFilter);
+        $aArbitrages = $this->Talk_GetArbitrageItemsByFilter($aFilter);
+        
+        $aArbitrageIds = count($aArbitrages)?array_keys($aArbitrages):[0];
+        
+        $aResponses = $this->Talk_GetResponseItemsByFilter([
+            'id in' => $aArbitrageIds,
+            '#index-from'   => 'id'
+        ]);
+        
+        foreach ($aResponses as $id => $oResponse) {
+            $oResponse->setArbitrage($aArbitrages[$id]);
+        }
 
         $oViewer = $this->Viewer_GetLocalViewer();
         $oViewer->GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');
-        $oViewer->Assign('items', $aMessages, true);
-        $sHtml = $oViewer->Fetch('component@moderation.response-list');
+        $oViewer->Assign('items', $aResponses, true);
+        $sHtml = $oViewer->Fetch('component@arbitrage.response-list');
         
-        $iCountAll = $this->Talk_GetCountFromResponseByFilter([ 'state' => 'moderate']);
+        $iCountAll = $this->Talk_GetCountFromArbitrageByFilter([ 'state in'      => ['moderate']]);
         
         $iCount = ($iCountAll - ($iStart+$iLimit))<0?0:($iCountAll - ($iStart+$iLimit));
         
@@ -55,6 +74,11 @@ class ActionModeration_EventModeration extends Event {
         }
         
         $oResponse->setState('publish');
+        
+        if($oArbitrage = $oResponse->getArbitrage()){
+            $oArbitrage->setState('closed');
+            $oArbitrage->Save();
+        }
                 
         if($oResponse->Save()){
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_publish'));
@@ -64,8 +88,7 @@ class ActionModeration_EventModeration extends Event {
         }        
         
         $this->Viewer_AssignAjax('remove', 1);
-        $this->Viewer_AssignAjax('countAll', 
-        $this->Talk_GetCountFromResponseByFilter([ 'state' => 'moderate']));
+        $this->Viewer_AssignAjax('countAll', $this->Talk_GetCountFromArbitrageByFilter([ 'state' => 'moderate']));
     }
     
     
@@ -79,7 +102,11 @@ class ActionModeration_EventModeration extends Event {
         }
         
         $oResponse->setState('delete');
-        $oResponse->deleteVote();
+        
+         if($oArbitrage = $oResponse->getArbitrage()){
+            $oArbitrage->setState('closed');
+            $oArbitrage->Save();
+        }
                 
         if($oResponse->Save()){
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_delete'));
@@ -90,7 +117,7 @@ class ActionModeration_EventModeration extends Event {
         
         $this->Viewer_AssignAjax('remove', 1);
         $this->Viewer_AssignAjax('countAll', 
-        $this->Talk_GetCountFromResponseByFilter([ 'state' => 'moderate']));
+        $this->Talk_GetCountFromArbitrageByFilter([ 'state' => 'moderate']));
     }
     
 }

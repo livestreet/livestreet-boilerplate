@@ -24,7 +24,7 @@
         <div class="col-2 col-lg"></div>
     </div>
 
-    {component "ajax-list" 
+    {component "ajax.list" 
         url     = {router page="moderation/ajax-responses"} 
         limit   = Config::Get('moderation.talk.page_count')
         counterSelector="[data-count-moderation]"}

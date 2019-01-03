@@ -9,8 +9,5 @@
         "response-list": "response-list.tpl",
         "response-modal": "response-modal.tpl",
         "response-form": "response-form.tpl"
-    },
-    "scripts":{
-        "moderation":"js/moderation.js"
     }
 }

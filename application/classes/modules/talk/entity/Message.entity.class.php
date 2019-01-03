@@ -67,6 +67,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
     protected $aRelations = array(
         'user' => array(self::RELATION_TYPE_BELONGS_TO, 'ModuleUser_EntityUser', 'user_id'),
         'target_user' => array(self::RELATION_TYPE_BELONGS_TO, 'ModuleUser_EntityUser', 'target_id'),
+        'answers' => array(self::RELATION_TYPE_HAS_MANY, 'ModuleTalk_EntityAnswer', 'target_id', ['target_type' => 'response'])
     );
     
     public function ValidateDoubleText($sValue) {
@@ -133,6 +134,15 @@ class ModuleTalk_EntityMessage extends EntityORM{
          * Удалить медиа
          */        
         $this->Media_RemoveTargetByTypeAndId($this->getType(), $this->getId());
+        
+        /*
+         * Удалить оценку
+         */
+        $this->deleteVote();
+    }
+    
+    public function deleteVote() {
+        $this->Rating_DeleteVoteItemsByFilter(['target_type' => 'user', 'target_id' => $this->getTargetId()]);
     }
     
     public function afterSave() {

@@ -34,7 +34,7 @@ class ActionProfile extends Action
         
         $this->iCountResponses = $this->Talk_GetCountFromMessageByFilter([
             'type'  => 'response',
-            'state' => 'publish',
+            'state in' => ['publish', 'arbitrage'],
             'target_type' => 'user',
             'target_id'     => $this->oUserProfile->getId()
         ]);

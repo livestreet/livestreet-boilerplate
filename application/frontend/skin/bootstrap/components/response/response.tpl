@@ -86,8 +86,8 @@
                                 target_id   = $entity->getId() 
                                 target_type = $entity->getType()}}
             {/if}
-            
-            {foreach $entity->getAnswers(['target_type' => 'response', 'type' => 'answer']) as $oAnswer}
+
+            {foreach $entity->getAnswers() as $oAnswer}
                 {component "answer" entity=$oAnswer}
             {/foreach}
 

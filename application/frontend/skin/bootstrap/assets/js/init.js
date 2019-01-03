@@ -135,6 +135,8 @@ jQuery(document).ready(function($){
     // Подгрузка ajax
     $('[data-ajax-list]').bsAjaxList();
     
+    $('[data-ajax-btn]').bsAjaxButton();
+    
     /*
      * Validate and grecaptcha
      */

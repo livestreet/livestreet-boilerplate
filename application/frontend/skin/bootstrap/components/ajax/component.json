@@ -1,0 +1,13 @@
+{
+    "name": "ajax",
+    "version": "1.0.0",
+    "dependencies": {
+    },
+    "scripts": {
+        "list": "js/ajax-list.js",
+        "button": "js/ajax-button.js"
+    },
+    "templates":{
+        "list":"ajax-list.tpl"
+    }
+}

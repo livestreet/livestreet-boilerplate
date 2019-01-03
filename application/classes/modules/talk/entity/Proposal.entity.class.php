@@ -6,7 +6,7 @@
  *
  * @author oleg
  */
-class ModuleTalk_EntityProposal extends EntityORM{
+class ModuleTalk_EntityProposal extends ModuleTalk_EntityMessage{
     
     public function __construct($aParam = false)
     {
