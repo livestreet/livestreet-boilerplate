@@ -1604,5 +1604,26 @@ class ModuleMedia extends ModuleORM
             }
         }
     }
+    
+    public function AttachMedia( $aMediaIds, $sTargetType, $iTargetId) {
+        
+        if(!is_array($aMediaIds)){
+            return;
+        }
+        $aMediaIds = array_unique($aMediaIds);
+        foreach ($aMediaIds as $iMediaId) {
+            if(!$oMedia = $this->GetMediaById($iMediaId)){
+                continue;
+            }
+            if($oTarget = $this->Media_GetTargetByFilter([
+                'target_type'   => $sTargetType,
+                'target_id'     => $iTargetId,
+                'media_id'      => $iMediaId
+            ])){
+                continue;
+            }
+            $this->AttachMediaToTarget($oMedia, $sTargetType, $iTargetId);
+        }
+    }
 
 }

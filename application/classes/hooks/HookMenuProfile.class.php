@@ -67,7 +67,7 @@ class HookMenuProfile extends Hook {
             'title' => 'user.userbar.nav.arbitrage',
             'url' => $oUser->getLogin().'/arbitrage',
             'count' => $this->Talk_GetCountFromMessageByFilter([
-                'state' => 'arbitrage',
+                'state in' => ['arbitrage', 'chat'],
                 'type' => 'response', 
                 'target_id' => $oUser->getId()])
         ]));

@@ -71,7 +71,7 @@ ls.ajax = (function ($) {
 
                 }
 
-                //response.sUrlRedirect && (window.location = response.sUrlRedirect);
+                response.sUrlRedirect && (window.location = response.sUrlRedirect);
                 response.bRefresh && (window.location.reload());
 
                 if ( $.isFunction( more.onResponse ) ) more.onResponse.apply( this, arguments );

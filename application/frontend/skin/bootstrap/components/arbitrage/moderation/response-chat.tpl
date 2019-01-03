@@ -2,18 +2,12 @@
  * Предложение
  *}
  
-{component_define_params params=[ 'entity', 'answered', 'targetUser', 'deleted', 'redirect']}
+{component_define_params params=[ 'entity']}
 
 <div class="response mt-5">
     <div class="row">
-        {if $targetUser}
-            {$oUser = $entity->getTargetUser()}
-        {else}
-            {$oUser = $entity->getUser()}
-        {/if}
-
-        <div class="col-sm-3">{component "user" oUser=$oUser}</div>
-        <div class="col-sm-9 ml-2 ml-sm-0">
+        <div class="col-sm-5">{component "user" oUser=$entity->getUser()}</div>
+        <div class="col-sm-7 ml-2 ml-sm-0">
             <div>{component "rating.stars" value=$entity->getRating()}</div>
             <div class="mt-2 text-muted">{$entity->getDateCreateFormat()}</div>
         </div>
@@ -34,25 +28,11 @@
                 {component 'bs-carousel' classes="slide w-50" controls=true  items=$items}
             {/if}
             
-            <div class="row mt-2">
-                <div class="col-sm-8"></div>
-                <div class="col-sm-4 align-content-end">
-                    
-                </div>
-            </div>
-            
-            {if $entity->getArbitrage()}
-                {component "arbitrage" entity=$entity->getArbitrage()}
-            {/if}
-            
             <div class="row mt-3">
                 <div class="col text-right">
                     {if $entity->getState() == "arbitrage"}
                         <span class="text-danger">{$aLang.talk.arbitrage.notice.wait_moderate}</span>
-                    {/if}
-                    <a class="link ml-4" href="{Router::GetPathWebCurrent()}/{$entity->getId()}">
-                       {$aLang.talk.arbitrage.link_chat.text}
-                    </a>                    
+                    {/if}                   
                 </div>
             </div>
             

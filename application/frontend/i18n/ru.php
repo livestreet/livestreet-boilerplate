@@ -207,6 +207,9 @@ return array(
             'btn' => [
                 'text' => 'В арбитраж'
             ],
+            'link_chat' => [
+                'text' => 'Перейти в чат'
+            ],
             'form' => [
                 'text' => [
                     'label' => 'Напишите чем Вам не нравится этот отыв',
@@ -222,6 +225,7 @@ return array(
                 ]
             ],
             'notice' => [
+                'wait_moderate' => 'Ожидает ответа модератора',
                 'error_double_text' => 'Арбитраж с таким текстом уже добавлен',
                 'success_add' => 'Арбитраж создан.'
             ]
@@ -263,7 +267,7 @@ return array(
             
             'actions' => [
                 'delete'    => 'Удалить',
-                'publish'   => 'Оставить'
+                'publish'   => 'Опубликовать'
             ],
             'blankslate' => [
                 'text' => 'Здесь пусто'

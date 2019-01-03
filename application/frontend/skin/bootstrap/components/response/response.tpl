@@ -82,7 +82,6 @@
                     id      = $idArbitrage
                     content = {component "arbitrage.form" 
                                 oArbitrage     = Engine::GetEntity('Talk_Message', ['type' => 'arbitrage'])
-                                redirect    = $redirect 
                                 target_id   = $entity->getId() 
                                 target_type = $entity->getType()}}
             {/if}

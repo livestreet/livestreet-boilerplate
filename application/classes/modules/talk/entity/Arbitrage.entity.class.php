@@ -10,6 +10,11 @@ class ModuleTalk_EntityArbitrage extends ModuleTalk_EntityMessage{
     
     public function __construct($aParam = false)
     {
+        
+        $this->setType('arbitrage');
+        
+        $this->aRelations['response']  = array(self::RELATION_TYPE_BELONGS_TO, 'ModuleTalk_EntityResponse', 'target_id');
+        
         parent::__construct($aParam);
         
         $this->aValidateRules[] = array(
@@ -18,18 +23,13 @@ class ModuleTalk_EntityArbitrage extends ModuleTalk_EntityMessage{
             'on' => ['']
         );
         
-        $this->setType('arbitrage');
         
-        $this->aRelations['response']  = array(self::RELATION_TYPE_BELONGS_TO, 'ModuleTalk_EntityResponse', 'target_id');
+        
     }
     
-    
-    public function afterSave() {
-        parent::afterSave();
-        
-        if($oResponse = $this->getResponse()){
-            $oResponse->setState('arbitrage');
-            $oResponse->Save();
-        }
+    public function getUrl() {
+        $oResponse = $this->getResponse();
+        $oUser = $oResponse->getTargetUser();
+        return $oUser->getProfileUrl(). '/arbitrage/' . $oResponse->getId();
     }
 }

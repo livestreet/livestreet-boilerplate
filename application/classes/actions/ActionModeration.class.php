@@ -48,9 +48,11 @@ class ActionModeration extends Action
         
         $this->RegisterEventExternal('Arbitrage', 'ActionModeration_EventArbitrage');
         $this->AddEventPreg('/^arbitrage$/i', '/^$/i',['Arbitrage::EventArbitrage' , 'moderation'] );
+        $this->AddEventPreg('/^arbitrage-chat$/i', '/^\d+$/i',['Arbitrage::EventArbitrageChat' , 'moderation'] );
         $this->AddEventPreg('/^arbitrage$/i','/^ajax-responses$/i',  'Arbitrage::EventAjaxResponses');
         $this->AddEventPreg('/^arbitrage$/i','/^ajax-publish$/i',  'Arbitrage::EventAjaxPublish');
         $this->AddEventPreg('/^arbitrage$/i','/^ajax-delete$/i',  'Arbitrage::EventAjaxDelete');
+        $this->AddEventPreg('/^arbitrage$/i','/^create-answer$/i',  'Arbitrage::EventAjaxCreateAnswer');
     }
 
 

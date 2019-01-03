@@ -74,6 +74,7 @@ class ActionProfile extends Action
         $this->AddEventPreg('/^.+$/i', '/^responses$/i', '/^(page(\d))?$/i', ['Profile::EventResponses' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^proposals$/i', '/^(page(\d))?$/i', ['Profile::EventProposals' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^arbitrage$/i', '/^(page(\d))?$/i', ['Profile::EventArbitrage' , 'profile']);
+        $this->AddEventPreg('/^.+$/i', '/^arbitrage$/i', '/^\d+$/i', ['Profile::EventArbitrageChat' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^my-responses$/i', '/^(page(\d))?$/i', ['Profile::EventMyResponses' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^my-proposals$/i', '/^(page(\d))?$/i', ['Profile::EventMyProposals' , 'profile']);
         

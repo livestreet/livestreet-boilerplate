@@ -11,6 +11,10 @@ class ModuleTalk_EntityAnswer extends ModuleTalk_EntityMessage{
    
     public function __construct($aParam = false)
     {
+        $this->setType('answer');
+        
+        $this->aRelations['response']  = array(self::RELATION_TYPE_BELONGS_TO, 'ModuleTalk_EntityResponse', 'target_id');
+        
         parent::__construct($aParam);
         
         $this->aValidateRules[] = array(
@@ -19,9 +23,6 @@ class ModuleTalk_EntityAnswer extends ModuleTalk_EntityMessage{
             'on' => ['']
         );        
         
-        $this->setType('answer');
-        
-        $this->aRelations['response']  = array(self::RELATION_TYPE_BELONGS_TO, 'ModuleTalk_EntityResponse', 'target_id');
         
     }   
     

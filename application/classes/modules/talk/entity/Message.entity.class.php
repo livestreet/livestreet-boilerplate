@@ -30,7 +30,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
                 'max' => 200, 
                 'min' => 10, 
                 'allowEmpty' => false,
-                'msg' => $this->Lang_Get('talk.'.$this->getType().'.form.text.error_validate', ['min' => 10, 'max' => 200]),
+                'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 10, 'max' => 200]),
                 'on' => ['']
             ),
             array(
@@ -39,28 +39,6 @@ class ModuleTalk_EntityMessage extends EntityORM{
                 'on' => ['create']
             )
         );
-        
-        if($this->getType() == 'proposal'){
-            $this->aValidateRules[] = array(
-                'target_type', 
-                'string',
-                'on' => ['']
-                
-            );
-            $this->aValidateRules[] = array(
-                'target_id', 
-                'exist_user',
-                'on' => ['']
-            );
-        }
-        
-        if(in_array($this->getType(), ['answer', 'arbitrage']) ){
-            $this->aValidateRules[] = array(
-                'target_id,target_type', 
-                'exist_message',
-                'on' => ['']
-            );
-        }
         
     }
     
@@ -145,12 +123,4 @@ class ModuleTalk_EntityMessage extends EntityORM{
         $this->Rating_DeleteVoteItemsByFilter(['target_type' => 'user', 'target_id' => $this->getTargetId()]);
     }
     
-    public function afterSave() {
-        parent::afterSave();
-       
-        if($this->getType() == 'arbitrage' and ($oResponse = $this->getResponse())){
-            $oResponse->setState('arbitrage');
-            $oResponse->Save();
-        }
-    }
 }

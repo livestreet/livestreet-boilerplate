@@ -7,7 +7,7 @@
 <div class="response-item" data-type="response-item" data-param-id="{$entity->getId()}" data-counter-selector="[data-count-moderation]">
     <hr>
     <div class="row mt-3">
-        <div class="col-1"><a href="{router page="moderation/arbitrage/{$entity->getId()}"}">{$entity->getId()}</a></div>
+        <div class="col-1"><a href="{router page="moderation/arbitrage-chat/{$entity->getId()}"}">{$entity->getId()}</a></div>
         <div class="col">{component "user" oUser=$entity->getUser()}</div>
         <div class="col d-none d-sm-block">{component "user" oUser=$entity->getTargetUser()}</div>
         <div class="col  d-none d-xl-block">{component "rating.stars" value=$entity->getRating()} {$entity->getDateCreateFormat()}</div>

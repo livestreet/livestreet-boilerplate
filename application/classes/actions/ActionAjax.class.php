@@ -68,6 +68,8 @@ class ActionAjax extends Action
         $this->AddEventPreg('/^talk$/i', '/^create-answer$/', '/^$/', 'Talk::EventAjaxAnswerCreate');
         $this->AddEventPreg('/^talk$/i', '/^create-arbitrage$/', '/^$/', 'Talk::EventAjaxArbitrageCreate');
         $this->AddEventPreg('/^talk$/i', '/^message-delete$/', '/^$/', 'Talk::EventAjaxMessageDelete');
+        $this->AddEventPreg('/^talk$/i', '/^create-arbitrage-chat$/', '/^$/', 'Talk::EventAjaxArbitrageChat');
+        
     }
 
 

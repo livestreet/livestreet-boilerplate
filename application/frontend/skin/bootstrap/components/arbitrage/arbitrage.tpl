@@ -25,13 +25,6 @@
                 {component 'bs-carousel' classes="slide w-50" indicators=true controls=true  items=$items}
             {/if}
             
-            <div class="row mt-3">
-                <div class="col text-right">
-                    {if $entity->getState() == "moderate"}
-                        <span class="text-danger">Ожидает ответа модератора</span>
-                    {/if}
-                </div>
-            </div>
             
         </div>
     </div>

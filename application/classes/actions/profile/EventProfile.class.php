@@ -85,14 +85,59 @@ class ActionProfile_EventProfile extends Event {
             return $this->EventNotFound();
         }
         
-        $this->GetItemsByFilter([
-            'target_id'     => $this->oUserProfile->getId(),
-            'state in'      => ['arbitrage'],
-            'type'          => 'response'
-        ], 'arbitrage');
+        $iLimit = Config::Get('module.talk.page_count');
+        
+        $iPage = $this->GetParamEventMatch(1,2);
+        $iPage = $iPage?$iPage:1;
+        
+        $aFilter = [
+            '#with'         => ['user'],
+            '#index-from'   => 'id',
+            '#order'        => ['date_create' => 'desc'],
+            '#page'         => [$iPage, $iLimit],
+            'state in'      => ['arbitrage', 'chat']
+        ];
+        
+        $aMessages = $this->Talk_GetResponseItemsByFilter($aFilter);
+
+        /*
+         * Прикрепляем Media в соответствии с типом
+         */
+        $aSortTypeResuls = [];
+        foreach ($aMessages['collection'] as $oResult) {
+            if(!isset($aSortTypeResuls[$oResult->getType()])){
+                $aSortTypeResuls[$oResult->getType()] = [];
+            }
+            $aSortTypeResuls[$oResult->getType()][]  = $oResult;
+        } 
+        
+        foreach ($aSortTypeResuls as $type => $aResults) {
+            $this->Media_AttachMediasForTargetItems($aResults, $type);
+        }      
+                
+        $aPaging = $this->Viewer_MakePaging($aMessages['count'], $iPage, $iLimit, 
+                Config::Get('module.talk.pagination.pages.count'), Router::GetPath($this->sCurrentEvent.'/arbitrage'));
+        
+        $this->Viewer_Assign('aPaging', $aPaging);
+        $this->Viewer_Assign('results', $aMessages['collection']);
+        $this->Viewer_Assign('count', $aMessages['count']);
         
         $this->sMenuHeadItemSelect = 'arbitrage';
         $this->SetTemplateAction('arbitrage');
+    }
+    
+    
+    public function EventArbitrageChat() {
+        $this->sMenuItemSelect = 'arbitrage';
+        $this->SetTemplateAction('arbitrage-chat');
+        
+        $iArbId = $this->GetParam(1);
+        
+        if(!$oResponse = $this->Talk_GetResponseByFilter(['id' => $iArbId])){
+            return $this->EventNotFound();
+        }
+        
+        $this->Viewer_Assign('oResponse', $oResponse);
     }
     
     protected function GetItemsByFilter($aFilter, $sPageName) {
