@@ -7,7 +7,7 @@
  
 {extends "component@bs-form.field"}
 
-{component_define_params params=[ 'multiple', 'dataCrop', 'crop']}
+{component_define_params params=[ 'multiple', 'dataCrop', 'crop', 'medias']}
 
 {block name="field_options"}
     {if $crop}
@@ -31,11 +31,15 @@
 {block name="field_input"}
     
     {capture name="content"}
-        {$medias = []}
-        {$aMedias = $entity->getMedia()}
-        {foreach $aMedias as $oMedia}
-            {$medias[] = [obj => $oMedia]}
-        {/foreach}
+        {if !$medias and $entity}
+            {$medias = []}
+            {$aMedias = $entity->getMedia()}
+            {foreach $aMedias as $oMedia}
+                {$medias[] = [obj => $oMedia]}
+            {/foreach}
+        {/if}
+
+       
         {if is_array($medias)}
             {foreach $medias as $media}
                 {component "bs-media.file" oMediaItem=$media.obj size=$media.size name=$name}

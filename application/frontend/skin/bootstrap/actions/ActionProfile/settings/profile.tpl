@@ -7,7 +7,7 @@
     {capture name="form"}
         <form class="" data-type="form-ajax" data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax">
             {* Фото*}
-            
+
             {$medias = []}
             {$aMedias = $oUserProfile->getMedia('user_photo')}
             {foreach $aMedias as $oMedia}
