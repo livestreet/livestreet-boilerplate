@@ -29,6 +29,11 @@ class HookMenuModeration extends Hook {
             'count' => $this->Talk_GetCountFromResponseByFilter(['state' => 'moderate']),
             'url'   => 'moderation/responses'
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
+            'name' => 'responses',
+            'title' => 'moderation.menu.responses_all',
+            'count' => $this->Talk_GetCountFromResponseByFilter([ '#where' => ['t.state != ?' => ['delete']]]),
+            'url'   => 'moderation/responses-all'
+        ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'arbitrage',
             'title' => 'moderation.menu.arbitrage',
             'count' => $this->Talk_GetCountFromResponseByFilter([ 'state in' => ['arbitrage', 'chat']]),

@@ -18,26 +18,24 @@ class ModuleTalk_EntityMessage extends EntityORM{
         parent::__construct($aParam);
         
         
-        $this->aValidateRules =  array(
-            array(
-                'user_id', 
-                'exist_user',
-                'on' => ['create', '']
-            ),
-            array(
-                'text', 
-                'string', 
-                'max' => 200, 
-                'min' => 10, 
-                'allowEmpty' => false,
-                'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 10, 'max' => 200]),
-                'on' => ['']
-            ),
-            array(
-                'text', 
-                'double_text',
-                'on' => ['create']
-            )
+        $this->aValidateRules[] =   array(
+            'user_id', 
+            'exist_user',
+            'on' => ['create', '']
+        );
+        $this->aValidateRules[] =    array(
+            'text', 
+            'string', 
+            'max' => 200, 
+            'min' => 10, 
+            'allowEmpty' => false,
+            'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 10, 'max' => 200]),
+            'on' => ['']
+        );
+        $this->aValidateRules[] =    array(
+            'text', 
+            'double_text',
+            'on' => ['create']
         );
         
     }

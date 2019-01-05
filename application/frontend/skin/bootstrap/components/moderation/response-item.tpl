@@ -4,7 +4,7 @@
  
 {component_define_params params=[ 'entity', 'answered', 'targetUser', 'deleted', 'redirect']}
 
-<div data-type="response-item" data-param-id="{$entity->getId()}" data-counter-selector="[data-count-moderation]">
+<div class="response-item" data-type="response-item" data-param-id="{$entity->getId()}" data-counter-selector="[data-count-moderation]">
     <hr>
     <div class="row mt-3">
         <div class="col-1">{$entity->getId()}</div>

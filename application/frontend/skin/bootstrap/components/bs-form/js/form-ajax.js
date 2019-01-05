@@ -19,7 +19,7 @@
             
             // Параметры запроса
             params: {},
-
+            onAfterSubmit:null
             
         },
 
@@ -73,6 +73,10 @@
                 }
                 return;
             }
+            
+            this.element.closest('.modal').modal('hide');
+            
+            this._trigger('onAfterSubmit', null, {context:this, response:response});
         },
         
         afterError: function(){

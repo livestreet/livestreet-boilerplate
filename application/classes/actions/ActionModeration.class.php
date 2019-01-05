@@ -53,6 +53,9 @@ class ActionModeration extends Action
         $this->AddEventPreg('/^arbitrage$/i','/^ajax-publish$/i',  'Arbitrage::EventAjaxPublish');
         $this->AddEventPreg('/^arbitrage$/i','/^ajax-delete$/i',  'Arbitrage::EventAjaxDelete');
         $this->AddEventPreg('/^arbitrage$/i','/^create-answer$/i',  'Arbitrage::EventAjaxCreateAnswer');
+        
+        $this->RegisterEventExternal('Responses', 'ActionModeration_EventResponses');
+        $this->AddEventPreg('/^responses-all$/i',  '/^(page(\d+))?$/i', ['Responses::EventResponsesAll' , 'moderation']);
     }
 
 

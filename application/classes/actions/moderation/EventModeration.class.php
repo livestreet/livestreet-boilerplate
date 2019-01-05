@@ -55,6 +55,8 @@ class ActionModeration_EventModeration extends Event {
         }
         
         $oResponse->setState('publish');
+        $this->Rating_Vote($oResponse->getUserId(), $oResponse->getTargetType(), $oResponse->getTargetId(), $oResponse->getRating());
+        
                 
         if($oResponse->Save()){
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_publish'));

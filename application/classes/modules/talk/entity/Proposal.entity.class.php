@@ -10,12 +10,14 @@ class ModuleTalk_EntityProposal extends ModuleTalk_EntityMessage{
     
     public function __construct($aParam = false)
     {
+        $this->setType('proposal');
+        
         parent::__construct($aParam);
         
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['']
+            'on' => ['create','']
 
         );
         $this->aValidateRules[] = array(
@@ -23,6 +25,7 @@ class ModuleTalk_EntityProposal extends ModuleTalk_EntityMessage{
             'exist_user',
             'on' => ['']
         );
+        
         
     }
     

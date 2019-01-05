@@ -234,7 +234,8 @@ return array(
     'moderation' => [
         'menu' => [
             'moderation' => 'Модерация',
-            'arbitrage' => 'Арбитраж'
+            'arbitrage' => 'Арбитраж',
+            'responses_all' => 'Все отзывы'
         ],
         'btn_view' => [
             'text' => 'Полный / Свернутый'
@@ -260,6 +261,19 @@ return array(
                 'confirm_delete'   => 'Вы действительно хотите переместить этот отзыв в удаленные?',
                 'success_publish' => 'Опубликовано',
                 'success_delete' => 'Перемещено в удаленные'
+            ]
+        ],
+        'responses_all' => [
+            'title' => 'Все отзывы',
+            'form' => [
+                'from' => 'От кого',
+                'to'    => 'Кому',
+                'login' => [
+                    'placeholder' => 'Логин пользователя'
+                ],
+                'text'  => 'Текст содержит',
+                'sort'  => 'Сортировать',
+                'submit' => 'Искать'
             ]
         ],
         'arbitrage' => [

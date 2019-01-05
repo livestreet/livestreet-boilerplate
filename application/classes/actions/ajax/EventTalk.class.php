@@ -73,7 +73,7 @@ class ActionAjax_EventTalk extends Event {
     
     public function EventAjaxProposalCreate() {
         
-        $oProposal = Engine::GetEntity('Talk_Message', ['type' => 'proposal']);
+        $oProposal = Engine::GetEntity('Talk_Proposal');
         $oProposal->_setDataSafe($_REQUEST);
         
         $oProposal->setState('publish');

@@ -8,7 +8,6 @@
 {component_define_params params=[ 'oProposal', 'redirect']}
 
 <form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-proposal'}" class="js-form-validate">
-     
     {* Текст *}
     {component 'bs-form' 
         entity      = $oProposal
@@ -28,6 +27,6 @@
     {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}
     {component "field.hidden" name="target_id" value="{$oUserProfile->getId()}"}
     {component "field.hidden" name="target_type" value="user"}
-    <input type="hidden" name="redirect" value="{$redirect}">
+    <input type="hidden" name="redirect" value="{$oUserProfile->getProfileUrl()}/proposals">
 </form>
 

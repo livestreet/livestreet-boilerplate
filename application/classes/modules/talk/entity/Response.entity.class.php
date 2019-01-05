@@ -57,11 +57,4 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
     }
     
     
-    public function afterSave() {
-        parent::afterSave();
-        
-        if($this->_getDataOriginalOne('state') == 'moderate' and $this->_getDataOne('state') == 'publish'){
-            $this->Rating_Vote($this->getUserId(), $this->getTargetType(), $this->getTargetId(), $this->getRating());
-        }
-    }
 }
