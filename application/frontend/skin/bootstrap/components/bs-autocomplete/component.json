@@ -1,0 +1,13 @@
+{
+    "name": "bs-autocomplete",
+    "version": "1.0.0",
+    "dependencies": {
+    },
+    "templates": {
+        "bs-autocomplete": "autocomplete.tpl"
+    },
+    "scripts": {
+        "vendor-autocomplete": "vendor/bassjobsen-typehead/bootstrap3-typeahead.min.js",
+        "bs-autocomplete": "js/bs-autocomplete.js"
+    }
+}

@@ -70,6 +70,9 @@ class ActionAjax extends Action
         $this->AddEventPreg('/^talk$/i', '/^message-delete$/', '/^$/', 'Talk::EventAjaxMessageDelete');
         $this->AddEventPreg('/^talk$/i', '/^create-arbitrage-chat$/', '/^$/', 'Talk::EventAjaxArbitrageChat');
         
+        $this->RegisterEventExternal('Autocomplete', 'ActionAjax_EventAutocomplete');
+        $this->AddEventPreg('/^autocomplete$/i', '/^user$/', '/^$/', 'Autocomplete::EventUser');
+        
     }
 
 

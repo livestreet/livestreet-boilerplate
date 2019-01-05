@@ -23,8 +23,12 @@
         name    = 'photos[]'
         label   = $aLang.talk.proposal.form.photo.label 
         text    = $aLang.talk.proposal.form.photo.text }
-        
-    {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}
+    
+    {if $oUserCurrent}
+        {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}
+    {/if}
+
+    
     {component "field.hidden" name="target_id" value="{$oUserProfile->getId()}"}
     {component "field.hidden" name="target_type" value="user"}
     <input type="hidden" name="redirect" value="{$oUserProfile->getProfileUrl()}/proposals">

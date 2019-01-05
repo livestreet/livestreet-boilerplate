@@ -5,7 +5,7 @@
 
 
 {block 'layout_page_title'}
-    <h2 class="page-header">{$aLang.moderation.responses_all.title}</h2>
+    <h2 class="page-header">{$aLang.moderation.responses_deleted.title}</h2>
 {/block}
                     
 {block 'layout_content'}

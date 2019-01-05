@@ -56,6 +56,8 @@ class ActionModeration extends Action
         
         $this->RegisterEventExternal('Responses', 'ActionModeration_EventResponses');
         $this->AddEventPreg('/^responses-all$/i',  '/^(page(\d+))?$/i', ['Responses::EventResponsesAll' , 'moderation']);
+        
+        $this->AddEventPreg('/^responses-deleted$/i',  '/^(page(\d+))?$/i', ['Responses::EventResponsesDeleted' , 'moderation']);
     }
 
 

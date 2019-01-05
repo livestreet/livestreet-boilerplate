@@ -133,6 +133,9 @@ return array(
                 'title_edit' => 'Редактировать отзыв'
             ],
             'form' => [
+                'name' => [
+                    'placeholder' => 'Введите ваше имя'
+                ],
                 'text' => [
                     'label' => 'Текст отзыва',
                     'placeholder' => 'Оставте свой отзыв',
@@ -235,7 +238,9 @@ return array(
         'menu' => [
             'moderation' => 'Модерация',
             'arbitrage' => 'Арбитраж',
-            'responses_all' => 'Все отзывы'
+            'responses_all' => 'Все отзывы',
+            'responses_deleted' => 'Удаленные отзывы',
+            'feedback' => 'Поддержка'
         ],
         'btn_view' => [
             'text' => 'Полный / Свернутый'
@@ -265,6 +270,9 @@ return array(
         ],
         'responses_all' => [
             'title' => 'Все отзывы',
+            'blankslate' => [
+                'text' => 'Отзывы не найдены'
+            ],
             'form' => [
                 'from' => 'От кого',
                 'to'    => 'Кому',
@@ -275,6 +283,9 @@ return array(
                 'sort'  => 'Сортировать',
                 'submit' => 'Искать'
             ]
+        ],
+        'responses_deleted' => [
+            'title' => 'Удаленные отзывы',
         ],
         'arbitrage' => [
             'title' => 'Арбитраж',

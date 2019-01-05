@@ -150,8 +150,10 @@ jQuery(document).ready(function($){
 
         });
     }
-    
-   
+    /*
+     * Автозавершение
+     */
+    $('[data-autocomplete]').bsAutocomplete();
     /**
      * Editor
      */
