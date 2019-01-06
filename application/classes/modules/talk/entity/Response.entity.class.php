@@ -54,6 +54,14 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
             'msg' => $this->Lang_Get('talk.response.form.stars.error_validate'),
             'on' => ['create', '']
         );
+        
+        /*
+         * Анонимный автор
+         */
+//        if($this->getUser()->getLogin() == 'anoname'){
+//            $this->getUser()->setName($this->getUserName());
+//        }
+        
     }
     
     

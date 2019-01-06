@@ -95,7 +95,7 @@ $config['module']['security']['hash']  = "livestreet_security_key"; // "прим
  * Модуль Talk
  */
 $config['module']['talk']['pagination']['pages']['count'] = 5;
-$config['module']['talk']['page_count'] = 5;
+$config['module']['talk']['page_count'] = 10;
 
 /*
  * Модерация

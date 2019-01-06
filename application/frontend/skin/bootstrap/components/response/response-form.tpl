@@ -13,7 +13,7 @@
         {component 'bs-form' 
             entity      = $oResponse
             template    = 'text' 
-            name        = "name"
+            name        = "user_name"
             value       = $oResponse->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
             attribtes   = ['require' => true]
@@ -41,13 +41,18 @@
         label       = $aLang.talk.response.form.text.label
         placeholder = $aLang.talk.response.form.text.placeholder
         }
-        
-    {component "bs-media.field" 
-        entity  = $oResponse
-        multiple = true
-        name    = 'photos[]'
-        label   = $aLang.talk.response.form.photo.label 
-        text    = $aLang.talk.response.form.photo.text }
+    {if $oUserCurrent}
+        {component "bs-media.field" 
+            entity  = $oResponse
+            multiple = true
+            name    = 'photos[]'
+            label   = $aLang.talk.response.form.photo.label 
+            text    = $aLang.talk.response.form.photo.text }
+    {/if}
+    
+    {if !$oUserCurrent}
+        {component "recaptcha.field" name="recaptcha"}
+    {/if}
         
     {if $oResponse->getId()}
         {component "field.hidden" name="id" value="{$oResponse->getId()}"}

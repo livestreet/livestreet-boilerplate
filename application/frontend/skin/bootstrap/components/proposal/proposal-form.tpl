@@ -8,6 +8,19 @@
 {component_define_params params=[ 'oProposal', 'redirect']}
 
 <form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-proposal'}" class="js-form-validate">
+    {if !$oUserCurrent}
+        {* Имя анонима *}
+        {component 'bs-form' 
+            entity      = $oProposal
+            template    = 'text' 
+            name        = "user_name"
+            value       = $oProposal->getUserName()
+            placeholder = $aLang.talk.response.form.name.placeholder
+            attribtes   = ['require' => true]
+            }
+            
+        {component "field.hidden" name="user_id" value="0"}
+    {/if}
     {* Текст *}
     {component 'bs-form' 
         entity      = $oProposal
@@ -16,13 +29,18 @@
         label       = $aLang.talk.proposal.form.text.label
         placeholder = $aLang.talk.proposal.form.text.placeholder
         }
-        
-    {component "bs-media.field" 
-        entity  = $oProposal
-        multiple = true
-        name    = 'photos[]'
-        label   = $aLang.talk.proposal.form.photo.label 
-        text    = $aLang.talk.proposal.form.photo.text }
+    {if $oUserCurrent}
+        {component "bs-media.field" 
+            entity  = $oProposal
+            multiple = true
+            name    = 'photos[]'
+            label   = $aLang.talk.proposal.form.photo.label 
+            text    = $aLang.talk.proposal.form.photo.text }
+    {/if}
+    
+    {if !$oUserCurrent}
+        {component "recaptcha.field" name="recaptcha"}
+    {/if}
     
     {if $oUserCurrent}
         {component "field.hidden" name="user_id" value="{$oUserCurrent->getId()}"}

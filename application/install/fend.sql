@@ -1045,6 +1045,11 @@ ALTER TABLE `prefix_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 ALTER TABLE `prefix_talk_message` ADD FULLTEXT(`text`);
+
+ALTER TABLE `prefix_talk_message` ADD `user_name` VARCHAR(200) NOT NULL AFTER `user_id`;
+
+INSERT INTO `prefix_user` (`id`, `login`, `mail`, `name`, `about`, `photo`, `password`, `date_create`, `date_activate`, `ip_create`, `active`, `rating`, `is_admin`, `activate`, `confirmed`, `activate_key`) VALUES
+(0, 'anoname', 'support@fend.ru', 'Аноним', 'Этот пользователь не существует. Он создан для управления отзывами от анонимных пользователей', NULL, '', '2019-01-02 00:00:00', '2019-01-01 00:00:00', '', 0, 0, 0, 0, 0, NULL);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

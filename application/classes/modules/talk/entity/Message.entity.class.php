@@ -23,6 +23,11 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'exist_user',
             'on' => ['create', '']
         );
+        $this->aValidateRules[] = array(
+            'user_name', 
+            'string',
+            'on' => ['create' ]
+        );
         $this->aValidateRules[] =    array(
             'text', 
             'string', 
@@ -38,6 +43,21 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'on' => ['create']
         );
         
+        
+        
+    }
+    
+    public function getUser() {
+        
+        if($this->getUserId() == 0){
+            return Engine::GetEntity('User_User', [
+                'name' => $this->getUserName(),
+                'login' => 'guest',
+                'id' => 0
+            ]);
+        }
+        
+        return parent::getUser();
     }
     
     protected $aRelations = array(
@@ -63,6 +83,9 @@ class ModuleTalk_EntityMessage extends EntityORM{
     }
     
     public function ValidateExistUser($sValue) {
+        if((int)$sValue === 0 ){
+            return true;
+        }
         if(!$this->User_GetUserById($sValue)){
             return $this->Lang_Get('common.error.error').' user not found';
         }

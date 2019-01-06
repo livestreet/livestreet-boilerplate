@@ -91,7 +91,7 @@ class ActionProfile_EventProfile extends Event {
         $iPage = $iPage?$iPage:1;
         
         $aFilter = [
-            '#with'         => ['user'],
+            //'#with'         => ['user'],
             '#index-from'   => 'id',
             '#order'        => ['date_create' => 'desc'],
             '#page'         => [$iPage, $iLimit],
@@ -173,7 +173,7 @@ class ActionProfile_EventProfile extends Event {
                 
         $aPaging = $this->Viewer_MakePaging($aMessages['count'], $iPage, $iLimit, 
                 Config::Get('module.talk.pagination.pages.count'), Router::GetPath($this->sCurrentEvent.'/'.$sPageName));
-        
+
         $this->Viewer_Assign('aPaging', $aPaging);
         $this->Viewer_Assign('results', $aMessages['collection']);
         $this->Viewer_Assign('count', $aMessages['count']);

@@ -51,6 +51,10 @@ class ActionProfile extends Action
             'state' => 'publish',
             'user_id'     => $this->oUserProfile->getId()
         ]);
+        
+        if(!$this->User_GetUserCurrent()){
+            $this->Component_Add('recaptcha');
+        }
     }
 
     /**
@@ -98,7 +102,7 @@ class ActionProfile extends Action
             return false;
         }        
         
-        return true;
+        return $this->oUserProfile->getActivate();
     }
     
      /**
