@@ -61,6 +61,17 @@ class ModuleUser_EntityUser extends EntityORM
     {
        
         parent::__construct($aParam);
+        
+        if(Config::Get('module.user.captcha_use_registration')){
+            $this->aValidateRules[] = array(
+                'recaptcha',
+                'captcha_recaptcha',
+                'name'  => 'user_signup',
+                'on'    => array('create', 'create_anoname'),
+                'label' => $this->Lang_Get('auth.labels.captcha_field'),
+                'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
+            );
+        }
     }
     
     public function ValidateLogin($sValue, $aParams)

@@ -16,7 +16,7 @@
             name        = "user_name"
             value       = $oResponse->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
-            attribtes   = ['require' => true]
+            attributes   = ['required' => true]
             }
             
         {component "field.hidden" name="user_id" value="0"}
@@ -51,7 +51,9 @@
     {/if}
     
     {if !$oUserCurrent}
-        {component "recaptcha.field" name="recaptcha"}
+        {component "recaptcha.field" 
+            entity  = $oResponse
+            name="recaptcha"}
     {/if}
         
     {if $oResponse->getId()}

@@ -9,7 +9,8 @@
         options: {
             // Классы
             selectors: {
-                fields: 'input, .form-control',
+                fields: 'input, .form-control, textarea',
+                recaptcha: ".g-recaptcha",
                 submit: '[type="submit"]'
             },
 
@@ -33,16 +34,19 @@
         _create: function() {
             this._super();
             
-            this.elements.fields.bsFieldValidate();
-            
         },
         
         validate: function(call){
+            
+            this.elements.fields = this.element.find(this.option('selectors.fields'));
+            this.elements.fields.bsFieldValidate();
+            
             if(!this.isValidFields()){
                 this.showErrorsMessageNotice();
                 call({success:false});
                 return;
             }
+            
             
             if(this.element.data('recaptcha') !== undefined && $.isFunction(call)){
                 this.element.bsReCaptcha('execute', call);

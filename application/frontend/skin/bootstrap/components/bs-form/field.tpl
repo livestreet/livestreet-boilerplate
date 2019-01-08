@@ -65,10 +65,10 @@
         {/if}
     {/block}
     <div class="invalid-feedback">
-        {$msg|default:$messageError}       
+        {$msg|default:$validateError}       
     </div>
     <div class="valid-feedback">
-        {$messageSuccess}
+        {$validateSuccess}
     </div>
 {/capture}
 

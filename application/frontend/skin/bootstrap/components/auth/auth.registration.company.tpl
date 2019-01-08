@@ -43,6 +43,13 @@
         validate       = [ 
             triggers => 'change keyup'
         ]}
+        
+    {if Config::Get('module.user.captcha_use_registration')}
+        {component "recaptcha.field" 
+            entity      = 'User_User'
+            name        = "recaptcha"}
+    {/if}
+
 
 
     {hook run='form_registration_end'}

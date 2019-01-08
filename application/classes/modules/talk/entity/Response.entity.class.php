@@ -40,27 +40,21 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['create']
+            'on' => ['create', 'create_anoname']
         );
         $this->aValidateRules[] = array(
             'target_id', 
             'exist_user',
-            'on' => ['create']
+            'on' => ['create', 'create_anoname']
         );
         $this->aValidateRules[] = array(
             'rating', 
             'number', 
             'allowEmpty' => false,
             'msg' => $this->Lang_Get('talk.response.form.stars.error_validate'),
-            'on' => ['create', '']
-        );
+            'on' => ['create', '', 'create_anoname']
+        );        
         
-        /*
-         * Анонимный автор
-         */
-//        if($this->getUser()->getLogin() == 'anoname'){
-//            $this->getUser()->setName($this->getUserName());
-//        }
         
     }
     

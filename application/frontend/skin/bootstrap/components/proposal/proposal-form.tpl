@@ -16,7 +16,7 @@
             name        = "user_name"
             value       = $oProposal->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
-            attribtes   = ['require' => true]
+            attributes   = ['required' => true]
             }
             
         {component "field.hidden" name="user_id" value="0"}

@@ -438,6 +438,16 @@ class ModuleUser extends ModuleORM
         );
     }
     
+    public function SendNotifyConfirmCompany($aParams)
+    {
+        $this->Notify_Send(
+            $this->GetUserById(1),
+            'confirm_company.tpl',
+            $this->Lang_Get('emails.confirm_company.subject'),
+            $aParams, null, true
+        );
+    }
+    
     /**
      * Проверяет логин на корректность
      *

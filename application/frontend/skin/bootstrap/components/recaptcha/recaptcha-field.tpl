@@ -9,8 +9,12 @@
 
 {component_define_params params=[ 'readonly']}
 
+{$id = "recaptcha{math equation='rand()'}"}
 {block name="field_input"}
-    <div id="g-recaptcha" class="g-recaptcha" data-sitekey="{Config::Get('module.validate.recaptcha.site_key')}"></div>
+    <input {field_make_rules entity=$entity field=$name }  type="text" name="{$name}" style="display:none;"
+        class="{$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+        {cattr list=$attributes} >
+    <div id="g-recaptcha-{$attributes.id}" data-field-id="{$attributes.id}" class=" g-recaptcha" data-sitekey="{Config::Get('module.validate.recaptcha.site_key')}"></div>
 {/block}
     
 

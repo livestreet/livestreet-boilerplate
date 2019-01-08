@@ -16,10 +16,16 @@ class ActionAjax_EventTalk extends Event {
     
     public function EventAjaxResponseCreate() {
         
-        $oResponse = Engine::GetEntity('Talk_Message', ['type' => 'response']);
+        $oResponse = Engine::GetEntity('Talk_Response');
         $oResponse->_setDataSafe($_REQUEST);
         
+        $oResponse->_setValidateScenario( 'create');
+        
         $oResponse->setState('moderate');
+        
+        if(!$this->User_GetUserCurrent()){
+            $oResponse->_setValidateScenario( 'create_anoname');
+        }
         
         if($oResponse->_Validate()){
             if($oResponse->Save()){
@@ -45,9 +51,14 @@ class ActionAjax_EventTalk extends Event {
             $oResponse = Engine::GetEntity('Talk_Response');
             $oResponse->setState('moderate');
             $oResponse->_setValidateScenario('create');
+            if(!$this->User_GetUserCurrent()){
+                $oResponse->_setValidateScenario( 'create_anoname');
+            }
         }
         
         $oResponse->_setDataSafe($_REQUEST);
+        $oResponse->setRecaptcha(getRequest('g-recaptcha-response'));
+        
         
         if($oResponse->_Validate()){
             if($oResponse->Save()){
@@ -59,7 +70,7 @@ class ActionAjax_EventTalk extends Event {
                 
                 $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
                 
-                $this->Message_AddNotice($this->Lang_Get('common.success.save'));
+                $this->Message_AddNotice($this->Lang_Get('talk.response.notice.success_save'));
             }else{
                 $this->Message_AddError($this->Lang_Get('common.error.error'));
             }

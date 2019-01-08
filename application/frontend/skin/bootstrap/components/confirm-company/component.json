@@ -1,0 +1,11 @@
+{
+    "name": "confirm-company",
+    "version": "1.0.0",
+    "templates": {
+        "modal":"confirm-company-modal.tpl",
+        "form":"confirm-company-form.tpl"
+    },
+    "scripts": {
+        
+    }
+}

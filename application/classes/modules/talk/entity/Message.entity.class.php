@@ -21,12 +21,12 @@ class ModuleTalk_EntityMessage extends EntityORM{
         $this->aValidateRules[] =   array(
             'user_id', 
             'exist_user',
-            'on' => ['create', '']
+            'on' => [ '']
         );
         $this->aValidateRules[] = array(
             'user_name', 
             'string',
-            'on' => ['create' ]
+            'on' => ['create', 'create_anoname' ]
         );
         $this->aValidateRules[] =    array(
             'text', 
@@ -40,10 +40,28 @@ class ModuleTalk_EntityMessage extends EntityORM{
         $this->aValidateRules[] =    array(
             'text', 
             'double_text',
-            'on' => ['create']
+            'on' => ['create', 'create_anoname']
         );
         
-        
+        if ((int)$this->getUserId() === 0) {
+            $this->aValidateRules[] = array(
+                'recaptcha',
+                'string',
+                'allowEmpty' => false,
+                'min'  => '10',
+                'on'    => array( 'create_anoname'),
+                'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
+            );
+            $this->aValidateRules[] = array(
+                'recaptcha',
+                'captcha_recaptcha',
+                'allowEmpty' => false,
+                'name'  => 'user_signup',
+                'on'    => array( 'create_anoname'),
+                'label' => $this->Lang_Get('auth.labels.captcha_field'),
+                'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
+            );
+        }
         
     }
     

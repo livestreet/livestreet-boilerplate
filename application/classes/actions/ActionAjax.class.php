@@ -73,6 +73,9 @@ class ActionAjax extends Action
         $this->RegisterEventExternal('Autocomplete', 'ActionAjax_EventAutocomplete');
         $this->AddEventPreg('/^autocomplete$/i', '/^user$/', '/^$/', 'Autocomplete::EventUser');
         
+        $this->RegisterEventExternal('Profile', 'ActionAjax_EventProfile');
+        $this->AddEventPreg('/^confirm-company$/i', '/^$/', 'Profile::EventConfirmCompany');
+        
     }
 
 

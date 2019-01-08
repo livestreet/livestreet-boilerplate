@@ -7,7 +7,7 @@
         "bs-autocomplete": "autocomplete.tpl"
     },
     "scripts": {
-        "vendor-autocomplete": "vendor/bassjobsen-typehead/bootstrap3-typeahead.min.js",
+        "vendor-autocomplete": "js/bootstrap3-typeahead.min.js",
         "bs-autocomplete": "js/bs-autocomplete.js"
     }
 }

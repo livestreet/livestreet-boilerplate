@@ -46,9 +46,12 @@
 {/block}
 
 {block "layout_modals" prepend}
+    
+    {if ($oUserCurrent and $oUserCurrent->getId() != $oUserProfile->getId()) or (!$oUserCurrent and Config::Get('module.user.user_guest'))}
         {component "response.modal" url={router page='ajax/talk/edit-response'}}
         {component "proposal.modal"}
-
+    {/if}
     
-    
+    {component "confirm-company.modal"}
+        
 {/block}

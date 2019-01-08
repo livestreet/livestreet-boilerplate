@@ -67,6 +67,8 @@ $config['module']['user']['count_auth_session_history'] = 10; // Общее ко
 $config['module']['user']['login']['charset'] = '0-9a-z_\-'; // Допустимые в имени пользователя символы
 $config['module']['user']['login']['min_size'] = 3; // Минимальное количество символов в логине
 $config['module']['user']['login']['max_size'] = 30; // Максимальное количество символов в логине
+$config['module']['user']['captcha_use_registration'] = true; // Использовать капчу при регистрации
+$config['module']['user']['user_guest'] = true; //Разрешать анониму создавать отзывы
 
 $config['module']['user']['photo']['width'] = 300; // 
 $config['module']['user']['avatar']['width'] = 50; // 
