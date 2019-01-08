@@ -52,9 +52,7 @@ class ActionProfile extends Action
             'user_id'     => $this->oUserProfile->getId()
         ]);
         
-        if(!$this->User_GetUserCurrent()){
-            $this->Component_Add('recaptcha');
-        }
+        $this->Component_Add('recaptcha');
     }
 
     /**
@@ -74,6 +72,7 @@ class ActionProfile extends Action
         $this->AddEventPreg('/^.+$/i', '/^settings$/i', '/^profile-ajax$/i', 'Settigns::EventProfileAjax' );
         
         $this->RegisterEventExternal('Profile', 'ActionProfile_EventProfile');
+        $this->AddEventPreg('/^.+$/i', '/^confirm-company$/i', ['Profile::EventConfirmCompany' , 'confirm_company']);
         $this->AddEventPreg('/^.+$/i', '/^(all)?$/i', '/^(page(\d))?$/i', ['Profile::EventIndex' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^responses$/i', '/^(page(\d))?$/i', ['Profile::EventResponses' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^proposals$/i', '/^(page(\d))?$/i', ['Profile::EventProposals' , 'profile']);

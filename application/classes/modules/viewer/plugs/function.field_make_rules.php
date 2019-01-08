@@ -79,6 +79,11 @@ function smarty_function_field_make_rules($params, &$smarty)
             
             if($oValidator->msg){
                 $smarty->assign('msg', $oValidator->msg);
+            }else{
+                $msg = $oValidator->validate('');
+                $msg = str_replace("%%field%%", $oValidator->label, $msg);
+                $smarty->assign('msg', $msg);
+                
             }
             
             if ($sType != 'inline' ) {

@@ -140,6 +140,13 @@ class ActionProfile_EventProfile extends Event {
         $this->Viewer_Assign('oResponse', $oResponse);
     }
     
+    public function EventConfirmCompany() {
+        
+        
+        
+        $this->SetTemplateAction('confirm-company');
+    }
+    
     protected function GetItemsByFilter($aFilter, $sPageName) {
         $iLimit = Config::Get('module.talk.page_count');
         

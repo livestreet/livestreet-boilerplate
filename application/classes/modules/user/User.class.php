@@ -440,6 +440,7 @@ class ModuleUser extends ModuleORM
     
     public function SendNotifyConfirmCompany($aParams)
     {
+        
         $this->Notify_Send(
             $this->GetUserById(1),
             'confirm_company.tpl',

@@ -6,8 +6,10 @@
 
 {block 'content'}
     {lang name='emails.confirm_company.text' params=[
+        'company_url' => $company_url,
+        'company_name' => $company_name,
         'name'  => $name,
-        'email' => $email,
+        'mail' => $mail,
         'job'   => $job,
         'phone'  => $phone,
         'mess'  => $mess

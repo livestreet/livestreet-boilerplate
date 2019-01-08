@@ -6,7 +6,7 @@
 
 
 {component "bs-modal" 
-    header      = $aLang.user.confirm_company.title
+    header      = $aLang.user.confirm_company.form.title
     bmods       = $bmods|default:"lg" 
     showFooter  = true
     primaryButton = [
