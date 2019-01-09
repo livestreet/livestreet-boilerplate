@@ -62,7 +62,6 @@ class ActionAjax extends Action
         $this->AddEventPreg('/^media$/i', '/^remove-file$/', '/^$/', 'Media::EventMediaRemoveFile');
         
         $this->RegisterEventExternal('Talk', 'ActionAjax_EventTalk');
-        $this->AddEventPreg('/^talk$/i', '/^create-response$/', '/^$/', 'Talk::EventAjaxResponseCreate');
         $this->AddEventPreg('/^talk$/i', '/^edit-response$/', '/^$/', 'Talk::EventAjaxResponseEdit');
         $this->AddEventPreg('/^talk$/i', '/^create-proposal$/', '/^$/', 'Talk::EventAjaxProposalCreate');
         $this->AddEventPreg('/^talk$/i', '/^create-answer$/', '/^$/', 'Talk::EventAjaxAnswerCreate');

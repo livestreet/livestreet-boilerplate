@@ -61,10 +61,16 @@
                     {showProgress:false, onError:this.afterError.bind(this)});
                 return;
             }
+            
             this.loaded();
         },
         
         afterSubmit:function(response){
+            
+            if(grecaptcha !== undefined){
+                grecaptcha.reset();
+            }
+            
             this.loaded();
             
             if(response.bStateError){
@@ -80,6 +86,7 @@
         },
         
         afterError: function(){
+            
             this.loaded();
         },
         

@@ -14,37 +14,7 @@ class ActionAjax_EventTalk extends Event {
         
     }
     
-    public function EventAjaxResponseCreate() {
         
-        $oResponse = Engine::GetEntity('Talk_Response');
-        $oResponse->_setDataSafe($_REQUEST);
-        
-        $oResponse->_setValidateScenario( 'create');
-        
-        $oResponse->setState('moderate');
-        
-        if(!$this->User_GetUserCurrent()){
-            $oResponse->_setValidateScenario( 'create_anoname');
-        }
-        
-        if($oResponse->_Validate()){
-            if($oResponse->Save()){
-                $this->Media_AttachMedia(getRequest('photos'), 'response', $oResponse->getId());
-                
-                $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
-                
-                $this->Message_AddNotice($this->Lang_Get('talk.response.notice.success_add'));
-            }else{
-                $this->Message_AddError($this->Lang_Get('common.error.error'));
-            }
-        }else{
-            foreach ($oResponse->_getValidateErrors() as $aError) {
-                $this->Message_AddError(array_shift($aError));
-            }
-        }
-    }
-    
-    
     public function EventAjaxResponseEdit() {
         
         if(!$oResponse = $this->Talk_GetResponseByFilter(['id' => getRequest('id')])){

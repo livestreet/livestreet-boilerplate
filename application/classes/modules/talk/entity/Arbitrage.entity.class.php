@@ -32,4 +32,29 @@ class ModuleTalk_EntityArbitrage extends ModuleTalk_EntityMessage{
         $oUser = $oResponse->getTargetUser();
         return $oUser->getProfileUrl(). '/arbitrage/' . $oResponse->getId();
     }
+    
+    public function afterSave() {
+        
+        
+        if($this->getUser()->getId() != $this->getResponse()->getTargetUser()->getId()){
+            $this->Notify_Send(
+                $this->getResponse()->getTargetUser(),
+                'arbitrage_answer.tpl',
+                $this->Lang_Get('emails.arbitrage_answer.subject'),
+                ['oArbitrage' => $this], null, true
+            );
+        }
+        
+        if($this->_getOriginalDataOne('state') != 'closed' and $this->getState('closed')){
+            $this->Notify_Send(
+                $this->getResponse()->getTargetUser(),
+                'arbitrage_closed.tpl',
+                $this->Lang_Get('emails.arbitrage_closed.subject'),
+                ['oArbitrage' => $this], null, true
+            );
+        }
+        
+        parent::afterSave();
+    }
+    
 }

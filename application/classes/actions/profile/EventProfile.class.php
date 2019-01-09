@@ -141,10 +141,15 @@ class ActionProfile_EventProfile extends Event {
     }
     
     public function EventConfirmCompany() {
-        
-        
-        
         $this->SetTemplateAction('confirm-company');
+    }
+    
+    public function EventResponseSuccess() {
+        $this->SetTemplateAction('response-success');
+    }
+    
+    public function EventProposalSuccess() {
+        $this->SetTemplateAction('proposal-success');
     }
     
     protected function GetItemsByFilter($aFilter, $sPageName) {

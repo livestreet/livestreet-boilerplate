@@ -5,8 +5,9 @@
 
 {block 'layout_content'}
     
-    {component "bs-jumbotron" 
-        title=$aLang.user.confirm_company.success_request.title 
-        content=$aLang.user.confirm_company.success_request.text}
+    <h1>{lang "user.confirm_company.success_request.title" company=$oUserProfile->getName()} </h1>
+    
+    <p>{$aLang.user.confirm_company.success_request.text} </p><br>
+    <a href="{$oUserProfile->getProfileUrl()}">{$aLang.user.confirm_company.success_request.return}</a>
 
 {/block}

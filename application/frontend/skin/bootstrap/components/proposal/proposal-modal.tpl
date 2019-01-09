@@ -15,5 +15,7 @@
         text => $aLang.talk.proposal.form.submit.text,
         attributes => ['data-modal-submit' => true]
     ]
-    content     = {component 'proposal.form' oProposal=Engine::GetEntity('Talk_Proposal')}
+    content     = {component 'proposal.form' 
+                    oProposal=Engine::GetEntity('Talk_Proposal') 
+                    redirect="{$oUserProfile->getProfileUrl()}/response-success"}
     id          = "proposalModal"}

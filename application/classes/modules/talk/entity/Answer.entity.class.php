@@ -26,4 +26,18 @@ class ModuleTalk_EntityAnswer extends ModuleTalk_EntityMessage{
         
     }   
     
+    public function afterSave() {
+        
+        
+        $this->Notify_Send(
+            $this->getResponse()->getTargetUser(),
+            'answer_response.tpl',
+            $this->Lang_Get('emails.answer_response.subject'),
+            ['oAnswer' => $this], null, true
+        );
+        
+        
+        
+        parent::afterSave();
+    }
 }

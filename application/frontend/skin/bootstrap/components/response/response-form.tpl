@@ -11,12 +11,12 @@
     {if !$oUserCurrent}
         {* Имя анонима *}
         {component 'bs-form' 
-            entity      = $oResponse
             template    = 'text' 
             name        = "user_name"
             value       = $oResponse->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
             attributes   = ['required' => true]
+            validateError   = $aLang.talk.response.notice.error_name
             }
             
         {component "field.hidden" name="user_id" value="0"}

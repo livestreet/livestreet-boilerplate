@@ -5,7 +5,7 @@
 {component_define_params params=[ 'entity', 'id', 'bmods', 'title', 'url' ]}
 
 {if !$entity}
-    {$entity=Engine::GetEntity('Talk_Message', ['type' => 'response'])}
+    {$entity=Engine::GetEntity('Talk_Response')}
 {/if}
 
 {component "bs-modal" 
@@ -17,5 +17,8 @@
         text => $aLang.talk.response.form.submit.text,
         attributes => ['data-modal-submit' => true]
     ]
-    content     = {component 'response.form' oResponse=$entity url=$url}
+    content     = {component 'response.form' 
+                    oResponse=$entity 
+                    url=$url 
+                    redirect="{$oUserProfile->getProfileUrl()}/response-success"}
     id          = $id|default:"responseModal" }

@@ -73,6 +73,9 @@ class ActionProfile extends Action
         
         $this->RegisterEventExternal('Profile', 'ActionProfile_EventProfile');
         $this->AddEventPreg('/^.+$/i', '/^confirm-company$/i', ['Profile::EventConfirmCompany' , 'confirm_company']);
+        $this->AddEventPreg('/^.+$/i', '/^response-success$/i', ['Profile::EventResponseSuccess' , 'response_success']);
+        $this->AddEventPreg('/^.+$/i', '/^proposal-success$/i', ['Profile::EventProposalSuccess' , 'proposal_success']);
+        $this->AddEventPreg('/^.+$/i', '/^confirm-company$/i', ['Profile::EventConfirmCompany' , 'confirm_company']);
         $this->AddEventPreg('/^.+$/i', '/^(all)?$/i', '/^(page(\d))?$/i', ['Profile::EventIndex' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^responses$/i', '/^(page(\d))?$/i', ['Profile::EventResponses' , 'profile']);
         $this->AddEventPreg('/^.+$/i', '/^proposals$/i', '/^(page(\d))?$/i', ['Profile::EventProposals' , 'profile']);

@@ -35,23 +35,15 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'min' => 10, 
             'allowEmpty' => false,
             'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 10, 'max' => 200]),
-            'on' => ['']
+            'on' => ['', 'create_anoname']
         );
         $this->aValidateRules[] =    array(
             'text', 
             'double_text',
-            'on' => ['create', 'create_anoname']
+            'on' => ['create', 'create_anoname'],
         );
         
         if ((int)$this->getUserId() === 0) {
-            $this->aValidateRules[] = array(
-                'recaptcha',
-                'string',
-                'allowEmpty' => false,
-                'min'  => '10',
-                'on'    => array( 'create_anoname'),
-                'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
-            );
             $this->aValidateRules[] = array(
                 'recaptcha',
                 'captcha_recaptcha',
@@ -61,6 +53,15 @@ class ModuleTalk_EntityMessage extends EntityORM{
                 'label' => $this->Lang_Get('auth.labels.captcha_field'),
                 'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
             );
+            $this->aValidateRules[] = array(
+                'recaptcha',
+                'string',
+                'allowEmpty' => false,
+                'min'  => '10',
+                'on'    => array( 'create_anoname'),
+                'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
+            );
+            
         }
         
     }
