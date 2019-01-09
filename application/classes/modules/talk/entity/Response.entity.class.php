@@ -59,45 +59,4 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
     }
     
     
-    public function afterSave() {
-        
-        if($this->getState('moderate')){
-            $this->Notify_Send(
-                $this->getUser(),
-                'response_new.tpl',
-                $this->Lang_Get('emails.response_new.subject'),
-                ['oResponse' => $this], null, true
-            );
-        }
-        
-        if($this->_getOriginalDataOne('state') == 'moderate' and $this->getState('publish')){
-            $this->Notify_Send(
-                $this->getUser(),
-                'response_moderate.tpl',
-                $this->Lang_Get('emails.response_moderate.subject'),
-                ['oResponse' => $this], null, true
-            );
-        }
-        
-        if($this->_getOriginalDataOne('state') != 'delete' and $this->getState('delete')){
-            $this->Notify_Send(
-                $this->getUser(),
-                'response_deleted.tpl',
-                $this->Lang_Get('emails.response_deleted.subject'),
-                ['oResponse' => $this], null, true
-            );
-        }
-        
-        parent::afterSave();
-    }
-    
-    public function afterDelete() {
-        $this->Notify_Send(
-            $this->getUser(),
-            'response_deleted.tpl',
-            $this->Lang_Get('emails.response_deleted.subject'),
-            ['oResponse' => $this], null, true
-        );
-    }
-    
 }

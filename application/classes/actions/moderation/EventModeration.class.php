@@ -53,12 +53,22 @@ class ActionModeration_EventModeration extends Event {
             $this->Message_AddError($this->Lang_Get('talk.response.notice.error_not_found'));
             return;
         }
-        
         $oResponse->setState('publish');
+        
         $this->Rating_Vote($oResponse->getUserId(), $oResponse->getTargetType(), $oResponse->getTargetId(), $oResponse->getRating());
         
                 
         if($oResponse->Save()){
+            /*
+             * Оппевещение о ппублиакции
+             */
+            $this->Notify_Send(
+                $oResponse->getUser(),
+                'response_moderate.tpl',
+                $this->Lang_Get('emails.response_moderate.subject'),
+                ['oResponse' => $oResponse], null, true
+            );
+            
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_publish'));
         }else{
             $this->Message_AddError($this->Lang_Get('common.error.error'));
@@ -84,6 +94,16 @@ class ActionModeration_EventModeration extends Event {
         $oResponse->deleteVote();
                 
         if($oResponse->Save()){
+            /*
+             * Оповещение о удалении
+             */
+            $this->Notify_Send(
+                $oResponse->getUser(),
+                'response_deleted.tpl',
+                $this->Lang_Get('emails.response_deleted.subject'),
+                ['oResponse' => $oResponse], null, true
+            );
+            
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_delete'));
         }else{
             $this->Message_AddError($this->Lang_Get('common.error.error'));

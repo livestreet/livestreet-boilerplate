@@ -45,8 +45,7 @@ class HookMenuProfile extends Hook {
             'name' => 'proposals',
             'title' => 'user.userbar.nav.proposals',
             'url' => $oUser->getLogin().'/proposals',
-            'count' => $this->Talk_GetCountFromMessageByFilter([
-                'type' => 'proposal', 
+            'count' => $this->Talk_GetCountFromProposalByFilter([
                 'target_id' => $oUser->getId()])
         ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
             'name' => 'my-responses',

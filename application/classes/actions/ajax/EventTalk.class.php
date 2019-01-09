@@ -32,6 +32,18 @@ class ActionAjax_EventTalk extends Event {
         
         if($oResponse->_Validate()){
             if($oResponse->Save()){
+                /*
+                 * На модерацию
+                 */
+                if($oResponse->getState() == 'moderate'){
+                    $this->Notify_Send(
+                        $oResponse->getUser(),
+                        'response_new.tpl',
+                        $this->Lang_Get('emails.response_new.subject'),
+                        ['oResponse' => $oResponse], null, true
+                    );
+                }
+                
                 if(getRequest('photos')){
                     $this->Media_AttachMedia(getRequest('photos'), 'response', $oResponse->getId());
                 }else{
@@ -40,7 +52,7 @@ class ActionAjax_EventTalk extends Event {
                 
                 $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
                 
-                $this->Message_AddNotice($this->Lang_Get('talk.response.notice.success_save'));
+                $this->Message_AddNotice($this->Lang_Get('common.success.save'));
             }else{
                 $this->Message_AddError($this->Lang_Get('common.error.error'));
             }
@@ -61,9 +73,16 @@ class ActionAjax_EventTalk extends Event {
         
         if($oProposal->_Validate()){
             if($oProposal->Save()){
+                
+                $this->Notify_Send(
+                    $oProposal->getUser(),
+                    'proposal_new.tpl',
+                    $this->Lang_Get('emails.proposal_new.subject'),
+                    ['oProposal' => $oProposal], null, true
+                );
                 $this->Media_AttachMedia(getRequest('photos'), 'proposal', $oProposal->getId());
                 
-                $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
+                //$this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
                 
                 $this->Message_AddNotice($this->Lang_Get('talk.proposal.notice.success_add'));
             }else{
@@ -86,6 +105,16 @@ class ActionAjax_EventTalk extends Event {
         
         if($oAnswer->_Validate()){
             if($oAnswer->Save()){
+                /*
+                 * оповещение на email
+                 */
+                $this->Notify_Send(
+                    $oAnswer->getResponse()->getTargetUser(),
+                    'answer_response.tpl',
+                    $this->Lang_Get('emails.answer_response.subject'),
+                    ['oAnswer' => $oAnswer], null, true
+                );
+
                 $this->Media_AttachMedia(getRequest('photos'), 'answer', $oAnswer->getId());
                 
                 $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));

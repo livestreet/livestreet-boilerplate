@@ -29,22 +29,10 @@ class ModuleTalk_EntityProposal extends ModuleTalk_EntityMessage{
         
     }
     
-    public function afterSave() {
-        
-        
-        if($this->_getOriginalDataOne('state') != 'publish' and $this->getState('publish')){
-            $this->Notify_Send(
-                $this->getUser(),
-                'proposal_new.tpl',
-                $this->Lang_Get('emails.proposal_new.subject'),
-                ['oProposal' => $this], null, true
-            );
-        }
-        
-        parent::afterSave();
-    }
     
     public function afterDelete() {
+        parent::afterDelete();
+        
         $this->Notify_Send(
             $this->getUser(),
             'proposal_deleted.tpl',

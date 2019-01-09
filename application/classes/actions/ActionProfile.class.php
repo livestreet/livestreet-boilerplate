@@ -32,22 +32,19 @@ class ActionProfile extends Action
         }
         $this->SetDefaultEvent('index');
         
-        $this->iCountResponses = $this->Talk_GetCountFromMessageByFilter([
-            'type'  => 'response',
-            'state in' => ['publish', 'arbitrage'],
+        $this->iCountResponses = $this->Talk_GetCountFromResponseByFilter([
+            'state in' => ['publish', 'arbitrage', 'chat'],
             'target_type' => 'user',
             'target_id'     => $this->oUserProfile->getId()
         ]);
         
-        $this->iCountProposals = $this->Talk_GetCountFromMessageByFilter([
-            'type'  => 'proposal',
+        $this->iCountProposals = $this->Talk_GetCountFromProposalByFilter([
             'state' => 'publish',
             'target_type' => 'user',
             'target_id'     => $this->oUserProfile->getId()
         ]);
         
-        $this->iCountAnswers = $this->Talk_GetCountFromMessageByFilter([
-            'type'  => 'answer',
+        $this->iCountAnswers = $this->Talk_GetCountFromAnswerByFilter([
             'state' => 'publish',
             'user_id'     => $this->oUserProfile->getId()
         ]);

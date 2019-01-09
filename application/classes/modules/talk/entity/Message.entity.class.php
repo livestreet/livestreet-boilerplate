@@ -26,7 +26,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
         $this->aValidateRules[] = array(
             'user_name', 
             'string',
-            'on' => ['create', 'create_anoname' ]
+            'allowEmpty' => false,
         );
         $this->aValidateRules[] =    array(
             'text', 

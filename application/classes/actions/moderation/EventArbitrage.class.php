@@ -49,10 +49,23 @@ class ActionModeration_EventArbitrage extends Event {
         if($oResponse  and $oResponse->getState() == 'arbitrage'){
             $oResponse->setState('chat');
             $oResponse->Save();
+        }else{
+            $this->Message_AddError($this->Lang_Get('common.error.error'));
+            return;
         }
         
         if($oArbitrage->_Validate()){
             if($oArbitrage->Save()){
+                /*
+                 * Оповещение
+                 */
+                $this->Notify_Send(
+                    $oResponse->getTargetUser(),
+                    'arbitrage_answer.tpl',
+                    $this->Lang_Get('emails.arbitrage_answer.subject'),
+                    ['oArbitrage' => $oArbitrage], null, true
+                );
+                
                 $this->Media_AttachMedia(getRequest('photos'), 'arbitrage', $oArbitrage->getId());
                 
                 $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
@@ -119,6 +132,12 @@ class ActionModeration_EventArbitrage extends Event {
         foreach ($aArbitrages as $oArbitrage) {
             $oArbitrage->setState('closed');
             $oArbitrage->Save();
+            $this->Notify_Send(
+                $oResponse->getTargetUser(),
+                'arbitrage_closed.tpl',
+                $this->Lang_Get('emails.arbitrage_closed.subject'),
+                ['oArbitrage' => $oArbitrage], null, true
+            );
         }
                 
         if($oResponse->Save()){
