@@ -1,1 +1,0 @@
-ALTER TABLE `prefix_user` ADD `confirmed` TINYINT NOT NULL DEFAULT '0' AFTER `activate`;
