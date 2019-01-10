@@ -8,12 +8,15 @@
  
 {$component = "navbar"}
 
-{component_define_params params=[ 'brand', 'url', 'items', 'bmods', 'attributes', 'classes', 'before', 'after' ]}
+{component_define_params params=[ 'brand', 'url', 'items', 'bmods', 'attributes', 'classes', 'before', 'after', 'classesBrand' ]}
 
 {$id = "navbar{math equation='rand()'}"}
 
 <nav class="navbar {$classes} {cmods name=$component mods=$bmods delimiter="-"}" {cattr list=$attributes}>
-    {if $brand}
+    {if is_array($brand)}
+        {$brand.classes = "{$brand.classes} navbar-brand"}
+        {component "bs-button" params=$brand}
+    {else}
         <a class="navbar-brand" href="{$url}">{$brand}</a>
     {/if}
     

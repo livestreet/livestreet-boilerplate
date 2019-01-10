@@ -471,6 +471,6 @@ class ModuleUser extends ModuleORM
     }
     
     public function GetDefaultAvatar() {
-        return Config::Get('path.skin.assets.web'). '/images/avatars/avatar_male_64x64crop.png';
+        return Config::Get('path.skin.assets.web'). '/images/avatars/avatar_male_50x50crop.png';
     }
 }

@@ -55,8 +55,12 @@
                 {component 'bs-navbar' 
                     classes = "bg-light pr-2" 
                     bmods = "expand-{Config::Get('view.grid.collapse')} light" 
-                    brand = Config::Get('view.name')
-                    url     = {router page="/"}
+                    brand = [
+                        text    => Config::Get('view.name'),
+                        url     => {router page="/"},
+                        com     => "link",
+                        classes => "d-none d-sm-block"
+                    ]
                     items = [
                         {insert name='block' block='menu' params=[ 'name' => "main", "activeItem" => $sMenuHeadItemSelect, "mods" => "main" ]}
                     ]
@@ -102,7 +106,7 @@
             
             <div class="{if $layoutShowSidebar}col-12 col-{$breakpoint}-9 col-xl-8 mt-2 px-2 mt-{$breakpoint}-0
                  {else}col-12 col-xl-10{/if} ">
-                <div class="px-md-4 px-sm-2">
+                <div class="px-2">
                     {hook run='layout_content_header_begin' action=$sAction}
 
                     {block 'layout_page_title' hide}

@@ -8,10 +8,14 @@
 {/block}
 
 {block 'layout_content'}
-    {foreach $aUsers as $oUser}
-        {component "user.item" oUser=$oUser}
-    {/foreach}
-
+    <div class="mt-5">
+        {foreach $aUsers as $oUser}
+            {component "user.item" oUser=$oUser}
+        {/foreach}
+        {if !$aUsers}
+            {component "blankslate" text=$aLang.search.companies.blankslate.text}
+        {/if}
+    </div>
     {component 'bs-pagination' 
             total   = $aPaging['iCountPage'] 
             padding = 2

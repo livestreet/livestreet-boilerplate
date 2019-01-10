@@ -10,20 +10,25 @@
 
         {$items = [
             [   
-                'text' => $aLang.auth.login.title,        
-                attributes => [ "data-toggle"=>"modal-tab", "data-target"=>"#nav-tab-authlogin"], 
-                'url' => "{router page='auth/login'}"
+                icon       => [ icon => "sign-in-alt", display => "s", classes => "d-md-none d-inline"],
+                'text'      => "<span class='d-none d-md-block'>{$aLang.auth.login.title}</span>",        
+                attributes  => [ "data-toggle"=>"modal-tab", "data-target"=>"#nav-tab-authlogin"], 
+                'url'       => "{router page='auth/login'}"
             ],
             [ 
-                'text' => $aLang.auth.registration.title, 
-                attributes => [ "data-toggle"=>"modal-tab", "data-target"=>"#nav-tab-authregister"], 
-                'url' => "{router page='auth/register'}" 
+                icon        => [ icon => "user-plus", display => "s", classes => "d-md-none d-inline"],
+                'text'      => "<span class='d-none d-md-block'>{$aLang.auth.registration.title}</span>", 
+                attributes  => [ "data-toggle"=>"modal-tab", "data-target"=>"#nav-tab-authregister"], 
+                'url'       => "{router page='auth/register'}" 
             ]
         ]}
+        
+        {component "bs-form.text" classesGroup="mb-0"}
+        
         {component "bs-nav" 
             attributes = [ "data-toggle"=>"modal", "data-target"=>"#modalAuth"]
             bmods="fill" 
-            classes="navbar-nav mr-auto" 
+            classes="justufy-content-center" 
             hook="userbar" 
             activeItem=$sMenuHeadItemSelect 
             items = $items}

@@ -47,14 +47,20 @@
                         <a class="nav-link  {$itemsClasses} {$item.classes}  {if $isActive}active{/if}
                              {if $item.disabled}disabled{/if}" href="{$item.url}"
                             {cattr list=$item.attributes}>
-                            {if $item.badge}
+                            {if $item.icon}
+                                {if is_array($item.icon)}
+                                    {component "bs-icon" params=$item.icon}
+                                {else}
+                                    {component "bs-icon" icon=$item.icon}
+                                {/if}                    
+                            {/if}
+                            {$item.text}{if $item.badge}
                                 {if is_array($item.badge)}
                                     {component "bs-badge" params=$item.badge}
                                 {else}
                                     {component "bs-badge" text=$item.badge bmods="light"}
                                 {/if}                    
                             {/if}
-                            {$item.text}
                             {if $item.count}
                                 {if is_array($item.count)}
                                     {component "bs-badge" params=$item.count}

@@ -30,6 +30,9 @@ return array(
         ]
     ],
     'user' => [
+        'item' => [
+            'more' => 'Подробнее'
+        ],
         'userbar' => [
             'nav' => [
                 'profile'       => 'Моя страница',
@@ -160,10 +163,16 @@ return array(
     ],
     'search' => [
         'companies' => [
-            'title' => 'Компании'
+            'title' => 'Компании',
+            'blankslate' => [
+                'text' => 'Компаний пока нет'
+            ]
         ],
         'people' => [
-            'title' => 'Люди'
+            'title' => 'Люди',
+            'blankslate' => [
+                'text' => 'Людей ппока нет'
+            ]
         ]
     ],
     'rating' => [

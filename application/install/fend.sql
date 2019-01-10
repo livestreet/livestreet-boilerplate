@@ -1050,6 +1050,7 @@ ALTER TABLE `prefix_talk_message` ADD `user_name` VARCHAR(200) NOT NULL AFTER `u
 
 ALTER TABLE `prefix_user` ADD `role` VARCHAR(20) NOT NULL AFTER `name`, ADD INDEX (`role`);
 
+UPDATE `prefix_menu_item` SET `name` = 'people', `url` = 'people' WHERE `prefix_menu_item`.`url` = 'humans'
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

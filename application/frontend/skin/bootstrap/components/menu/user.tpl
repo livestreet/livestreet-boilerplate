@@ -20,7 +20,7 @@
         [ 
             name => 'items',  
             classes => "", 
-            text => "{$oUserCurrent->getDisplayName()}",
+            text => "<img class='rounded-circle mr-1' src='{$oUserCurrent->getProfileAvatar()}' style='width:25px;' alt='{$oUserCurrent->getLogin()}'>{$oUserCurrent->getLogin()}",
             menu => $params 
         ],
         
