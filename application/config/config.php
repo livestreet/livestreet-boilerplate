@@ -74,6 +74,9 @@ $config['module']['user']['photo']['width'] = 300; //
 $config['module']['user']['avatar']['width'] = 50; // 
 $config['module']['user']['avatar_small']['width'] = 30; // 
 
+$config['module']['user']['search']['per_page'] = 2; //
+$config['module']['user']['search']['pagination']['pages_count'] =5; //
+
 //Модуль рейтинг
 $config['module']['rating']['max_rating'] = 5; // 
 
@@ -211,6 +214,8 @@ $config['router']['page']['ajax']           = 'ActionAjax';
 $config['router']['page']['auth']           = 'ActionAuth';
 $config['router']['page']['profile']        = 'ActionProfile';
 $config['router']['page']['moderation']     = 'ActionModeration';
+$config['router']['page']['companies']      = 'ActionCompanies';
+$config['router']['page']['people']         = 'ActionPeople';
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action']	= 'index';
 $config['router']['config']['default']['event']		= null;

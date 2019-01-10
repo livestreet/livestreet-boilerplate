@@ -158,6 +158,14 @@ return array(
             ]
         ]
     ],
+    'search' => [
+        'companies' => [
+            'title' => 'Компании'
+        ],
+        'people' => [
+            'title' => 'Люди'
+        ]
+    ],
     'rating' => [
         'of' => 'из',
         'count' => 'Оценок',
