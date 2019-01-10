@@ -34,7 +34,7 @@ $config['path']['root']['server']		= dirname(dirname(dirname(__FILE__)));
 $config['path']['root']['web']			= isset($_SERVER['HTTP_HOST']) ? 'http://'.$_SERVER['HTTP_HOST'] : null;
 $config['path']['offset_request_url']	= 0;
 
-
+$config['sys']['cache']['use'] = false;
 /**
  * Настройки HTML вида
  */
