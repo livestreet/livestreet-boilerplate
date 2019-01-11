@@ -35,12 +35,12 @@ return array(
         ],
         'userbar' => [
             'nav' => [
-                'profile'       => 'Моя страница',
+                'profile'       => 'Профиль',
                 'settings'      => 'Настройки',
                 'responses'     => 'Отзывы',
                 'proposals'     => 'Предложения',
-                'proposed'      => 'Я предложил',
-                'responsed'     => 'Я написал',
+                'proposed'      => 'Мои предложения',
+                'responsed'     => 'Мои отзывы',
                 'arbitrage'     => 'Арбитраж',
                 'moderation'    => 'Модерация'
             ]
@@ -162,6 +162,7 @@ return array(
         ]
     ],
     'search' => [
+        'text' => 'Поиск',
         'companies' => [
             'title' => 'Компании',
             'blankslate' => [

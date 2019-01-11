@@ -29,5 +29,36 @@ class ActionAjax_EventProfile extends Event {
         
     }
 
-
+    public function EventSearchUsers() {
+        
+        if(getRequest('query') == ''){
+            $this->Viewer_AssignAjax('count', 0);
+            $this->Viewer_AssignAjax('html', '');
+            return;
+        }
+        
+        $aFilter = [
+            "#where" => [
+                't.login LIKE ? OR t.mail LIKE ? OR t.about LIKE ? OR t.name LIKE ?' => [
+                    '%'.getRequest('query').'%',
+                    '%'.getRequest('query').'%',
+                    '%'.getRequest('query').'%',
+                    '%'.getRequest('query').'%'
+                ]
+            ],
+            '#limit' => Config::Get('module.user.search_ajax.limit')
+        ];
+        
+        $aUsers = $this->User_GetUserItemsByFilter($aFilter);
+        
+        
+        $oViewer = $this->Viewer_GetLocalViewer();
+        $oViewer->GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');
+        $oViewer->Assign('items', $aUsers, true);
+        $sHtml = $oViewer->Fetch('component@user.list');
+        
+        
+        $this->Viewer_AssignAjax('count', count($aUsers));
+        $this->Viewer_AssignAjax('html', $sHtml);
+    }
 }

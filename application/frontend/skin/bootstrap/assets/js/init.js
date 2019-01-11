@@ -137,6 +137,9 @@ jQuery(document).ready(function($){
     
     $('[data-ajax-btn]').bsAjaxButton();
     
+    // Ajax поиск
+    $('[data-ajax-search]').bsAjaxSearch();
+    
     /*
      * Validate and grecaptcha
      */

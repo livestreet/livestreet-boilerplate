@@ -76,6 +76,7 @@ $config['module']['user']['avatar_small']['width'] = 30; //
 
 $config['module']['user']['search']['per_page'] = 2; //
 $config['module']['user']['search']['pagination']['pages_count'] =5; //
+$config['module']['user']['search_ajax']['limit'] = 6; //
 
 //Модуль рейтинг
 $config['module']['rating']['max_rating'] = 5; // 

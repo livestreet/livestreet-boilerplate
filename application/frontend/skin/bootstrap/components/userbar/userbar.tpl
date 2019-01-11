@@ -1,6 +1,12 @@
 {**
  * Юзербар
  *}
+ 
+{component "bs-form.text" 
+    attributes  = ['data-ajax-search' => true, 'data-url' => {router page="ajax/search-users"}]
+    placeholder = $aLang.search.text
+    classesGroup= "mb-0 w-25"}
+
 
 {if $oUserCurrent}
     {insert name='block' block='menu' params=[ 'name' => "user", "activeItem" => $sMenuUserItemSelect ]}
@@ -22,8 +28,6 @@
                 'url'       => "{router page='auth/register'}" 
             ]
         ]}
-        
-        {component "bs-form.text" classesGroup="mb-0"}
         
         {component "bs-nav" 
             attributes = [ "data-toggle"=>"modal", "data-target"=>"#modalAuth"]

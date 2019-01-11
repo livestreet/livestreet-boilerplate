@@ -74,6 +74,7 @@ class ActionAjax extends Action
         
         $this->RegisterEventExternal('Profile', 'ActionAjax_EventProfile');
         $this->AddEventPreg('/^confirm-company$/i', '/^$/', 'Profile::EventConfirmCompany');
+        $this->AddEventPreg('/^search-users$/i', '/^$/', 'Profile::EventSearchUsers');
         
     }
 

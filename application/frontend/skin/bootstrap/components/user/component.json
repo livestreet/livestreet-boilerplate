@@ -8,6 +8,7 @@
         "nav":"nav.tpl",
         "photo":"photo.tpl",
         "item":"user-item.tpl",
+        "list":"user-list.tpl",
         
         "block-nav":"blocks/block-nav.tpl",
         "block-actions":"blocks/block-actions.tpl",

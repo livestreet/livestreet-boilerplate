@@ -2,9 +2,9 @@
  * Информация о производительности движка
  *}
 
-{component_define_params params=[ 'oUser', 'url' ]}
+{component_define_params params=[ 'oUser', 'url' , 'classes']}
 
-<div class="media mt-3">
+<div class="media mt-3 {$classes}">
     <img class="mr-3 rounded-circle" src="{$oUser->getProfileAvatar()}" alt="{$oUser->getLogin()}">
     <div class="media-body">
         <div class="row">
