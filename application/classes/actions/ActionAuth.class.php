@@ -267,8 +267,10 @@ class ActionAuth extends Action
                         $oReminder->setDateUsed(date("Y-m-d H:i:s"));
                         $oReminder->setIsUsed(1);
                         $oReminder->Update();
-                        $this->User_SendNotifyReminderPassword($oUser, $sNewPassword);
+                        $this->Logger_Notice('reset_confirm');
                         $this->SetTemplateAction('reset_confirm');
+                        $this->User_SendNotifyReminderPassword($oUser, $sNewPassword);
+                        
                         return;
                     }
                 }

@@ -11,6 +11,8 @@
         <div class="col-12">
             
             {component 'bs-media.uploader' 
+                targetType  = 'user'
+                userId    = $oUserCurrent->getId()
                 attributes  = [ 'data-type' => 'media-uploader' ]
                 params      = $uploader}
         </div>

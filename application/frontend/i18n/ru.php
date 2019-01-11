@@ -192,6 +192,12 @@ return array(
     ],
     'talk' => [
         'response' => [
+            
+            'state' => [
+                'publish' => 'Опубликовано',
+                'arbitrage' => 'На рассмотрении',
+                'chat' => 'Обсуждается'
+            ],
             'modal' => [
                 'title' => 'Написать отзыв',
                 'title_edit' => 'Редактировать отзыв'

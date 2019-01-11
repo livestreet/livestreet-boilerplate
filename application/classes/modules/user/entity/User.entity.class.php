@@ -15,6 +15,12 @@ class ModuleUser_EntityUser extends EntityORM
             'msg' => 'auth.registration.notices.password_no_valid'
         ),
         [   
+            'mail_login', 
+            'email', 
+            'on' => array('login'),
+            'allowEmpty' => false
+        ],
+        [   
             'login', 
             'login', 
             'on' => array('registration'),
@@ -30,8 +36,7 @@ class ModuleUser_EntityUser extends EntityORM
             'min' => 5, 
             'max' => 200, 
             'allowEmpty' => false,
-            'on' => array('registration'), 
-            'msg' => 'auth.registration.notices.name_no_valid'
+            'on' => array('registration')
         ],
         [   
             'role', 
@@ -72,6 +77,16 @@ class ModuleUser_EntityUser extends EntityORM
                 'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
             );
         }
+        
+        $this->aValidateRules[] = array(
+            'password', 
+            'string', 
+            'min' => 3,
+            'max' => 100,
+            'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 3, 'max' => 100]),
+            'on' => array('login'),
+            'allowEmpty' => false
+        );
     }
     
     public function ValidateLogin($sValue, $aParams)

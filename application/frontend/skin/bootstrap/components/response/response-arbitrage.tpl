@@ -12,8 +12,8 @@
             {$oUser = $entity->getUser()}
         {/if}
 
-        <div class="col-sm-3">{component "user" oUser=$oUser}</div>
-        <div class="col-sm-9 ml-2 ml-sm-0">
+        <div class="col-sm-4">{component "user" oUser=$oUser}</div>
+        <div class="col-sm-8 ml-2 ml-sm-0">
             <div>{component "rating.stars" value=$entity->getRating()}</div>
             <div class="mt-2 text-muted">{$entity->getDateCreateFormat()}</div>
         </div>
@@ -46,7 +46,15 @@
             {/if}
             
             <div class="row mt-3">
+                
                 <div class="col text-right">
+                    {if $entity->getState() == "publish"}
+                        <span class="ml-3 text-success">{lang "talk.response.state.{$entity->getState()}"}</span>
+                    {/if}
+                    {if $entity->getState() == "chat"}
+                        <span class="ml-3 text-primary">{lang "talk.response.state.{$entity->getState()}"}</span>
+                    {/if}
+                    
                     {if $entity->getState() == "arbitrage"}
                         <span class="text-danger">{$aLang.talk.arbitrage.notice.wait_moderate}</span>
                     {/if}

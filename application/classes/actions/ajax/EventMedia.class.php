@@ -96,18 +96,26 @@ class ActionAjax_EventMedia extends Event {
         /**
          * Проверяем корректность target'а
          */
-        $sTargetType = getRequestStr('target_type');
-        $sTargetId = getRequestStr('target_id');
+        $sTargetType = getRequestStr('target_type', "user");
+        $sUserId = getRequestStr('user_id', 0);
 
         /**
          * TODO: необходима проверка на максимальное общее количество файлов, на максимальный размер файла
          * Эти настройки можно хранить в конфиге: module.media.type.topic.max_file_count=30 и т.п.
          */
-
+        $oMedia = $this->Media_GetMediaByFilter([
+            'target_type'   => $sTargetType,
+            'user_id'     => $sUserId,
+            'file_name'     => substr($_FILES['filedata']['name'], 0, strrpos($_FILES['filedata']['name'], "."))
+        ]);
+        if($oMedia){
+            $this->Message_AddError( $this->Lang_Get('media.uploader.notices.errorDublicate'));
+            return;
+        }
         /**
          * Выполняем загрузку файла
          */
-        if ($mResult = $this->Media_Upload($_FILES['filedata'], "user{$this->oUserCurrent->getId()}", null) and is_object($mResult)) {
+        if ($mResult = $this->Media_Upload($_FILES['filedata'], $sTargetType , $sUserId) and is_object($mResult)) {
             $this->Viewer_AssignAjax('iMediaId', $mResult->getId());
         } else {
             $this->Message_AddError(is_string($mResult) ? $mResult : $this->Lang_Get('common.error.system.base'),

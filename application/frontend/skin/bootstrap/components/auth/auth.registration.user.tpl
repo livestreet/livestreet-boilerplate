@@ -1,7 +1,7 @@
 
 
-<form action="{router page='auth/register'}" method="post" name="register_user" 
-      class="js-form-validate js-auth-registration-form js-recaptcha-form">
+<form data-url="{router page='auth/ajax-register'}" method="post" name="register_user" data-type="form-ajax"
+      class="js-form-validate " novalidate>
 
     {hook run='form_registration_begin'}
     {* E-mail *}

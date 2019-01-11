@@ -90,12 +90,23 @@ class ActionProfile_EventProfile extends Event {
         $iPage = $this->GetParamEventMatch(1,2);
         $iPage = $iPage?$iPage:1;
         
+        $aArbitrage = $this->Talk_GetArbitrageItemsByFilter([
+            'user_id' => $this->oUserProfile->getId(),
+            '#index-from' => 'target_id'
+        ]);
+        if(count($aArbitrage)){
+            $aResponseIds = array_keys($aArbitrage) ;
+        }else{
+            $aResponseIds = [0];
+        }
+        
         $aFilter = [
             //'#with'         => ['user'],
             '#index-from'   => 'id',
             '#order'        => ['date_create' => 'desc'],
             '#page'         => [$iPage, $iLimit],
-            'state in'      => ['arbitrage', 'chat']
+            //'state in'      => ['arbitrage', 'chat'],
+            'id in'         => $aResponseIds
         ];
         
         $aMessages = $this->Talk_GetResponseItemsByFilter($aFilter);

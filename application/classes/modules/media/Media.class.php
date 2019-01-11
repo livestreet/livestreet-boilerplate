@@ -683,7 +683,7 @@ class ModuleMedia extends ModuleORM
     public function GetSaveDir($sTargetType, $sTargetId = null, $sPostfix = '')
     {
         $sPostfix = trim($sPostfix, '/');
-        return Config::Get('path.uploads.base') . "/media/{$sTargetType}/" . date('Y/m/d/H/') . ($sPostfix ? "{$sPostfix}/" : '');
+        return Config::Get('path.uploads.base') . "/media/{$sTargetType}/{$sTargetId}/" . date('Y/m/d/H/') . ($sPostfix ? "{$sPostfix}/" : '');
     }
 
     public function BuildCodeForEditor($oMedia, $aParams)

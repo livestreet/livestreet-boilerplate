@@ -39,21 +39,17 @@
             
             this.feedbackElements();
             
-            let triggers, url;
+            let triggers;
             
             if((triggers = this.option('triggers')) === null){
                 if((triggers = this.element.attr('triggers')) === undefined){
                     triggers = this.option('triggersDefault');
                 }
             }
-
-            if((url = this.element.attr('remote')) === undefined){
-                this.element.on(triggers, this.validate.bind(this));
-            }else{
-                this.element.on(triggers, function(e){
-                    this.remoteValidate(url);
-                }.bind(this));
-            } 
+            
+            this.element.on(triggers, this.validate.bind(this));
+            
+            
             
         },
         
@@ -63,6 +59,13 @@
         },
         
         validate:function(){
+            let url;
+            
+            if((url = this.element.attr('remote')) !== undefined){
+                this.remoteValidate(url);
+                return;
+            } 
+            
             let element = this.element.get( 0 );
             if(element !== undefined && element.checkValidity()){
                 this.setValid();
@@ -87,7 +90,7 @@
                     this.setErrorMessage(Object.values(response.errors).shift()[0])
                     this.setInvalid();
                 }else{
-                    this.validate();
+                    this.setValid();
                 }
             }.bind(this));
         },        

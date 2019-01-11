@@ -49,7 +49,6 @@ class ActionProfile extends Action
             'user_id'     => $this->oUserProfile->getId()
         ]);
         
-        $this->Component_Add('recaptcha');
     }
 
     /**

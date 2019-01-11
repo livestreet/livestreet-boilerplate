@@ -130,6 +130,7 @@
          */
         onUploadDone: function( fileObj, response ) {
             let file = this.elements.upload_zone.find('#'+fileObj.name.replace(/[^a-zA-Z0-9 ]/g, ""));
+            setTimeout(function(){file.hide(500);}, 3000);
             file.find('.close').on('click', function(){
                 file.hide();
             });

@@ -1,9 +1,10 @@
 
-{component_define_params params=[ 'targetType', 'targetId', 'targetTmp', 'name' ]}
+{component_define_params params=[ 'targetType', 'targetId', 'userId', 'targetTmp', 'name' ]}
 
 {$attributes = array_merge( $attributes|default:[], [
     'data-param-target_type' => {$targetType|default:'user'},
     'data-param-target_id'   => $targetId,
+    'data-param-user_id'   => $userId,
     'data-param-security_ls_key'  => $LIVESTREET_SECURITY_KEY,
     'data-type'             => 'uploader'
 ])}

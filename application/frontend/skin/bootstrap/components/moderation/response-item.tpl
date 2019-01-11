@@ -17,15 +17,15 @@
 
             {component "bs-nav" items = [
                 [ 
-                    text    => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.edit}</span>",  
-                    badge   => {component 'bs-icon' icon="edit"},
+                    text    => "<span class='d-none d-md-inline' >{$aLang.moderation.responses.actions.edit}</span>",  
+                    icon   => [ icon => "edit", classes => "d-md-none d-inline"],
                     url     => {router page='wiki/wikipdd'},  
                     attributes => ["data-toggle"=>"modal", "data-target"=>"#{$idModal}"],
-                    classes => 'pt-0'
+                    classes => 'py-0'
                 ],
                 [ 
-                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.publish}</span>", 
-                    badge => {component 'bs-icon'  classes="text-success"  display="s" icon="check"},     
+                    'text' => "<span class='d-none d-md-inline' >{$aLang.moderation.responses.actions.publish}</span>", 
+                    icon => [ icon => "check", display => "s", classes => "d-md-none text-success d-inline"],
                     'url' => {router page='blogs'},  
                     'classes' => 'text-success py-0',
                     attributes => [
@@ -38,10 +38,10 @@
                     ]
                 ],
                 [ 
-                    'text' => "<span class='d-none d-lg-inline' >{$aLang.moderation.responses.actions.delete}</span>", 
-                    badge => {component 'bs-icon' classes="text-danger" icon="trash-alt"},  
+                    'text' => "<span class='d-none d-md-inline' >{$aLang.moderation.responses.actions.delete}</span>", 
+                    icon => [ icon => "trash-alt", classes => "d-md-none text-danger d-inline"],
                     'url' => {router page='/'},  
-                    'classes' => 'text-danger pb-0' ,
+                    'classes' => 'text-danger py-0' ,
                     attributes => [
                         'data-param-id' => $entity->getId(),
                         'data-ajax-btn' => "true",

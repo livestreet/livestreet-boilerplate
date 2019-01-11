@@ -33,7 +33,7 @@
          */
         _create: function() {
             this._super();
-            
+            this.elements.fields.bsFieldValidate();
         },
         
         validate: function(call){

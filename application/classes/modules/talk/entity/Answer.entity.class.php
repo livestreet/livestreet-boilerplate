@@ -23,7 +23,16 @@ class ModuleTalk_EntityAnswer extends ModuleTalk_EntityMessage{
             'on' => ['']
         );        
         
-        
+        $this->aValidateRules[] = array(
+            'target_id', 
+            'number',
+            'on' => ['']
+        );
+        $this->aValidateRules[] = array(
+            'target_type', 
+            'string',
+            'on' => ['']
+        );
     }   
     
    

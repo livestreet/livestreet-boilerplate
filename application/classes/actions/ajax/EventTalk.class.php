@@ -97,9 +97,9 @@ class ActionAjax_EventTalk extends Event {
     
     public function EventAjaxAnswerCreate() {
         
-        $oAnswer = Engine::GetEntity('Talk_Message', ['type' => 'answer']);
+        $oAnswer = Engine::GetEntity('Talk_Answer');
         $oAnswer->_setDataSafe($_REQUEST);
-        
+
         $oAnswer->setState('publish');
         
         
