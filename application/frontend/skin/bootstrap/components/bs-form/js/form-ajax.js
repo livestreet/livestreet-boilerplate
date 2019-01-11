@@ -67,10 +67,7 @@
         
         afterSubmit:function(response){
             
-            if(grecaptcha !== undefined){
-                grecaptcha.reset();
-            }
-            
+                        
             this.loaded();
             
             if(response.bStateError){

@@ -119,11 +119,8 @@ class ActionAuth extends Action
                     /**
                      * Определяем редирект
                      */
-                    $sUrl = Config::Get('module.user.redirect_after_login');
-                    if (getRequestStr('return-path')) {
-                        $sUrl = getRequestStr('return-path');
-                    }
-                    $this->Viewer_AssignAjax('sUrlRedirect', $sUrl ? $sUrl : Router::GetPath('/'));
+                    
+                    $this->Viewer_AssignAjax('sUrlRedirect', getRequestStr('return-path', $oUser->getProfileUrl()));
                     return;
                 }
             } else {
