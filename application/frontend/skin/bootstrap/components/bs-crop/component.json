@@ -11,11 +11,11 @@
         "modal":"crop-modal.tpl"
     },
     "scripts": {
-        "vendor-cropper": "vendor/cropper/dist/cropper.js",
+        "vendor-cropper": "cropper/cropper.min.js",
         "crop": "js/crop.js",
         "crop-modal": "js/crop-modal.js"
     },
     "styles": {
-        "vendor-cropper": "vendor/cropper/dist/cropper.css"
+        "vendor-cropper": "cropper/cropper.min.css"
     }
 }
