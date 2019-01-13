@@ -16,24 +16,12 @@ class ModuleUser_EntityUser extends EntityORM
         ),
         [   
             'mail_login', 
-            'email', 
-            'on' => array('login'),
-            'allowEmpty' => false
-        ],
-        [   
-            'mail_login', 
             'string', 
             'on' => array('login'),
             'allowEmpty' => false
         ],
         [   
-            'mail_login', 
-            'mail_exists', 
-            'on' => array('login'),
-            'allowEmpty' => false
-        ],
-        [   
-            'mail_login', 
+            'mail', 
             'mail_exists', 
             'on' => array('registration'),
             'allowEmpty' => false
