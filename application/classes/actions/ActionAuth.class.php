@@ -120,7 +120,7 @@ class ActionAuth extends Action
                      * Определяем редирект
                      */
                     
-                    $this->Viewer_AssignAjax('sUrlRedirect', getRequestStr('return-path', $oUser->getProfileUrl()));
+                    $this->Viewer_AssignAjax('sUrlRedirect',  $oUser->getProfileUrl());
                     return;
                 }
             } else {
