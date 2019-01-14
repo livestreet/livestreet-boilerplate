@@ -95,7 +95,8 @@ class ActionModeration_EventArbitrage extends Event {
             '#with'         => ['user'],
             '#order'        => ['date_create' => 'desc'],
             '#limit'        => [ $iStart, $iLimit],
-            'state in'      => ['arbitrage', 'chat']
+            'state in'      => ['arbitrage', 'chat'],
+            '#join'         => ['JOIN '.Config::Get('db.table.talk_arbitrage').' as ar ON t.id = ar.target_id AND ar.type = ?' => ['arbitrage']]
         ]);
         
         
