@@ -18,9 +18,7 @@ class ActionModeration_EventArbitrage extends Event {
         $this->sMenuItemSelect = 'arbitrage';
         $this->SetTemplateAction('arbitrage-chat');
         
-        if(!$oResponse->getTargetId() != $this->User_GetUserCurrent()->getId()){
-            return $this->EventNotFound();
-        }
+        
         
         $iArbId = $this->GetParam(0);
         
