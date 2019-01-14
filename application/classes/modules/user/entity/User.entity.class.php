@@ -31,9 +31,14 @@ class ModuleUser_EntityUser extends EntityORM
             'login_exists', 
             'on' => array('registration')
         ],
+        [
+            'login', 
+            'login', 
+            'on' => array('registration')
+        ],
         [   'name', 
             'string', 
-            'min' => 5, 
+            'min' => 3, 
             'max' => 200, 
             'allowEmpty' => false,
             'on' => array('registration')

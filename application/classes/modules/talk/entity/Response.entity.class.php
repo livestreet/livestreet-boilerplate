@@ -40,12 +40,12 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['create', 'create_anoname']
+            'on' => ['create', 'create_anoname', '']
         );
         $this->aValidateRules[] = array(
             'target_id', 
             'exist_user',
-            'on' => ['create', 'create_anoname']
+            'on' => ['create', 'create_anoname', '']
         );
         $this->aValidateRules[] = array(
             'rating', 

@@ -41,7 +41,8 @@ $config['components'] = [
     'ls-vendor', 'ls-core', 'ls-component', 'editor', 'notification', 'performance', 'confirm', 'lightbox',
 
     //Компоненты шаблона
-    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav', 'ajax', 'bs-icon', 'bs-autocomplete', 'recaptcha'
+    'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav', 'ajax', 'bs-icon', 'bs-autocomplete', 'recaptcha',
+    'bs-popover'
 ];
 
 $config['head']['default']['js'] = array(

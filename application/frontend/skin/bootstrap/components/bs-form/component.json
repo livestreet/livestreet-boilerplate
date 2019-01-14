@@ -16,8 +16,7 @@
     "scripts":{
         "field-validate":"js/field-validate.js",
         "form-validate":"js/form-validate.js",
-        "form-ajax":"js/form-ajax.js",
-        "recaptcha":"js/field.recaptcha.js"
+        "form-ajax":"js/form-ajax.js"
     },
     "styles":{
         "loader": "css/loader.css"

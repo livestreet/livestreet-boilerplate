@@ -21,7 +21,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
         $this->aValidateRules[] =   array(
             'user_id', 
             'exist_user',
-            'on' => [ '']
+            'on' => [ '', 'create_anoname', 'create']
         );
         $this->aValidateRules[] = array(
             'user_name', 
@@ -36,7 +36,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'min' => 10, 
             'allowEmpty' => false,
             'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 10, 'max' => 200]),
-            'on' => ['', 'create_anoname']
+            'on' => ['', 'create_anoname', 'create']
         );
         $this->aValidateRules[] =    array(
             'text', 

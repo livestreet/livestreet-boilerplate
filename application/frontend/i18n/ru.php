@@ -42,7 +42,8 @@ return array(
                 'proposed'      => 'Мои предложения',
                 'responsed'     => 'Мои отзывы',
                 'arbitrage'     => 'Арбитраж',
-                'moderation'    => 'Модерация'
+                'moderation'    => 'Модерация',
+                'feedback'      => 'Поддержка'
             ]
         ],
         'profile' => [
@@ -121,7 +122,7 @@ return array(
         ],
         'response_success' => [
             'title' => 'Спасибо за ваш отзыв',
-                'text' => 'Вы оставили отзыв на странице <a href="%%url%%">%%name%%</a>'
+                'text' => 'Вы оставили отзыв на странице <a href="%%url%%">%%pname%%</a>. '
                 . 'После модерации он там появится.',
                 'return' => 'Вернуться'
         ],
@@ -160,6 +161,9 @@ return array(
                 'success_notify' => 'Сообщение отправлено'
             ]
         ]
+    ],
+    'feedback' => [
+        'text' => 'Адрес службы поддержки: <b>%%email%%</b>'
     ],
     'search' => [
         'text' => 'Поиск',

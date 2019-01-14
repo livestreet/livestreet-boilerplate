@@ -3,5 +3,8 @@
     "version": "1.0.0",
     "templates": {
         "bs-popover": "popover.tpl"
+    },
+    "styles":{
+        "popover":"css/popover.css"
     }
 }
