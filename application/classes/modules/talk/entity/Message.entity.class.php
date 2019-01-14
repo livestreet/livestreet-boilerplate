@@ -72,7 +72,8 @@ class ModuleTalk_EntityMessage extends EntityORM{
         if($this->getUserId() == 0){
             return Engine::GetEntity('User_User', [
                 'name' => $this->getUserName(),
-                'login' => 'guest',
+                'login' => 'anoname',
+                'name' => 'Аноним',
                 'id' => 0
             ]);
         }
@@ -153,15 +154,8 @@ class ModuleTalk_EntityMessage extends EntityORM{
          * Удалить медиа
          */        
         $this->Media_RemoveTargetByTypeAndId($this->getType(), $this->getId());
-        
-        /*
-         * Удалить оценку
-         */
-        $this->deleteVote();
+       
     }
     
-    public function deleteVote() {
-        $this->Rating_DeleteVoteItemsByFilter(['target_type' => 'user', 'target_id' => $this->getTargetId()]);
-    }
     
 }

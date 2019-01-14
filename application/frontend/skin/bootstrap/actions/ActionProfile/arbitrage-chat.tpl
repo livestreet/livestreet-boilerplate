@@ -14,7 +14,7 @@
 
     
     {component "arbitrage.chat-form" 
-        url         = {router page='ajax/arbitrage-chat/create-answer'}
+        url         = {router page='ajax/talk/create-arbitrage-chat'}
         oArbitrage  = Engine::GetEntity('Talk_Arbitrage')
         redirect    = Router::GetPathWebCurrent()
         target_id   = $oResponse->getId() 

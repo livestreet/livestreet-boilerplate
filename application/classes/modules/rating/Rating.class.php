@@ -14,13 +14,14 @@ class ModuleRating extends ModuleORM
         $this->oMapper = Engine::GetMapper(__CLASS__);
     }
 
-    public function Vote($iUserId, $sTargetType, $iTargetId, $iVote){
+    public function Vote($iUserId, $sTargetType, $iTargetId, $iVote, $iFromId){
         
         $oVote = Engine::GetEntity('Rating_Vote');
         $oVote->setUserId($iUserId);
         $oVote->setTargetType($sTargetType);
         $oVote->setTargetId($iTargetId);
         $oVote->setVote($iVote);
+        $oVote->setFromId($iFromId);
         
         if(!$oVote->_Validate()){
             return $oVote->_getValidateErrors();

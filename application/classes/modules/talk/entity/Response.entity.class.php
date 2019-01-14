@@ -58,5 +58,18 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         
     }
     
+     public function afterDelete() {
+         
+        parent::afterDelete();
+        
+        /*
+         * Удалить оценку
+         */
+        $this->deleteVote();
+    }
+    
+    public function deleteVote() {
+        $this->Rating_DeleteVoteItemsByFilter( ['from_id' => $this->getId()]);
+    }
     
 }

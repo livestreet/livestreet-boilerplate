@@ -156,6 +156,10 @@ class ModuleUser_EntityUser extends EntityORM
     {
         return $this->getIsAdmin();
     }
+    
+    public function isAnoname() {
+        return ($this->getId() == 0);
+    }
 
     public function getUrl($sPage = null)
     {

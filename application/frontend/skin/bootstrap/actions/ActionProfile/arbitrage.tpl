@@ -21,7 +21,6 @@
     {foreach $results as $response}
         {component "response.arbitrage" 
             entity      = $response 
-            targetUser  = true 
             deleted     = true 
             redirect    = {Router::GetPathWebCurrent()} }
     {/foreach}

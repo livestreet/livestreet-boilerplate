@@ -42,7 +42,7 @@ $config['components'] = [
 
     //Компоненты шаблона
     'bs-dropdown', 'bs-form', 'bs-media', 'bs-pagination', 'bs-crop', 'rating', 'bs-nav', 'ajax', 'bs-icon', 'bs-autocomplete', 'recaptcha',
-    'bs-popover'
+    'bs-popover', 'bs-text'
 ];
 
 $config['head']['default']['js'] = array(

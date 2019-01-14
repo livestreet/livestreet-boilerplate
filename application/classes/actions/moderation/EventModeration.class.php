@@ -55,7 +55,13 @@ class ActionModeration_EventModeration extends Event {
         }
         $oResponse->setState('publish');
         
-        $this->Rating_Vote($oResponse->getUserId(), $oResponse->getTargetType(), $oResponse->getTargetId(), $oResponse->getRating());
+        $this->Rating_Vote(
+            $oResponse->getUserId(), 
+            $oResponse->getTargetType(), 
+            $oResponse->getTargetId(), 
+            $oResponse->getRating(), 
+            $oResponse->getId()
+        );
         
                 
         if($oResponse->Save()){

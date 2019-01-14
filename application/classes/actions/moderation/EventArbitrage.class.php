@@ -44,11 +44,11 @@ class ActionModeration_EventArbitrage extends Event {
         $oArbitrage->setState('chat');
         
         $oResponse = $this->Talk_GetResponseByFilter(['id' => getRequest('target_id')]);        
-        if($oResponse  and $oResponse->getState() == 'arbitrage'){
+        if($oResponse  and in_array($oResponse->getState(), ['arbitrage', 'chat']) ){
             $oResponse->setState('chat');
             $oResponse->Save();
         }else{
-            $this->Message_AddError($this->Lang_Get('common.error.error'));
+            $this->Message_AddError($this->Lang_Get('common.error.error'). ' $oResponse');
             return;
         }
         
@@ -70,7 +70,7 @@ class ActionModeration_EventArbitrage extends Event {
                 
                 $this->Message_AddNotice($this->Lang_Get('common.success.add'));
             }else{
-                $this->Message_AddError($this->Lang_Get('common.error.error'));
+                $this->Message_AddError($this->Lang_Get('common.error.error').' $oArbitrage');
             }
         }else{
             foreach ($oArbitrage->_getValidateErrors() as $aError) {

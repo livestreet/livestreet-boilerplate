@@ -6,7 +6,7 @@
 {block 'layout_content'}
     <u>{$oUserProfile->getLogin()}</u><br>
     <h2>{$oUserProfile->getName()}</h2>
-    <p class="lead">{$oUserProfile->getAbout()}</p>
+    {component 'bs-text' text=$oUserProfile->getAbout()}
     
     {component "rating" classes="mt-4" oUser=$oUserProfile}
     
