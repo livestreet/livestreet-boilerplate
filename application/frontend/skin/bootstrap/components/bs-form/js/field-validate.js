@@ -109,7 +109,7 @@
         
         showErrorMessageNotice:function(){
             if ( this.element.attr('type') == 'hidden' && this.element.hasClass('is-invalid')) {
-                ls.msg.notice( this.element.attr('name'), this.element.attr('msg') );
+                ls.msg.error( this.element.attr('name'), this.element.attr('msg') );
             }
         }
     });

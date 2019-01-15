@@ -23,26 +23,26 @@
     margin-top: 10px;
     background: #fff;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,.3)
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    border-radius: .3em;
 }
 .ls-notification h3 {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 1.2rem;
     margin-bottom: 8px;
 }
 .ls-notification h3:last-child {
     margin-bottom: 0;
 }
 .ls-notification p {
-    font-size: 13px;
+    font-size: 1.1rem;
     line-height: 18px;
 }
 
 /* Error */
 .ls-notification.ls-notification--error {
     background: #f44336;
-    color: #ffcdd2;
-    color: rgba(255,255,255,.7);
+    color: #fff;
 }
 .ls-notification.ls-notification--error h3 {
     color: #fff;
@@ -56,4 +56,15 @@
 }
 .ls-notification.ls-notification--info h3 {
     color: #fff;
+}
+
+
+
+.ls-notification.ls-notification--success {
+    background: #80d293;
+    color: #000;
+}
+
+.ls-notification.ls-notification--success h3 {
+    color: #000;
 }

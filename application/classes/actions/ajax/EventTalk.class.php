@@ -67,9 +67,14 @@ class ActionAjax_EventTalk extends Event {
     public function EventAjaxProposalCreate() {
         
         $oProposal = Engine::GetEntity('Talk_Proposal');
+        if(!$this->User_GetUserCurrent()){
+            $oProposal->_setValidateScenario( 'create_anoname');
+        }
         $oProposal->_setDataSafe($_REQUEST);
         
         $oProposal->setState('publish');
+        
+        
         
         if($oProposal->_Validate()){
             if($oProposal->Save()){
@@ -108,12 +113,14 @@ class ActionAjax_EventTalk extends Event {
                 /*
                  * оповещение на email
                  */
-                $this->Notify_Send(
-                    $oAnswer->getResponse()->getTargetUser(),
-                    'answer_response.tpl',
-                    $this->Lang_Get('emails.answer_response.subject'),
-                    ['oAnswer' => $oAnswer], null, true
-                );
+                if($oAnswer->getTargetType() == "response"){
+                    $this->Notify_Send(
+                        $oAnswer->getResponse()->getTargetUser(),
+                        'answer_response.tpl',
+                        $this->Lang_Get('emails.answer_response.subject'),
+                        ['oAnswer' => $oAnswer], null, true
+                    );
+                }
 
                 $this->Media_AttachMedia(getRequest('photos'), 'answer', $oAnswer->getId());
                 

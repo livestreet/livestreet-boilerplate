@@ -66,7 +66,7 @@
                     ]}
                 {/foreach}
 
-                {component 'bs-carousel' classes="slide w-50" controls=true  items=$items}
+                {component 'bs-carousel' classes="slide w-50 mt-3" controls=true  items=$items}
             {/if}
         {/capture}
 

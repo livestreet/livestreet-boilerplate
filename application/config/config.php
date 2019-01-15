@@ -112,7 +112,7 @@ $config['moderation']['talk']['page_count'] = 10;
  */
 $config['module']['media']['max_size'] = 3*1024; // Максимальный размер файла в kB
 $config['module']['media']['max_count_files'] = 30; // Максимальное количество файлов медиа у одного объекта
-$config['module']['media']['image']['max_size'] = 5*1024; // Максимальный размер файла изображения в kB
+$config['module']['media']['image']['max_size'] = 1*1024; // Максимальный размер файла изображения в kB
 $config['module']['media']['image']['autoresize'] = true; // Разрешает автоматическое создание изображений нужного размера при их запросе
 $config['module']['media']['image']['original'] = '1500x'; // Размер для хранения оригинала. Если true, то будет сохраняться исходный оригинал без ресайза. Если false, то оригинал сохраняться не будет
 $config['module']['media']['image']['sizes'] = array(  // список размеров, которые необходимо делать при загрузке изображения

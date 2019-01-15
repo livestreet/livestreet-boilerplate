@@ -144,7 +144,14 @@ ls.ajax = (function ($) {
 //                return true;
 //            },
             success: function (response, status, xhr, form) {
-                if ( more.showNotices && ( response.sMsgTitle || response.sMsg ) ) ls.msg.notice( response.sMsgTitle, response.sMsg );
+                if ( response.bStateError ) {
+                    if ( more.showNotices && ( response.sMsgTitle || response.sMsg ) ) ls.msg.error( response.sMsgTitle, response.sMsg );
+                    if ( $.isFunction( more.onError ) ) more.onError.apply( this, arguments );
+                } else {
+                    if ( more.showNotices && ( response.sMsgTitle || response.sMsg ) ) ls.msg.notice( response.sMsgTitle, response.sMsg );
+                    if ( $.isFunction( callback ) ) callback.apply( this, arguments );
+
+                }
                 if ( $.isFunction( callback ) ) callback.apply( this, arguments );
                 
                 if ( !response.bStateError ) {

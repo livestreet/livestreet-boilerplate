@@ -140,9 +140,16 @@
         /**
          * 
          */
-        onUploadError: function( file, response ) {
+        onUploadError: function( fileObj, response ) {
             ls.msg.error( response.sMsgTitle, response.sMsg);
-            this._trigger('onFileError', null, { file: file, response: response });
+            
+            let file = this.elements.upload_zone.find('#'+fileObj.name.replace(/[^a-zA-Z0-9 ]/g, ""));
+            setTimeout(function(){file.hide(500);}, 3000);
+            file.find('.close').on('click', function(){
+                file.hide();
+            });
+            
+            this._trigger('onFileError', null, { file: fileObj, response: response });
         },
 
         onFileAdd: function(event, data){

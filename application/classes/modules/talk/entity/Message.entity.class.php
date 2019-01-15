@@ -125,7 +125,7 @@ class ModuleTalk_EntityMessage extends EntityORM{
     
     public function getDateCreateFormat() {
         $date = new DateTime($this->getDateCreate());
-        return $date->format('d F');
+        return $date->format('d.m.y');
     }
     
     public function getMedia() {

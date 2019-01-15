@@ -6,10 +6,10 @@
 
 {block 'content'}
     {lang name='emails.arbitrage_closed.text' params=[
-        text            => $oArbitrage->getResponse()->getText(),
-        user_name       => $oArbitrage->getResponse()->getTargetUser()->getName(),
-        user_url        => $oArbitrage->getResponse()->getTargetUser()->getProfileUrl(),
+        text            => $oResponse->getText(),
+        user_name       => $oResponse->getTargetUser()->getName(),
+        user_url        => $oResponse->getTargetUser()->getProfileUrl(),
         arbitrage_url   => $oArbitrage->getUrl(),
-        result          => {lang "emails.arbitrage_closed.result.{$oArbitrage->getResponse()->getState()}"}
+        result          => {lang "emails.arbitrage_closed.result.{$oResponse->getState()}"}
     ]}
 {/block}

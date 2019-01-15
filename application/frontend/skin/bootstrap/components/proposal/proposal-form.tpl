@@ -39,7 +39,9 @@
     {/if}
     
     {if !$oUserCurrent}
-        {component "recaptcha.field" name="recaptcha"}
+        {component "recaptcha.field" 
+            entity  = $oProposal
+            name    = "recaptcha"}
     {/if}
     
     {if $oUserCurrent}

@@ -27,13 +27,17 @@
                     ]}
                 {/foreach}
 
-                {component 'bs-carousel' classes="slide w-50" indicators=true controls=true  items=$items}
+                {component 'bs-carousel' 
+                    classes="slide w-50 mt-3" 
+                    indicators=true
+                    controls=true  
+                    items=$items}
             {/if}
             
             <div class="row mt-2">
                 <div class="col-sm-8"></div>
                 <div class="col-sm-4 align-content-end">
-                    {if $answered}
+                    {if $answered  and (!count($entity->getAnswers()))}
                         {$idAnswer = "collapseAnswer{math equation='rand()'}"}
                         <a class="link" data-toggle="collapse" href="#{$idAnswer}" 
                            aria-expanded="false" aria-controls="{$idAnswer}">
@@ -56,16 +60,18 @@
                     
                 </div>
             </div>
-                   
-            {if $answered}
+            
+            
+            {if $answered and  (!count($entity->getAnswers(['target_type' => 'proposal'])))}
                 {component "bs-collapse.item" 
                     id      = $idAnswer 
                     content = {component "answer.form" redirect=$redirect target_id = $entity->getId() target_type=$entity->getType()}}
             {/if}
-            
+
             {foreach $entity->getAnswers(['target_type' => 'proposal']) as $oAnswer}
-                {component "answer" entity=$oAnswer}
-            {/foreach}
+                {component "answer" entity=$oAnswer deleted=true redirect=$redirect}
+            {/foreach}  
+            
 
             
         </div>

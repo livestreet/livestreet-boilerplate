@@ -15,8 +15,8 @@
     <div class="col-12 col-sm-6 col-lg-3 text-center">
         {component "rating.number" value=$oUser->getRating() of={Config::Get('module.rating.max_rating')}}
     </div>
-    <div class="col-12 col-sm-6 col-lg-3  align-self-end pb-3 text-center">
-        {component "rating.stars"  value = $oUser->getRating() large=true}
+    <div class="col-12 col-sm-6 col-lg-3  align-self-end pb-3 px-1 text-center">
+        {component "rating.stars" classes="h5"  value = $oUser->getRating() large=true}
             
         <span class="text-muted">
             {$aLang.rating.count}: 

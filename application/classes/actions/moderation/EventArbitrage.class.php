@@ -124,23 +124,20 @@ class ActionModeration_EventArbitrage extends Event {
         
         $oResponse->setState('publish');
         
-        $aArbitrages = $this->Talk_GetArbitrageItemsByFilter([
-            'target_id' => $oResponse->getId(),
-            'target_type' => 'response'
-        ]);
-        
-        foreach ($aArbitrages as $oArbitrage) {
-            $oArbitrage->setState('closed');
-            $oArbitrage->Save();
+        if($oResponse->Save()){
+            
+            if($oArbitrage = $oResponse->getArbitrage()){
+                $oArbitrage->setState('closed');
+                $oArbitrage->Save();
+            }
+            
             $this->Notify_Send(
                 $oResponse->getTargetUser(),
                 'arbitrage_closed.tpl',
                 $this->Lang_Get('emails.arbitrage_closed.subject'),
-                ['oArbitrage' => $oArbitrage], null, true
+                ['oResponse' => $oResponse, 'oArbitrage' => $oArbitrage], null, true
             );
-        }
-                
-        if($oResponse->Save()){
+            
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_publish'));
             
         }else{
@@ -164,12 +161,21 @@ class ActionModeration_EventArbitrage extends Event {
         
         $oResponse->setState('delete');
         
-         if($oArbitrage = $oResponse->getArbitrage()){
-            $oArbitrage->setState('closed');
-            $oArbitrage->Save();
-        }
                 
         if($oResponse->Save()){
+            
+            if($oArbitrage = $oResponse->getArbitrage()){
+                $oArbitrage->setState('closed');
+                $oArbitrage->Save();
+            }
+            
+            $this->Notify_Send(
+                $oResponse->getTargetUser(),
+                'arbitrage_closed.tpl',
+                $this->Lang_Get('emails.arbitrage_closed.subject'),
+                ['oResponse' => $oResponse, 'oArbitrage' => $oArbitrage], null, true
+            );
+            
             $this->Message_AddNotice($this->Lang_Get('moderation.responses.notice.success_delete'));
             $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
         }else{

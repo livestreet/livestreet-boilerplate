@@ -31,13 +31,13 @@
                     ]}
                 {/foreach}
 
-                {component 'bs-carousel' classes="slide w-50" controls=true  items=$items}
+                {component 'bs-carousel' classes="slide w-50 mt-3" controls=true  items=$items}
             {/if}
             
             <div class="row mt-2">
                 <div class="col-sm-8"></div>
                 <div class="col-sm-4 align-content-end">
-                    {if $answered}
+                    {if $answered and (!count($entity->getAnswers()))}
                         {$idAnswer = "collapseAnswer{math equation='rand()'}"}
                         <a class="link" data-toggle="collapse" href="#{$idAnswer}" 
                            aria-expanded="false" aria-controls="{$idAnswer}">
@@ -67,11 +67,11 @@
                     {/if}
                 </div>
             </div>
-            {if $answered}
+            {if $answered and (!count($entity->getAnswers()))}
                 {component "bs-collapse.item" 
                     id      = $idAnswer 
                     content = {component "answer.form" 
-                                oAnswer     = Engine::GetEntity('Talk_Message', ['type' => 'answer'])
+                                oAnswer     = Engine::GetEntity('Talk_Answer')
                                 redirect    = $redirect 
                                 target_id   = $entity->getId() 
                                 target_type = $entity->getType()}}
@@ -81,13 +81,13 @@
                 {component "bs-collapse.item" 
                     id      = $idArbitrage
                     content = {component "arbitrage.form" 
-                                oArbitrage     = Engine::GetEntity('Talk_Message', ['type' => 'arbitrage'])
+                                oArbitrage     = Engine::GetEntity('Talk_Arbitrage')
                                 target_id   = $entity->getId() 
                                 target_type = $entity->getType()}}
             {/if}
 
             {foreach $entity->getAnswers() as $oAnswer}
-                {component "answer" entity=$oAnswer}
+                {component "answer" entity=$oAnswer deleted=true redirect=$redirect}
             {/foreach}
 
             

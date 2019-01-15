@@ -23,6 +23,12 @@
     {$attributes['data-interval'] = "false"}
 {/if}
 
+{if count($items)<2}
+    {$indicators = false}
+    {$controls = false}
+{/if}
+
+
 
 {block 'carousel_options'}{/block}
 

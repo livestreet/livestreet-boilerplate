@@ -25,27 +25,35 @@
                     <div class="col-sm-6 col-md-3">
                         {$controls = (count($items)>1)}
                         {component 'bs-carousel' 
-                            classes     = "slide w-100"  
+                            classes     = "slide w-100 mt-3"  
                             indicators  = $controls 
                             controls    = $controls  
                             items       = $items}
                     </div>
                 </div>
                     
-                {if $deleted}
-                    <form data-url="{router page='ajax/talk/message-delete'}" data-type="form-ajax">
-                        <input type="hidden" name="id" value="{$entity->getId()}">
-                        <input type="hidden" name="redirect" value="{$redirect}">
-                        {component "bs-button" 
-                            attributes = ['data-confirm-remove' => true]
-                            bmods   = "link"  
-                            classes = "text-danger" 
-                            type    = "submit" 
-                            text    = $aLang.common.remove}
-                    </form>
-                {/if}
+                
                 
             {/if}
+            <div class="row mt-2">
+                <div class="col-sm-8"></div>
+                <div class="col-sm-4 align-content-end">
+                    {if $deleted and $oUserCurrent and $entity->getUser()->getId() == $oUserCurrent->getId()}
+                        <form data-url="{router page='ajax/talk/message-delete'}" data-type="form-ajax">
+                            <input type="hidden" name="id" value="{$entity->getId()}">
+                            <input type="hidden" name="redirect" value="{$redirect}">
+                            {component "bs-button" 
+                                attributes = ['data-confirm-remove' => true]
+                                bmods   = "link"  
+                                classes = "text-danger" 
+                                type    = "submit" 
+                                text    = $aLang.common.remove}
+                        </form>
+                    {/if}
+                    
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
