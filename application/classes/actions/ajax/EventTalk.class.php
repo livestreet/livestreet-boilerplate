@@ -79,15 +79,17 @@ class ActionAjax_EventTalk extends Event {
         if($oProposal->_Validate()){
             if($oProposal->Save()){
                 
-                $this->Notify_Send(
-                    $oProposal->getUser(),
-                    'proposal_new.tpl',
-                    $this->Lang_Get('emails.proposal_new.subject'),
-                    ['oProposal' => $oProposal], null, true
-                );
+                if($oProposal->getUserId() != 0){
+                    $this->Notify_Send(
+                        $oProposal->getUser(),
+                        'proposal_new.tpl',
+                        $this->Lang_Get('emails.proposal_new.subject'),
+                        ['oProposal' => $oProposal], null, true
+                    );
+                }
                 $this->Media_AttachMedia(getRequest('photos'), 'proposal', $oProposal->getId());
                 
-                //$this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
+                $this->Viewer_AssignAjax('sUrlRedirect', getRequest('redirect'));
                 
                 $this->Message_AddNotice($this->Lang_Get('talk.proposal.notice.success_add'));
             }else{

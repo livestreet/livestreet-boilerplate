@@ -8,8 +8,8 @@
     <hr>
     <div class="row mt-3">
         <div class="col-1">{$entity->getId()}</div>
-        <div class="col">{component "user" oUser=$entity->getUser()}</div>
-        <div class="col d-none d-sm-block">{component "user" oUser=$entity->getTargetUser()}</div>
+        <div class="col">{component "user" oUser=$entity->getUser() textWrap=true}</div>
+        <div class="col d-none d-sm-block">{component "user" oUser=$entity->getTargetUser() textWrap=true}</div>
         <div class="col  d-none d-xl-block">{component "rating.stars" value=$entity->getRating()} {$entity->getDateCreateFormat()}</div>
         <div class="col-2 col-lg">
 

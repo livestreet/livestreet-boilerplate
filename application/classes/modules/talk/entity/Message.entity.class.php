@@ -73,7 +73,6 @@ class ModuleTalk_EntityMessage extends EntityORM{
             return Engine::GetEntity('User_User', [
                 'name' => $this->getUserName(),
                 'login' => 'anoname',
-                'name' => 'Аноним',
                 'id' => 0
             ]);
         }

@@ -160,8 +160,11 @@ class ActionModeration_EventArbitrage extends Event {
         
         $oResponse->setState('delete');
         
+        
                 
         if($oResponse->Save()){
+            
+            $oResponse->deleteVote();
             
             if($oArbitrage = $oResponse->getArbitrage()){
                 $oArbitrage->setState('closed');

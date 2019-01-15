@@ -2,7 +2,7 @@
  * Информация о производительности движка
  *}
 
-{component_define_params params=[ 'oUser', 'url', 'classes' ]}
+{component_define_params params=[ 'oUser', 'url', 'classes', 'textWrap' ]}
 
 {if $oUser->isAnoname()}
     {$url = '#'}
@@ -11,7 +11,7 @@
 
 <div class="media {$classes}">
   <img class="mr-3 rounded-circle" src="{$oUser->getProfileAvatar()}" alt="{$oUser->getLogin()}">
-  <div class="media-body text-nowrap">
+  <div class="media-body {if !$textWrap}text-truncate{/if}">
       <h5 class="mt-0">
           <u>
               <a href="{$url|default:$oUser->getProfileUrl()}" 

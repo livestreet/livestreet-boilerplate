@@ -17,13 +17,13 @@ class ModuleTalk_EntityProposal extends ModuleTalk_EntityMessage{
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['create','']
+            'on' => ['create','', 'create_anoname']
 
         );
         $this->aValidateRules[] = array(
             'target_id', 
             'exist_user',
-            'on' => ['']
+            'on' => ['create','', 'create_anoname']
         );
         
         

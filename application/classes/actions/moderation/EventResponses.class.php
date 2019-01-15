@@ -21,7 +21,7 @@ class ActionModeration_EventResponses extends Event {
         $aFilter =  [
             '#with'         => ['user'],
             '#index-from'   => 'id',
-            '#order'        => ['date_create' => 'asc'],
+            '#order'        => ['date_create' => 'desc'],
             '#page'         => [ $iPage, $iLimit],
             '#where'        => ['t.state != ?' => ['delete']]
         ];
