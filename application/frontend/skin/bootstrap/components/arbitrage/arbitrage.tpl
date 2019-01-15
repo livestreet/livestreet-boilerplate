@@ -11,7 +11,7 @@
     </div>
     <div class="row m-3">
         <div class="col-12 pl-5">
-            {$entity->getText()}
+            {component "bs-text" text=$entity->getText()}
             
             {if is_array($entity->getMedia()) and count($entity->getMedia())}
                 {$items = []}

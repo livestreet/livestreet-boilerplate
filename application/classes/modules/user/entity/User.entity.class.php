@@ -16,13 +16,13 @@ class ModuleUser_EntityUser extends EntityORM
         ),
         [   
             'mail_login', 
-            'email', 
+            'string', 
             'on' => array('login'),
             'allowEmpty' => false
         ],
         [   
-            'login', 
-            'login', 
+            'mail', 
+            'mail_exists', 
             'on' => array('registration'),
             'allowEmpty' => false
         ],
@@ -31,9 +31,14 @@ class ModuleUser_EntityUser extends EntityORM
             'login_exists', 
             'on' => array('registration')
         ],
+        [
+            'login', 
+            'login', 
+            'on' => array('registration')
+        ],
         [   'name', 
             'string', 
-            'min' => 5, 
+            'min' => 3, 
             'max' => 200, 
             'allowEmpty' => false,
             'on' => array('registration')
@@ -150,6 +155,10 @@ class ModuleUser_EntityUser extends EntityORM
     public function isAdmin()
     {
         return $this->getIsAdmin();
+    }
+    
+    public function isAnoname() {
+        return ($this->getId() == 0);
     }
 
     public function getUrl($sPage = null)

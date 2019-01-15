@@ -40,12 +40,12 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['create', 'create_anoname']
+            'on' => ['create', 'create_anoname', '']
         );
         $this->aValidateRules[] = array(
             'target_id', 
             'exist_user',
-            'on' => ['create', 'create_anoname']
+            'on' => ['create', 'create_anoname', '']
         );
         $this->aValidateRules[] = array(
             'rating', 
@@ -58,5 +58,18 @@ class ModuleTalk_EntityResponse extends ModuleTalk_EntityMessage{
         
     }
     
+     public function afterDelete() {
+         
+        parent::afterDelete();
+        
+        /*
+         * Удалить оценку
+         */
+        $this->deleteVote();
+    }
+    
+    public function deleteVote() {
+        $this->Rating_DeleteVoteItemsByFilter( ['from_id' => $this->getId()]);
+    }
     
 }

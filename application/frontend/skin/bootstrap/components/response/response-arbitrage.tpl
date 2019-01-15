@@ -20,7 +20,7 @@
     </div>
     <div class="row m-sm-3">
         <div class="col-12 pl-sm-5">
-            {component "text" text=$entity->getText() classes="text-secondary"}
+            {component "bs-text" text=$entity->getText()}
             
             {if is_array($entity->getMedia()) and count($entity->getMedia())}
                 {$items = []}

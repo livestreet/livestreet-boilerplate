@@ -71,7 +71,7 @@
         {/capture}
 
         
-        {component "text" classes=" border-left p-3" text=$smarty.capture.text}
+        {component "bs-text" classes=" border-left p-3" text=$smarty.capture.text}
         
         {component "arbitrage" entity=$entity->getArbitrage()}
     </div>

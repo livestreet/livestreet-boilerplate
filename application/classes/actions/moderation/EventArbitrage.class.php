@@ -18,9 +18,7 @@ class ActionModeration_EventArbitrage extends Event {
         $this->sMenuItemSelect = 'arbitrage';
         $this->SetTemplateAction('arbitrage-chat');
         
-        if(!$oResponse->getTargetId() != $this->User_GetUserCurrent()->getId()){
-            return $this->EventNotFound();
-        }
+        
         
         $iArbId = $this->GetParam(0);
         
@@ -46,11 +44,11 @@ class ActionModeration_EventArbitrage extends Event {
         $oArbitrage->setState('chat');
         
         $oResponse = $this->Talk_GetResponseByFilter(['id' => getRequest('target_id')]);        
-        if($oResponse  and $oResponse->getState() == 'arbitrage'){
+        if($oResponse  and in_array($oResponse->getState(), ['arbitrage', 'chat']) ){
             $oResponse->setState('chat');
             $oResponse->Save();
         }else{
-            $this->Message_AddError($this->Lang_Get('common.error.error'));
+            $this->Message_AddError($this->Lang_Get('common.error.error'). ' $oResponse');
             return;
         }
         
@@ -72,7 +70,7 @@ class ActionModeration_EventArbitrage extends Event {
                 
                 $this->Message_AddNotice($this->Lang_Get('common.success.add'));
             }else{
-                $this->Message_AddError($this->Lang_Get('common.error.error'));
+                $this->Message_AddError($this->Lang_Get('common.error.error').' $oArbitrage');
             }
         }else{
             foreach ($oArbitrage->_getValidateErrors() as $aError) {
@@ -95,7 +93,8 @@ class ActionModeration_EventArbitrage extends Event {
             '#with'         => ['user'],
             '#order'        => ['date_create' => 'desc'],
             '#limit'        => [ $iStart, $iLimit],
-            'state in'      => ['arbitrage', 'chat']
+            'state in'      => ['arbitrage', 'chat'],
+            '#join'         => ['JOIN '.Config::Get('db.table.talk_arbitrage').' as ar ON t.id = ar.target_id AND ar.type = ?' => ['arbitrage']]
         ]);
         
         

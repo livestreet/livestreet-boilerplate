@@ -37,10 +37,14 @@ $.widget( "livestreet.lsConfirm", $.livestreet.lsComponent, {
      */
     _onClick: function ( event ) {
         if ( window.confirm( this.option( 'message' ) ) ) {
-            this._trigger('onconfirm', event );
-            event.preventDefault();
+            if ( $.isFunction( this.option( 'onconfirm' ) ) ) {
+                this._trigger('onconfirm', event );
+                event.preventDefault();
+            }
         } else {
-            this._trigger('oncancel', event );
+            if ( $.isFunction( this.option( 'onconfirm' ) ) ) {
+                this._trigger('oncancel', event );
+            }
             event.preventDefault();
         }
     }

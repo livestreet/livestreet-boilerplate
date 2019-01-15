@@ -36,6 +36,11 @@ class HookMain extends Hook {
 		 * Загружаем в шаблон текущего пользователя
 		 */
 		$this->Viewer_Assign('oUserCurrent',$this->User_GetUserCurrent());
+                
+                /**
+		 * Загружаем в шаблон админа
+		 */
+		$this->Viewer_Assign('oUserAdmin',$this->User_GetUserById(1));
 		/**
 		 * Загружаем js и текстовки в шаблон
 		 */

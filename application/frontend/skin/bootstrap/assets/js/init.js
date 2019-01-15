@@ -145,14 +145,7 @@ jQuery(document).ready(function($){
      */
     $('.js-form-validate').bsFormValidate();
     
-    if(window.grecaptcha !== undefined ){
-        grecaptcha.ready(function() {
-            $('.js-recaptcha-form').bsReCaptcha({
-                site_key: ls.registry.get('recaptcha.site_key')
-            });
-
-        });
-    }
+   
     /*
      * Автозавершение
      */

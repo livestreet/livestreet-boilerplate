@@ -12,6 +12,13 @@
     {$params.items[] = [ text => $aLang.admin.title, url => {router page="admin"}]}  
 {/if}
 
+{$params.items[] = {component "bs-button" com="dropdown-item"
+    name    = 'feedback'
+    text    = {lang 'user.userbar.nav.feedback'}
+    attributes = ['data-toggle' => 'modal', 'data-target' => '#modalFeedback']
+    url     = '#'
+}}
+
 {capture name="text"}
     <img class='rounded-circle mr-1' src='{$oUserCurrent->getProfileAvatar()}' style='width:25px;' alt='{$oUserCurrent->getLogin()}'>
     <span class="d-none d-md-inline">{$oUserCurrent->getLogin()}</span>
