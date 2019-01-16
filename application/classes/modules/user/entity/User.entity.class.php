@@ -55,6 +55,21 @@ class ModuleUser_EntityUser extends EntityORM
             'role_exists', 
             'on' => array('registration')
         ],
+        [   
+            'phone', 
+            'string',
+            'max' => 20
+        ],
+        [   
+            'site', 
+            'string',
+            'max' => 500
+        ],
+        [   
+            'address', 
+            'string',
+            'max' => 500
+        ]
     );
 
     protected $aRelations = array(
@@ -217,8 +232,11 @@ class ModuleUser_EntityUser extends EntityORM
     }
     
     public function isRole($sRole) {
-        $aRoles = $this->Rbac_GetRolesByUser($this);
-        foreach ($aRoles as $oRole) {
+        if(!$this->getRoles()){
+            $this->setRoles($this->Rbac_GetRolesByUser($this));
+        }
+        
+        foreach ($this->getRoles() as $oRole) {
             if($oRole->getCode() == $sRole){
                 return true;
             }

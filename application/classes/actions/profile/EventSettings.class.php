@@ -93,6 +93,9 @@ class ActionProfile_EventSettings extends Event {
         $this->oUserProfile->setPhoto($sPath);
         $this->oUserProfile->setName(getRequest('name'));
         $this->oUserProfile->setAbout(getRequest('about'));
+        $this->oUserProfile->setSite(getRequest('site'));
+        $this->oUserProfile->setPhone(getRequest('phone'));
+        $this->oUserProfile->setAddress(getRequest('address'));
         
         if($this->oUserProfile->_Validate()){
             

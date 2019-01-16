@@ -1053,6 +1053,11 @@ ALTER TABLE `prefix_user` ADD `role` VARCHAR(20) NOT NULL AFTER `name`, ADD INDE
 UPDATE `prefix_menu_item` SET `name` = 'people', `url` = 'people' WHERE `prefix_menu_item`.`url` = 'humans'
 
 ALTER TABLE `prefix_rating_vote` ADD `from_id` INT NOT NULL AFTER `user_id`, ADD INDEX (`from_id`);
+
+ALTER TABLE `prefix_user` 
+ADD `site` VARCHAR(500) NOT NULL AFTER `about`, 
+ADD `phone` VARCHAR(20) NOT NULL AFTER `site`, 
+ADD `address` VARCHAR(500) NOT NULL AFTER `phone`;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

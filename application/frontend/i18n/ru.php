@@ -98,6 +98,17 @@ return array(
                     ],
                     'about_company' => [
                         'label' => 'О комании'
+                    ],
+                    'site' => [
+                        'label' => 'Сайт',
+                        'placeholder' => 'http://site.ru'
+                    ],
+                    'phone' => [
+                        'label' => 'Телефон'
+                    ],
+                    'address' => [
+                        'label' => 'Адресс',
+                        'placeholder' => 'г. Москва, ул. Ленина 25'
                     ]
                 ]
             ],

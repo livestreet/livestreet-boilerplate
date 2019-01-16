@@ -35,6 +35,39 @@
                 value       = $oUserProfile->getName()
                 }
                 
+            {if $oUserProfile->isRole('company')}
+
+                {* Телефон *}
+                {component 'bs-form' 
+                    template    = 'text' 
+                    name        = "phone"
+                    label       = $aLang.user.settings.profile.form.phone.label
+                    placeholder = $aLang.user.settings.profile.form.phone.placeholder
+                    type        = "text"
+                    value       = $oUserProfile->getPhone()
+                    }
+
+                {* Сайт *}
+                {component 'bs-form' 
+                    template    = 'text' 
+                    name        = "site"
+                    label       = $aLang.user.settings.profile.form.site.label
+                    placeholder = $aLang.user.settings.profile.form.site.placeholder
+                    type        = "text"
+                    value       = $oUserProfile->getSite()
+                    }
+
+                {* Адресс *}
+                {component 'bs-form' 
+                    template    = 'text' 
+                    name        = "address"
+                    label       = $aLang.user.settings.profile.form.address.label
+                    placeholder = $aLang.user.settings.profile.form.address.placeholder
+                    type        = "text"
+                    value       = $oUserProfile->getAddress()
+                    }                               
+            {/if}
+            
             {* О себе *}
             {component 'bs-form' 
                 template    = 'textarea' 

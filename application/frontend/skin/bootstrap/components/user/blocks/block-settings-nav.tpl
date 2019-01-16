@@ -3,10 +3,5 @@
         text => $aLang.user.settings.profile.title, 
         name => 'profile', 
         url => "{$oUserProfile->getProfileUrl()}/settings/profile"
-    ],
-    [
-        text => $aLang.user.settings.notices.title, 
-        name => 'notices', 
-        url => "{$oUserProfile->getProfileUrl()}/settings/notices"
     ]
 ]}

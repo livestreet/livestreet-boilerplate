@@ -6,6 +6,14 @@
 {block 'layout_content'}
     <u>{$oUserProfile->getLogin()}</u><br>
     <h2>{$oUserProfile->getName()}</h2>
+    
+    
+    <div class="row my-3 text-muted">
+        <div class="col-md-4">{$oUserProfile->getSite()}</div>
+        <div class="col-md-4">{$oUserProfile->getPhone()}</div>
+        <div class="col-md-4">{$oUserProfile->getAddress()}</div>
+    </div>
+        
     {component 'bs-text' text=$oUserProfile->getAbout()}
     
     {component "rating" classes="mt-4" oUser=$oUserProfile}
