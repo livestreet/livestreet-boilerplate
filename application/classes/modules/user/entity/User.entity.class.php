@@ -29,12 +29,17 @@ class ModuleUser_EntityUser extends EntityORM
         [
             'login', 
             'login_exists', 
-            'on' => array('registration')
+            'on' => array('registration', '')
+        ],
+        [
+            'login', 
+            'login_exists', 
+            'on' => array('change_login')
         ],
         [
             'login', 
             'login', 
-            'on' => array('registration')
+            'on' => array('registration', '')
         ],
         [   'name', 
             'string', 
@@ -116,6 +121,7 @@ class ModuleUser_EntityUser extends EntityORM
         }
         return $this->Lang_Get('auth.registration.notices.error_login');
     }
+   
 
     /**
      * Проверка емайла на существование

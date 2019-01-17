@@ -8,10 +8,10 @@
     <h2>{$oUserProfile->getName()}</h2>
     
     {if $oUserProfile->isRole('company')}
-        <div class="row my-3 text-muted">
-            <div class="col-md-4">{$oUserProfile->getSite()}</div>
-            <div class="col-md-4">{$oUserProfile->getPhone()}</div>
-            <div class="col-md-4">{$oUserProfile->getAddress()}</div>
+        <div class="ml-1 my-3 text-muted">
+            <span class="mr-3">{component "bs-icon" icon="link" display="s"} {$oUserProfile->getSite()}</span>
+            <span class="mr-3">{component "bs-icon" icon="phone" display="s"} {$oUserProfile->getPhone()}</span>
+            <span class="mr-3">{component "bs-icon" icon="map-marker-alt" display="s"} {$oUserProfile->getAddress()}</span>
         </div>
     {/if}    
         

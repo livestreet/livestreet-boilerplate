@@ -263,6 +263,8 @@ class ModuleUser extends ModuleORM
                  * Перед запуском авторизации дополнительно можно проверить user-agent'а пользователя
                  */
                 $this->Authorization($oUser, true, $oSession->getKey());
+                
+                Router::Location($this->oUserCurrent->getProfileUrl());
             } else {
                 $this->Logout();
             }

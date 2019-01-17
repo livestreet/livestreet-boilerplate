@@ -35,6 +35,7 @@ $config['path']['root']['web']			= isset($_SERVER['HTTP_HOST']) ? 'http://'.$_SE
 $config['path']['offset_request_url']	= 0;
 
 $config['sys']['cache']['use'] = false;
+$config['sys']['debug']['action_error'] = false;
 /**
  * Настройки HTML вида
  */

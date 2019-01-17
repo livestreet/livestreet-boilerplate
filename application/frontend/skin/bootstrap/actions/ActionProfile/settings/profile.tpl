@@ -5,7 +5,7 @@
 
 {block 'layout_content'}
     {capture name="form"}
-        <form class="" data-type="form-ajax" data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax">
+        <form data-type="form-ajax" data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax" class="js-form-validate " novalidate>
             {* Фото*}
 
             {$medias = []}
@@ -33,7 +33,26 @@
                 placeholder = $aLang.user.settings.profile.form.name.placeholder
                 type        = "text"
                 value       = $oUserProfile->getName()
+                validate       = [ 
+                    entity  => $oUserProfile
+                ]
                 }
+                
+            {* Логин *}
+            {component 'bs-form' 
+                template    = 'text' 
+                name        = "login"
+                label       = $aLang.auth.registration.form.fields.login.placeholder
+                placeholder = $aLang.auth.registration.form.fields.login.placeholder
+                type        = "text"
+                desc        = $aLang.auth.registration.form.fields.login.desc  
+                value       = $oUserProfile->getLogin()
+                validate       = [ 
+                    entity  => $oUserProfile,
+                    remote  => true,
+                    scenario => 'change_login',
+                    only_change => true
+                ]}
                 
             {if $oUserProfile->isRole('company')}
 
@@ -45,6 +64,9 @@
                     placeholder = $aLang.user.settings.profile.form.phone.placeholder
                     type        = "text"
                     value       = $oUserProfile->getPhone()
+                    validate       = [ 
+                        entity  => $oUserProfile
+                    ]
                     }
 
                 {* Сайт *}
@@ -55,6 +77,9 @@
                     placeholder = $aLang.user.settings.profile.form.site.placeholder
                     type        = "text"
                     value       = $oUserProfile->getSite()
+                    validate       = [ 
+                        entity  => $oUserProfile
+                    ]
                     }
 
                 {* Адресс *}
@@ -65,6 +90,9 @@
                     placeholder = $aLang.user.settings.profile.form.address.placeholder
                     type        = "text"
                     value       = $oUserProfile->getAddress()
+                    validate    = [ 
+                        entity  => $oUserProfile
+                    ]
                     }                               
             {/if}
             
@@ -75,6 +103,9 @@
                 label       = $aLang.user.settings.profile.form.about.label
                 placeholder = $aLang.user.settings.profile.form.about.placeholder
                 value       = $oUserProfile->getAbout()
+                validate       = [ 
+                    entity  => $oUserProfile
+                ]
                 }
 
             <div class="d-flex justify-content-center">

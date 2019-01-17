@@ -19,7 +19,8 @@
 
             // Ссылка
             urls: {
-                load: null
+                load: null,
+                remote: aRouter.ajax + "validate"
             },
             
             // Параметры запроса
@@ -49,7 +50,7 @@
             
             this.element.on(triggers, this.validate.bind(this));
             
-            
+            this.option('value', this.element.val());
             
         },
         
@@ -58,10 +59,22 @@
             this.elements.validFeedback = this.element.parent().find(this.option('classes.validFeedback'));
         },
         
+        is_change: function(){
+            if(!this.element.data('onlyChange')){
+                return true;
+            }
+            return (this.element.val() != this.option('value'));
+        },
+        
         validate:function(){
             let url;
             
-            if((url = this.element.attr('remote')) !== undefined){
+            if(this.element.data('remote') && this.is_change()){ 
+                
+                if(this.element.data('url')){
+                    this.option('urls.remote', this.element.data('url'));
+                }
+                
                 this.remoteValidate(url);
                 return;
             } 
@@ -82,17 +95,15 @@
             this.element.removeClass('is-valid').addClass('is-invalid');
         },
         
-        remoteValidate:function(url){
-            let data = {};
-            data[this.element.attr('name')] = this.element.val();
-            ls.ajax.load(url, data, function(response){
-                if(response.errors !== undefined){
-                    this.setErrorMessage(Object.values(response.errors).shift()[0])
+        remoteValidate:function(){
+            this._load('remote', {value:this.element.val()}, function(response){
+                if(response.error !== undefined){
+                    this.setErrorMessage(response.error)
                     this.setInvalid();
                 }else{
                     this.setValid();
                 }
-            }.bind(this));
+            }.bind(this), {showProgress :false});
         },        
         
         isValid:function(){
