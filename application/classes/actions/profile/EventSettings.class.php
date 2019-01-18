@@ -104,9 +104,9 @@ class ActionProfile_EventSettings extends Event {
                 //$this->Viewer_AssignAjax('sUrlRedirect', $this->oUserProfile->getProfileUrl().'/settings');
             }
         }else{
+            $this->Message_AddError($this->oUserProfile->_getValidateError());
             $this->Viewer_AssignAjax('errors', $this->oUserProfile->_getValidateErrors());
         }        
-        $this->Viewer_AssignAjax('data', $_REQUEST);
     }
     
 }

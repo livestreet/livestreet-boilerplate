@@ -26,7 +26,8 @@
                 body:  '[data-type="field-body"]',
                 field: '[data-type="media-field"]',
                 cropModal: '@[data-type="crop-modal"]',
-                btn:'[data-toggle="modal"]'
+                btn:'[data-toggle="modal"]',
+                count: '[data-count]'
             },
             
 
@@ -124,6 +125,8 @@
             
             this.elements.body.prepend(file);
             
+            this.elements.count.val( parseInt(this.elements.count.val()) + 1);
+            
             file.append('<input type="hidden" data-file-id="'+file.data('id')
                     +'" name="'+this.option('name')+'" value="'+file.data('id')+'">');
             
@@ -141,6 +144,7 @@
         },
         
         remove:function(file){
+            this.elements.count.val(parseInt(this.elements.count.val()) - 1);
             file.remove();
             this.elements.btn.removeClass(this.option('classes.displayNone'));
         }

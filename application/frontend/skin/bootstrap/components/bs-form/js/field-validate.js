@@ -98,7 +98,7 @@
         remoteValidate:function(){
             this._load('remote', {value:this.element.val()}, function(response){
                 if(response.error !== undefined){
-                    this.setErrorMessage(response.error)
+                    this.setInvalidMessage(response.error)
                     this.setInvalid();
                 }else{
                     this.setValid();
@@ -110,18 +110,13 @@
             return this.element.hasClass('is-valid');
         },
         
-        setErrorMessage:function(mess){
+        setInvalidMessage:function(mess){
             this.elements.invalidFeedback.html(mess);
         },
         
-        setErrorMessageNotice:function(error){
-            this.element.attr('msg', error)
-        },
+        setValidMessage:function(mess){
+            this.elements.validFeedback.html(mess);
+        }        
         
-        showErrorMessageNotice:function(){
-            if ( this.element.attr('type') == 'hidden' && this.element.hasClass('is-invalid')) {
-                ls.msg.error( this.element.attr('name'), this.element.attr('msg') );
-            }
-        }
     });
 })(jQuery);

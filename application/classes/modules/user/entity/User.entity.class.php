@@ -3,8 +3,12 @@
 class ModuleUser_EntityUser extends EntityORM
 {
     protected $aValidateRules = array(
-        array('mail', 'email', 'allowEmpty' => false, 'on' => array('registration')),
-        array('mail', 'mail_exists',  'on' => array('registration')),
+        array(
+            'mail', 
+            'email', 
+            'allowEmpty' => false, 
+            'on' => array('registration')
+        ),
         array(
             'password', 
             'string', 
@@ -29,24 +33,24 @@ class ModuleUser_EntityUser extends EntityORM
         [
             'login', 
             'login_exists', 
-            'on' => array('registration', '')
+            'on' => array('registration')
         ],
         [
             'login', 
-            'login_exists', 
-            'on' => array('change_login')
+            'login_another', 
+            'on' => array('profile_settings')
         ],
         [
             'login', 
             'login', 
-            'on' => array('registration', '')
+            'on' => array('registration', 'change_login', 'profile_settings')
         ],
         [   'name', 
             'string', 
             'min' => 3, 
             'max' => 200, 
             'allowEmpty' => false,
-            'on' => array('registration')
+            'on' => array('registration', 'profile_settings')
         ],
         [   
             'role', 
@@ -63,17 +67,34 @@ class ModuleUser_EntityUser extends EntityORM
         [   
             'phone', 
             'string',
-            'max' => 20
+            'max' => 20,
+            'on' => array( 'profile_settings')
         ],
         [   
             'site', 
             'string',
-            'max' => 500
+            'max' => 500,
+            'on' => array( 'profile_settings')
         ],
         [   
             'address', 
             'string',
-            'max' => 500
+            'max' => 500,
+            'on' => array( 'profile_settings')
+        ],
+        [   
+            'about', 
+            'string',
+            'max' => 2000,
+            'on' => array( 'profile_settings')
+        ],
+        [   
+            'photo_count', 
+            'number',
+            'max' => 2,
+            'min' => 1,
+            'allowEmpty' => false,
+            'on' => array( 'profile_settings')
         ]
     );
 
@@ -154,6 +175,14 @@ class ModuleUser_EntityUser extends EntityORM
         return $this->Lang_Get('auth.registration.notices.error_login_used');
     }
 
+    public function ValidateLoginAnother($sValue, $aParams)
+    {
+        if($sValue == $this->getLogin()){
+            return true;
+        }
+        
+        return $this->ValidateLoginExists($sValue, $aParams);
+    }
 
     protected function beforeSave()
     {

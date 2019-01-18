@@ -10,14 +10,6 @@ jQuery(document).ready(function($){
     // Хук начала инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_start',[],window);
     
-//    $.fn.dataStartsWith = function(p) {
-//        var pCamel = p.replace(/-([a-z])/ig, function(m,$1) { return $1.toUpperCase(); });
-//        return this.filter(function(i, el){
-//          return Object.keys(el.dataset).some(function(v){
-//            return v.indexOf(pCamel) > -1;
-//          });
-//        });
-//    };
     /*
      *  Код для реализации dropdown-submenu
      */
@@ -108,6 +100,15 @@ jQuery(document).ready(function($){
     ls.notification.init();
 
     
+    
+    /*
+     * Validate  должно быть перед ajax формой
+     */
+    $('[data-form-validate]').bsFormValidate();
+    /*
+     * Ajax форма
+     */
+    $('[data-form-ajax]').bsFormAjax();
     /**
      * Auth and AJAX
      */
@@ -123,9 +124,6 @@ jQuery(document).ready(function($){
             submit: aRouter.auth + 'ajax-login'
         }
     });
-    
-    $('[data-type="form-ajax"]').bsFormAjax();
-    
     $('.js-auth-reset-form').bsFormAjax({
         urls:{
             submit: aRouter.auth + 'ajax-password-reset'
@@ -140,10 +138,7 @@ jQuery(document).ready(function($){
     // Ajax поиск
     $('[data-ajax-search]').bsAjaxSearch();
     
-    /*
-     * Validate and grecaptcha
-     */
-    $('.js-form-validate').bsFormValidate();
+    
     
    
     /*

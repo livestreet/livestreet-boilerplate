@@ -33,50 +33,38 @@
          */
         _create: function() {
             this._super();
+            
             this.elements.fields.bsFieldValidate();
+
+            this._on(this.element, {submit:"onSubmit"});
         },
         
-        validate: function(call){
+        onSubmit: function(event){
+            
+            this.validate(function(result){
+                console.log('validateForm', result);
+                if(!result){
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                }
+                
+            }.bind(this));
+                        
+        },
+        
+        validate: function(resultValidate){
             
             this.elements.fields = this.element.find(this.option('selectors.fields'));
             this.elements.fields.bsFieldValidate();
             
             if(!this.isValidFields()){
-                this.showErrorsMessageNotice();
-                call({success:false});
-                return;
+                resultValidate(false);
+                return false;
             }
             
-            
-            if(this.element.data('recaptcha') !== undefined && $.isFunction(call)){
-                this.element.bsReCaptcha('execute', call);
-            }else{
-                setTimeout(function(){call({success:true})},1000);
-            }
+            resultValidate(true);            
         },
-        
-        showErrors:function(errors){
-            $.each(errors, function(name, error){
-                let el = this.element.find('[name="'+name+'"]');
-                if(el.bsFieldValidate !== "undefined") {
-                    el.bsFieldValidate('setInvalid') && el.bsFieldValidate('setErrorMessage', error[0]);
-                }
-                if(!el.length){
-                    ls.msg.notice( name, error );
-                }
-                if(el.attr('type') == "hidden"){
-                    el.bsFieldValidate('setErrorMessageNotice', error[0]) &&
-                    el.bsFieldValidate('showErrorMessageNotice');
-                }
-            }.bind(this));            
-        },
-        
-        showErrorsMessageNotice:function(){
-            $.each(this.elements.fields, function(i,field){
-                $(field).bsFieldValidate('showErrorMessageNotice');
-            }.bind(this));
-        },
-        
+                
         isValidFields:function(){
             let valid = true;
             $.each(this.elements.fields, function(i,field){

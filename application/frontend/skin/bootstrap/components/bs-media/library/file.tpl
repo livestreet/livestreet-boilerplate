@@ -41,7 +41,7 @@
         </div>
     </div>
     {if $name}
-          <input type="hidden" data-file-id="{$oMediaItem->getId()}" name="{$name}" value="{$oMediaItem->getId()}">
+          <input type="hidden" data-file-id="{$oMediaItem->getId()}" name="{$name}[]" value="{$oMediaItem->getId()}">
     {/if}
    
     <button type="button" class="close position-absolute text-danger d-none" style="right:.5rem;" aria-label="Close">

@@ -5,7 +5,9 @@
 
 {block 'layout_content'}
     {capture name="form"}
-        <form data-type="form-ajax" data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax" class="js-form-validate " novalidate>
+        <form  data-form-validate data-form-ajax data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax" novalidate>
+            {$oUserProfile->_setValidateScenario('profile_settings')}
+            
             {* Фото*}
 
             {$medias = []}
@@ -20,7 +22,10 @@
                 dataCrop  = [
                     'aspect-ratio' => '1'
                 ]
-                multiple = false
+                validate = [
+                    entity => $oUserProfile,
+                    field => 'photo_count'
+                ]
                 name    = 'photo'
                 label   = $aLang.user.settings.profile.form.photo.label 
                 text    = $aLang.user.settings.profile.form.photo.text         }

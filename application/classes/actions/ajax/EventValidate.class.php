@@ -15,17 +15,13 @@ class ActionAjax_EventValidate extends Event{
         
         if(!$sField = getRequest('field')){
             return $this->EventErrorDebug();
-        }
-        
-        if(!$sValue = getRequest('value')){
-            return $this->EventErrorDebug();
-        }       
+        }     
         
         $oEntity = Engine::GetEntity($sEntity);
         
         $oEntity->_setValidateScenario(getRequest('scenario', ''));
         
-        $oEntity->_setData([$sField => $sValue]); 
+        $oEntity->_setData([$sField => getRequest('value')]); 
         
         if (!$oEntity->_Validate([$sField], true)) {
             /**

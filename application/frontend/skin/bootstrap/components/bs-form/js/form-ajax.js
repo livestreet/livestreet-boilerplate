@@ -35,47 +35,33 @@
             if(this.element.data('url')){
                 this.option('urls.submit', this.element.data('url'));
             }
-            
-            this.element.submit(function(e){
-                
-                if(this.element.bsFormValidate( "instance" ) !== undefined ){
-                    this.element.bsFormValidate('validate', this.afterValidate.bind(this));
-                    return false;
-                }
-                if(this.option('urls.submit') === null){
-                    return false;
-                }
-                
-                this.loading();
-                
-                this._submit('submit', this.element, 'afterSubmit', 
-                    {showProgress:false, onError:this.afterError.bind(this)});
-                return false;
-            }.bind(this));
+
+            this._on(this.element, {submit:"onSubmit"});
             
         },
         
-        afterValidate:function(response){
-            if(response.success){
-                this._submit('submit', this.element, 'afterSubmit', 
-                    {showProgress:false, onError:this.afterError.bind(this)});
-                return;
-            }
+        onSubmit: function(event){
+
+            console.log('eventform',event)  
             
-            this.loaded();
+            event.preventDefault();
+            
+            if(this.option('urls.submit') === null){
+                return false;
+            }
+
+            this.loading();
+            
+            this._submit('submit', this.element, 'afterSubmit', 
+                    {showProgress:false, onError:this.afterError.bind(this)});
+                    
+            return false;
         },
+        
         
         afterSubmit:function(response){
             
-                        
             this.loaded();
-            
-            if(response.bStateError){
-                if(this.option('needValidate') ){
-                    this.element.bsFormValidate('showErrors', response.errors)
-                }
-                return;
-            }
             
             this.element.closest('.modal').modal('hide');
             
@@ -83,7 +69,6 @@
         },
         
         afterError: function(){
-            
             this.loaded();
         },
         

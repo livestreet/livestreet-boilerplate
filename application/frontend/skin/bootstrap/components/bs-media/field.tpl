@@ -20,7 +20,7 @@
 
 
     {$attributesGroup['data-type'] = 'media-field'}
-    {$attributesGroup['data-name'] = {$name|default:"media[]"}}
+    {$attributesGroup['data-name'] = "{$name|default:'media'}[]"}
     {$attributesGroup['data-multiple'] = {$multiple|default:"true"}}
 {/block}
 
@@ -30,14 +30,20 @@
 
 {block name="field_input"}
     
+    {$mediaCount = 0}
+    {if !$medias and $entity}
+        {$medias = []}
+        {$aMedias = $entity->getMedia()}
+        {foreach $aMedias as $oMedia}
+            {$medias[] = [obj => $oMedia]}
+            {$mediaCount = $mediaCount + 1}
+        {/foreach}
+    {/if}   
+
+    <input class="d-none" data-count name="{$name}_count" {cattr list=$validateRules} value="{$mediaCount}">
+    
     {capture name="content"}
-        {if !$medias and $entity}
-            {$medias = []}
-            {$aMedias = $entity->getMedia()}
-            {foreach $aMedias as $oMedia}
-                {$medias[] = [obj => $oMedia]}
-            {/foreach}
-        {/if}
+        
 
        
         {if is_array($medias)}
