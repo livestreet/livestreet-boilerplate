@@ -31,7 +31,7 @@
                     ]}
                 {/foreach}
 
-                {component 'bs-carousel' classes="slide w-50 mt-3" controls=true  items=$items}
+                {component 'bs-carousel' classes="slide w-25 mt-3" controls=true  items=$items}
             {/if}
             
             <div class="row mt-2">
@@ -54,7 +54,7 @@
                     {/if}
                     
                     {if $deleted}
-                        <form data-url="{router page='ajax/talk/message-delete'}" data-type="form-ajax">
+                        <form data-url="{router page='ajax/talk/message-delete'}" data-form-ajax>
                             <input type="hidden" name="id" value="{$entity->getId()}">
                             <input type="hidden" name="redirect" value="{$redirect}">
                             {component "bs-button" 

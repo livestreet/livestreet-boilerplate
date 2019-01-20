@@ -1,5 +1,10 @@
 
-<form action="{router page='auth/register'}" method="post" name="register_company" class="js-form-validate js-auth-registration-form js-recaptcha-form" novalidate>
+<form action="{router page='auth/register'}" method="post" name="register_company" 
+      autocomplete="off"
+      data-url="{router page='auth/ajax-register'}" data-form-ajax data-form-validate class="" novalidate>
+    
+    {$oUserProfile = Engine::GetEntity('User_User')}
+    {$oUserProfile->_setValidateScenario('registration')}
     
     {hook run='form_registration_begin'}
     {* E-mail *}
@@ -8,9 +13,9 @@
         name        = "mail"
         placeholder = $aLang.auth.registration.form.fields.email.placeholder
         type        = "email"
-        attributes  = [
-            required => true,
-            remote => "{router page='auth'}ajax-validate-email"
+        validate    = [ 
+            entity  => $oUserProfile,
+            remote  => true
         ]}
 
     {* Имя Фамилия *}
@@ -19,7 +24,9 @@
         name        = "name"
         placeholder = $aLang.auth.registration.form.fields.name_company.placeholder
         type        = "text"
-        entity      = 'User_User'
+        validate    = [ 
+            entity  => $oUserProfile
+        ]
         }
 
     {* Логин *}
@@ -29,9 +36,9 @@
         placeholder = $aLang.auth.registration.form.fields.login.placeholder
         type        = "text"
         desc        = $aLang.auth.registration.form.fields.login.desc  
-        attributes       = [ 
-            required => true,
-            remote => "{router page='auth'}ajax-validate-login"
+        validate    = [ 
+            entity  => $oUserProfile,
+            remote  => true
         ]}
 
     {* Пароль *}
@@ -39,14 +46,15 @@
         type        = "password"
         name        = "password"
         placeholder = $aLang.auth.registration.form.fields.password.placeholder
-        entity      = 'User_User'
-        validate       = [ 
-            triggers => 'change keyup'
+        validate    = [ 
+            entity  => $oUserProfile
         ]}
         
     {if Config::Get('module.user.captcha_use_registration')}
-        {component "recaptcha.field" 
-            entity      = 'User_User'
+        {component "bs-form.recaptcha" 
+            validate    = [ 
+                entity  => $oUserProfile
+            ]
             name        = "recaptcha"}
     {/if}
 

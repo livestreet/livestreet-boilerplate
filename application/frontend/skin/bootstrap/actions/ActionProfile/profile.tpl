@@ -8,16 +8,27 @@
     <h2>{$oUserProfile->getName()}</h2>
     
     {if $oUserProfile->isRole('company')}
-        <div class="ml-1 my-3 text-muted">
-            <span class="mr-3">{component "bs-icon" icon="link" display="s"} {$oUserProfile->getSite()}</span>
-            <span class="mr-3">{component "bs-icon" icon="phone" display="s"} {$oUserProfile->getPhone()}</span>
-            <span class="mr-3">{component "bs-icon" icon="map-marker-alt" display="s"} {$oUserProfile->getAddress()}</span>
-        </div>
-    {/if}    
-        
-    {component 'bs-text' text=$oUserProfile->getAbout()}
+        {if $oUserProfile->getSite() or $oUserProfile->getPhone() or $oUserProfile->getAddress()}
+            <div class="ml-1 my-3 text-muted">
+                {if $oUserProfile->getSite()}
+                    <span class="mr-3">{component "bs-icon" icon="link" display="s"} {$oUserProfile->getSite()}</span>
+                {/if}
+                {if $oUserProfile->getPhone()}
+                    <span class="mr-3">{component "bs-icon" icon="phone" display="s"} {$oUserProfile->getPhone()}</span>
+                {/if}
+                {if $oUserProfile->getAddress()}
+                    <span class="mr-3">{component "bs-icon" icon="map-marker-alt" display="s"} {$oUserProfile->getAddress()}</span>
+                {/if}
+
+            </div>
+        {/if}
+    {/if}   
     
-    {component "rating" classes="mt-4" oUser=$oUserProfile}
+    {if $oUserProfile->getAbout()}
+        {component 'bs-text' text=$oUserProfile->getAbout()}
+    {/if}
+
+    {component "rating" classes="mt-3" oUser=$oUserProfile}
     
     <div class="row mt-3">
         <div class="col-12">

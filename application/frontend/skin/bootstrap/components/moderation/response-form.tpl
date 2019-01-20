@@ -7,18 +7,23 @@
  
 {component_define_params params=[ 'oResponse', 'redirect', 'url']}
 
-<form action="" data-type="form-ajax" data-url="{$url}" class="js-form-validate">
+<form action="" data-form-ajax data-form-validate data-url="{$url}">
+    
+    {$oResponse->_setValidateScenario('create')}
     {component "bs-form.text" 
-        entity  = $oResponse
+        validate   = [
+            entity => $oResponse
+        ]
         name    = "rating"
         value   = $oResponse->getRating()
         label   = $aLang.talk.response.form.stars.label
     }
     
-        
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oResponse
+        validate   = [
+            entity => $oResponse
+        ]
         template    = 'textarea' 
         name        = "text"
         value       = $oResponse->getText()
@@ -27,9 +32,11 @@
         }
         
     {component "bs-media.field" 
-        entity  = $oResponse
+        validate   = [
+            entity => $oResponse
+        ]
         multiple = true
-        name    = 'photos[]'
+        name    = 'photos'
         label   = $aLang.talk.response.form.photo.label 
         text    = $aLang.talk.response.form.photo.text }
         
@@ -42,6 +49,5 @@
     {/if} 
 
     
-     <input type="hidden" name="redirect" value="{$redirect}">
 </form>
 

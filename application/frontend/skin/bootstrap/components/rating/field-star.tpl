@@ -14,11 +14,14 @@
 
 
 {block name="field_options"}
-    {$classesGroup = "{$classesGroup} rating-group"}
+    {$classesGroup = "{$classesGroup} rating-group js-field-star"}
 {/block}
 
 
 {block name="field_input"}
+    <input type="number" name="{$name}" style="display:none;"
+        class="js-field-input {$component} {cmods name=$component mods=$bmods delimiter="-"} {$classes}" 
+        {cattr list=$attributes} {cattr list=$validateRules}>
     <div class="d-flex align-items-center ">
         <div class="d-block">
             {for $var=$count to 1 step -1}

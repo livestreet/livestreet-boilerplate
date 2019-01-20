@@ -39,7 +39,7 @@ class ActionModeration_EventArbitrage extends Event {
         $this->Viewer_SetResponseAjax('json');
         
         $oArbitrage = Engine::GetEntity('Talk_Arbitrage');
-        
+        $oArbitrage->_setValidateScenario('create');
         $oArbitrage->_setDataSafe($_REQUEST);
         $oArbitrage->setState('chat');
         

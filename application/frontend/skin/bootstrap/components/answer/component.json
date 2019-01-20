@@ -6,7 +6,6 @@
     },
     "templates": {
         "answer": "answer.tpl",
-        "modal": "answer-modal.tpl",
         "form": "answer-form.tpl"
     }
 }

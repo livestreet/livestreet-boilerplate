@@ -12,7 +12,6 @@
         "response-item": "moderation/response-item.tpl",
         "response-list": "moderation/response-list.tpl",
         "response-chat": "moderation/response-chat.tpl",
-        "response-form": "moderation/response-form.tpl",
         "chat-form": "moderation/chat-form.tpl"
     }
 }

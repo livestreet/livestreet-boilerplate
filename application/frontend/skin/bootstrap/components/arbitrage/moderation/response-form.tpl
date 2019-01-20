@@ -7,7 +7,7 @@
  
 {component_define_params params=[ 'oResponse', 'redirect', 'url']}
 
-<form action="" data-type="form-ajax" data-url="{$url}" class="js-form-validate">
+<form action="" data-form-ajax data-form-validate data-url="{$url}" >
     {component "bs-form.text" 
         entity  = $oResponse
         name    = "rating"

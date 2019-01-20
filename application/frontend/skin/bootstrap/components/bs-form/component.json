@@ -11,14 +11,21 @@
         "checkbox":"field.checkbox.tpl",
         "select":"field.select.tpl",
         "file":"field.file.tpl",
-        "textarea":"field.textarea.tpl"
+        "textarea":"field.textarea.tpl",
+        "recaptcha":"field.recaptcha.tpl"
     },
     "scripts":{
         "field-validate":"js/field-validate.js",
         "form-validate":"js/form-validate.js",
-        "form-ajax":"js/form-ajax.js"
+        "form-ajax":"js/form-ajax.js",
+        "recaptcha": {
+            "file": "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
+            "merge": false
+        },
+        "recaptcha-active": "js/recaptcha.js"
     },
     "styles":{
-        "loader": "css/loader.css"
+        "loader": "css/loader.css",
+        "form": "css/form.css"
     }
 }

@@ -43,10 +43,13 @@
             {$validateRules['data-only-change'] = "true"}
         {/if}
     {else}
+        {if is_object($validate.entity)}
+            {$validate.scenario = $validate.entity->_getValidateScenario()}
+        {/if}
         {field_make_rules 
             entity      = $validate.entity 
             field       = $validate.field|default:$name
-            scenario    = $validate.scenario|default:$validate.entity->_getValidateScenario()
+            scenario    = $validate.scenario
             assign      = "validateRules"}
     {/if}
     

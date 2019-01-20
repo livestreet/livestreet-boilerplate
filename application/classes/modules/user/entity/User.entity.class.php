@@ -9,15 +9,7 @@ class ModuleUser_EntityUser extends EntityORM
             'allowEmpty' => false, 
             'on' => array('registration')
         ),
-        array(
-            'password', 
-            'string', 
-            'allowEmpty' => false, 
-            'min' => 5, 
-            'max' => 100,
-            'on' => array('registration'), 
-            'msg' => 'auth.registration.notices.password_no_valid'
-        ),
+        
         [   
             'mail_login', 
             'string', 
@@ -49,8 +41,14 @@ class ModuleUser_EntityUser extends EntityORM
             'string', 
             'min' => 3, 
             'max' => 200, 
+            'on' => array( 'profile_settings')
+        ],
+        [   'name', 
+            'string', 
+            'min' => 3, 
+            'max' => 200, 
             'allowEmpty' => false,
-            'on' => array('registration', 'profile_settings')
+            'on' => array('registration')
         ],
         [   
             'role', 
@@ -72,7 +70,7 @@ class ModuleUser_EntityUser extends EntityORM
         ],
         [   
             'site', 
-            'string',
+            'url',
             'max' => 500,
             'on' => array( 'profile_settings')
         ],
@@ -85,15 +83,13 @@ class ModuleUser_EntityUser extends EntityORM
         [   
             'about', 
             'string',
-            'max' => 2000,
+            'max' => 1000,
             'on' => array( 'profile_settings')
         ],
         [   
             'photo_count', 
             'number',
-            'max' => 2,
-            'min' => 1,
-            'allowEmpty' => false,
+            'max' => 1,
             'on' => array( 'profile_settings')
         ]
     );
@@ -118,7 +114,7 @@ class ModuleUser_EntityUser extends EntityORM
                 'recaptcha',
                 'captcha_recaptcha',
                 'name'  => 'user_signup',
-                'on'    => array('create', 'create_anoname'),
+                'on'    => array('registration'),
                 'label' => $this->Lang_Get('auth.labels.captcha_field'),
                 'msg'   => $this->Lang_Get('talk.response.notice.error_captcha')
             );
@@ -127,10 +123,10 @@ class ModuleUser_EntityUser extends EntityORM
         $this->aValidateRules[] = array(
             'password', 
             'string', 
-            'min' => 3,
-            'max' => 100,
-            'msg' => $this->Lang_Get('talk.response.form.text.error_validate', ['min' => 3, 'max' => 100]),
-            'on' => array('login'),
+            'min' => 10,
+            'max' => 50,
+            'msg' => $this->Lang_Get('auth.registration.notices.password_no_valid', ['min' => 10, 'max' => 50]),
+            'on' => array('registration', 'login'),
             'allowEmpty' => false
         );
     }

@@ -28,7 +28,7 @@
                 {/foreach}
 
                 {component 'bs-carousel' 
-                    classes="slide w-50 mt-3" 
+                    classes="slide w-25 mt-3" 
                     indicators=true
                     controls=true  
                     items=$items}
@@ -46,7 +46,7 @@
                     {/if}
                     
                     {if $deleted}
-                        <form data-url="{router page='ajax/talk/message-delete'}" data-type="form-ajax">
+                        <form data-url="{router page='ajax/talk/message-delete'}" data-form-ajax>
                             <input type="hidden" name="id" value="{$entity->getId()}">
                             <input type="hidden" name="redirect" value="{$redirect}">
                             {component "bs-button" 
@@ -65,7 +65,11 @@
             {if $answered and  (!count($entity->getAnswers(['target_type' => 'proposal'])))}
                 {component "bs-collapse.item" 
                     id      = $idAnswer 
-                    content = {component "answer.form" redirect=$redirect target_id = $entity->getId() target_type=$entity->getType()}}
+                    content = {component "answer.form" 
+                                oAnswer     = Engine::GetEntity('Talk_Answer')
+                                redirect    = $redirect 
+                                target_id   = $entity->getId() 
+                                target_type = $entity->getType()}}
             {/if}
 
             {foreach $entity->getAnswers(['target_type' => 'proposal']) as $oAnswer}

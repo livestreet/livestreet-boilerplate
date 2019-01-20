@@ -4,11 +4,13 @@
     "templates": {
         "rating": "rating.tpl",
         "number":"number.tpl",
-        "field-stars":"field-stars.tpl",
         "field-star":"field-star.tpl",
         "stars":"stars.tpl"
     },
     "styles":{
         "rating":"css/rating.css"
+    },
+    "scripts":{
+        "field-star":"js/field-star.js"
     }
 }

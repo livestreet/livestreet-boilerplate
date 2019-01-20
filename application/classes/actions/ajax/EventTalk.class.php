@@ -11,9 +11,31 @@ class ActionAjax_EventTalk extends Event {
 
 
     public function Init() {
-        
+        $this->oUserCurrent = $this->User_GetUserCurrent();
     }
     
+    /**
+     * Проверка корректности профиля
+     */
+    protected function CheckUserAccess()
+    {
+        /**
+         * Проверяем есть ли такой юзер
+         */
+        if (!$this->oUserCurrent = $this->User_GetUserCurrent()) {
+            return false;
+        }        
+        
+        if($this->oUserCurrent->isAdministrator()){
+            return true;
+        } 
+        
+        if(! $this->Rbac_IsAllow('moderation')){
+            return false;
+        }
+        
+        return true;
+    }
         
     public function EventAjaxResponseEdit() {
         
@@ -24,6 +46,12 @@ class ActionAjax_EventTalk extends Event {
             if(!$this->User_GetUserCurrent()){
                 $oResponse->_setValidateScenario( 'create_anoname');
             }
+        }else{
+            if ($this->oUserCurrent and $this->oUserCurrent->getId() != $oResponse->getUserId() or !$this->CheckUserAccess()) {
+                $this->Message_AddError($this->Lang_Get('common.error.error'));
+                return;
+            }
+            
         }
         
         $oResponse->_setDataSafe($_REQUEST);
@@ -105,6 +133,7 @@ class ActionAjax_EventTalk extends Event {
     public function EventAjaxAnswerCreate() {
         
         $oAnswer = Engine::GetEntity('Talk_Answer');
+        $oAnswer->_setValidateScenario('create');
         $oAnswer->_setDataSafe($_REQUEST);
 
         $oAnswer->setState('publish');
@@ -142,6 +171,7 @@ class ActionAjax_EventTalk extends Event {
     public function EventAjaxArbitrageCreate() {
         
         $oArbitrage = Engine::GetEntity('Talk_Arbitrage');
+        $oArbitrage->_setValidateScenario('create');
         $oArbitrage->_setDataSafe($_REQUEST);
         
         $oArbitrage->setState('moderate');

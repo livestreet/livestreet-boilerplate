@@ -112,12 +112,6 @@ jQuery(document).ready(function($){
     /**
      * Auth and AJAX
      */
-    $('.js-auth-registration-form').bsFormAjax({
-        urls:{
-            submit: aRouter.auth + 'ajax-register'
-        },
-        needValidate:true
-    });
     
     $('.js-auth-login-form').bsFormAjax({
         urls:{
@@ -155,7 +149,7 @@ jQuery(document).ready(function($){
      */
     $('[data-type="pagination"]').bsPagination();
    
-    
+    $('.js-field-star').bsFieldStar();
 
     // Хук конца инициализации javascript-составляющих шаблона
     ls.hook.run('ls_template_init_end',[],window);

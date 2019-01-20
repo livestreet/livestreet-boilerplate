@@ -20,18 +20,18 @@ class ModuleTalk_EntityAnswer extends ModuleTalk_EntityMessage{
         $this->aValidateRules[] = array(
             'target_id,target_type', 
             'exist_message',
-            'on' => ['']
+            'on' => ['create']
         );        
         
         $this->aValidateRules[] = array(
             'target_id', 
             'number',
-            'on' => ['']
+            'on' => ['create']
         );
         $this->aValidateRules[] = array(
             'target_type', 
             'string',
-            'on' => ['']
+            'on' => ['create']
         );
     }   
     

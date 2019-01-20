@@ -77,13 +77,21 @@ function smarty_function_field_make_rules($params, &$smarty)
                 }
             }
             
+            if ($sType == 'url') {
+                $aResult['type'] = 'url';
+                
+            }
             
+            if ( !$oValidator->allowEmpty) {
+                $aResult['required'] = true;
+            }
             
             if ($sType != 'inline' ) {
                 
                 if($oValidator->msg){
-                    $smarty->assign('msg', $oValidator->msg);
+                    $smarty->assign('msg', $oValidator->Lang_Get($oValidator->msg));
                 }else{
+                    $oValidator->allowEmpty = false;
                     $msg = $oValidator->validate('');
                     $msg = str_replace("%%field%%", $oValidator->label, $msg);
                     $smarty->assign('msg', $msg);
@@ -93,9 +101,7 @@ function smarty_function_field_make_rules($params, &$smarty)
                 if(in_array($sType, ['email', 'password', 'number', 'url'])){
                     $smarty->assign('typeRule', $sType);
                 }
-                if ( !$oValidator->allowEmpty) {
-                    $aResult['required'] = true;
-                }
+                
             }            
             
         }

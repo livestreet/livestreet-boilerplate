@@ -27,7 +27,8 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'user_name', 
             'string',
             'allowEmpty' => false,
-            'on' => ['create_anoname']
+            'on' => ['create_anoname'],
+            'msg' => $this->Lang_Get('talk.response.notice.error_name')
         );
         $this->aValidateRules[] =    array(
             'text', 
@@ -43,6 +44,13 @@ class ModuleTalk_EntityMessage extends EntityORM{
             'double_text',
             'on' => ['create', 'create_anoname'],
         );
+        
+        $this->aValidateRules[] = [   
+            'photos_count', 
+            'number',
+            'max' => 1,
+            'on' => array( 'create')
+        ];
         
         if ((int)$this->getUserId() === 0) {
             $this->aValidateRules[] = array(

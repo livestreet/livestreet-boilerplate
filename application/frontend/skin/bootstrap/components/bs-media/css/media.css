@@ -30,11 +30,3 @@
     max-width: 5rem;
     white-space: nowrap;
 }
-
-[data-type="media-field"] .is-invalid + .card {
-    border-color: #dc3545;
-}
-
-[data-type="media-field"] .is-valid + .card {
-    border-color: #28a745;
-}

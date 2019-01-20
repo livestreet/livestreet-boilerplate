@@ -39,7 +39,7 @@
                 <div class="col-sm-8"></div>
                 <div class="col-sm-4 align-content-end">
                     {if $deleted and $oUserCurrent and $entity->getUser()->getId() == $oUserCurrent->getId()}
-                        <form data-url="{router page='ajax/talk/message-delete'}" data-type="form-ajax">
+                        <form data-url="{router page='ajax/talk/message-delete'}" data-form-ajax>
                             <input type="hidden" name="id" value="{$entity->getId()}">
                             <input type="hidden" name="redirect" value="{$redirect}">
                             {component "bs-button" 

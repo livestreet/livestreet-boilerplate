@@ -22,7 +22,7 @@
                     ]}
                 {/foreach}
 
-                {component 'bs-carousel' classes="slide w-50 mt-3" indicators=true controls=true  items=$items}
+                {component 'bs-carousel' classes="slide w-25 mt-3" indicators=true controls=true  items=$items}
             {/if}
             
             

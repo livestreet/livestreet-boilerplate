@@ -61,7 +61,8 @@ $.widget( "livestreet.bsAjaxList", $.livestreet.lsComponent, {
         
         this.elements.container.append(respose.html);
         
-        this.elements.container.find('[data-type="form-ajax"]').bsFormAjax();
+        this.elements.container.find('[data-form-validate]').bsFormAjax();
+        this.elements.container.find('[data-form-ajax]').bsFormAjax();
         this.elements.container.find('[data-toggle="popover"]').popover();
         this.elements.container.find('[data-toggle="tooltip"]').tooltip();
         

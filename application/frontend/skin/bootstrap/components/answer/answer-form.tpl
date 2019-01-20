@@ -7,11 +7,15 @@
  
 {component_define_params params=[ 'oAnswer', 'target_id', 'target_type', 'redirect']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-answer'}" class="js-form-validate  mb-3">
+<form action="" data-form-ajax data-form-validate data-url="{router page='ajax/talk/create-answer'}" class=" mb-3">
      
+    {$oAnswer->_setValidateScenario('create')}
+    
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oAnswer
+        validate   = [
+            entity => $oAnswer
+        ]
         template    = 'textarea' 
         name        = "text"
         placeholder = $aLang.talk.answer.form.text.placeholder
@@ -19,9 +23,11 @@
         }
         
     {component "bs-media.field" 
-        entity  = $oAnswer
+        validate   = [
+            entity => $oAnswer
+        ]
         multiple = true
-        name    = 'photos[]'
+        name    = 'photos'
         label   = $aLang.talk.answer.form.photo.label 
         text    = $aLang.talk.answer.form.photo.text }
         

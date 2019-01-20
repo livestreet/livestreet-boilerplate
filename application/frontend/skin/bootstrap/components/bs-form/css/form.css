@@ -1,0 +1,9 @@
+
+
+.form-group input.is-invalid + div {
+    border-color: #dc3545;
+}
+
+.form-group input.is-valid + div {
+    border-color: #28a745;
+}

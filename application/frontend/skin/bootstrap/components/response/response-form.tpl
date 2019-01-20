@@ -7,34 +7,44 @@
  
 {component_define_params params=[ 'oResponse', 'redirect', 'url']}
 
-<form action="" data-type="form-ajax" data-url="{$url}" class="js-form-validate">
+<form action="" data-form-ajax data-form-validate  data-url="{$url}" novalidate>
+    {$oResponse->_setValidateScenario('create')}
+    
     {if !$oUserCurrent}
+        {$oResponse->_setValidateScenario('create_anoname')}
+        
         {* Имя анонима *}
         {component 'bs-form' 
             template    = 'text' 
             name        = "user_name"
             value       = $oResponse->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
-            attributes   = ['required' => true]
-            validateError   = $aLang.talk.response.notice.error_name
+            validate   = [
+                entity => $oResponse
+            ]
             }
             
         {component "field.hidden" name="user_id" value="0"}
     {/if}
 
     
+    
     {component "rating.field-star" 
-        entity  = $oResponse
         name    = "rating"
         value   = $oResponse->getRating()
         count   = 5
         label   = $aLang.talk.response.form.stars.label
+        validate   = [
+            entity => $oResponse
+        ]
     }
     
         
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oResponse
+        validate   = [
+            entity => $oResponse
+        ]
         template    = 'textarea' 
         name        = "text"
         value       = $oResponse->getText()
@@ -43,16 +53,20 @@
         }
     {if $oUserCurrent}
         {component "bs-media.field" 
-            entity  = $oResponse
+            validate   = [
+                entity => $oResponse
+            ]
             multiple = true
-            name    = 'photos[]'
+            name    = 'photos'
             label   = $aLang.talk.response.form.photo.label 
             text    = $aLang.talk.response.form.photo.text }
     {/if}
     
     {if !$oUserCurrent}
-        {component "recaptcha.field" 
-            entity  = $oResponse
+        {component "bs-form.recaptcha" 
+            validate   = [
+                entity => $oResponse
+            ]
             name="recaptcha"}
     {/if}
         

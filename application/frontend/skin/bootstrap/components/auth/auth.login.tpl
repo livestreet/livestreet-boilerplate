@@ -8,7 +8,7 @@
 
 
 {hook run='login_begin'}
-<form data-url="{router page='auth/ajax-login'}" method="post" name="register_user" data-type="form-ajax" class="js-form-validate mt-3" novalidate>
+<form data-url="{router page='auth/ajax-login'}" method="post" name="register_user" data-form-ajax class=" mt-3" novalidate>
 
     {hook run='form_login_begin'}
     {* Логин или Email*}
@@ -17,15 +17,12 @@
         name        = "mail_login"
         placeholder = $aLang.auth.login.form.fields.login_or_email.placeholder
         type        = "text"
-        scenario    = 'login'
-        entity      = "User_User"}
+        }
 
     {* Пароль *}
     {component 'bs-form' template='text' 
         type        = "password"
         name        = "password"
-        scenario    = 'login'
-        entity      = "User_User"
         placeholder = $aLang.auth.login.form.fields.password.placeholder
         }
 

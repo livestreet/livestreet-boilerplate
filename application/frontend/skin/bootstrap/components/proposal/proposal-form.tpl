@@ -7,23 +7,32 @@
  
 {component_define_params params=[ 'oProposal', 'redirect']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-proposal'}" class="js-form-validate">
+<form action="" data-form-ajax data-form-validate  data-url="{router page='ajax/talk/create-proposal'}">
+    
+    {$oProposal->_setValidateScenario('create')}
+    
     {if !$oUserCurrent}
+        
+        {$oProposal->_setValidateScenario('create_anoname')}
+        
         {* Имя анонима *}
         {component 'bs-form' 
-            entity      = $oProposal
+            validate   = [
+                entity => $oProposal
+            ]
             template    = 'text' 
             name        = "user_name"
             value       = $oProposal->getUserName()
             placeholder = $aLang.talk.response.form.name.placeholder
-            attributes   = ['required' => true]
             }
             
         {component "field.hidden" name="user_id" value="0"}
     {/if}
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oProposal
+        validate   = [
+            entity => $oProposal
+        ]
         template    = 'textarea' 
         name        = "text"
         label       = $aLang.talk.proposal.form.text.label
@@ -31,16 +40,20 @@
         }
     {if $oUserCurrent}
         {component "bs-media.field" 
-            entity  = $oProposal
+            validate   = [
+                entity => $oProposal
+            ]
             multiple = true
-            name    = 'photos[]'
+            name    = 'photos'
             label   = $aLang.talk.proposal.form.photo.label 
             text    = $aLang.talk.proposal.form.photo.text }
     {/if}
     
     {if !$oUserCurrent}
-        {component "recaptcha.field" 
-            entity  = $oProposal
+        {component "bs-form.recaptcha" 
+            validate   = [
+                entity => $oProposal
+            ]
             name    = "recaptcha"}
     {/if}
     

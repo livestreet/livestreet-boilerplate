@@ -5,7 +5,7 @@
 {component_define_params params=[ 'entity', 'id', 'bmods', 'title', 'url' ]}
 
 {if !$entity}
-    {$entity=Engine::GetEntity('Talk_Message', ['type' => 'response'])}
+    {$entity=Engine::GetEntity('Talk_Response')}
 {/if}
 
 {component "bs-modal" 

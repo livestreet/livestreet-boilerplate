@@ -6,11 +6,14 @@
  *}
 {component_define_params params=[ 'oArbitrage', 'target_id', 'target_type', 'redirect']}
 
-<form action="" data-type="form-ajax" data-url="{router page='ajax/talk/create-arbitrage'}" class="js-form-validate mb-3">
+<form action="" data-form-ajax  data-form-validate data-url="{router page='ajax/talk/create-arbitrage'}" class="mb-3">
      
+    {$oArbitrage->_setValidateScenario('create')}
     {* Текст *}
     {component 'bs-form' 
-        entity      = $oArbitrage
+        validate = [
+            entity   => $oArbitrage
+        ]
         template    = 'textarea' 
         name        = "text"
         placeholder = $aLang.talk.arbitrage.form.text.placeholder
@@ -18,9 +21,11 @@
         }
 
     {component "bs-media.field" 
-        entity  = $oArbitrage
+        validate = [
+            entity   => $oArbitrage
+        ]
         multiple = true
-        name    = 'photos[]'
+        name    = 'photos'
         label   = $aLang.talk.arbitrage.form.photo.label 
         text    = $aLang.talk.arbitrage.form.photo.text }
         

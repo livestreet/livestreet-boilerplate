@@ -42,11 +42,13 @@ class ActionProfile_EventSettings extends Event {
     public function EventProfileAjax() {
         $this->Viewer_SetResponseAjax('json');
         
-        if(is_array(getRequest('sizes')) and isset(getRequest('sizes')[getRequest('photo')])){
-            $aSize = getRequest('sizes')[getRequest('photo')];
+        $iPhoto = (isset(getRequest('photo')[0])?getRequest('photo')[0]:0);
+        
+        if(is_array(getRequest('sizes')) and isset(getRequest('sizes')[$iPhoto])){
+            $aSize = getRequest('sizes')[$iPhoto];
         }
-        if(is_array(getRequest('canvasWidth')) and isset(getRequest('canvasWidth')[getRequest('photo')])){
-            $iCanvasWidth = getRequest('canvasWidth')[getRequest('photo')];$this->Logger_Notice('canvas_width');
+        if(is_array(getRequest('canvasWidth')) and isset(getRequest('canvasWidth')[$iPhoto])){
+            $iCanvasWidth = getRequest('canvasWidth')[$iPhoto];
         }
         
         $mTarget = $this->Media_GetTargetByFilter([
@@ -59,7 +61,7 @@ class ActionProfile_EventSettings extends Event {
         }
         
         $sPath = '';
-        if($oMedia = $this->Media_GetMediaById(getRequest('photo'))){
+        if($oMedia = $this->Media_GetMediaById($iPhoto)){
             
             if(isset($aSize) and isset($iCanvasWidth)){
                 if(($sResult = $this->Media_NewSizeFromCrop($oMedia, $aSize, $iCanvasWidth, 
@@ -81,27 +83,29 @@ class ActionProfile_EventSettings extends Event {
             $mTarget = $this->Media_GetTargetByFilter([
                     'target_type' => 'user_photo', 
                     'target_id' => $this->oUserProfile->getId(), 
-                    'media_id' => getRequest('photo')]);
+                    'media_id' => $iPhoto]);
             
             if(!$mTarget){
                 $this->Media_AttachMediaToTarget($oMedia, 'user_photo', $this->oUserProfile->getId(), null,  ['size'=>'photo']);
             }
             
             $sPath = $this->Fs_GetPathRelative($oMedia->getFileServerPath('photo'), true);
+            $this->oUserProfile->setPhoto($sPath);
         }
         
-        $this->oUserProfile->setPhoto($sPath);
+        
         $this->oUserProfile->setName(getRequest('name'));
         $this->oUserProfile->setAbout(getRequest('about'));
         $this->oUserProfile->setSite(getRequest('site'));
         $this->oUserProfile->setPhone(getRequest('phone'));
         $this->oUserProfile->setAddress(getRequest('address'));
+        $this->oUserProfile->setLogin(getRequest('login'));
         
         if($this->oUserProfile->_Validate()){
             
             if($this->oUserProfile->Save()){
                 $this->Message_AddNotice($this->Lang_Get('common.success.save'));
-                //$this->Viewer_AssignAjax('sUrlRedirect', $this->oUserProfile->getProfileUrl().'/settings');
+                $this->Viewer_AssignAjax('sUrlRedirect', $this->oUserProfile->getProfileUrl().'/settings');
             }
         }else{
             $this->Message_AddError($this->oUserProfile->_getValidateError());
