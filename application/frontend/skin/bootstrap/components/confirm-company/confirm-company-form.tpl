@@ -7,9 +7,11 @@
  
 {component_define_params params=[ ]}
 
-<form action="" data-type="form-ajax" data-url="{router 'ajax/confirm-company'}" class="js-form-validate">
+<form action="" data-form-ajax data-form-validate data-url="{router 'ajax/confirm-company'}" >
     
     <p>{$aLang.user.confirm_company.form.text}</p>
+    
+    {$oConfirm = Engine::GetEntity('User_ConfirmCompany')}
     
     {* Имя Фамилия *}
     {component 'bs-form' 
@@ -17,7 +19,9 @@
         name        = "name"
         placeholder = $aLang.auth.registration.form.fields.name.placeholder
         type        = "text"
-        entity      = "User_ConfirmCompany"
+        validate    = [
+            entity => $oConfirm
+        ]
         }
         
     {* E-mail *}
@@ -26,7 +30,9 @@
         name        = "mail"
         placeholder = $aLang.auth.registration.form.fields.email.placeholder
         type        = "email"
-        entity      = "User_ConfirmCompany"}    
+        validate    = [
+            entity => $oConfirm
+        ]}    
         
     {* Должность *}
     {component 'bs-form' 
@@ -34,7 +40,9 @@
         name        = "job"
         placeholder = $aLang.user.confirm_company.form.job.placeholder
         type        = "text"
-        entity      = "User_ConfirmCompany"
+        validate    = [
+            entity => $oConfirm
+        ]
         }
         
     {* Телефон *}
@@ -43,20 +51,26 @@
         name        = "phone"
         placeholder = $aLang.user.confirm_company.form.phone.placeholder
         type        = "text"
-        entity      = "User_ConfirmCompany"} 
+        validate    = [
+            entity => $oConfirm
+        ]} 
         
     {* Сообщение *}
     {component 'bs-form' 
         template    = 'textarea' 
         name        = "mess"
         placeholder = $aLang.user.confirm_company.form.mess.placeholder
-        entity      = "User_ConfirmCompany"} 
+        validate    = [
+            entity => $oConfirm
+        ]} 
         
     {component "field.hidden" name="company_name" value=$oUserProfile->getName()}
     {component "field.hidden" name="company_url" value=$oUserProfile->getProfileUrl()}
     
-    {component "recaptcha.field" 
-        entity      = "User_ConfirmCompany"
+    {component "bs-form.recaptcha" 
+        validate    = [
+            entity => $oConfirm
+        ]
         name="recaptcha"}
     
      <input type="hidden" name="redirect" value="{$redirect}">

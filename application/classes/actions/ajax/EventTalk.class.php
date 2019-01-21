@@ -205,6 +205,7 @@ class ActionAjax_EventTalk extends Event {
     public function EventAjaxArbitrageChat() {
         
         $oArbitrage = Engine::GetEntity('Talk_Arbitrage');
+        $oArbitrage->_setValidateScenario('create');
         $oArbitrage->_setDataSafe($_REQUEST);
         
         $oArbitrage->setState('chat');
