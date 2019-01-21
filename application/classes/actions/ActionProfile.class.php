@@ -135,6 +135,7 @@ class ActionProfile extends Action
         $this->Viewer_Assign('iCountResponses', $this->iCountResponses);
         $this->Viewer_Assign('iCountAnswers', $this->iCountAnswers);
         $this->Viewer_Assign('oUserProfile', $this->oUserProfile);
+        $this->Viewer_SetSeoTags([]);
     }
 
 

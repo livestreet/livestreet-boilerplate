@@ -105,6 +105,15 @@ $config['module']['talk']['pagination']['pages']['count'] = 5;
 $config['module']['talk']['page_count'] = 10;
 
 /*
+ * SEO
+ */
+$config['seo'] = [
+    'title' => '',
+    'h1' =>'',
+    'description' => '',
+    'keywords' => ''
+];
+/*
  * Модерация
  */
 $config['moderation']['talk']['page_count'] = 10;
