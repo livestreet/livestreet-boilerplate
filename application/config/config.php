@@ -108,10 +108,10 @@ $config['module']['talk']['page_count'] = 10;
  * SEO
  */
 $config['seo'] = [
-    'title' => '',
-    'h1' =>'',
-    'description' => '',
-    'keywords' => ''
+    'title' => 'fgfgfg',
+    'h1' =>'fgfg',
+    'description' => 'ghjjhjh',
+    'keywords' => 'dsdd'
 ];
 /*
  * Модерация
