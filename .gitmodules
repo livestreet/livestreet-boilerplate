@@ -4,4 +4,5 @@
 
 [submodule "application/plugins/admin"]
 	path = application/plugins/admin
-	url = git@github.com:olezhikz/lsadmin-boilerplate.git
+	url = git@bitbucket.org:fendru/plugin-admin.git
+    branch = fend
