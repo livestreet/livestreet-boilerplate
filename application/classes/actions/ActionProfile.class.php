@@ -135,6 +135,16 @@ class ActionProfile extends Action
         $this->Viewer_Assign('iCountResponses', $this->iCountResponses);
         $this->Viewer_Assign('iCountAnswers', $this->iCountAnswers);
         $this->Viewer_Assign('oUserProfile', $this->oUserProfile);
+        
+        if( in_array('admin', array_keys(Engine::getInstance()->GetPlugins()) )){
+            $this->Viewer_SetSeoTags([
+                'login'         => $this->oUserProfile->getLogin(),
+                'name'          => $this->oUserProfile->getName(),
+                'rating'        => round($this->oUserProfile->getRating(), 1). " 5" ,
+                'count_vote'    => $this->oUserProfile->getCountRated(),
+                'about'         => $this->oUserProfile->getAbout()
+            ]);
+        }
     }
 
 

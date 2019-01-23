@@ -5,15 +5,12 @@
  * Именно в этом файле необходимо переопределять все настройки конфига
  */
 
-/**
- * Настройка базы данных
- */
 $config['db']['params']['host'] = 'localhost';
 $config['db']['params']['port'] = '3306';
 $config['db']['params']['user'] = 'root';
 $config['db']['params']['pass'] = '23197';
 $config['db']['params']['type']   = 'mysqli';
-$config['db']['params']['dbname'] = 'social';
+$config['db']['params']['dbname'] = 'fend';
 $config['db']['table']['prefix'] = 'prefix_';
 
 /**
@@ -25,7 +22,19 @@ $config['db']['table']['prefix'] = 'prefix_';
 $config['path']['root']['web'] = 'http://fend.loc';
 $config['path']['offset_request_url'] = 0;
 
+$config['module']['validate']['recaptcha']= array(
+	'site_key' => '6LcDGocUAAAAAEKAjOgEr-_6FJyHTUCmxQHCTUaU', // Ключ
+	'secret_key' => '6LcDGocUAAAAAEfGJpZWrAj9p25ttQPUxqhO2BZg', // Секретный ключ
+	'use_ip' => false, // Использовать при валидации IP адрес клиента
+);
+
 $config['module']['asset']['css']['merge'] = false;
 $config['module']['asset']['js']['merge'] = false;
+
+// Устанавливаем настройки кеширования
+$config['sys']['cache']['use'] = false;               // использовать кеширование или нет
+$config['sys']['cache']['type'] = 'file';             // тип кеширования: file, xcache и memory. memory использует мемкеш, xcache - использует XCache
+$config['smarty']['force_compile'] = true;
+
 
 return $config;

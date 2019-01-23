@@ -165,9 +165,16 @@ class ModuleUser_EntityUser extends EntityORM
     
     public function ValidateLoginExists($sValue, $aParams)
     {
+        $aPages = array_keys( Config::Get('router.page') ); 
+        if(in_array($sValue, $aPages)){
+            return $this->Lang_Get('auth.registration.notices.error_login_used');
+        }
+        
         if (!$this->User_GetUserByLogin($sValue)) {
             return true;
         }
+        
+        
         return $this->Lang_Get('auth.registration.notices.error_login_used');
     }
 

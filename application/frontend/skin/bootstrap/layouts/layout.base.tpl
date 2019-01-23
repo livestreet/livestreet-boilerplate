@@ -191,12 +191,15 @@
         {else}
             {component 'bs-auth' template='modal'}
         {/if}
+        {if $oUserAdmin}
+            {component 'bs-modal' 
+                header  = {lang 'user.userbar.nav.feedback'} 
+                id      = "modalFeedback"
+                closed  = true
+                content = {lang 'feedback.text' email=$oUserAdmin->getMail()}}
+        {/if}
+
         
-        {component 'bs-modal' 
-            header  = {lang 'user.userbar.nav.feedback'} 
-            id      = "modalFeedback"
-            closed  = true
-            content = {lang 'feedback.text' email=$oUserAdmin->getMail()}}
     {/block}
     
 

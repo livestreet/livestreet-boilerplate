@@ -1042,7 +1042,10 @@ ALTER TABLE `prefix_talk_message`
 -- AUTO_INCREMENT для таблицы `prefix_user`
 --
 ALTER TABLE `prefix_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+INSERT INTO `prefix_user` (`id`, `login`, `mail`, `name`, `role`, `about`, `site`, `phone`, `address`, `photo`, `password`, `date_create`, `date_activate`, `ip_create`, `active`, `rating`, `is_admin`, `activate`, `confirmed`, `activate_key`) 
+VALUES ('1', 'administrator', 'support@fend.ru', 'Администратор', 'user', 'Администратор', '', '', '', NULL, 'ac66e5100a5c96121ed922126522705d', '2019-01-01 00:00:00', '2019-01-01 00:00:00', '', '1', '1', '0', '1', '0', NULL);
 
 ALTER TABLE `prefix_talk_message` ADD FULLTEXT(`text`);
 
@@ -1050,7 +1053,7 @@ ALTER TABLE `prefix_talk_message` ADD `user_name` VARCHAR(200) NOT NULL AFTER `u
 
 ALTER TABLE `prefix_user` ADD `role` VARCHAR(20) NOT NULL AFTER `name`, ADD INDEX (`role`);
 
-UPDATE `prefix_menu_item` SET `name` = 'people', `url` = 'people' WHERE `prefix_menu_item`.`url` = 'humans'
+UPDATE `prefix_menu_item` SET `name` = 'people', `url` = 'people' WHERE `prefix_menu_item`.`url` = 'humans';
 
 ALTER TABLE `prefix_rating_vote` ADD `from_id` INT NOT NULL AFTER `user_id`, ADD INDEX (`from_id`);
 
