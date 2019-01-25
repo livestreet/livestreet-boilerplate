@@ -15,7 +15,7 @@
 
             {$idModal = "responseModal{$entity->getId()}"}
 
-            {component "bs-nav" items = [
+            {component "bs-nav" classes="flex-column" items = [
                 [ 
                     text    => "<span class='d-none d-md-inline' >{$aLang.moderation.responses.actions.edit}</span>",  
                     icon   => [ icon => "edit", classes => "d-md-none d-inline"],
@@ -28,6 +28,7 @@
                     icon => [ icon => "check", display => "s", classes => "d-md-none text-success d-inline"],
                     'url' => {router page='blogs'},  
                     'classes' => 'text-success py-0',
+                    enable  => ( !$entity->isPublish() ),
                     attributes => [
                         'data-param-id' => $entity->getId(),
                         'data-ajax-btn' => "true",

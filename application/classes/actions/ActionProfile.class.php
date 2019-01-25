@@ -49,6 +49,7 @@ class ActionProfile extends Action
             'user_id'     => $this->oUserProfile->getId()
         ]);
         
+        
     }
 
     /**
@@ -140,7 +141,7 @@ class ActionProfile extends Action
             $this->Viewer_SetSeoTags([
                 'login'         => $this->oUserProfile->getLogin(),
                 'name'          => $this->oUserProfile->getName(),
-                'rating'        => round($this->oUserProfile->getRating(), 1). " 5" ,
+                'rating'        => round($this->oUserProfile->getRating(), 1). " ". $this->Lang_Get('rating.of')." 5" ,
                 'count_vote'    => $this->oUserProfile->getCountRated(),
                 'about'         => $this->oUserProfile->getAbout()
             ]);

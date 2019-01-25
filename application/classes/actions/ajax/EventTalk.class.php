@@ -47,7 +47,7 @@ class ActionAjax_EventTalk extends Event {
                 $oResponse->_setValidateScenario( 'create_anoname');
             }
         }else{
-            if ($this->oUserCurrent and $this->oUserCurrent->getId() != $oResponse->getUserId() or !$this->CheckUserAccess()) {
+            if (!($this->oUserCurrent and $this->oUserCurrent->getId() == $oResponse->getUserId()) and !$this->CheckUserAccess()) {
                 $this->Message_AddError($this->Lang_Get('common.error.error'));
                 return;
             }

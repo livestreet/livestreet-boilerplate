@@ -23,7 +23,7 @@ class ActionModeration_EventResponses extends Event {
             '#index-from'   => 'id',
             '#order'        => ['date_create' => 'desc'],
             '#page'         => [ $iPage, $iLimit],
-            '#where'        => ['t.state != ?' => ['delete']]
+            '#where'        => ['t.state != ? and t.state != ?' => ['delete', 'moderate']]
         ];
         
         $oUserTarget = $this->User_GetUserByFilter(['login' => getRequest('login')]);  
