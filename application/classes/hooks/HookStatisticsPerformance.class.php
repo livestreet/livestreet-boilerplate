@@ -42,6 +42,13 @@ class HookStatisticsPerformance extends Hook
 	 */
 	public function Statistics()
 	{
+            if(!$this->User_GetUserCurrent()){
+                return;
+            }
+            if(!$this->User_GetUserCurrent()->isAdministrator()){
+                return;
+            }
+            
 		$oEngine = Engine::getInstance();
 		/**
 		 * Подсчитываем время выполнения

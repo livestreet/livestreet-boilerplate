@@ -491,6 +491,7 @@ class ActionAuth extends Action
          */
         if ($oUser->Update()) {
             $this->User_Authorization($oUser, true);
+            $this->Message_AddNotice($this->Lang_Get('auth.activation.notice.success'),null,true);
             Router::Location($oUser->getProfileUrl());
         } else {
             $this->Message_AddErrorSingle($this->Lang_Get('common.error.system.base'));

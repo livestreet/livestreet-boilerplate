@@ -449,6 +449,11 @@ return array(
                 'error_not_activated' => 'Вы не активировали вашу учетную запись. <br/> <a href="%%reactivation_path%%">Повторный запрос активации</a>'
             ),
         ),
+        'activation' => [
+            'notice' => [
+                'success' => 'Ваш аккаунт успешно активирован'
+            ]
+        ],
         // Повторный запрос активации
         'reactivation'  => array(
             'title'   => 'Повторный запрос активации',

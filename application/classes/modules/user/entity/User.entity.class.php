@@ -29,8 +29,8 @@ class ModuleUser_EntityUser extends EntityORM
         ],
         [
             'login', 
-            'login_another', 
-            'on' => array('profile_settings')
+            'change_login', 
+            'on' => array('change_login', 'profile_settings')
         ],
         [
             'login', 
@@ -178,9 +178,9 @@ class ModuleUser_EntityUser extends EntityORM
         return $this->Lang_Get('auth.registration.notices.error_login_used');
     }
 
-    public function ValidateLoginAnother($sValue, $aParams)
+    public function ValidateChangeLogin($sValue, $aParams)
     {
-        if($sValue == $this->getLogin()){
+        if($sValue == $this->_getOriginalDataOne('login')){
             return true;
         }
         

@@ -55,7 +55,6 @@
                 validate       = [ 
                     entity  => $oUserProfile,
                     remote  => true,
-                    scenario => 'change_login',
                     only_change => true
                 ]}
                 
