@@ -53,15 +53,19 @@ class ActionModeration_EventModeration extends Event {
             $this->Message_AddError($this->Lang_Get('talk.response.notice.error_not_found'));
             return;
         }
+        
+        if($oResponse->getState() == 'moderate'){
+            $this->Rating_Vote(
+                $oResponse->getUserId(), 
+                $oResponse->getTargetType(), 
+                $oResponse->getTargetId(), 
+                $oResponse->getRating(), 
+                $oResponse->getId()
+            );
+        }
+        
         $oResponse->setState('publish');
         
-        $this->Rating_Vote(
-            $oResponse->getUserId(), 
-            $oResponse->getTargetType(), 
-            $oResponse->getTargetId(), 
-            $oResponse->getRating(), 
-            $oResponse->getId()
-        );
         
                 
         if($oResponse->Save()){

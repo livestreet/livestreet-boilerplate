@@ -144,6 +144,14 @@ class ModuleTalk_EntityMessage extends EntityORM{
         return $this->Media_GetMediaByTarget($this->getType(), $this->getId());
     }
     
+    public function isPublish() {
+        return in_array($this->getState(), [
+            'publish',
+            'arbitrage',
+            'chat'
+        ]);
+    }
+    
     public function afterDelete() {
         /*
          * Удалить потомков

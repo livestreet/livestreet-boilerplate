@@ -246,7 +246,9 @@ class ModuleUser_EntityUser extends EntityORM
     
     public function afterSave() {
         parent::afterSave();
-        $this->Rbac_AddRoleToUser($this->getRole(), $this->getId());
+        if(!$oUser->isRole($this->getRole())){
+            $this->Rbac_AddRoleToUser($this->getRole(), $this->getId());
+        }
     }
     
     public function getMedia($sTargetType = '') {

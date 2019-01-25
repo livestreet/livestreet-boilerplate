@@ -30,6 +30,10 @@
             {if !is_array($item)}
                 {$item}
             {else}
+                {if !{$item.enable|default:1}}
+                    {continue}
+                {/if}
+
                 {$isActive = ($activeItem and $item.name == $activeItem) or $item.active}
                 {if $item.menu}
                     {component "bs-dropdown" params=$item.menu tag="li"
