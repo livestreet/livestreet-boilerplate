@@ -61,6 +61,9 @@ class ActionIndex extends Action
      */
     protected function EventIndex()
     {
+        if($oUser = $this->User_GetUserCurrent()){
+            Router::LocationAction($oUser->getLogin());
+        }
         /**
          * Устанавливаем шаблон вывода
          */

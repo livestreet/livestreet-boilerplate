@@ -49,6 +49,7 @@ class ActionProfile extends Action
             'user_id'     => $this->oUserProfile->getId()
         ]);
         
+        $this->Viewer_SetHtmlCanonical($this->oUserProfile->getProfileUrl());
         
     }
 
