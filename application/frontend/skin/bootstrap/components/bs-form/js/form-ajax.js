@@ -42,7 +42,6 @@
         
         onSubmit: function(event){
 
-            console.log('eventform',event)  
             
             event.preventDefault();
             

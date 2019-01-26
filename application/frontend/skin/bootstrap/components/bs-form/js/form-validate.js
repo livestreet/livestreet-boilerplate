@@ -42,7 +42,6 @@
         onSubmit: function(event){
             
             this.validate(function(result){
-                console.log('validateForm', result);
                 if(!result){
                     event.stopImmediatePropagation();
                     event.preventDefault();

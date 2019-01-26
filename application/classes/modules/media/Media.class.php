@@ -670,7 +670,8 @@ class ModuleMedia extends ModuleORM
         
         return true;
     }
-
+    
+    
     /**
      * Возвращает каталог для сохранения контента медиа
      *

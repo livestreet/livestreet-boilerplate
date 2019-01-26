@@ -39,13 +39,15 @@ class ActionAjax_EventProfile extends Event {
         
         $aFilter = [
             "#where" => [
-                't.login LIKE ? OR t.mail LIKE ? OR t.about LIKE ? OR t.name LIKE ?' => [
+                '(t.login LIKE ? OR t.mail LIKE ? OR t.about LIKE ? OR t.name LIKE ?)' => [
                     '%'.getRequest('query').'%',
                     '%'.getRequest('query').'%',
                     '%'.getRequest('query').'%',
                     '%'.getRequest('query').'%'
                 ]
             ],
+            'active' => 1,
+            'activate' => 1,
             '#limit' => Config::Get('module.user.search_ajax.limit')
         ];
         

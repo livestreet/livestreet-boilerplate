@@ -246,7 +246,7 @@ class ModuleUser_EntityUser extends EntityORM
     
     public function afterSave() {
         parent::afterSave();
-        if(!$oUser->isRole($this->getRole())){
+        if(!$this->isRole($this->getRole())){
             $this->Rbac_AddRoleToUser($this->getRole(), $this->getId());
         }
     }
@@ -296,4 +296,5 @@ class ModuleUser_EntityUser extends EntityORM
         $aStat = $this->Rating_GetRatingStatTarget('user', $this->getId());
         return $aStat;
     }
+    
 }

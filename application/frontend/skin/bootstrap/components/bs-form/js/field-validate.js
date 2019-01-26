@@ -80,7 +80,6 @@
             } 
             
             let element = this.element.get( 0 );
-            //console.log(element.name,element.checkValidity());
             if(element !== undefined && element.checkValidity()){
                 this.setValid();
             }else{

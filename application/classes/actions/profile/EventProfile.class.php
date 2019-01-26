@@ -49,7 +49,7 @@ class ActionProfile_EventProfile extends Event {
     public function EventMyResponses()
     {
         $oUserCurrent = $this->User_GetUserCurrent();
-        if($oUserCurrent and $oUserCurrent->getId() != $this->oUserProfile->getId()){
+        if(($oUserCurrent and $oUserCurrent->getId() != $this->oUserProfile->getId()) or !$oUserCurrent){
             return $this->EventNotFound();
         }
         

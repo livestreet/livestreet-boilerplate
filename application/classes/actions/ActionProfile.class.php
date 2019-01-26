@@ -102,7 +102,7 @@ class ActionProfile extends Action
             return false;
         }        
         
-        return $this->oUserProfile->getActivate();
+        return $this->oUserProfile->getActivate() and $this->oUserProfile->getActive();
     }
     
      /**

@@ -21,8 +21,9 @@
     closed          = false
     showFooter      = true
     primaryButton  = [
-        'text'    => {lang 'common.save'}
+        'text'    => {lang 'common.save'},
+        'bmods' => "success"
     ]
-    attributes      = ["data-type" => "crop-modal"]
+    attributes      = ["data-type" => "crop-modal", "data-backdrop" => "false", "data-keyboard" => "false"]
     id              = "cropModal"}
 
