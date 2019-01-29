@@ -117,6 +117,7 @@ $config['seo'] = [
  * Модерация
  */
 $config['moderation']['talk']['page_count'] = 10;
+$config['moderation']['profiles']['page_count'] = 10;
 /**
  * Модуль Media
  */
@@ -208,6 +209,7 @@ $config['db']['table']['rbac_role'] = '___db.table.prefix___rbac_role';
 $config['db']['table']['rbac_permission'] = '___db.table.prefix___rbac_permission';
 $config['db']['table']['rbac_role_permission'] = '___db.table.prefix___rbac_role_permission';
 $config['db']['table']['rbac_role_user'] = '___db.table.prefix___rbac_role_user';
+$config['db']['table']['moderation_profile_target'] = '___db.table.prefix___profile_target';
 
 /**
  * Настройки роутинга

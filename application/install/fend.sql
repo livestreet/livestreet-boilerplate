@@ -1057,3 +1057,36 @@ ALTER TABLE `prefix_user`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+DROP TABLE IF EXISTS `prefix_profile_target`;
+CREATE TABLE `prefix_profile_target` (
+  `id` int(11) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `target_id` bigint(20) NOT NULL,
+  `date_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `prefix_profile_target`
+--
+ALTER TABLE `prefix_profile_target`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `target_id` (`target_id`),
+  ADD KEY `date_create` (`date_create`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `prefix_profile_target`
+--
+ALTER TABLE `prefix_profile_target`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;

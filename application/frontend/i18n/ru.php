@@ -330,7 +330,57 @@ return array(
             'arbitrage' => 'Арбитраж',
             'responses_all' => 'Все отзывы',
             'responses_deleted' => 'Удаленные отзывы',
-            'feedback' => 'Поддержка'
+            'feedback' => 'Поддержка',
+            'profiles'  => 'Профили' 
+        ],
+        'profiles' => [
+            'edit' => [
+                'title_add' => 'Добавить профиль',
+                'title_edit' => 'Редактировать профиль' 
+            ],
+            'title' => 'Редактирование профилей',
+            'actions' => [
+                'edit' => 'Редактировать',
+                'delete' => 'Удалить',
+                'add' => 'Добавить профиль'
+            ],
+            'form' => [
+                'role' => [
+                    'label' => 'Роль',
+                    'value' => [
+                        'user' => 'Личность',
+                        'company' => 'Компания'
+                    ]
+                ],
+                'name' => [
+                    'placeholder' => 'ФИО или название компании'
+                    
+                ],
+                'about' => [
+                    'placeholder' => 'Описание'
+                    
+                ],
+                'adrress' => [
+                    'placeholder' => 'Адресс'
+                    
+                ],
+                'phone' => [
+                    'placeholder' => 'Телефон'
+                    
+                ],
+                'site' => [
+                    'placeholder' => 'Сайт',
+                    'desc'  =>'http://site.ru'
+                ],
+                'activate' => [
+                    'label' => 'Активировать'
+                    
+                ],
+                'submit' => [
+                    'text' => 'Сохранить',
+                    
+                ]
+            ]
         ],
         'btn_view' => [
             'text' => 'Полный / Свернутый'

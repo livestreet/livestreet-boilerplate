@@ -25,7 +25,7 @@ class ModuleUser_EntityUser extends EntityORM
         [
             'login', 
             'login_exists', 
-            'on' => array('registration')
+            'on' => array('registration', 'add')
         ],
         [
             'login', 
@@ -35,7 +35,7 @@ class ModuleUser_EntityUser extends EntityORM
         [
             'login', 
             'login', 
-            'on' => array('registration', 'change_login', 'profile_settings')
+            'on' => array('registration', 'change_login', 'profile_settings', 'add')
         ],
         [   'name', 
             'string', 
@@ -48,49 +48,49 @@ class ModuleUser_EntityUser extends EntityORM
             'min' => 3, 
             'max' => 200, 
             'allowEmpty' => false,
-            'on' => array('registration')
+            'on' => array('registration', 'add')
         ],
         [   
             'role', 
             'string', 
             'allowEmpty' => false,
-            'on' => array('registration'), 
+            'on' => array('registration', 'add'), 
             'msg' => 'auth.registration.notices.role_no_valid'
         ],
         [   
             'role', 
             'role_exists', 
-            'on' => array('registration')
+            'on' => array('registration', 'add')
         ],
         [   
             'phone', 
             'string',
             'max' => 20,
-            'on' => array( 'profile_settings')
+            'on' => array( 'profile_settings', 'add')
         ],
         [   
             'site', 
             'url',
             'max' => 500,
-            'on' => array( 'profile_settings')
+            'on' => array( 'profile_settings', 'add')
         ],
         [   
             'address', 
             'string',
             'max' => 500,
-            'on' => array( 'profile_settings')
+            'on' => array( 'profile_settings', 'add')
         ],
         [   
             'about', 
             'string',
             'max' => 1000,
-            'on' => array( 'profile_settings')
+            'on' => array( 'profile_settings', 'add')
         ],
         [   
             'photo_count', 
             'number',
             'max' => 1,
-            'on' => array( 'profile_settings')
+            'on' => array( 'profile_settings', 'add')
         ]
     );
 

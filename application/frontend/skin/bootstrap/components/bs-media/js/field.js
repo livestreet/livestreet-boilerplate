@@ -92,6 +92,7 @@
             this.elements.cropModal.bsCropModal("option", 'cropOptions' , data);
 
             this.elements.cropModal.bsCropModal("option", "onCropped", function(e,params){
+                console.log(params, this.element)
                 let file = this.elements.body.find('[data-id="'+params.data.id+'"]');
                 
                 if(params.canvas !== undefined){ 

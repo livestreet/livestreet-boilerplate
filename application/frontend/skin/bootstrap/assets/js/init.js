@@ -44,7 +44,15 @@ jQuery(document).ready(function($){
      // Отправка формы в модальном окне
     $('[data-modal-submit]').on('click', function(e){
         $(this).closest('.modal-content').find('form').submit();
-    })
+    });
+    
+    /*
+     * Пересчет модальных окон при закрытии вложенных
+     */
+//    $('.modal').on('hidden.bs.modal', function (e) {
+//        console.log($('.modal.show'))
+//        $($('.modal.show').get(0)).modal('handleUpdate')
+//    })
     
     /*
      * Дополнительная обработка табов в модальных окнах

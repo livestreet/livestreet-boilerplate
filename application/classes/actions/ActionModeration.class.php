@@ -58,6 +58,12 @@ class ActionModeration extends Action
         $this->AddEventPreg('/^responses-all$/i',  '/^(page(\d+))?$/i', ['Responses::EventResponsesAll' , 'moderation']);
         
         $this->AddEventPreg('/^responses-deleted$/i',  '/^(page(\d+))?$/i', ['Responses::EventResponsesDeleted' , 'moderation']);
+        
+        $this->RegisterEventExternal('Profiles', 'ActionModeration_EventProfiles');
+        $this->AddEventPreg('/^profiles$/i', '/^(page(\d+))?$/i', ['Profiles::EventProfiles' , 'moderation']);
+        $this->AddEventPreg('/^profile-edit$/i', '/^(\d+)?$/i', ['Profiles::EventProfileEdit' , 'moderation']);
+        $this->AddEventPreg('/^ajax-edit-profile$/i',  ['Profiles::EventAjaxEditProfile' , 'moderation']);
+        
     }
 
 

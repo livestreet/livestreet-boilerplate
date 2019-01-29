@@ -43,6 +43,11 @@ class HookMenuModeration extends Hook {
             'title' => 'moderation.menu.arbitrage',
             'count' => $this->Talk_GetCountFromResponseByFilter([ 'state in' => ['arbitrage', 'chat']]),
             'url'   => 'moderation/arbitrage'
+        ]))->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
+            'name' => 'profiles',
+            'title' => 'moderation.menu.profiles',
+            'count' => $this->Moderation_GetCountFromProfileTargetByFilter([ 'user_id' => $this->User_GetUserCurrent()->getId()]),
+            'url'   => 'moderation/profiles'
         ]));
         
     }

@@ -8,6 +8,8 @@
         "response-item": "response-item.tpl",
         "response-list": "response-list.tpl",
         "response-modal": "response-modal.tpl",
-        "response-form": "response-form.tpl"
+        "response-form": "response-form.tpl",
+        
+        "profile-item": "profile-item.tpl"
     }
 }

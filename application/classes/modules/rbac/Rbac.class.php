@@ -417,6 +417,24 @@ class ModuleRbac extends ModuleORM
         }
         return $oRoleUser;
     }
+    
+    public function RemoveRoleFromUser($oRole, $iUserId) {
+        if (is_string($oRole)) {
+            $oRole = $this->GetRoleByCode($oRole);
+        }
+        if (is_object($iUserId)) {
+            $iUserId = $iUserId->getId();
+        }
+        if (!$oRole or !$iUserId) {
+            return false;
+        }
+        if ($oRoleUser = $this->Rbac_GetRoleUserByFilter(array(
+            'role_id' => $oRole->getId(),
+            'user_id' => $iUserId
+        ))){
+            $oRoleUser->Delete();
+        }
+    }
 
     /**
      * Создает разрешений для управления правами

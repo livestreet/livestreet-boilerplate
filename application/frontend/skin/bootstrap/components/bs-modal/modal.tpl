@@ -48,7 +48,7 @@
                     </div>
                 {/if}
 
-                {if $showFooter}
+                {if $showFooter or $footer}
 
                     {if $footer}
                         <div class="modal-footer">
