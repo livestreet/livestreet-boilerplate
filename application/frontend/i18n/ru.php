@@ -124,8 +124,30 @@ return array(
                 'title' => 'Сменить пароль',
                 'form' => [
                     'password' => [
-                        'label' => 'Текущий пароль'
+                        'placeholder' => 'Текущий пароль'
+                    ],
+                    'password_new' => [
+                        'placeholder' => 'Новый пароль'
+                    ],
+                    'password_confirm' => [
+                        'placeholder' => 'Повторить новый пароль'
                     ]
+                ],
+                'notices' => [
+                    'error_pass' => 'Пароль не верный',
+                    'error_pass_new' => 'Пароли не совпадают'
+                ]
+            ],
+            "change_mail" => [
+                'title' => 'Сменить Email',
+                'form' => [
+                    'mail' => [
+                        'label' => 'Новый email',
+                        'placeholder' => 'Новый email'
+                    ]
+                ],
+                'notices' => [
+                    'success_send' => 'Вам отправлено письмо на адрес %%mail%% с ссылкой на подтверждение изменения email.'
                 ]
             ]
         ],
@@ -698,6 +720,16 @@ return array(
 				Ссылка на активацию аккаунта:
 				<br>
 				<a href="%%activation_url%%">%%activation_url%%</a>'
+        ),
+        // Изменение email
+        'change_mail'          => array(
+            'subject' => 'Запрос на изменение Email',
+            'text'    =>
+                'Вы запросили изменение email адреса на сайте <a href="%%website_url%%">%%website_name%%</a>
+				<br><br>
+				Перейдите по ссылке чтобы подтвердить изменение:
+				<br>
+				<a href="%%change_url%%">%%change_url%%</a>'
         ),
         // Регистрация
         'registration'          => array(

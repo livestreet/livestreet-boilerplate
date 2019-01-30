@@ -3,6 +3,12 @@
  *}
 {extends 'layouts/layout.base.tpl'}
 
+{block 'layout_page_title'}
+    <h2>
+        {$aLang.user.settings.profile.title}
+    </h2>
+{/block}
+
 {block 'layout_content'}
     {capture name="form"}
         <form  data-form-validate data-form-ajax data-url="{$oUserProfile->getProfileUrl()}/settings/profile-ajax" novalidate>

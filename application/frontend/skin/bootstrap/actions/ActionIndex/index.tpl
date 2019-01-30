@@ -4,7 +4,7 @@
 {extends 'layouts/layout.base.tpl'}
 
 {block 'layout_content'}
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mx-5">
         
         <div class="col-md-7">
             <h5 class="text-center">Fend помогает получить отзывы и предложения о вашей работе</h5>

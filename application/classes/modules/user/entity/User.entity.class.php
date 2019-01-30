@@ -123,9 +123,9 @@ class ModuleUser_EntityUser extends EntityORM
         $this->aValidateRules[] = array(
             'password', 
             'string', 
-            'min' => 10,
+            'min' => 5,
             'max' => 50,
-            'msg' => $this->Lang_Get('auth.registration.notices.password_no_valid', ['min' => 10, 'max' => 50]),
+            'msg' => $this->Lang_Get('auth.registration.notices.password_no_valid', ['min' => 5, 'max' => 50]),
             'on' => array('registration', 'login'),
             'allowEmpty' => false
         );

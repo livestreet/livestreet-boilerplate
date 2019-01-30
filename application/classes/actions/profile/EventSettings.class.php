@@ -26,6 +26,59 @@ class ActionProfile_EventSettings extends Event {
         $this->Viewer_Assign('sActiveItemSettings', 'notices');
         $this->SetTemplateAction('settings/notices');
     }
+    
+    public function EventChangeMail() {
+        
+        if(isPost()){
+            $this->oUserProfile->setMail(getRequest('mail'));
+            
+            if($this->oUserProfile->_Validate(['mail'])){
+                
+                $this->Message_AddNotice($this->Lang_Get('user.settings.change_mail.notices.success_send',  ['mail' => getRequest('mail')]));
+                
+                $sChangeUrl = $this->oUserProfile->getProfileUrl(). '/settings/change-mail-accept';
+                $sChangeUrl .= '?mail='.$this->oUserProfile->getMail(). '&key='. $this->oUserProfile->getActivateKey();
+                
+                $this->Notify_Send(
+                    $this->oUserProfile,
+                    'change_mail.tpl',
+                    $this->Lang_Get('emails.change_mail.subject'),
+                    ['sChangeUrl' => $sChangeUrl], null, true
+                );
+                
+            }else{
+                $this->Message_AddError($this->oUserProfile->_getValidateError());
+            }
+        }
+        
+        $this->Viewer_Assign('sActiveItemSettings', 'change_mail');
+        $this->SetTemplateAction('settings/change_mail');
+    }
+    
+    
+    public function EventChangeMailAccept() {
+        
+        if(isPost()){
+            $this->oUserProfile->setMail(getRequest('mail'));
+            
+            if($this->oUserProfile->_Validate(['mail'])){
+                
+                $this->Message_AddNotice($this->Lang_Get('common.success.save'));
+                $this->Notify_Send(
+                    $this->oUserProfile,
+                    'change_mail.tpl',
+                    $this->Lang_Get('emails.change_mail.subject'),
+                    ['change_url' => $this->oUserProfile->getProfileUrl(). '/settings/change-mail-accept?mail='.$this->oUserProfile->getMail(). '&key='. $this->oUserProfile->getActivateKey()], null, true
+                );
+                
+            }else{
+                $this->Message_AddError($this->oUserProfile->_getValidateError());
+            }
+        }
+        
+        $this->Viewer_Assign('sActiveItemSettings', 'change_mail');
+        $this->SetTemplateAction('settings/change_mail');
+    }
     public function EventSecurity() {
        
         $this->Viewer_Assign('sActiveItemSettings', 'security');
@@ -35,7 +88,20 @@ class ActionProfile_EventSettings extends Event {
     public function EventSecurityAjax() {
         $this->Viewer_SetResponseAjax('json');
         
-        $this->Message_AddNotice('успешнddо');
+        if($this->User_MakeHashPassword(getRequest('password')) != $this->oUserProfile->getPassword()){
+            $this->Message_AddError($this->Lang_Get('user.settings.security.notices.error_pass'));
+            return;
+        }
+        
+        if(getRequest('password_new') != getRequest('password_confirm')){
+            $this->Message_AddError($this->Lang_Get('user.settings.security.notices.error_pass_new'));
+            return;
+        }
+        
+        $this->oUserProfile->setPassword($this->User_MakeHashPassword(getRequest('password_new')));
+        $this->oUserProfile->Save();
+        
+        $this->Message_AddNotice('успешно');
         $this->Viewer_AssignAjax('data', $_REQUEST);
     }
     
@@ -93,14 +159,13 @@ class ActionProfile_EventSettings extends Event {
             $this->oUserProfile->setPhoto($sPath);
         }
         
-        
         $this->oUserProfile->setName(getRequest('name'));
         $this->oUserProfile->setAbout(getRequest('about'));
         $this->oUserProfile->setSite(getRequest('site'));
         $this->oUserProfile->setPhone(getRequest('phone'));
         $this->oUserProfile->setAddress(getRequest('address'));
         $this->oUserProfile->setLogin(getRequest('login'));
-        
+                
         if($this->oUserProfile->_Validate()){
             
             if($this->oUserProfile->Save()){
@@ -110,7 +175,8 @@ class ActionProfile_EventSettings extends Event {
         }else{
             $this->Message_AddError($this->oUserProfile->_getValidateError());
             $this->Viewer_AssignAjax('errors', $this->oUserProfile->_getValidateErrors());
-        }        
+        }
+               
     }
     
 }
